@@ -1,0 +1,8 @@
+<Root>
+<connection_type>tcp</connection_type>
+<php_url>http://192.168.1.68:82/expda.php</php_url>
+<images_folder>\storage\sdcard0\expda\images</images_folder>
+<lua_folder>\storage\sdcard0\expda\lua</lua_folder>
+<export_folder>\storage\sdcard0\expda\export</export_folder>
+<vkod_teszt>true</vkod_teszt>
+</Root>
