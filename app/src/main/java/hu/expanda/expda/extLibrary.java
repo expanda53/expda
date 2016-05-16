@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import dalvik.system.DexClassLoader;
 
@@ -70,9 +72,14 @@ public class extLibrary {
                         for (Method m : this.methods) {
                             String name = m.getName().toString();
                             if (methodName.equalsIgnoreCase(name)) {
-                                Log.d("extlibrary.runMethod", name + ": ok");
+                                Log.d("extlibrary.runMethod", name + " found");
                                 Object x = m.invoke(this.extLib, this.layout, params);
-                                result = ((String) x).toString();
+                                Log.d("extlibrary.runMethod", name + " run: ok");
+                                result = ((ArrayList<String>) x).toString();
+                                Log.d("extlibrary.runMethod", name + " result: " + result);
+
+                                ArrayList<String> r = pane.getDbc().Query("select ID,VALUE from LOG order by id");
+                                Log.d("expda.controlQuery", name + " result: " + r.toString());
                             }
                         }
                     }

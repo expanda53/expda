@@ -82,7 +82,8 @@
   <height>70</height>
   <left>127</left>
   <lua_after_click1>leltar/cikkment.lua</lua_after_click1>
-  <extfunction_after_click>setMantisTitle ujfelirat</extfunction_after_click>
+  <extfunction_after_click1>setMantisTitle ujfelirat</extfunction_after_click1>
+  <extfunction_after_click>liteQuery teszt</extfunction_after_click>
   <parent>panel1</parent>
 </pcikkval_bvalaszt>
 <pcikkval_table>

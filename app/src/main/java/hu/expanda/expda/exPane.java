@@ -475,7 +475,6 @@ public class exPane {
     }
 
     private void showNotification(String title, String text){
-//show
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this.getContext())
                         .setSmallIcon(R.drawable.ic_expanda)
