@@ -100,7 +100,7 @@ public class exPane {
             }
 
         }
-        this.extLib = new extLibrary(this);
+
         obj=null;
         return true;
 
@@ -113,13 +113,16 @@ public class exPane {
     public exPane(Context c, ViewGroup layout, String xml) {
         this.layout = layout;
         this.context = c;
-        createPanel( xml,Ini.getStyleFile());
+        createPanel(xml, Ini.getStyleFile());
 
         if (Ini.getConnectionType().equalsIgnoreCase("PHP")) try {
-//            this.phpcli = new PHPClient(Ini.getPhpUrl());
+            //this.phpcli = new PHPClient(Ini.getPhpUrl());
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        extLibrary.Create(this);
+
 
     }
     public View findObject(String name) {
@@ -458,7 +461,7 @@ public class exPane {
             luaInit(p1 + ' ' +p2);
         }
         else if (command.equalsIgnoreCase("STARTEXTFUNC")){
-            getExtLib().runMethod(p1 + ' ' + p2);
+            extLibrary.runMethod(p1 + ' ' + p2);
         }
         else if (command.equalsIgnoreCase("TOAST")){
             Toast.makeText(getContext(),
