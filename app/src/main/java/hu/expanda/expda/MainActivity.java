@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.TextView;
 
+import com.symbol.emdk.barcode.Scanner;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -26,12 +28,14 @@ public class MainActivity extends Activity {
     public static String EXTRA_MSG_ITEM = "hu.expanda.expda.ITEM";
     public static Object style = null;
     public static ArrayList<Object> a_style = null;
+    public static Symbol symbol = null;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AbsoluteLayout ll = new AbsoluteLayout(this);
 //        String xml = loadXml();
-
-
+        if (symbol==null)   symbol = new Symbol(getApplicationContext());
+        if (symbol.getScanner()==null) symbol.initScanner();
 
         Ini.Create();
         if (Ini.isLandScape())  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
@@ -44,6 +48,8 @@ public class MainActivity extends Activity {
 
 
         pane = new exPane(this, ll, xml);
+
+
         setContentView(ll);
         pane.getLayout().requestFocus();
 /*
@@ -88,6 +94,9 @@ public class MainActivity extends Activity {
 //                pane.showWaitbox("");
                 pane.luaInit(pane.getLuaOnCreate());
             }
+            symbol.setPane(pane);
+            symbol.startRead();
+
         }
         catch (Exception e){
             e.printStackTrace();

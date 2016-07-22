@@ -428,14 +428,14 @@ public class exPane {
 
 
         }
-        /*
+
         else if (command.equalsIgnoreCase("SCANNERON")){
-            this.setScannerOn();
+            MainActivity.symbol.startRead();
         }
         else if (command.equalsIgnoreCase("SCANNEROFF")){
-            this.setScannerOff();
+            MainActivity.symbol.stopRead();
         }
-
+        /*
         else if (command.equalsIgnoreCase("CLOSE")){
             if (lua!=null) {
                 lua.stop();
