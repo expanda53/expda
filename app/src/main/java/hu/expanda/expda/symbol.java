@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Encsi on 2016.07.07..
  */
-public class Symbol implements Scanner.DataListener, EMDKManager.EMDKListener,Scanner.StatusListener {
+class Symbol implements Scanner.DataListener, EMDKManager.EMDKListener,Scanner.StatusListener {
     private EMDKManager emdkManager = null;
     private BarcodeManager barcodeManager = null;
     private Scanner scanner = null;

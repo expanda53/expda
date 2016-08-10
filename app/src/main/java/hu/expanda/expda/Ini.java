@@ -86,7 +86,7 @@ public class Ini {
 	private static void parsing(String xml){
 		try {
 //			Ini.setImgDir(domParsing(xml,"images_folder","Root"));
-//			Ini.setLuaDir(domParsing(xml,"lua_folder","Root"));
+			//Ini.setLuaDir(domParsing(xml,"lua_folder","Root"));
 			Ini.setExportDir(domParsing(xml,"export_folder","Root"));
 			Ini.setConnectionType(domParsing(xml,"connection_type","Root"));
 			Ini.setPhpUrl(domParsing(xml,"php_url","Root"));

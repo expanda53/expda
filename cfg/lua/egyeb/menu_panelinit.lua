@@ -1,3 +1,3 @@
-﻿params = {...}
+params = {...}
 ui = params[1]
-require 'model/Luafunc' 
+require 'hu.expanda.expda/LuaFunc'

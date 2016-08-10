@@ -46,9 +46,8 @@ public class ObjButton extends ObjDefault{
     }
 
     public String getImage() {
-//        if (Image!="")	return Ini.getImgDir()+"\\"+Image;
-//        else return "";
-        return "";
+        if (Image!="")	return Ini.getImgDir()+"/"+Image;
+        else return "";
     }
 
     public void setImage(String image) {

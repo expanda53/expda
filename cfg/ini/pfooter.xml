@@ -1,16 +1,16 @@
 <Root>
-<pfooter>
-  <type>panel</type>
+<panel>
+  <name>pfooter</name>
   <width>match</width>
   <top>861</top>
   <left>0</left>
   <height>match</height>
   <visible>true</visible>
   <bgcolor>#CCAA00</bgcolor>
-</pfooter>
-<flabel>
-  <Type>label</Type>
-  <Text>exPDA v4.0 2014</Text>
+</panel>
+<label>
+  <name>flabel</name>
+  <Text>exPDA v5.0 2016</Text>
   <top>20</top>
   <width>match</width>
   <bgcolor>#008B8B</bgcolor>
@@ -18,24 +18,5 @@
   <parent>pfooter</parent>
   <visible>true</visible>
   <height>match</height>  
-</flabel>
-<lstatus>
-  <Type>label</Type>
-  <Text>_</Text>
-  <top>0</top>
-  <width>165</width>
-  <parent>pfooter</parent>
-  <left>0</left>
-  <height>20</height>
-  <bgcolor>#DDDDDD</bgcolor>
-</lstatus>
-<lluastat>
-  <Type>label</Type>
-  <Text>_</Text>
-  <top>0</top>
-  <width>165</width>
-  <parent>pfooter</parent>
-  <left>165</left>
-  <height>20</height>
-  <bgcolor>#ABABAB</bgcolor>
-</lluastat
+</label>
+</Root>

@@ -1,80 +1,57 @@
 <Root>
-<altalanos>
-  <Type>mainqpanel</Type>
+<mainpanel>
+  <name>mainpanel1</name>
   <text>Fomenü</text>
   <bgcolor>#ffffff</bgcolor>
   <params_to_labels>lkezelo</params_to_labels>
   <lua_on_create>egyeb/menu_panelinit.lua [lkezelo]</lua_on_create>
-</altalanos>
-<lupdate>
-  <Type>label</Type>
+</mainpanel>
+<label>
+  <name>lupdate</name>
   <top>0</top>
   <left>0</left>
   <width>0</width>
   <height>0</height>
   <visible>false</visible>
-</lupdate>
-<lkezelo>
-  <Type>label</Type>
+</label>
+<label>
+  <name>lkezelo</name>
   <top>0</top>
   <left>0</left>
   <width>0</width>
   <height>0</height>
   <visible>false</visible>
   <Text>100</Text>
-</lkezelo>
+</label>
 
 
 
-<Button5>
-  <Type>custom_button</Type>
-  <image>shelf.png</image>
-  <Text>Mantis</Text>
-  <top>120</top>
+<custom_button>
+  <name>Button5</name>
+  <image>external-link.png</image>
+  <Text>Kiadás</Text>
+  <top>60</top>
   <width>match</width>
-  <height>105</height>
+  <height>65</height>
   <left>1</left>
   <font_size>17</font_size>
-  <lua_after_click>egyeb/menuinit.lua MANTIS [lkezelo]</lua_after_click>
-</Button5>
+  <lua_after_click>egyeb/menuinit.lua KIADAS [lkezelo]</lua_after_click>
+</custom_button>
 
-<ButtonClose>
-  <Type>custom_button</Type>
+<custom_button>
+  <name>ButtonClose</name>
   <left>1</left>
   <image>logout.png</image>
   <Text>Kilépés</Text>
-  <top>230</top>
+  <top>130</top>
   <width>match</width>
-  <height>105</height>
+  <height>65</height>
   <font_size>17</font_size>
   <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
-</ButtonClose>
-<BSlowsync>
-  <Type>custom_button</Type>
-  <left>30</left>
-  <image>sync.png</image>
-  <Text>Törzsadatok</Text>
-  <top>340</top>
-  <width>120</width>
-  <height>105</height>
-  <lua_after_click>sync/cegcikk_refresh.lua</lua_after_click>
-  <bgcolor>#ccff00</bgcolor>
-  <font_size>17</font_size>
-</BSlowsync>
-<BSync>
-  <Type>custom_button</Type>
-  <left>160</left>
-  <image>sync.png</image>
-  <Text>Frissités</Text>
-  <top>340</top>
-  <width>120</width>
-  <height>105</height>
-  <lua_after_click>sync/tasklist_refresh.lua</lua_after_click>
-  <bgcolor>#ccff00</bgcolor>
-  <font_size>17</font_size>
-</BSync>
-<fkep>
-  <Type>label</Type>
+</custom_button>
+
+<label>
+  <name>fkep</name>
   <Text>exPDA</Text>
   <top>450</top>
   <width>64</width>
@@ -84,8 +61,8 @@
   <height>64</height>  
  <image>logoA.png</image>
  <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>
-</fkep>
-<pfooter>
+</label>
+<panel>
   <file>pfooter.xml</file>
-</pfooter>
+</panel>
 </Root>

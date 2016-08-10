@@ -59,10 +59,11 @@ public class xmlParser {
                     case XmlPullParser.START_TAG:
 
                         if (depth == 2) {
-                            aktObj=name;
+                            //aktObj=name;
                             inObj = true;
                             aktProp = "";
                             props.clear();
+                            props.add( "Type=" + name);
                         }
                         if (depth>2 && inObj){
                             aktProp = name;
@@ -79,7 +80,7 @@ public class xmlParser {
                         }
                         if (inObj) {
                             if (depth == 2) {
-                                components += name + ";";
+                                components += aktObj + ";";
                                 if (!name.equalsIgnoreCase("obj")) {
                                     uobj uo = new uobj(aktObj, props);
                                     Object o = uo.create();
@@ -108,7 +109,12 @@ public class xmlParser {
 
                                 }
                                 else {
-                                    if (aktProp != "") props.add(aktProp + "=" + text);
+                                    if (aktProp != "") {
+                                        props.add(aktProp + "=" + text);
+                                        if (aktProp.equalsIgnoreCase("name")) {
+                                            aktObj=text;
+                                        }
+                                    }
                                 }
                                 aktProp = "";
                                 text = "";

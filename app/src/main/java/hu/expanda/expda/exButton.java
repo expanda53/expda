@@ -2,15 +2,24 @@ package hu.expanda.expda;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 //import android.media.Image;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
@@ -19,7 +28,7 @@ import java.util.ArrayList;
  */
 
 
-public class exButton extends Button {
+public class exButton extends LinearLayout {
     private Context parent;
     private ObjButton button;
     public exPane getPane() {
@@ -27,13 +36,28 @@ public class exButton extends Button {
     }
 
     private exPane pane;
+    private ImageView iv;
+    private TextView tv;
     public exButton(final Context parent,  Object o,ViewGroup layout,exPane pane) {
         super(parent);
         this.parent = parent;
         this.pane = pane;
         this.button = ((ObjButton) o);
-        this.setVisibility(getObj().getVisibility());
-        this.setText(getObj().getText());
+        //this.setVisibility(getObj().getVisibility());
+        tv = new TextView(parent);
+        tv.setText(getObj().getText());
+
+
+        if (this.button.getImage()!="") {
+            iv = new ImageView(parent);
+            iv.setImageURI(Uri.fromFile(new File(this.button.getImage())));
+            this.addView(iv);
+
+        }
+        this.addView(tv);
+
+
+        //this.setText(getObj().getText());
         int width = getObj().getWidth();
         if (width == 0) {
             width = 60;
@@ -46,17 +70,8 @@ public class exButton extends Button {
             getObj().setHeight(height);
         }
 
-        if (getObj().getImage() != "") {
-            try {
-//                Image image = new Image(parent.getDisplay(), b.getImage());
-//                this.setImage(image);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-        }
 //        this.setCompoundDrawables(img,null,null,null);
+
         if (getObj().getForeColor() != -1) this.setTextColor(getObj().getForeColor());
         if (getObj().getBackColor() != -1) this.setBackgroundColor(getObj().getBackColor());
         this.setTextSize(getObj().getFontSize());
@@ -88,6 +103,7 @@ public class exButton extends Button {
             }
             
         }
+
         layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));
 //        this.name = obj.getName();
         this.setTag(getObj().getName());
@@ -95,7 +111,7 @@ public class exButton extends Button {
 
 
 
-        this.setOnClickListener(new OnClickListener() {
+        tv.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
                 if (button.getFunction().equalsIgnoreCase("CLOSE")) {
@@ -124,6 +140,38 @@ public class exButton extends Button {
 
             }
         });
+        if (iv != null) {
+            iv.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                    if (button.getFunction().equalsIgnoreCase("CLOSE")) {
+                        ((Activity) parent).finish();
+
+                    } else {
+
+                        getPane().luaInit(button.getLuaAfterClick());
+                        try {
+
+                            getPane().getExtLib().runMethod(button.getExtFunctionAfterClick());
+                        } catch (InvocationTargetException e) {
+                            e.printStackTrace();
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+
+//                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
+
+                    }
+
+                    Toast.makeText(getContext(),
+                            "Button clicked",
+                            Toast.LENGTH_LONG).show();
+
+                }
+            });
+        }
+
+
     }
 /*
     Listener infoListener = new Listener() {
@@ -144,6 +192,34 @@ public class exButton extends Button {
     };
 
 */
+    public void setText(String t){
+        tv.setText(t);
+
+    }
+    public void setTextColor(int c){
+        tv.setTextColor(c);
+
+    }
+    public void setTextSize(int s){
+        tv.setTextSize(s);
+
+    }
+    public void setHeight(int i){
+        tv.setHeight(i);
+
+    }
+    public void setWidth(int i){
+        tv.setWidth(i);
+    }
+    public void setTypeface(android.graphics.Typeface tf,int i){
+
+        tv.setTypeface(tf, i);
+    }
+    public String getText(){
+
+        return tv.getText().toString();
+
+    }
 public void setBounds(String command, int val){
     if (command.equalsIgnoreCase("SETTOP")) this.setTop1(val);
     if (command.equalsIgnoreCase("SETWIDTH")) this.setWidth1(val);

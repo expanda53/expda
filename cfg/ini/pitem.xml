@@ -1,16 +1,16 @@
 <Root>
-<pitem>
-  <type>panel</type>
+<panel>
+  <name>pitem</name>
   <width>fill</width>
   <top>20</top>
   <left>0</left>
   <height>match</height>
   <visible>false</visible>
   <bgcolor>#CCAA00</bgcolor>
-</pitem>
+</panel>
 
-<lsum>
-  <Type>label</Type>
+<label>
+  <name>lsum</name>
   <Text>exPDA v4.0 2014</Text>
   <top>0</top>
   <width>match</width>
@@ -18,11 +18,11 @@
   <parent>pitem</parent>
   <visible>true</visible>
   <height>wrap</height>  
-<style>mcoluser</style> 
-</lsum>
+  <style>mcoluser</style> 
+</label>
 
-<lmegj>
-  <Type>label</Type>
+<label>
+  <name>lmegj</name>
   <Text>exPDA v4.0 2014</Text>
   <top>65</top>
   <width>match</width>
@@ -30,12 +30,12 @@
   <parent>pitem</parent>
   <visible>true</visible>
   <height>match</height>  
-<style>mcoldesc</style> 
-<max_lines>16</max_lines> 
-</lmegj>
+  <style>mcoldesc</style> 
+  <max_lines>16</max_lines> 
+</label>
 
-<lmegold>
-  <Type>label</Type>
+<label>
+  <name>lmegold</name>
   <Text>exPDA v4.0 2014</Text>
   <top>370</top>
   <width>match</width>
@@ -44,15 +44,17 @@
   <visible>true</visible>
   <height>fill</height>  
   <style>mcolsolu</style>  
-</lmegold>
-<Buttonc>
-  <Type>custom_button</Type>
+</label>
+<custom_button>
+  <name>ButtonC</name>
   <image>shelf.png</image>
   <Text>vissza</Text>
   <top>755</top>
   <width>match</width>
   <height>wrap</height>
   <left>0</left>
-  <lua_after_click>leltar/pitemhide.lua</lua_after_click>
+  <lua_after_click>kiadas/pitemhide.lua</lua_after_click>
   <parent>pitem</parent>
-  <font_bold>true
+  <font_bold>true</font_bold>
+</custom_button>
+</Root>

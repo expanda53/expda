@@ -1,10 +1,10 @@
 <Root>
 <connection_type>php</connection_type>
 <php_url>http://top-tyre.ddns.net:3333/panda/expda.php</php_url>
-<images_folder>\storage\sdcard0\expda\images</images_folder>
-<lua_folder>\storage\sdcard0\expda\lua</lua_folder>
-<export_folder>\storage\sdcard0\expda\export</export_folder>
-<library_folder>\storage\sdcard0\expda\library</library_folder>
+<images_folder>\storage\sdcard1\expda\images</images_folder>
+<lua_folder>\storage\sdcard1\expda\lua</lua_folder>
+<export_folder>\storage\sdcard1\expda\export</export_folder>
+<library_folder>\storage\sdcard1\expda\library</library_folder>
 <library_file>app-debug.apk</library_file>
 <vkod_teszt>true</vkod_teszt>
 <dbmeta>CREATE TABLE LOG(id INTEGER PRIMARY KEY,type TEXT,value TEXT,status INTEGER,dcreate DATETIME,dsync DATETIME);</dbmeta>
