@@ -6,7 +6,10 @@
 <export_folder>\storage\sdcard1\expda\export</export_folder>
 <library_folder>\storage\sdcard1\expda\library</library_folder>
 <library_file>app-debug.apk</library_file>
-<vkod_teszt>true</vkod_teszt>
-<dbmeta>CREATE TABLE LOG(id INTEGER PRIMARY KEY,type TEXT,value TEXT,status INTEGER,dcreate DATETIME,dsync DATETIME);</dbmeta>
+<vkod_teszt>false</vkod_teszt>
+<dbmeta>
+CREATE TABLE IF NOT EXISTS LOG(id INTEGER PRIMARY KEY,type TEXT,value TEXT,status INTEGER,dcreate DATETIME,dsync DATETIME);
+CREATE TABLE IF NOT EXISTS BCDATA(id INTEGER PRIMARY KEY,modul TEXT,mibiz TEXT,bfej INTEGER, sorsz INTEGER, drb INTEGER, cikk TEXT,kezelo INTEGER, status INTEGER,dinsert DATETIME,dsync DATETIME);
+</dbmeta>
 <style_file>/style.xml</style_file>
 </Root>

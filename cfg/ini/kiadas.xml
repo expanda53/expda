@@ -14,8 +14,6 @@
   <height>0</height>
   <visible>false</visible>
 </label>
-
-
 <panel>
   <name>panel1</name>
   <width>match</width>
@@ -25,6 +23,17 @@
   <bgcolor>#000000</bgcolor>
   <left>0</left>
 </panel>
+<label>
+  <name>lhkoc</name>
+  <top>150</top>
+  <width>60</width>
+  <height>40</height>
+  <parent>panel1</parent>
+  <font_color>#497000</font_color>
+  <visible>true</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>2</left>  
+</label>
 <label>
   <name>ltitle</name>
   <Text>MANTIS</Text>
@@ -56,7 +65,7 @@
   <parent>panel1</parent>
   <left>65</left>
   <visible>true</visible>
-  <lua_on_change>kiadas/bcode1.lua [lhkoc]</lua_on_change>
+  <lua_on_change>kiadas/bcode1.lua [esordb]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -86,6 +95,8 @@
   <extfunction_after_click1>setMantisTitle ujfelirat</extfunction_after_click1>
   <extfunction_after_click>liteQuery teszt</extfunction_after_click>
   <parent>panel1</parent>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>  
 </custom_button>
 
 <table>
@@ -134,8 +145,14 @@
   <lua_on_create>kiadas/tableload.lua</lua_on_create>
   <lua_after_click>kiadas/tableclick.lua</lua_after_click>
 </table>
-<panel>
+<barcode>
+  <name>BCODE1</name>
+  <lua_after_trigger>kiadas/bcode1.lua [lhkoc]</lua_after_trigger>
+  <valueto>lhkoc</valueto>
+  <parent>panel1</parent>
+</barcode>
 
+<panel>
   <file>pitem.xml</file>
 </panel>
 </Root>

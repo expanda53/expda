@@ -28,6 +28,8 @@ public class dbHelper extends SQLiteOpenHelper
     public dbHelper(Context context, String[] createString) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.CStrings = createString;
+        SQLiteDatabase db = this.getWritableDatabase();
+        onCreate(db);
     }
 
     @Override

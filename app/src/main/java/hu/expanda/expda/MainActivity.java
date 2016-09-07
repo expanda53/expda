@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
                 pane.luaInit(pane.getLuaOnCreate());
             }
             symbol.setPane(pane);
-            symbol.startRead();
+            //symbol.startRead();
 
         }
         catch (Exception e){

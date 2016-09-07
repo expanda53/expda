@@ -367,7 +367,7 @@ public class exPane {
         }
 
         else if (command.equalsIgnoreCase("VALUETO")){
-            this.valueTo(p1,p2,false);
+            this.valueTo(p1, p2, false);
 
         }
         else if (command.equalsIgnoreCase("VALUETOHIDDEN")){
@@ -431,6 +431,7 @@ public class exPane {
 
         else if (command.equalsIgnoreCase("SCANNERON")){
             MainActivity.symbol.startRead();
+
         }
         else if (command.equalsIgnoreCase("SCANNEROFF")){
             MainActivity.symbol.stopRead();
@@ -627,6 +628,7 @@ public class exPane {
             if (obj instanceof ObjBarcode){
                 if (((ObjBarcode)obj).getName().equalsIgnoreCase(AktBCodeObjName)) {
                     this.AktBCodeObj=((ObjBarcode)obj);
+                    this.AktBCodeObj.setPane(this);
                 }
             }
         }

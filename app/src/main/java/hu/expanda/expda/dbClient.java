@@ -13,7 +13,9 @@ public final class dbClient  {
 
     public dbClient (Context c) {
 
-        if (db==null)  db = new dbHelper(c,Ini.getDbMeta());
+        if (db==null)  {
+            db = new dbHelper(c,Ini.getDbMeta());
+        }
     }
 
 

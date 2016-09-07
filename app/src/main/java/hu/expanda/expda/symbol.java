@@ -1,6 +1,7 @@
 package hu.expanda.expda;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.symbol.emdk.EMDKManager;
@@ -13,6 +14,7 @@ import com.symbol.emdk.barcode.ScannerInfo;
 import com.symbol.emdk.barcode.ScannerResults;
 import com.symbol.emdk.barcode.StatusData;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +45,7 @@ class Symbol implements Scanner.DataListener, EMDKManager.EMDKListener,Scanner.S
                 String dataString =  data.getData();
                 Log.d("scanner",dataString);
                 try {
-                    pane.getAktBCodeObj().valueTo( dataString );
-                    String msg = pane.getAktBCodeObj().getSqlAfterTrigger();
-                    pane.sendGetExecute(msg,true);
-                    msg = pane.getAktBCodeObj().getLuaAfterTrigger();
-                    pane.luaInit(msg);
+                    new AsyncDataUpdate().execute(dataString);
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -60,6 +58,38 @@ class Symbol implements Scanner.DataListener, EMDKManager.EMDKListener,Scanner.S
         }
 
     }
+
+    private class AsyncDataUpdate extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            return params[0];
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result != null) {
+                pane.getAktBCodeObj().setPane(pane);
+                pane.getAktBCodeObj().valueTo(result);
+                String msg = pane.getAktBCodeObj().getSqlAfterTrigger();
+                pane.sendGetExecute(msg,true);
+                msg = pane.getAktBCodeObj().getLuaAfterTrigger();
+                pane.luaInit(msg);
+                msg = pane.getAktBCodeObj().getExtFunctionAfterTrigger();
+                try {
+                    extLibrary.runMethod(msg);
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+
     public  void initScanner(){
         if (scanner == null) {
 

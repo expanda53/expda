@@ -42,8 +42,8 @@ public class exTextView extends TextView {
         this.setHeight(obj.getHeight());
         this.setVisibility(obj.getVisibility());
         this.setSingleLine(false);
-        if (obj.getForeColor()!=-1) this.setTextColor(obj.getForeColor());
-        if (obj.getBackColor()!=-1) this.setBackgroundColor(obj.getBackColor());
+        if (obj.getForeColor()!=0) this.setTextColor(obj.getForeColor());
+        if (obj.getBackColor()!=0) this.setBackgroundColor(obj.getBackColor());
         this.setTextSize(obj.getFontSize());
         if (obj.isFontBold() && obj.isFontItalic()) this.setTypeface(null, Typeface.BOLD_ITALIC);
         else

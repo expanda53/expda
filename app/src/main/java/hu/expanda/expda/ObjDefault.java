@@ -28,9 +28,9 @@ public class ObjDefault {
     private int paddingRight=-1;
 
 
-    private int visibility=1;
-    private int foreColor = -1 ;
-    private int backColor = -1;
+    private int visibility=View.VISIBLE;
+    private int foreColor = 0 ;
+    private int backColor = 0;
 //    private Font font;
     private String parent;
     private int FontSize=0;

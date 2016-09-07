@@ -47,7 +47,7 @@
 </label>
 <custom_button>
   <name>ButtonC</name>
-  <image>shelf.png</image>
+  <image>external-link.png</image>
   <Text>vissza</Text>
   <top>755</top>
   <width>match</width>

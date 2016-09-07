@@ -2,7 +2,7 @@
 <mainpanel>
   <name>mainpanel1</name>
   <text>Fomenü</text>
-  <bgcolor>#ffffff</bgcolor>
+  <bgcolor>#000000</bgcolor>
   <params_to_labels>lkezelo</params_to_labels>
   <lua_on_create>egyeb/menu_panelinit.lua [lkezelo]</lua_on_create>
 </mainpanel>
@@ -23,33 +23,28 @@
   <visible>false</visible>
   <Text>100</Text>
 </label>
-
-
-
 <custom_button>
   <name>Button5</name>
   <image>external-link.png</image>
   <Text>Kiadás</Text>
   <top>60</top>
-  <width>match</width>
+  <width>150</width>
   <height>65</height>
   <left>1</left>
-  <font_size>17</font_size>
+  <style>buttondefault</style>
+
   <lua_after_click>egyeb/menuinit.lua KIADAS [lkezelo]</lua_after_click>
 </custom_button>
-
 <custom_button>
   <name>ButtonClose</name>
   <left>1</left>
-  <image>logout.png</image>
   <Text>Kilépés</Text>
   <top>130</top>
   <width>match</width>
   <height>65</height>
-  <font_size>17</font_size>
+  <style>buttondefault</style>
   <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
 </custom_button>
-
 <label>
   <name>fkep</name>
   <Text>exPDA</Text>

@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 //import android.media.Image;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,17 +46,32 @@ public class exButton extends LinearLayout {
         this.pane = pane;
         this.button = ((ObjButton) o);
         //this.setVisibility(getObj().getVisibility());
+        this.setOrientation(LinearLayout.VERTICAL);
         tv = new TextView(parent);
         tv.setText(getObj().getText());
+        tv.setGravity(Gravity.CENTER_VERTICAL |Gravity.CENTER_HORIZONTAL);
 
+        this.setPadding(2, 2, 2, 2);
+        //tv.setId(1);
+        //RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+        //this.setLayoutParams(lp);
+        int ivId=0;
         if (this.button.getImage()!="") {
             iv = new ImageView(parent);
             iv.setImageURI(Uri.fromFile(new File(this.button.getImage())));
+            //iv.setId(2);
+            LinearLayout.LayoutParams ivLP = new LinearLayout.LayoutParams(16,16);
+            ivLP.gravity = Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL;
+            iv.setLayoutParams(ivLP);
             this.addView(iv);
 
+            //ivId = iv.getId();
         }
+        //lp.addRule(RelativeLayout.RIGHT_OF,ivId);
         this.addView(tv);
+
+
 
 
         //this.setText(getObj().getText());
@@ -72,8 +89,13 @@ public class exButton extends LinearLayout {
 
 //        this.setCompoundDrawables(img,null,null,null);
 
-        if (getObj().getForeColor() != -1) this.setTextColor(getObj().getForeColor());
-        if (getObj().getBackColor() != -1) this.setBackgroundColor(getObj().getBackColor());
+        if (getObj().getForeColor() != 0)
+            this.setTextColor(getObj().getForeColor());
+        if (getObj().getBackColor() != 0)
+            this.setBackgroundColor(getObj().getBackColor());
+
+
+
         this.setTextSize(getObj().getFontSize());
         if (getObj().isFontBold() && getObj().isFontItalic())
             this.setTypeface(null, Typeface.BOLD_ITALIC);
@@ -109,16 +131,13 @@ public class exButton extends LinearLayout {
         this.setTag(getObj().getName());
 //        this.addListener(SWT.Selection, infoListener);
 
-
-
-        tv.setOnClickListener(new OnClickListener() {
+        this.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
                 if (button.getFunction().equalsIgnoreCase("CLOSE")) {
-                    ((Activity)parent).finish();
+                    ((Activity) parent).finish();
 
-                }
-                else {
+                } else {
 
                     getPane().luaInit(button.getLuaAfterClick());
                     try {
@@ -140,6 +159,39 @@ public class exButton extends LinearLayout {
 
             }
         });
+/*
+
+        tv.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+                if (button.getFunction().equalsIgnoreCase("CLOSE")) {
+                    ((Activity) parent).finish();
+
+                } else {
+
+                    getPane().luaInit(button.getLuaAfterClick());
+                    try {
+
+                        getPane().getExtLib().runMethod(button.getExtFunctionAfterClick());
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+
+//                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
+
+                }
+
+                Toast.makeText(getContext(),
+                        "Button clicked",
+                        Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
+
         if (iv != null) {
             iv.setOnClickListener(new OnClickListener() {
 
@@ -169,7 +221,9 @@ public class exButton extends LinearLayout {
 
                 }
             });
-        }
+
+
+        }*/
 
 
     }
