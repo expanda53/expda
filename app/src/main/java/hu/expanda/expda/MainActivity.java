@@ -13,6 +13,7 @@ import android.widget.AbsoluteLayout;
 import android.widget.TextView;
 
 import com.symbol.emdk.barcode.Scanner;
+import com.symbol.emdk.barcode.ScannerException;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class MainActivity extends Activity {
     public static Object style = null;
     public static ArrayList<Object> a_style = null;
     public static Symbol symbol = null;
+    private static boolean scannerEnabled = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +133,26 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (scannerEnabled) try {
+            symbol.getScanner().enable();
+        } catch (ScannerException e) {
+            e.printStackTrace();
+        }
 
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        scannerEnabled = symbol.getScanner().isEnabled();
+        if (scannerEnabled)
+        try {
+            symbol.getScanner().disable();
+        } catch (ScannerException e) {
+            e.printStackTrace();
+        }
+    }
 }
