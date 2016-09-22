@@ -28,8 +28,10 @@ class Symbol implements Scanner.DataListener, EMDKManager.EMDKListener,Scanner.S
     private List<ScannerInfo> deviceList = null;
     private exPane pane;
     public Symbol(Context c) {
-        if (deviceList==null)   deviceList = new ArrayList<ScannerInfo>();
-        EMDKResults results = EMDKManager.getEMDKManager(c,this);
+        if (MainActivity.useSymbol) {
+            if (deviceList == null) deviceList = new ArrayList<ScannerInfo>();
+            EMDKResults results = EMDKManager.getEMDKManager(c, this);
+        }
     }
 
     public void setPane(exPane pane){

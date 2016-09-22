@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_expda"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <uses-library android:name="com.symbol.emdk" />
+        <uses-library android:name="com.symbol.emdk" android:required="false"  />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >

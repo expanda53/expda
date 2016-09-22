@@ -11,6 +11,16 @@ import android.util.Log;
 
     public class ObjStyle extends ObjDefault {
         private int align=0; //swt.center
+
+    public boolean isVisibilityOverride() {
+        return visibilityOverride;
+    }
+
+    public void setVisibilityOverride(boolean visibilityOverride) {
+        this.visibilityOverride = visibilityOverride;
+    }
+
+    private boolean visibilityOverride = false;
         public int getAlign() {
             return align;
         }

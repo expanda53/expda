@@ -145,8 +145,10 @@ public class exTable extends ListView{
 
                 String[] temps = parseResponse(row[j]);
                 int index = this.getObj().getColumnIndexByName(temps[0]);
-                int rnum = getObj().getColumnByName(temps[0]).getRowNum();
                 if (temps.length>0 && index>-1) {
+                    ObjColumn col = this.getObj().getColumnByName(temps[0]);
+                    String defStyle = col.getStyle();
+                    int rnum = col.getRowNum();
                     String[] values;
                     if (temps.length>1)  values = temps[1].split("@@");
                     else values = "".split("@@");
@@ -158,6 +160,7 @@ public class exTable extends ListView{
                             if (itemprops[0].equalsIgnoreCase("STYLE")) aktStyle = itemprops[1];
                         }
                     }
+                    if (aktStyle == null) aktStyle = defStyle;
                     ObjTableCell cell = new ObjTableCell(aktStyle,aktData,temps[0],index,rnum);
                     currentLine.add(cell);
                 }
@@ -172,7 +175,7 @@ public class exTable extends ListView{
 
         }
         else {
-            this.setAdapter(new exTableAdapter(context, a));
+            this.setAdapter(new exTableAdapter(context, a,getObj()));
         }
     }
 

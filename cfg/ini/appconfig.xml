@@ -1,6 +1,6 @@
 <Root>
 <connection_type>php</connection_type>
-<php_url>http://top-tyre.ddns.net:3333/panda/expda.php</php_url>
+<php_url>http://192.168.1.105/expda_depo.php</php_url>
 <images_folder>\storage\sdcard1\expda\images</images_folder>
 <lua_folder>\storage\sdcard1\expda\lua</lua_folder>
 <export_folder>\storage\sdcard1\expda\export</export_folder>

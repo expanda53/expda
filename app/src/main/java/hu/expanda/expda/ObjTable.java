@@ -83,8 +83,9 @@ public class ObjTable extends ObjDefault {
 		}
 		ObjColumn col = this.getColumnByName(colname);
 		if (aktprop.equalsIgnoreCase("width")) col.setWidth(  Integer.parseInt(value));
-		if (aktprop.equalsIgnoreCase("title")) col.setTitle(  value);
-        if (aktprop.equalsIgnoreCase("rownum")) col.setRowNum(  Integer.parseInt(value));
+		if (aktprop.equalsIgnoreCase("title")) col.setTitle(value);
+        if (aktprop.equalsIgnoreCase("rownum")) col.setRowNum(Integer.parseInt(value));
+		if (aktprop.equalsIgnoreCase("style")) col.setStyle(value);
 		columns.set(colIndex, col);
 //		System.out.println(property+" "+value);
 	}

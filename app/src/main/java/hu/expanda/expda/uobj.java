@@ -91,7 +91,12 @@ public class uobj {
                     else
                     if (property.equalsIgnoreCase("text")) ((ObjDefault)obj).setText(value);
                     else
-                    if (property.equalsIgnoreCase("visible")) ((ObjDefault)obj).setVisible(value);
+                    if (property.equalsIgnoreCase("visible")) {
+                        ((ObjDefault)obj).setVisible(value);
+                        if (obj instanceof ObjStyle) {
+                            ((ObjStyle)obj).setVisibilityOverride(true);
+                        }
+                    }
                     else
                     if (property.equalsIgnoreCase("font_color")) {
                         ((ObjDefault)obj).setForeColor(value);

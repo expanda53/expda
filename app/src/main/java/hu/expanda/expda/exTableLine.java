@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,13 +18,15 @@ import java.util.ArrayList;
 /**
  * Created by Encsi on 2015.02.23..
  */
-public class exTableLine extends AbsoluteLayout {
-//public class exTableLine extends LinearLayout {
+//public class exTableLine extends AbsoluteLayout {
+public class exTableLine extends LinearLayout {
     private ArrayList<TextView> a_tv = new ArrayList<TextView>();
     private ArrayList<ArrayList<TextView>> a_tv2 = new ArrayList<ArrayList<TextView>>();
-    public exTableLine(Context context, Object cells){
+    private ObjTable obj;
+    public exTableLine(Context context, Object cells,ObjTable obj){
         super(context);
-//        this.setOrientation(VERTICAL);
+        this.obj = obj;
+        this.setOrientation(VERTICAL);
         int e_rnum = -1;
         for (int i=0 ; i< ((ArrayList<ObjTableCell>)cells).size();i++){
             ObjTableCell cell = ((ArrayList<ObjTableCell>)cells).get(i);
@@ -44,14 +47,18 @@ public class exTableLine extends AbsoluteLayout {
         a.addAll(a_tv);
         a_tv2.add(a);
         for (ArrayList<TextView> t : a_tv2) {
-//            LinearLayout l = new LinearLayout(context);
-            AbsoluteLayout l = new AbsoluteLayout(context);
+            LinearLayout l = new LinearLayout(context);
+//            AbsoluteLayout l = new AbsoluteLayout(context);
             for (TextView v : t) {
 
-                  if (v.getVisibility()==View.VISIBLE) l.addView(v, new AbsoluteLayout.LayoutParams(v.getWidth(), LayoutParams.WRAP_CONTENT,v.getLeft(),v.getTop()));
+                  if (v.getVisibility()==View.VISIBLE) {
+                      //l.addView(v, new AbsoluteLayout.LayoutParams(v.getMinWidth(), LayoutParams.WRAP_CONTENT,v.getLeft(),v.getTop()));
+                      //l.addView(v, new LinearLayout.LayoutParams(/*v.getMinWidth()*/LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                      l.addView(v);
+                  }
             }
-            addView(l,new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-//            addView(l,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+//            addView(l,new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            addView(l,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         }
     }
     private void update(TextView tv,ArrayList<ObjStyle> styles,ObjTableCell cell,int i){
@@ -73,10 +80,13 @@ public class exTableLine extends AbsoluteLayout {
                     tv.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
                 else if (!style.isFontBold() && style.isFontItalic())
                     tv.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
+               /*
                 if (style.getTop() != -99) tv.setTop(style.getTop());
                 if (style.getLeft() != -99) tv.setLeft(style.getLeft());
                 if (style.getHeight() != -99) tv.setHeight(style.getHeight());
                 if (style.getWidth() != -99) tv.setWidth(style.getWidth());
+                */
+
             }
 
         } else {
@@ -87,8 +97,13 @@ public class exTableLine extends AbsoluteLayout {
                 tv.setTextSize(19);
             }
 
-            tv.setTextColor(Color.BLACK);
+             tv.setWidth(200);
+            tv.setHeight(50);
+
+            tv.setTextColor(obj.getForeColor());
+            tv.setBackgroundColor(obj.getBackColor());
             tv.setTypeface(Typeface.SANS_SERIF);
+            tv.setVisibility(exTextView.VISIBLE);
         }
     }
 

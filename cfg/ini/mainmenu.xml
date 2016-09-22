@@ -28,22 +28,23 @@
   <image>external-link.png</image>
   <Text>Kiadás</Text>
   <top>60</top>
-  <width>150</width>
-  <height>65</height>
+  <width>match</width>
+  <height>130</height>
   <left>1</left>
   <style>buttondefault</style>
-
+  <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua KIADAS [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
   <name>ButtonClose</name>
   <left>1</left>
   <Text>Kilépés</Text>
-  <top>130</top>
+  <top>195</top>
   <width>match</width>
   <height>65</height>
   <style>buttondefault</style>
   <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
+  <visible>true</visible>
 </custom_button>
 <label>
   <name>fkep</name>

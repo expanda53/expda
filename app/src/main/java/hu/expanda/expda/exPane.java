@@ -430,11 +430,11 @@ public class exPane {
         }
 
         else if (command.equalsIgnoreCase("SCANNERON")){
-            MainActivity.symbol.startRead();
+            /*MainActivity.symbol.startRead();*/
 
         }
         else if (command.equalsIgnoreCase("SCANNEROFF")){
-            MainActivity.symbol.stopRead();
+            /*MainActivity.symbol.stopRead();*/
         }
         /*
         else if (command.equalsIgnoreCase("CLOSE")){
@@ -580,7 +580,7 @@ public class exPane {
     public void showMessage(String p1) {
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
         dlgAlert.setMessage(p1);
-        dlgAlert.setTitle("App Title");
+        dlgAlert.setTitle("exPDA");
 //        dlgAlert.setPositiveButton("OK", null);
 //        dlgAlert.setCancelable(true);
         dlgAlert.setPositiveButton("Ok",

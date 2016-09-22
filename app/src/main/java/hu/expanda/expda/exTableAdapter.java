@@ -19,12 +19,14 @@ import java.util.zip.Inflater;
  */
 public class exTableAdapter extends BaseAdapter {
     private Context c;
+    private ObjTable obj;
 
     private List<Object> mItems = new ArrayList<Object>();
 
-    public exTableAdapter(Context context, ArrayList items) {
+    public exTableAdapter(Context context, ArrayList items,ObjTable obj) {
         c = context;
         mItems = items;
+        this.obj = obj;
     }
     @Override
     public int getCount() {
@@ -46,7 +48,7 @@ public class exTableAdapter extends BaseAdapter {
         exTableLine mrow;
         if (convertView == null) {
 
-            mrow = new exTableLine(c, mItems.get(position));
+            mrow = new exTableLine(c, mItems.get(position),obj);
         } else {
             mrow = (exTableLine) convertView;
             mrow.setItem(c,mItems.get(position));

@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.TextView;
 
+/*
 import com.symbol.emdk.barcode.Scanner;
 import com.symbol.emdk.barcode.ScannerException;
-
+*/
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -31,13 +32,18 @@ public class MainActivity extends Activity {
     public static ArrayList<Object> a_style = null;
     public static Symbol symbol = null;
     private static boolean scannerEnabled = false;
+    public static boolean useSymbol = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AbsoluteLayout ll = new AbsoluteLayout(this);
 //        String xml = loadXml();
-        if (symbol==null)   symbol = new Symbol(getApplicationContext());
-        if (symbol.getScanner()==null) symbol.initScanner();
+        if(android.os.Build.MANUFACTURER.contains("Zebra Technologies") || android.os.Build.MANUFACTURER.contains("Motorola Solutions") ){
+                useSymbol = true;
+                if (symbol==null)   symbol = new Symbol(getApplicationContext());
+                if (symbol.getScanner()==null) symbol.initScanner();
+
+        }
 
         Ini.Create();
         if (Ini.isLandScape())  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
@@ -93,11 +99,11 @@ public class MainActivity extends Activity {
             }
 */
             if (pane.getLuaOnCreate()!=null) {
-//                pane.showWaitbox("");
+
                 pane.luaInit(pane.getLuaOnCreate());
             }
-            symbol.setPane(pane);
-            //symbol.startRead();
+            /*symbol.setPane(pane);*/
+
 
         }
         catch (Exception e){
@@ -135,18 +141,22 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
+        /*
         if (scannerEnabled) try {
             symbol.getScanner().enable();
         } catch (ScannerException e) {
             e.printStackTrace();
         }
+        */
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        /*
         scannerEnabled = symbol.getScanner().isEnabled();
         if (scannerEnabled)
         try {
@@ -154,5 +164,6 @@ public class MainActivity extends Activity {
         } catch (ScannerException e) {
             e.printStackTrace();
         }
+        */
     }
 }

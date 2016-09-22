@@ -5,6 +5,7 @@ public class ObjColumn {
 	private String title;
 	private String name;
     private int rowNum;
+	private String style;
 	public int getWidth() {
 		return width;
 	}
@@ -31,6 +32,13 @@ public class ObjColumn {
     public void setRowNum(int rowNum) {
         this.rowNum = rowNum;
     }
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
 
 
 }

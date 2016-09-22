@@ -45,7 +45,7 @@ public class exButton extends LinearLayout {
         this.parent = parent;
         this.pane = pane;
         this.button = ((ObjButton) o);
-        //this.setVisibility(getObj().getVisibility());
+        this.setVisibility(getObj().getVisibility());
         this.setOrientation(LinearLayout.VERTICAL);
         tv = new TextView(parent);
         tv.setText(getObj().getText());
@@ -122,6 +122,7 @@ public class exButton extends LinearLayout {
                 if (style.getLeft() != -99) this.setLeft(style.getLeft());
                 if (style.getHeight() != -99) this.setHeight(style.getHeight());
                 if (style.getWidth() != -99) this.setWidth(style.getWidth());
+                if (style.isVisibilityOverride()) this.setVisibility(style.getVisibility());
             }
             
         }
