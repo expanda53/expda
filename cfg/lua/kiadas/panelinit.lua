@@ -8,5 +8,5 @@ ui = params[1]
 
 str = 'kiadas_mibizlist 100'
 list=luafunc.query_assoc_to_str(str,false)
-luafunc.refreshtable_fromstring('pcikkval_table',list)
-ui:executeCommand("showobj","pcikkval_table")
+luafunc.refreshtable_fromstring('mibizlist_table',list)
+ui:executeCommand("showobj","mibizlist_table")

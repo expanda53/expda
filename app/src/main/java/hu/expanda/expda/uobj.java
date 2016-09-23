@@ -124,6 +124,8 @@ public class uobj {
                     if (obj instanceof ObjButton) {
                         if (property.equalsIgnoreCase("sql_after_click")) ((ObjButton)obj).setSqlAfterClick(value);
                         if (property.equalsIgnoreCase("lua_after_click")) ((ObjButton)obj).setLuaAfterClick(value);
+                        if (property.equalsIgnoreCase("border_width")) ((ObjButton)obj).setBorderWidth(Integer.parseInt(value));
+                        if (property.equalsIgnoreCase("border_color")) ((ObjButton)obj).setBorderColor(value);
                         if (property.equalsIgnoreCase("extfunction_after_click")) {
                             ((ObjButton)obj).setExtFunctionAfterClick(value);
                         }
@@ -164,10 +166,11 @@ public class uobj {
                         if (property.equalsIgnoreCase("max_lines")) ((ObjLabel)obj).setMaxLines(Integer.parseInt(value));
                     }
 
-/*
+
                     if (obj instanceof ObjLabel) {
                         if (property.equalsIgnoreCase("align")) ((ObjLabel)obj).setAlign(value);
                     }
+/*
                     if (obj instanceof ObjTable) {
                         if (property.equalsIgnoreCase("sql_on_create")) ((ObjTable)obj).setSqlOnCreate(value);
                         if (property.equalsIgnoreCase("sql_after_click")) ((ObjTable)obj).setSqlAfterClick(value);

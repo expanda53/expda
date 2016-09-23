@@ -5,8 +5,10 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AbsoluteLayout;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -83,7 +85,7 @@ public class exText extends EditText {
 
             }
         }
-
+        this.setSingleLine(true);
         layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));
 
         this.setTag(getObj().getName());
@@ -92,7 +94,7 @@ public class exText extends EditText {
         this.setOnFocusChangeListener((new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus){
+                if (!hasFocus) {
                     getPane().luaInit(getObj().getLuaOnExit());
                     try {
                         getPane().getExtLib().runMethod(getObj().getExtFunctionOnExit());
@@ -104,30 +106,45 @@ public class exText extends EditText {
                 }
             }
         }));
-        this.addTextChangedListener(new TextWatcher() {
+        setOnKeyListener(new OnKeyListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    getPane().luaInit(getObj().getLuaOnChange());
+                    try {
+                        getPane().getExtLib().runMethod(getObj().getExtFunctionOnChange());
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+
+                    return true;
+                } else return false;
 
             }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-//                getPane().luaInit(getObj().getLuaOnChange());
-                //getPane().getExtLib().runMethod(getObj().getExtFunctionOnChange(),new String[]{""});
-/*
-                Toast.makeText(getContext(),
-                        "text changed",
-                        Toast.LENGTH_LONG).show();
-*/
-
-            }
-
         });
+       /* setOnEditorActionListener(new OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    getPane().luaInit(getObj().getLuaOnChange());
+                    try {
+                        getPane().getExtLib().runMethod(getObj().getExtFunctionOnChange());
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+
+                    return true;
+                } else return false;
+            }
+        });
+        */
+
     }
 
 

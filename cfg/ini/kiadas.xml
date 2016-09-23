@@ -15,7 +15,7 @@
   <style>hidden</style>
 </label>
 <label>
-  <name>lmibiz</name>
+  <name>lsorsz</name>
   <top>0</top>
   <left>0</left>
   <width>0</width>
@@ -31,8 +31,29 @@
   <bgcolor>#000000</bgcolor>
   <left>0</left>
 </panel>
+<label>
+  <name>lmibiz</name>
+  <top>0</top>
+  <left>0</left>
+  <width>100</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+</label>
+<label>
+  <name>lcegnev</name>
+  <top>0</top>
+  <left>100</left>
+  <width>380</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <align>right</align>
+  <style>labeldefault</style>
+</label>
 <table>
-  <name>pcikkval_table</name>
+  <name>mibizlist_table</name>
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
@@ -92,20 +113,6 @@
   <bgcolor>#000000</bgcolor>
   <left>2</left>  
 </label>
-<text>
-  <name>esordb</name>
-  <Text>30</Text>
-  <top>37</top>
-  <width>60</width>
-  <parent>panel1</parent>
-  <left>65</left>
-  <visible>false</visible>
-  <lua_on_change>kiadas/bcode1.lua [esordb]</lua_on_change>
-  <bgcolor>#497000</bgcolor>
-  <font_color>#000000</font_color>
-  <font_size>17</font_size>
-  <height>60</height>
-</text>
 
 <custom_button>
   <style>buttondefault</style>
@@ -140,12 +147,107 @@
   <valueto>lhkoc</valueto>
   <parent>panel1</parent>
 </barcode>
+
+
+
+
+<label>
+  <name>lcikknev</name>
+  <top>30</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+</label>
+<label>
+  <name>lean</name>
+  <top>60</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+</label>
+<text>
+  <name>eean</name>
+  <top>90</top>
+  <width>200</width>
+  <parent>panel1</parent>
+  <left>0</left>
+  <visible>false</visible>
+  <lua_on_change>kiadas/bcode1.lua [eean] [lean]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>60</height>
+</text>
+
+
+
+<label>
+  <name>cap_drb</name>
+  <top>60</top>
+  <left>0</left>
+  <width>100</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Kiszedendő</text>
+</label>
+<label>
+  <name>ldrb</name>
+  <top>60</top>
+  <left>100</left>
+  <width>100</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+</label>
+
+<label>
+  <name>cap_drb2</name>
+  <top>60</top>
+  <left>200</left>
+  <width>100</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Kiszedve</text>
+</label>
+<label>
+  <name>ldrb2</name>
+  <top>60</top>
+  <left>300</left>
+  <width>100</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+</label>
+
+<panel>
+  <name>reviewpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>60</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+
 <table>
-  <name>patnezo_table</name>
+  <name>atnezo_table</name>
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>match</height>
+  <height>650</height>
   <top>0</top>
   <left>0</left>
   <divider_color>#2b284a</divider_color>
@@ -165,16 +267,51 @@
   <column_rownum_drb2>3</column_rownum_drb2>
   <column_style_drb2>listdetails</column_style_drb2>
 
-
-  <valuefrom>mibiz;cegnev</valuefrom>
-  <valueto>selcikk;selnev</valueto>
   <font_size>10</font_size>
   <row_height>160</row_height>
-  <parent>panel1</parent>
-  <visible>false</visible>
-  <lua_on_create>kiadas/tableload.lua</lua_on_create>
-  <lua_after_click>kiadas/tableclick.lua</lua_after_click>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
 </table>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_folytmost</name>
+  <Text>Folyt. most</Text>
+  <top>650</top>
+  <width>150</width>
+  <height>100</height>
+  <left>0</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <border_width>2</border_width>
+  <border_color>#497000</border_color>
+  <lua_after_click>kiadas/kiadasfolyt.lua</lua_after_click>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_folytkesobb</name>
+  <Text>Folyt. később</Text>
+  <top>650</top>
+  <width>150</width>
+  <height>100</height>
+  <left>160</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_lezar</name>
+  <Text>Lezárás</Text>
+  <top>650</top>
+  <width>150</width>
+  <height>100</height>
+  <left>320</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+</custom_button>
+
 
 <panel>
   <file>pitem.xml</file>

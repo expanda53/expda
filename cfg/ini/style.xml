@@ -3,7 +3,12 @@
  <name>hidden</name>
  <visible>false</visible>
 </style>
-
+<style>
+    <name>labeldefault</name>
+    <bgcolor>#000000</bgcolor>
+    <font_color>#497000</font_color>  
+    <font_size>13</font_size>
+</style>
 
 <style>
     <name>buttondefault</name>

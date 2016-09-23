@@ -41,6 +41,7 @@ public class exTextView extends TextView {
         this.setWidth(obj.getWidth());
         this.setHeight(obj.getHeight());
         this.setVisibility(obj.getVisibility());
+        this.setGravity(obj.getAlign());
         this.setSingleLine(false);
         if (obj.getForeColor()!=0) this.setTextColor(obj.getForeColor());
         if (obj.getBackColor()!=0) this.setBackgroundColor(obj.getBackColor());
@@ -96,6 +97,7 @@ public class exTextView extends TextView {
         this.setMovementMethod(new ScrollingMovementMethod());
         layout.addView(this, new AbsoluteLayout.LayoutParams(obj.getWidth(), obj.getHeight(), obj.getLeft(), obj.getTop()));
         this.setTag(obj.getName());
+
     }
     public void setBounds(String command, int val){
         if (command.equalsIgnoreCase("SETTOP")) this.setTop1(val);

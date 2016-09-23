@@ -1,6 +1,7 @@
 package hu.expanda.expda;
 
 import android.net.Uri;
+import android.view.Gravity;
 
 /**
  * Created by Encsi on 2015.01.29..
@@ -9,7 +10,7 @@ import android.net.Uri;
 
 
     public class ObjLabel extends ObjDefault {
-        private int align=0; //swt.center
+        private int align=Gravity.LEFT; //swt.center
         private String Image="";
         private String LuaAfterClick="";
 
@@ -21,9 +22,9 @@ import android.net.Uri;
         private int maxLines = 15;
 
         public void setAlign(String align) {
-            if (align.equalsIgnoreCase("CENTER")) this.align = 0;//SWT.CENTER;
-            if (align.equalsIgnoreCase("LEFT")) this.align = 1;//SWT.LEFT;
-            if (align.equalsIgnoreCase("RIGHT")) this.align = 2;//SWT.RIGHT;
+            if (align.equalsIgnoreCase("CENTER")) this.align = Gravity.CENTER;//SWT.CENTER;
+            if (align.equalsIgnoreCase("LEFT")) this.align = Gravity.LEFT;//SWT.LEFT;
+            if (align.equalsIgnoreCase("RIGHT")) this.align = Gravity.RIGHT;//SWT.RIGHT;
         }
         public String getImage() {
             if (Image!="")	{

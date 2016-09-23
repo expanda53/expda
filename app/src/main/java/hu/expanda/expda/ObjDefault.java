@@ -63,7 +63,7 @@ public class ObjDefault {
 
 
 
-    private int getColor(String colorstr){
+    protected int getColor(String colorstr){
         return Color.parseColor(colorstr);
 
     }

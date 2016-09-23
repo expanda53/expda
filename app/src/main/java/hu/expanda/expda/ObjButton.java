@@ -1,5 +1,8 @@
 package hu.expanda.expda;
 
+import android.graphics.Color;
+import android.view.Gravity;
+
 /**
  * Created by Encsi on 2015.02.02..
  */
@@ -9,16 +12,18 @@ public class ObjButton extends ObjDefault{
     private String SqlAfterClick;
     private String LuaAfterClick;
     private String Image="";
-        private int align=0; //swt.center
+    private int borderWidth=0;
+    private String borderColor;
+        private int align=Gravity.CENTER; //swt.center
 
         public int getAlign() {
             return align;
         }
 
         public void setAlign(String align) {
-            if (align.equalsIgnoreCase("CENTER")) this.align = 0;//SWT.CENTER;
-            if (align.equalsIgnoreCase("LEFT")) this.align = 1;//SWT.LEFT;
-            if (align.equalsIgnoreCase("RIGHT")) this.align = 2;//SWT.RIGHT;
+            if (align.equalsIgnoreCase("CENTER")) this.align = Gravity.CENTER;//SWT.CENTER;
+            if (align.equalsIgnoreCase("LEFT")) this.align = Gravity.LEFT;//SWT.LEFT;
+            if (align.equalsIgnoreCase("RIGHT")) this.align = Gravity.RIGHT;//SWT.RIGHT;
         }
     public String getFunction() {
         return Function;
@@ -71,9 +76,19 @@ public class ObjButton extends ObjDefault{
         return fsize;
     }
 
+    public int getBorderWidth() {
+        return borderWidth;
+    }
 
+    public void setBorderWidth(int borderWidth) {
+        this.borderWidth = borderWidth;
+    }
 
+    public int getBorderColor() {
+        return getColor(borderColor);
+    }
 
-
-
+    public void setBorderColor(String borderColor) {
+        this.borderColor = borderColor;
+    }
 }

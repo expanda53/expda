@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 //import android.media.Image;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.view.Gravity;
 import android.view.View;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 public class exButton extends LinearLayout {
     private Context parent;
     private ObjButton button;
+    private int c;
     public exPane getPane() {
         return pane;
     }
@@ -91,8 +93,10 @@ public class exButton extends LinearLayout {
 
         if (getObj().getForeColor() != 0)
             this.setTextColor(getObj().getForeColor());
-        if (getObj().getBackColor() != 0)
+        if (getObj().getBackColor() != 0) {
             this.setBackgroundColor(getObj().getBackColor());
+            c = getObj().getBackColor();
+        }
 
 
 
@@ -111,7 +115,10 @@ public class exButton extends LinearLayout {
                 if (style.getFontSize()>0) this.setTextSize(style.getFontSize());
                 if (style.getForeColor() != -1) this.setTextColor(style.getForeColor());
                 else this.setTextColor(Color.BLACK);
-                if (style.getBackColor() != -1) this.setBackgroundColor(style.getBackColor());
+                if (style.getBackColor() != -1) {
+                    this.setBackgroundColor(style.getBackColor());
+                    c=style.getBackColor();
+                }
                 if (style.isFontBold() && style.isFontItalic())
                     this.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD_ITALIC);
                 else if (style.isFontBold() && !style.isFontItalic())
@@ -127,6 +134,14 @@ public class exButton extends LinearLayout {
             
         }
 
+        //border
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(c); // Changes this drawbale to use a single color instead of a gradient
+        //gd.setCornerRadius(5);
+        if (getObj().getBorderWidth()!=0) {
+            gd.setStroke(getObj().getBorderWidth(), getObj().getBorderColor());
+        }
+        this.setBackground(gd);
         layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));
 //        this.name = obj.getName();
         this.setTag(getObj().getName());
