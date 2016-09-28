@@ -53,4 +53,17 @@
   <bgcolor>#c62828</bgcolor>
   <font_color>#000000</font_color>
 </style>
+<style>
+    <name>labeldrb_cap</name>
+    <font_size>17</font_size>
+    <height>30</height>
+    <width>150</width>
+</style>
+<style>
+    <name>labeldrb_data</name>
+    <font_size>22</font_size>
+    <height>40</height>
+    <width>100</width>
+</style>
+
 </Root>

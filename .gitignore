@@ -12,3 +12,5 @@ gradlew
 build.gradle
 .idea/
 settings.gradle
+cfg.zip
+cfg/ini/style_old.xml

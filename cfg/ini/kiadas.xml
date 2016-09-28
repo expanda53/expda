@@ -76,19 +76,7 @@
   <lua_on_create>kiadas/tableload.lua</lua_on_create>
   <lua_after_click>kiadas/tableclick.lua</lua_after_click>
 </table>
-<text>
-  <name>lhkoc</name>
-  <top>150</top>
-  <width>300</width>
-  <height>60</height>
-  <parent>panel1</parent>
-  <font_color>#000000</font_color>
-  <visible>false</visible>
-  <bgcolor>#497000</bgcolor>
-  <left>2</left>  
-  <lua_on_change>kiadas/bcode1.lua [lhkoc]</lua_on_change>
-  <font_size>15</font_size>
-</text>
+
 <label>
   <name>ltitle</name>
   <Text>MANTIS</Text>
@@ -101,18 +89,7 @@
   <height>40</height>
   <visible>false</visible>
 </label>
-<label>
-  <name>sordb</name>
-  <Text>Sor db:</Text>
-  <top>35</top>
-  <width>60</width>
-  <height>40</height>
-  <parent>panel1</parent>
-  <font_color>#497000</font_color>
-  <visible>false</visible>
-  <bgcolor>#000000</bgcolor>
-  <left>2</left>  
-</label>
+
 
 <custom_button>
   <style>buttondefault</style>
@@ -143,12 +120,17 @@
 </custom_button>
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>kiadas/bcode1.lua [lhkoc]</lua_after_trigger>
-  <valueto>lhkoc</valueto>
+  <lua_after_trigger>kiadas/bcode1.lua [eean]</lua_after_trigger>
+  <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
 
-
+<barcode>
+  <name>BCODE2</name>
+  <lua_after_trigger>kiadas/bcode2.lua [egyszam]</lua_after_trigger>
+  <valueto>egyszam</valueto>
+  <parent>panel1</parent>
+</barcode>
 
 
 <label>
@@ -189,47 +171,69 @@
 
 <label>
   <name>cap_drb</name>
-  <top>60</top>
+  <top>160</top>
   <left>0</left>
   <width>100</width>
   <height>20</height>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault</style>
+  <style>labeldefault;labeldrb_cap</style>
   <text>Kiszedendő</text>
 </label>
 <label>
   <name>ldrb</name>
-  <top>60</top>
-  <left>100</left>
-  <width>100</width>
-  <height>20</height>
+  <top>190</top>
+  <left>0</left>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault</style>
+  <style>labeldefault;labeldrb_data</style>
+  <align>center</align>
 </label>
 
 <label>
   <name>cap_drb2</name>
-  <top>60</top>
-  <left>200</left>
-  <width>100</width>
-  <height>20</height>
+  <top>160</top>
+  <left>300</left>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault</style>
+  <style>labeldefault;labeldrb_cap</style>
   <text>Kiszedve</text>
 </label>
 <label>
   <name>ldrb2</name>
-  <top>60</top>
+  <top>190</top>
   <left>300</left>
-  <width>100</width>
-  <height>20</height>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault</style>
+  <style>labeldefault;labeldrb_data</style>
+  <align>center</align>
 </label>
+
+
+<label>
+  <name>cap_gyszam</name>
+  <top>235</top>
+  <left>0</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>Gyáriszám</text>
+</label>
+
+<text>
+  <name>egyszam</name>
+  <top>275</top>
+  <width>match</width>
+  <height>60</height>
+  <parent>panel1</parent>
+  <font_color>#000000</font_color>
+  <visible>false</visible>
+  <bgcolor>#497000</bgcolor>
+  <left>0</left>  
+  <lua_on_change>kiadas/bcode2.lua [eean] [egyszam] [lmibiz] [lsorsz]</lua_on_change>
+  <font_size>15</font_size>
+</text>
+
 
 <panel>
   <name>reviewpanel</name>

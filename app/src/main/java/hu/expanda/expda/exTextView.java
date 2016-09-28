@@ -36,23 +36,54 @@ public class exTextView extends TextView {
         obj = ((ObjLabel)o);
         this.pane = pane;
         this.setText(obj.getText().replace("<enter>","\n"));
-        this.setTop(obj.getTop());
-        this.setLeft(obj.getLeft());
-        this.setWidth(obj.getWidth());
-        this.setHeight(obj.getHeight());
-        this.setVisibility(obj.getVisibility());
-        this.setGravity(obj.getAlign());
+
+        ArrayList<ObjStyle> styles = getObj().getStyle();
+
+        if (styles!=null){
+            for (ObjStyle style : styles) {
+                this.setPadding(style.getPaddingLeft(), style.getPaddingTop(), style.getPaddingRight(), style.getPaddingBottom());
+                if (style.getFontSize()>0) getObj().setFontSize(style.getFontSize());
+                if (style.getForeColor() != 0) this.setTextColor(style.getForeColor());
+                //else this.setTextColor(Color.BLACK);
+                if (style.getBackColor() != 0) this.setBackgroundColor(style.getBackColor());
+                if (style.isFontBold() && style.isFontItalic()) {
+                    getObj().setFontBold(true);
+                    getObj().setFontItalic(true);
+                }
+                else if (style.isFontBold() && !style.isFontItalic()) {
+                    //this.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+                    getObj().setFontBold(true);
+                    getObj().setFontItalic(false);
+                }
+                else if (!style.isFontBold() && style.isFontItalic()) {
+                    getObj().setFontBold(false);
+                    getObj().setFontItalic(true);
+                    //this.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
+                }
+                if (style.getTop() != -99) getObj().setTop(style.getTop());
+                if (style.getLeft() != -99) getObj().setLeft(style.getLeft());
+                if (style.getHeight() != -99) getObj().setHeight(style.getHeight());
+                if (style.getWidth() != -99) getObj().setWidth(style.getWidth());
+            }
+        }
+
+        this.setTop(getObj().getTop());
+        this.setLeft(getObj().getLeft());
+        this.setWidth(getObj().getWidth());
+        this.setHeight(getObj().getHeight());
+        this.setVisibility(getObj().getVisibility());
+        this.setGravity(getObj().getAlign());
         this.setSingleLine(false);
-        if (obj.getForeColor()!=0) this.setTextColor(obj.getForeColor());
-        if (obj.getBackColor()!=0) this.setBackgroundColor(obj.getBackColor());
-        this.setTextSize(obj.getFontSize());
-        if (obj.isFontBold() && obj.isFontItalic()) this.setTypeface(null, Typeface.BOLD_ITALIC);
+        if (getObj().getForeColor()!=0) this.setTextColor(getObj().getForeColor());
+        if (getObj().getBackColor()!=0) this.setBackgroundColor(getObj().getBackColor());
+        this.setTextSize(getObj().getFontSize());
+        if (getObj().isFontBold() && getObj().isFontItalic()) this.setTypeface(null, Typeface.BOLD_ITALIC);
         else
-        if (obj.isFontBold() && !obj.isFontItalic()) this.setTypeface(null, Typeface.BOLD);
+        if (getObj().isFontBold() && !getObj().isFontItalic()) this.setTypeface(null, Typeface.BOLD);
         else
-        if (!obj.isFontBold() && obj.isFontItalic()) this.setTypeface(null, Typeface.ITALIC);
-        if (obj.getImage()!="") {
-            Drawable d = Drawable.createFromPath(obj.getImage());
+        if (!getObj().isFontBold() && getObj().isFontItalic()) this.setTypeface(null, Typeface.ITALIC);
+        if (getObj().getImage()!="") {
+            Drawable d = Drawable.createFromPath(getObj().getImage());
             this.setBackground(d);
         }
         this.setOnClickListener(new OnClickListener() {
@@ -71,32 +102,11 @@ public class exTextView extends TextView {
 
             }
         });
-        ArrayList<ObjStyle> styles = getObj().getStyle();
-
-        if (styles!=null){
-            for (ObjStyle style : styles) {
-                this.setPadding(style.getPaddingLeft(), style.getPaddingTop(), style.getPaddingRight(), style.getPaddingBottom());
-                if (style.getFontSize()>0) this.setTextSize(style.getFontSize());
-                if (style.getForeColor() != -1) this.setTextColor(style.getForeColor());
-                else this.setTextColor(Color.BLACK);
-                if (style.getBackColor() != -1) this.setBackgroundColor(style.getBackColor());
-                if (style.isFontBold() && style.isFontItalic())
-                    this.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD_ITALIC);
-                else if (style.isFontBold() && !style.isFontItalic())
-                    this.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
-                else if (!style.isFontBold() && style.isFontItalic())
-                    this.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
-                if (style.getTop() != -99) this.setTop(style.getTop());
-                if (style.getLeft() != -99) this.setLeft(style.getLeft());
-                if (style.getHeight() != -99) this.setHeight(style.getHeight());
-                if (style.getWidth() != -99) this.setWidth(style.getWidth());
-            }
-        }
         this.setMaxLines(getObj().getMaxLines());
         this.setVerticalScrollBarEnabled(true);
         this.setMovementMethod(new ScrollingMovementMethod());
-        layout.addView(this, new AbsoluteLayout.LayoutParams(obj.getWidth(), obj.getHeight(), obj.getLeft(), obj.getTop()));
-        this.setTag(obj.getName());
+        layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));
+        this.setTag(getObj().getName());
 
     }
     public void setBounds(String command, int val){

@@ -14,6 +14,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -222,18 +223,23 @@ public class exPane {
                         ((exPanel) o).requestFocus();
                     }
 
-                else
-                if ( o instanceof exTable){
-                    ((exTable) o).requestFocus();
-                }
-                else
-                if ( o instanceof exGrid){
-                    ((exGrid) o).requestFocus();
-                }
+                    else
+                    if ( o instanceof exTable){
+                        ((exTable) o).requestFocus();
+                    }
+                    else
+                    if ( o instanceof exGrid){
+                        ((exGrid) o).requestFocus();
+                    }
 
-                    else if (o instanceof exText) {
+                    else
+                    if (o instanceof exText) {
                         ((exText) o).requestFocus();
-                    } else if (o.equals(this)) {
+                        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput((exText)o, InputMethodManager.SHOW_IMPLICIT);
+                    }
+                    else
+                    if (o.equals(this)) {
                         this.layout.requestFocus();
                     }
                 }
