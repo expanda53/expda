@@ -9,4 +9,9 @@ kezelo = '100'
 str = 'kiadas_gyszam_ment ' .. mibiz .. ' ' .. sorsz .. ' ' .. ean .. ' ' .. gyszam .. ' ' .. kezelo
 t=luafunc.query_assoc(str,false)
 ui:executeCommand('valueto','ldrb2', t[1]['DRB2'])
-ui:executeCommand('uzenet',t[1]['RESULTTEXT'])
+result = t[1]['RESULTTEXT']
+ui:executeCommand('uzenet',result)
+ui:executeCommand('valueto','egyszam', '')
+ui:executeCommand('setfocus','egyszam', '')
+
+
