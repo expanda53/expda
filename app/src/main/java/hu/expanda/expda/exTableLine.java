@@ -23,56 +23,142 @@ public class exTableLine extends LinearLayout {
     private ArrayList<TextView> a_tv = new ArrayList<TextView>();
     private ArrayList<ArrayList<TextView>> a_tv2 = new ArrayList<ArrayList<TextView>>();
     private ObjTable obj;
-    public exTableLine(Context context, Object cells,ObjTable obj){
+    private exPanel masterPanel = null;
+    private exTable eTable = null;
+    private Context c;
+    private exPane pane;
+    public exTableLine(Context context, Object cells,ObjTable obj,exTable eTable){
         super(context);
         this.obj = obj;
         this.setOrientation(VERTICAL);
-        int e_rnum = -1;
-        for (int i=0 ; i< ((ArrayList<ObjTableCell>)cells).size();i++){
-            ObjTableCell cell = ((ArrayList<ObjTableCell>)cells).get(i);
-            ArrayList<ObjStyle> style = cell.getStyle();
-            TextView tv = new TextView(context);
-            update(tv,style,cell,i);
-            int rnum = cell.getRowNum();
-            if (rnum!= e_rnum && e_rnum!=-1) {
-                ArrayList<TextView> a = new ArrayList<>();
-                a.addAll(a_tv) ;
-                a_tv2.add(a);
-                a_tv.clear();
-            }
-            a_tv.add(tv);
-            e_rnum=rnum;
+        this.eTable = eTable;
+        this.c=context;
+        this.pane = eTable.getPane();
+        Object o = pane.findObject(obj.getItemPanel());
+        if (o  instanceof  exPanel) masterPanel = (exPanel)o;
+        if (masterPanel != null) {
+            updatePanel(cells);
         }
-        ArrayList<TextView> a = new ArrayList<>();
-        a.addAll(a_tv);
-        a_tv2.add(a);
-        for (ArrayList<TextView> t : a_tv2) {
-            LinearLayout l = new LinearLayout(context);
-//            AbsoluteLayout l = new AbsoluteLayout(context);
-            for (TextView v : t) {
-
-                  if (v.getVisibility()==View.VISIBLE) {
-                      //l.addView(v, new AbsoluteLayout.LayoutParams(v.getMinWidth(), LayoutParams.WRAP_CONTENT,v.getLeft(),v.getTop()));
-                      //l.addView(v, new LinearLayout.LayoutParams(/*v.getMinWidth()*/LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-                      l.addView(v);
-                  }
+        else {
+            int e_rnum = -1;
+            for (int i = 0; i < ((ArrayList<ObjTableCell>) cells).size(); i++) {
+                ObjTableCell cell = ((ArrayList<ObjTableCell>) cells).get(i);
+                ArrayList<ObjStyle> style = cell.getStyle();
+                TextView tv = new TextView(context);
+                update(tv, style, cell, i);
+                int rnum = cell.getRowNum();
+                if (rnum != e_rnum && e_rnum != -1) {
+                    ArrayList<TextView> a = new ArrayList<>();
+                    a.addAll(a_tv);
+                    a_tv2.add(a);
+                    a_tv.clear();
+                }
+                a_tv.add(tv);
+                e_rnum = rnum;
             }
+            ArrayList<TextView> a = new ArrayList<>();
+            a.addAll(a_tv);
+            a_tv2.add(a);
+            for (ArrayList<TextView> t : a_tv2) {
+                LinearLayout l = new LinearLayout(context);
+//            AbsoluteLayout l = new AbsoluteLayout(context);
+                for (TextView v : t) {
+
+                    if (v.getVisibility() == View.VISIBLE) {
+                        //l.addView(v, new AbsoluteLayout.LayoutParams(v.getMinWidth(), LayoutParams.WRAP_CONTENT,v.getLeft(),v.getTop()));
+                        //l.addView(v, new LinearLayout.LayoutParams(/*v.getMinWidth()*/LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                        l.addView(v);
+                    }
+                }
 //            addView(l,new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-            addView(l,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                addView(l, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            }
         }
     }
-    private void update(TextView tv,ArrayList<ObjStyle> styles,ObjTableCell cell,int i){
+
+    private void updatePanel(Object cells){
+        exPanel p = new exPanel(c,masterPanel.getObj(), null);
+        p.setWidth1(masterPanel.getWidth());
+        p.setHeight1(masterPanel.getHeight());
+        //p.setMinimumHeight(masterPanel.getHeight());
+        //p.setMinimumWidth(masterPanel.getWidth());
+        p.setBackgroundColor(masterPanel.getObj().getBackColor());
+        p.setVisibility(View.VISIBLE);
+        p.setOnClickListener(null);
+        p.setClickable(false);
+        p.setFocusable(false);
+        p.setTag('_'+masterPanel.getObj().getName());
+        for (int i = 0; i < masterPanel.getChildCount(); i++) {
+            View aktView = masterPanel.getChildAt(i);
+            if (aktView instanceof exTextView) {
+                String akttext = ((exTextView)aktView).getText().toString();
+                if (akttext.indexOf("[")==-1) {
+                    exTextView tv = new exTextView(p.getContext(),((exTextView) aktView).getObj(), null, pane);
+                    //tv.setText(cell.getData());
+                    tv.setTop(tv.getObj().getTop());
+                    tv.setLeft(tv.getObj().getLeft());
+                    tv.setWidth(tv.getObj().getWidth());
+                    tv.setMinimumWidth(tv.getObj().getWidth());
+                    tv.setHeight(tv.getObj().getHeight());
+                    tv.setMinimumHeight(tv.getObj().getHeight());
+                    tv.setBackgroundColor(tv.getObj().getBackColor());
+                    tv.setTextColor(tv.getObj().getForeColor());
+                    tv.setTextSize(tv.getObj().getFontSize());
+                    tv.setVisibility(tv.getObj().getVisibility());
+                    //tv.setClickable(false);
+                    tv.setFocusable(false);
+                    tv.setTag('_' + tv.getObj().getName());
+
+                    p.addView(tv, new AbsoluteLayout.LayoutParams(tv.getMinimumWidth(), tv.getMinimumHeight(), tv.getLeft(), tv.getTop()));
+
+                }
+            }
+            else p.addView(aktView);
+        }
+        for (int i = 0; i < ((ArrayList<ObjTableCell>) cells).size(); i++) {
+            ObjTableCell cell = ((ArrayList<ObjTableCell>) cells).get(i);
+            ArrayList<ObjStyle> style = cell.getStyle();
+            View v = pane.findObject(cell.getName());
+            v.setOnClickListener(null);
+            if (v instanceof exTextView) {
+                exTextView tv = new exTextView(p.getContext(),((exTextView) v).getObj(), null, pane);
+                //tv.setText(cell.getData());
+                tv.setTop(tv.getObj().getTop());
+                tv.setLeft(tv.getObj().getLeft());
+                tv.setWidth(tv.getObj().getWidth());
+                tv.setMinimumWidth(tv.getObj().getWidth());
+                tv.setHeight(tv.getObj().getHeight());
+                tv.setMinimumHeight(tv.getObj().getHeight());
+                tv.setBackgroundColor(tv.getObj().getBackColor());
+                tv.setTextColor(tv.getObj().getForeColor());
+                tv.setTextSize(tv.getObj().getFontSize());
+                tv.setVisibility(tv.getObj().getVisibility());
+                tv.setOnClickListener(null);
+
+                //tv.setClickable(false);
+                tv.setFocusable(false);
+                update(tv, style, cell, i);
+                tv.setTag('_' + tv.getObj().getName());
+                p.addView(tv , new AbsoluteLayout.LayoutParams(tv.getMinimumWidth(), tv.getMinimumHeight(), tv.getLeft(), tv.getTop()));
+            }
+
+        }
+        addView(p, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+
+    }
+    private void update(TextView tv,ArrayList<ObjStyle> styles, ObjTableCell cell, int i) {
         tv.setText(cell.getData().replace("<enter>", "\r\n"));
         tv.setSingleLine(false);
+
         if (styles != null) {
             exPadding p = new exPadding();
             for (ObjStyle style : styles) {
                 tv.setVisibility(style.getVisibility());
-                p.setValues(style,tv);
+                p.setValues(style, tv);
                 tv.setPadding(p.getLeft(),p.getTop(),p.getRight(),p.getBottom());
                 if (style.getFontSize()>0) tv.setTextSize(style.getFontSize());
                 if (style.getForeColor() != -1) tv.setTextColor(style.getForeColor());
-                else tv.setTextColor(Color.BLACK);
+                //else tv.setTextColor(Color.BLACK);
                 if (style.getBackColor() != -1) tv.setBackgroundColor(style.getBackColor());
                 if (style.isFontBold() && style.isFontItalic())
                     tv.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD_ITALIC);
@@ -109,17 +195,29 @@ public class exTableLine extends LinearLayout {
 
     public void setItem(Context context, Object cells){
         int cellnum=-1;
-        for (int j=0; j<getA_tv2().size();j++) {
-            a_tv.clear();
-            a_tv.addAll(getA_tv2().get(j));
-            for (int i=0 ; i< this.a_tv.size();i++){
-                cellnum++;
-                ObjTableCell cell = ((ArrayList<ObjTableCell>)cells).get(cellnum);
-                ArrayList<ObjStyle> style = cell.getStyle();
-                update(getA_tv().get(i),style,cell,i);
+        if (getA_tv2().size()>0) {
+            for (int j = 0; j < getA_tv2().size(); j++) {
+                a_tv.clear();
+                a_tv.addAll(getA_tv2().get(j));
+                for (int i = 0; i < this.a_tv.size(); i++) {
+                    cellnum++;
+                    ObjTableCell cell = ((ArrayList<ObjTableCell>) cells).get(cellnum);
+                    ArrayList<ObjStyle> style = cell.getStyle();
+                    update(getA_tv().get(i), style, cell, i);
 
+                }
             }
         }
+        else {
+            for (int i = 0; i < ((ArrayList<ObjTableCell>) cells).size(); i++) {
+                ObjTableCell cell = ((ArrayList<ObjTableCell>) cells).get(i);
+                ArrayList<ObjStyle> style = cell.getStyle();
+                //View v = pane.findObject('_' + cell.getName());
+                View v = this.findViewWithTag('_'+cell.getName());
+                update((exTextView)v,style,cell,i);
+            }
+        }
+
     }
 
     public ArrayList<TextView> getA_tv() {

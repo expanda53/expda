@@ -137,7 +137,7 @@ public class exButton extends LinearLayout {
         //border
         GradientDrawable gd = new GradientDrawable();
         gd.setColor(c); // Changes this drawbale to use a single color instead of a gradient
-        //gd.setCornerRadius(5);
+        gd.setCornerRadius(5);
         if (getObj().getBorderWidth()!=0) {
             gd.setStroke(getObj().getBorderWidth(), getObj().getBorderColor());
         }
@@ -168,10 +168,11 @@ public class exButton extends LinearLayout {
 //                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
 
                 }
-
+                /*
                 Toast.makeText(getContext(),
                         "Button clicked",
                         Toast.LENGTH_LONG).show();
+                */
 
             }
         });

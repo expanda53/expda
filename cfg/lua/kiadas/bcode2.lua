@@ -10,6 +10,10 @@ str = 'kiadas_gyszam_ment ' .. mibiz .. ' ' .. sorsz .. ' ' .. ean .. ' ' .. gys
 t=luafunc.query_assoc(str,false)
 ui:executeCommand('valueto','ldrb2', t[1]['DRB2'])
 result = t[1]['RESULTTEXT']
+if (result=='OK') then
+    ui:executeCommand('showobj','button_gyszamlist','')
+end
+
 ui:executeCommand('uzenet',result)
 ui:executeCommand('valueto','egyszam', '')
 ui:executeCommand('setfocus','egyszam', '')

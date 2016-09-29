@@ -51,13 +51,17 @@ public class exTable extends ListView{
         }
         if (obj.getBackColor()!=-1) this.setBackgroundColor(obj.getBackColor());
         if (obj.getDividerColor()!="") this.setDividerColor(obj.getDividerColor());
+        this.setDividerHeight(obj.getDividerHeight());
         this.setTop(obj.getTop());
         this.setLeft(obj.getLeft());
         this.setMinimumHeight(obj.getHeight());
         this.setMinimumWidth(obj.getWidth());
-        layout.addView(this,new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));
+        layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));
         this.setTag(obj.getName());
+        this.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+
         final exTable lv = this;
+        /*
         this.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -75,6 +79,7 @@ public class exTable extends ListView{
 
             }
         });
+        */
     }
 
     public void setBounds(String command, int val){
@@ -89,7 +94,7 @@ public class exTable extends ListView{
         ColorDrawable d = new ColorDrawable(Color.parseColor(colorstr));
 //        d.setBounds(0,0,50,2);
         this.setDivider(d);
-        this.setDividerHeight(1);
+        //this.setDividerHeight();
     }
 
     public void setBgColor(String colorstr){
@@ -161,7 +166,7 @@ public class exTable extends ListView{
                         }
                     }
                     if (aktStyle == null) aktStyle = defStyle;
-                    ObjTableCell cell = new ObjTableCell(aktStyle,aktData,temps[0],index,rnum);
+                    ObjTableCell cell = new ObjTableCell(col.getName(),aktStyle,aktData,temps[0],index,rnum);
                     currentLine.add(cell);
                 }
                 
@@ -175,7 +180,7 @@ public class exTable extends ListView{
 
         }
         else {
-            this.setAdapter(new exTableAdapter(context, a,getObj()));
+            this.setAdapter(new exTableAdapter(context, a,getObj(),this));
         }
     }
 

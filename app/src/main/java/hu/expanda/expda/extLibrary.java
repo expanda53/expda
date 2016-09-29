@@ -71,29 +71,31 @@ public class extLibrary {
         if (par!=null) {
             String[] p = extLibrary.pane.extFuncInit(par);
             String[] params = {};
-            if (p[0]!=null) {
-                String methodName = p[0];
-                if (p.length > 1) {
-                    params = new String[p.length - 1];
-                    for (int i = 1; i < p.length; i++) {
-                        params[i - 1] = p[i];
+            if (p.length>0) {
+                if (p[0] != null) {
+                    String methodName = p[0];
+                    if (p.length > 1) {
+                        params = new String[p.length - 1];
+                        for (int i = 1; i < p.length; i++) {
+                            params[i - 1] = p[i];
+                        }
+
                     }
 
-                }
+                    if (extLibrary.extLib != null) {
+                        if (methodName != null) {
+                            for (Method m : extLibrary.methods) {
+                                String name = m.getName();
+                                if (methodName.equalsIgnoreCase(name)) {
+                                    Log.d("extlibrary.runMethod", name + " found");
+                                    Object x = m.invoke(extLibrary.extLib, extLibrary.layout, params);
+                                    Log.d("extlibrary.runMethod", name + " run: ok");
+                                    result = ((ArrayList<String>) x).toString();
+                                    Log.d("extlibrary.runMethod", name + " result: " + result);
 
-                if (extLibrary.extLib != null) {
-                    if (methodName != null) {
-                        for (Method m : extLibrary.methods) {
-                            String name = m.getName();
-                            if (methodName.equalsIgnoreCase(name)) {
-                                Log.d("extlibrary.runMethod", name + " found");
-                                Object x = m.invoke(extLibrary.extLib, extLibrary.layout, params);
-                                Log.d("extlibrary.runMethod", name + " run: ok");
-                                result = ((ArrayList<String>) x).toString();
-                                Log.d("extlibrary.runMethod", name + " result: " + result);
-
-                                ArrayList<String> r = pane.getDbc().Query("select ID,VALUE from LOG order by id");
-                                Log.d("expda.controlQuery", name + " result: " + r.toString());
+                                    ArrayList<String> r = pane.getDbc().Query("select ID,VALUE from LOG order by id");
+                                    Log.d("expda.controlQuery", name + " result: " + r.toString());
+                                }
                             }
                         }
                     }

@@ -7,12 +7,14 @@ import java.util.ArrayList;
  */
 public class ObjTableCell {
 
-    public ObjTableCell (String style, String data, String title,int index,int rowNum){
+    public ObjTableCell (String name,String style, String data, String title,int index,int rowNum){
         setStyle(style);
         setData(data);
         setTitle(title);
         setIndex(index);
         setRowNum(rowNum);
+        setName(name);
+
     }
     public ArrayList<ObjStyle> getStyle() {
         return ObjDefault.getObjStyle(style);
@@ -42,6 +44,7 @@ public class ObjTableCell {
     private String data;
     private String title;
     private int rowNum = -1;
+    private String name;
 
     public int getIndex() {
         return index;
@@ -59,5 +62,13 @@ public class ObjTableCell {
 
     public void setRowNum(int rowNum) {
         this.rowNum = rowNum;
+    }
+
+
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
     }
 }

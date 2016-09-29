@@ -12,12 +12,14 @@ public class ObjTable extends ObjDefault {
 	private String luaAfterClick;
 	private String extFunctionOnCreate;
 	private String extFunctionAfterClick;
+	private String itemPanel = "";
 	private ArrayList<ObjColumn> columns;
 	private String[] valueFrom;
 	private String[] valueTo;
 	private int rowHeight;
     private String viewType = "List";
     private String dividerColor="";
+    private int dividerHeight=1;
     public ObjTable(String vt){
         setText("...");
         //columns = new ObjColumn[10];
@@ -158,4 +160,19 @@ public class ObjTable extends ObjDefault {
 	public String getExtFunctionAfterClick() {        return extFunctionAfterClick;    }
 	public void setExtFunctionAfterClick(String extFunctionOnCreate) {        this.extFunctionAfterClick = extFunctionAfterClick;    }
 
+	public String getItemPanel() {
+		return itemPanel;
+	}
+
+	public void setItemPanel(String itemPanel) {
+		this.itemPanel = itemPanel;
+	}
+
+    public int getDividerHeight() {
+        return dividerHeight;
+    }
+
+    public void setDividerHeight(int dividerHeight) {
+        this.dividerHeight = dividerHeight;
+    }
 }

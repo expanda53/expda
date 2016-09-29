@@ -600,9 +600,9 @@ public class exPane {
     public void showDialog(String p1) {
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
         dlgAlert.setMessage(p1);
-        dlgAlert.setTitle("App Title");
+        dlgAlert.setTitle("exPDA");
 
-        dlgAlert.setCancelable(true);
+        dlgAlert.setCancelable(false);
 
         dlgAlert.setPositiveButton("Igen",
                 new DialogInterface.OnClickListener() {
@@ -617,6 +617,36 @@ public class exPane {
                     public void onClick(DialogInterface dialog, int which) {
                         //dismiss the dialog
                         exPane.dialogRes = false;
+                    }
+                });
+
+
+        dlgAlert.create().show();
+    }
+
+    public void showDialog(String p1, final String p2,final String p3) {
+        final AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
+        dlgAlert.setMessage(p1);
+        dlgAlert.setTitle("exPDA");
+        final exPane d = this;
+
+        dlgAlert.setCancelable(false);
+
+        dlgAlert.setPositiveButton("Igen",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //dismiss the dialog
+                        //exPane.dialogRes = true;
+                        if (p2!="") d.luaInit(p2);
+                    }
+                });
+
+        dlgAlert.setNegativeButton("Nem",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //dismiss the dialog
+                        //exPane.dialogRes = false;
+                        if (p3!="") d.luaInit(p3);
                     }
                 });
 
@@ -768,8 +798,4 @@ public class exPane {
     public void setExtFunctionOnCreate(String extFunctionOnCreate) {
         this.extFunctionOnCreate = extFunctionOnCreate;
     }
-
-
-
-
 }

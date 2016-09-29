@@ -3,6 +3,7 @@ package hu.expanda.expda;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 
@@ -36,7 +37,7 @@ public class exPanel extends AbsoluteLayout{
         this.setMinimumHeight(obj.getHeight());
         this.setMinimumWidth(obj.getWidth());
         this.setVerticalScrollBarEnabled(true);
-        layout.addView(this, new AbsoluteLayout.LayoutParams(obj.getWidth(), obj.getHeight(), obj.getLeft(), obj.getTop()) );
+        if (layout!=null) layout.addView(this, new AbsoluteLayout.LayoutParams(obj.getWidth(), obj.getHeight(), obj.getLeft(), obj.getTop()) );
         this.setTag(obj.getName());
 
 //		System.out.println(this.getData("NAME"));

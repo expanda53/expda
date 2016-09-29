@@ -146,7 +146,7 @@ public class uobj {
                         if (property.equalsIgnoreCase("lua_after_click")) ((ObjTable)obj).setLuaAfterClick(value);
                         if (property.equalsIgnoreCase("extfunction_on_create")) ((ObjTable)obj).setExtFunctionOnCreate(value);
                         if (property.equalsIgnoreCase("extfunction_after_click")) ((ObjTable)obj).setExtFunctionAfterClick(value);
-                        if (property.indexOf("column")>-1) ((ObjTable)obj).setColumn(property,value);
+                        if (property.indexOf("column")>-1) ((ObjTable)obj).setColumn(property, value);
                         if (property.equalsIgnoreCase("valueto")) ((ObjTable)obj).setValueTo(value);
                         if (property.equalsIgnoreCase("valuefrom")) ((ObjTable)obj).setValueFrom(value);
                         if (property.equalsIgnoreCase("row_height")) {
@@ -154,10 +154,10 @@ public class uobj {
                             else if (value.equalsIgnoreCase("WRAP")) ((ObjTable)obj).setRowHeight(AbsoluteLayout.LayoutParams.WRAP_CONTENT);
                             else if (value.equalsIgnoreCase("MATCH")) ((ObjTable)obj).setRowHeight(AbsoluteLayout.LayoutParams.MATCH_PARENT);
                             else ((ObjTable)obj).setRowHeight(Integer.parseInt(value));
-
-
                         }
                         if (property.equalsIgnoreCase("divider_color")) ((ObjTable)obj).setDividerColor(value);
+                        if (property.equalsIgnoreCase("divider_height")) ((ObjTable)obj).setDividerHeight(Integer.parseInt(value));
+                        if (property.equalsIgnoreCase("itempanel")) ((ObjTable)obj).setItemPanel(value);
                     }
                     if (obj instanceof ObjLabel) {
                         if (property.equalsIgnoreCase("image")) ((ObjLabel)obj).setImage(value);

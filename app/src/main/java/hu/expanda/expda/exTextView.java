@@ -89,14 +89,15 @@ public class exTextView extends TextView {
         this.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
-
-                getPane().luaInit(getObj().getLuaAfterClick());
-                try {
-                    getPane().getExtLib().runMethod(getObj().getExtFunctionAfterClick());
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+                if (getPane()!=null) {
+                    getPane().luaInit(getObj().getLuaAfterClick());
+                    try {
+                        getPane().getExtLib().runMethod(getObj().getExtFunctionAfterClick());
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
 //                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
 
@@ -105,7 +106,7 @@ public class exTextView extends TextView {
         this.setMaxLines(getObj().getMaxLines());
         this.setVerticalScrollBarEnabled(true);
         this.setMovementMethod(new ScrollingMovementMethod());
-        layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));
+        if (layout!=null) layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));
         this.setTag(getObj().getName());
 
     }

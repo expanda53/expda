@@ -165,7 +165,7 @@ public class exGrid extends GridView{
                             if (itemprops[0].equalsIgnoreCase("STYLE")) aktStyle = itemprops[1];
                         }
                     }
-                    ObjTableCell cell = new ObjTableCell(aktStyle,aktData,temps[0],index,-1);
+                    ObjTableCell cell = new ObjTableCell(temps[0],aktStyle,aktData,temps[0],index,-1);
                     currentLine.add(cell);
                 }
                 
