@@ -35,7 +35,7 @@
   <name>lmibiz</name>
   <top>0</top>
   <left>0</left>
-  <width>100</width>
+  <width>150</width>
   <height>20</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -44,8 +44,8 @@
 <label>
   <name>lcegnev</name>
   <top>0</top>
-  <left>100</left>
-  <width>380</width>
+  <left>150</left>
+  <width>330</width>
   <height>20</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -73,8 +73,8 @@
   <row_height>160</row_height>
   <parent>panel1</parent>
   <visible>false</visible>
-  <lua_on_create>kiadas/tableload.lua</lua_on_create>
-  <lua_after_click>kiadas/tableclick.lua</lua_after_click>
+  <lua_on_create>kiadas/mibizlist_load.lua</lua_on_create>
+  <lua_after_click>kiadas/mibizlist_click.lua</lua_after_click>
 </table>
 
 <label>
@@ -89,20 +89,6 @@
   <height>40</height>
   <visible>false</visible>
 </label>
-
-
-<custom_button>
-  <style>buttondefault</style>
-  <name>ButtonClose</name>
-  <Text>Átnézés</Text>
-  <top>610</top>
-  <width>150</width>
-  <height>70</height>
-  <left>320</left>
-  <lua_after_click>kiadas/zaras.lua</lua_after_click>
-  <parent>panel1</parent>
-  <visible>false</visible>
-</custom_button>
 
 <custom_button>
   <style>buttondefault</style>
@@ -235,11 +221,37 @@
 </text>
 
 
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_review</name>
+  <Text>Átnézés</Text>
+  <top>610</top>
+  <width>150</width>
+  <height>70</height>
+  <left>320</left>
+  <lua_after_click>kiadas/zaras.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_kovetkezo</name>
+  <Text>Következő</Text>
+  <top>610</top>
+  <width>150</width>
+  <height>70</height>
+  <left>160</left>
+  <lua_after_click>kiadas/kovetkezo_click.lua [lmibiz] [lsorsz]</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
 <panel>
   <name>reviewpanel</name>
   <width>match</width>
   <height>match</height>
-  <top>60</top>
+  <top>30</top>
   <visible>false</visible>
   <bgcolor>#000000</bgcolor>
   <left>0</left>
@@ -257,24 +269,26 @@
   <divider_color>#2b284a</divider_color>
   <column_title_cikknev>Cikk</column_title_cikknev>
   <column_rownum_cikknev>1</column_rownum_cikknev>
-  <column_style_cikknev>listtitle</column_style_cikknev>
 
   <column_title_ean>Ean</column_title_ean>
   <column_rownum_ean>2</column_rownum_ean>
   <column_style_ean>listdetails</column_style_ean>
-
+  
   <column_title_drb>drb</column_title_drb>
   <column_rownum_drb>3</column_rownum_drb>
-  <column_style_drb>listdetails</column_style_drb>
   
   <column_title_drb2>drb2</column_title_drb2>
   <column_rownum_drb2>3</column_rownum_drb2>
-  <column_style_drb2>listdetails</column_style_drb2>
 
+  <column_title_sorsz>sorsz</column_title_sorsz>
+  <column_rownum_sorsz>3</column_rownum_sorsz>
+  <column_style_sorsz>listhidden</column_style_sorsz>
+  
   <font_size>10</font_size>
   <row_height>160</row_height>
   <parent>reviewpanel</parent>
   <visible>true</visible>
+  <lua_after_click>kiadas/atnezes_click.lua null</lua_after_click>
 </table>
 
 <custom_button>
@@ -302,6 +316,7 @@
   <left>160</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
+  <lua_after_click>kiadas/kiadaskesobb.lua</lua_after_click>
 </custom_button>
 
 <custom_button>

@@ -31,7 +31,7 @@ ui:executeCommand('valueto','lcikknev', t[1]['CIKKNEV'])
 ui:executeCommand('valueto','lean', t[1]['EAN'])
 ui:executeCommand('valuetohidden','lsorsz', t[1]['SORSZ'])
 ui:executeCommand('aktbcodeobj','bcode1','')
-ui:executeCommand('showobj','eean','')
+ui:executeCommand('showobj','eean;button_review;button_kovetkezo','')
 
 ui:executeCommand('valuetohidden','ldrb', t[1]['DRB'])
 ui:executeCommand('valuetohidden','ldrb2', t[1]['DRB2'])

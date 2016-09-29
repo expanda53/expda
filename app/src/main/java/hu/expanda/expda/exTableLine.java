@@ -72,7 +72,7 @@ public class exTableLine extends LinearLayout {
                 tv.setPadding(p.getLeft(),p.getTop(),p.getRight(),p.getBottom());
                 if (style.getFontSize()>0) tv.setTextSize(style.getFontSize());
                 if (style.getForeColor() != -1) tv.setTextColor(style.getForeColor());
-                else tv.setTextColor(Color.BLACK);
+                //else tv.setTextColor(Color.BLACK);
                 if (style.getBackColor() != -1) tv.setBackgroundColor(style.getBackColor());
                 if (style.isFontBold() && style.isFontItalic())
                     tv.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD_ITALIC);

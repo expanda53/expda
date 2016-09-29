@@ -21,6 +21,11 @@
     <padding_bottom>5</padding_bottom>    
 </style>
 <style>
+  <name>listhidden</name>
+  <visible>hidden</visible>
+</style>
+
+<style>
   <name>listdetails</name>
   <font_size>13</font_size>
   <font_style>bold</font_style>
@@ -28,8 +33,8 @@
   <padding_right>5</padding_right>
   <padding_top>5</padding_top>
   <padding_bottom>15</padding_bottom>
-  <bgcolor>#000000</bgcolor>
   <font_color>#FF7F50</font_color>
+  <bgcolor>#000000</bgcolor>
 </style>
 <style>
   <name>listtitle</name>
@@ -44,13 +49,17 @@
 </style>
 <style>
   <name>listtitlered</name>
-  <font_size>15</font_size>
-  <font_style>bold</font_style>
-  <padding_left>5</padding_left>
-  <padding_right>5</padding_right>
-  <padding_top>15</padding_top>
-  <padding_bottom>5</padding_bottom>
   <bgcolor>#c62828</bgcolor>
+  <font_color>#000000</font_color>
+</style>
+<style>
+  <name>listtitlegreen</name>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+</style>
+<style>
+  <name>listtitleorange</name>
+  <bgcolor>#FF7F50</bgcolor>
   <font_color>#000000</font_color>
 </style>
 <style>
