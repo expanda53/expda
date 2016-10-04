@@ -12,4 +12,5 @@ CREATE TABLE IF NOT EXISTS LOG(id INTEGER PRIMARY KEY,type TEXT,value TEXT,statu
 CREATE TABLE IF NOT EXISTS BCDATA(id INTEGER PRIMARY KEY,modul TEXT,mibiz TEXT,bfej INTEGER, sorsz INTEGER, drb INTEGER, cikk TEXT,kezelo INTEGER, status INTEGER,dinsert DATETIME,dsync DATETIME);
 </dbmeta>
 <style_file>/style.xml</style_file>
+<start_xml>login.xml</start_xml>
 </Root>

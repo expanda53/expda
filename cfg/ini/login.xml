@@ -1,0 +1,8 @@
+<Root>
+<mainpanel>
+  <name>loginpanel</name>
+  <text>Bejelentkezés</text>
+  <bgcolor>#000000</bgcolor>
+  <lua_on_create>egyeb/login.lua</lua_on_create>
+</mainpanel>
+</Root>

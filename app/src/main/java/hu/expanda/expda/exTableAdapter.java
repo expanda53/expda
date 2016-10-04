@@ -82,7 +82,7 @@ public class exTableAdapter extends BaseAdapter {
             if (aktView instanceof exPanel) {
                 if ( ((exPanel)aktView).getChildCount()>0) {
                     for (int j = 0; j < ((exPanel)aktView).getChildCount(); j++) {
-                        View aktTv = ((exPanel)aktView).getChildAt(i);
+                        View aktTv = ((exPanel)aktView).getChildAt(j);
                         aktTv.setOnClickListener(listener);
                     }
                 }

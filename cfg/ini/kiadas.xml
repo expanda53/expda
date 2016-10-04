@@ -351,7 +351,7 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>650</height>
+  <height>600</height>
   <top>0</top>
   <left>0</left>
   <divider_color>#888892</divider_color>
@@ -374,7 +374,7 @@
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>135</height>
+    <height>115</height>
     <width>200</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -382,7 +382,7 @@
 <label>
     <name>cikknev</name>
     <parent>atnezo_sor</parent>
-    <width>500</width>
+    <width>480</width>
     <height>30</height>
     <top>5</top>
     <left>0</left>
@@ -391,7 +391,7 @@
 <label>
     <name>ean</name>
     <parent>atnezo_sor</parent>
-    <width>300</width>
+    <width>480</width>
     <height>45</height>
     <top>35</top>
     <left>0</left>
@@ -400,20 +400,22 @@
 <label>
     <name>drb</name>
     <parent>atnezo_sor</parent>
-    <width>150</width>
+    <width>240</width>
     <height>30</height>
     <top>80</top>
     <left>0</left>
     <text>[drb]</text>
+    <align>center</align>
 </label>
 <label>
     <name>drb2</name>
     <parent>atnezo_sor</parent>
-    <width>150</width>
+    <width>240</width>
     <height>30</height>
     <top>80</top>
-    <left>150</left>
+    <left>240</left>
     <text>[drb2]</text>
+    <align>center</align>
 </label>
 <label>
     <name>sorsz</name>
@@ -425,20 +427,32 @@
     <text>[sorsz]</text>
     <style>listhidden</style>
 </label>
+
+
 <label>
-    <name>akarmi</name>
-    <parent>atnezo_sor</parent>
-    <width>100</width>
-    <height>20</height>
-    <top>110</top>
-    <left>0</left>
-    <text>proba</text>
-  <bgcolor>#000000</bgcolor>
-  <font_color>#497000</font_color>    
-  <font_size>10</font_size>
+  <name>losszesen</name>
+  <top>610</top>
+  <height>wrap</height>
+  <left>0</left>
+  <width>240</width>
+  <visible>true</visible>
+  <parent>reviewpanel</parent>
+  <style>reviewlabel</style>
+  <align>center</align>
+  <text>Összesen</text>
 </label>
-
-
+<label>
+  <name>lkiszedve</name>
+  <top>610</top>
+  <height>wrap</height>
+  <left>241</left>
+  <width>240</width>
+  <visible>true</visible>
+  <parent>reviewpanel</parent>
+  <style>reviewlabel</style>
+  <align>center</align>
+  <text>Kiszedve</text>
+</label>
 
 <custom_button>
   <style>buttondefault</style>
@@ -478,6 +492,7 @@
   <left>320</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
+  <lua_after_click>kiadas/lezaras.lua null</lua_after_click>
 </custom_button>
 
 

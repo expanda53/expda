@@ -48,7 +48,7 @@
   <font_color>#FF7F50</font_color>
 </style>
 <style>
-  <name>listtitlered</name>
+  <name>listtitlewait</name>
   <bgcolor>#c62828</bgcolor>
   <font_color>#000000</font_color>
   <padding_left>5</padding_left>
@@ -57,7 +57,7 @@
   <padding_bottom>0</padding_bottom>    
   </style>
 <style>
-  <name>listtitlegreen</name>
+  <name>listtitledone</name>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <padding_left>5</padding_left>
@@ -66,12 +66,12 @@
   <padding_bottom>0</padding_bottom>  
 </style>
 <style>
-  <name>listtitleorange</name>
+  <name>listtitlework</name>
   <bgcolor>#FF7F50</bgcolor>
   <font_color>#000000</font_color>
-  <padding_left>10</padding_left>
+  <padding_left>5</padding_left>
   <padding_right>5</padding_right>
-  <padding_top>10</padding_top>
+  <padding_top>0</padding_top>
   <padding_bottom>0</padding_bottom>    
 </style>
 <style>
@@ -86,5 +86,14 @@
     <height>40</height>
     <width>100</width>
 </style>
-
+<style>
+  <name>reviewlabel</name>
+  <bgcolor>#d4cfcb</bgcolor>
+  <font_color>#000000</font_color>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>5</padding_top>
+  <padding_bottom>5</padding_bottom>    
+  <font_size>13</font_size>
+</style>
 </Root>

@@ -12,9 +12,10 @@ ui:executeCommand('valueto','ldrb2', t[1]['DRB2'])
 result = t[1]['RESULTTEXT']
 if (result=='OK') then
     ui:executeCommand('showobj','button_gyszamlist','')
+    ui:executeCommand('TOAST','Mentés rendben.')
+else
+    ui:executeCommand('uzenet',result)
 end
-
-ui:executeCommand('uzenet',result)
 ui:executeCommand('valueto','egyszam', '')
 ui:executeCommand('setfocus','egyszam', '')
 

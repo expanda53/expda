@@ -415,6 +415,8 @@ public class exPane {
 //            p1 menuitem
 //            p2 kezelo
             Intent resultIntent = new Intent(this.getContext(), MainActivity.class);
+            p1 = p1.toLowerCase().replace(".xml","");
+
             resultIntent.putExtra(MainActivity.EXTRA_MSG_ITEM,p1);
             resultIntent.putExtra(MainActivity.EXTRA_MSG_KEZELO,p2);
             getContext().startActivity(resultIntent);

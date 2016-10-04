@@ -48,16 +48,12 @@ public class MainActivity extends Activity {
         Ini.Create();
         if (Ini.isLandScape())  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
         else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
-        String xml = "mainmenu.xml";
+        String xml = Ini.getStartXML();
         Intent intent =this.getIntent();
 
         String xItem = intent.getStringExtra(EXTRA_MSG_ITEM);
         if (xItem != null && xItem!="") xml = xItem+".xml";
-
-
         pane = new exPane(this, ll, xml);
-
-
         setContentView(ll);
         pane.getLayout().requestFocus();
 /*

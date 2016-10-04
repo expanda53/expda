@@ -34,6 +34,7 @@ public class Ini {
     private static String[] dbMeta = {};
     private static boolean created = false;
     private static String styleFile = "style.xml";
+	private static String startXML = "mainmenu.xml";
 	public static void Create(){
         if (!created) {
             if (System.getProperty("expda.dir") != null)
@@ -96,6 +97,7 @@ public class Ini {
             //Ini.setLibraryDir(domParsing(xml,"library_folder","Root"));
             Ini.setLibFile(domParsing(xml,"library_file","Root"));
 //            Ini.setStyleFile(domParsing(xml,"style_file","Root"));
+			Ini.setStartXML(domParsing(xml, "start_xml", "Root"));
 			
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -184,4 +186,11 @@ public class Ini {
     public static String getLibFile() {        return libFile;    }
     public static void setLibFile(String libFile) {        Ini.libFile = libFile;    }
 
+	public static String getStartXML() {
+		return startXML;
+	}
+
+	public static void setStartXML(String startXML) {
+		Ini.startXML = startXML;
+	}
 }
