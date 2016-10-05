@@ -36,21 +36,22 @@
   <top>0</top>
   <left>0</left>
   <width>150</width>
-  <height>20</height>
+  <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault</style>
+  <style>reviewlabel</style>
 </label>
+
 <label>
   <name>lcegnev</name>
   <top>0</top>
-  <left>150</left>
+  <left>151</left>
   <width>330</width>
-  <height>20</height>
+  <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
   <align>right</align>
-  <style>labeldefault</style>
+  <style>reviewlabel</style>
 </label>
 <table>
   <name>mibizlist_table</name>
@@ -79,18 +80,6 @@
   <lua_after_click>kiadas/mibizlist_click.lua</lua_after_click>
 </table>
 
-<label>
-  <name>ltitle</name>
-  <Text>MANTIS</Text>
-  <top>0</top>
-  <width>530</width>
-  <parent>panel1</parent>
-  <bgcolor>#000000</bgcolor>
-  <font_bold>false</font_bold>
-  <font_color>#497000</font_color>
-  <height>40</height>
-  <visible>false</visible>
-</label>
 
 <custom_button>
   <style>buttondefault</style>
@@ -119,8 +108,6 @@
   <valueto>egyszam</valueto>
   <parent>panel1</parent>
 </barcode>
-
-
 <label>
   <name>lcikknev</name>
   <top>30</top>
@@ -129,8 +116,10 @@
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault</style>
+  <style>labeldefault;listtitlework</style>
 </label>
+
+
 <label>
   <name>lean</name>
   <top>60</top>
@@ -144,7 +133,7 @@
 <text>
   <name>eean</name>
   <top>90</top>
-  <width>200</width>
+  <width>match</width>
   <parent>panel1</parent>
   <left>0</left>
   <visible>false</visible>
@@ -222,28 +211,28 @@
   <font_size>15</font_size>
 </text>
 
-
 <custom_button>
   <style>buttondefault</style>
-  <name>button_review</name>
-  <Text>Átnézés</Text>
+  <name>button_elozo</name>
+  <Text>Előző</Text>
   <top>610</top>
-  <width>150</width>
+  <width>153</width>
   <height>70</height>
-  <left>320</left>
-  <lua_after_click>kiadas/zaras.lua</lua_after_click>
+  <left>0</left>
+  <lua_after_click>kiadas/kovetkezo_click.lua [lmibiz] [lsorsz] -</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
+
 
 <custom_button>
   <style>buttondefault</style>
   <name>button_kovetkezo</name>
   <Text>Következő</Text>
   <top>610</top>
-  <width>150</width>
+  <width>154</width>
   <height>70</height>
-  <left>160</left>
+  <left>163</left>
   <lua_after_click>kiadas/kovetkezo_click.lua [lmibiz] [lsorsz] +</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
@@ -251,16 +240,17 @@
 
 <custom_button>
   <style>buttondefault</style>
-  <name>button_elozo</name>
-  <Text>Előző</Text>
+  <name>button_review</name>
+  <Text>Átnézés</Text>
   <top>610</top>
-  <width>150</width>
+  <width>153</width>
   <height>70</height>
-  <left>0</left>
-  <lua_after_click>kiadas/kovetkezo_click.lua [lmibiz] [lsorsz] -</lua_after_click>
+  <left>327</left>
+  <lua_after_click>kiadas/zaras.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
+
 <custom_button>
   <style>buttondefault</style>
   <name>button_gyszamlist</name>

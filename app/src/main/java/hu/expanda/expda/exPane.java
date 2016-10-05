@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -33,6 +35,8 @@ public class exPane {
     private Lua lua=null;
     private extLibrary extLib;
     public static boolean dialogRes;
+    private WifiManager wifiMan;
+    private WifiInfo wifiInfo;
 
 
     private PHPClient phpcli = null;
@@ -114,6 +118,7 @@ public class exPane {
     public exPane(Context c, ViewGroup layout, String xml) {
         this.layout = layout;
         this.context = c;
+        wifiMan = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
         createPanel(xml, Ini.getStyleFile());
 
         if (Ini.getConnectionType().equalsIgnoreCase("PHP")) try {
@@ -799,5 +804,24 @@ public class exPane {
 
     public void setExtFunctionOnCreate(String extFunctionOnCreate) {
         this.extFunctionOnCreate = extFunctionOnCreate;
+
     }
+
+    public boolean isWifiEnabled(){
+        return getWifiManager().getWifiState() ==WifiManager.WIFI_STATE_ENABLED;
+    }
+
+    public WifiInfo getWifiInfo() {
+
+        return wifiInfo = getWifiManager().getConnectionInfo();
+
+    }
+    public WifiManager getWifiManager() {
+        return wifiMan;
+    }
+
+    public int getWifiStrength(){
+        return getWifiManager().calculateSignalLevel (getWifiInfo().getRssi(),5);
+    }
+
 }
