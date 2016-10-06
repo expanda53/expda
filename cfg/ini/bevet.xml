@@ -159,7 +159,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
-  <text>Kiszedendő</text>
+  <text>Bejövő</text>
 </label>
 <label>
   <name>ldrb</name>
@@ -178,7 +178,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
-  <text>Kiszedve</text>
+  <text>Bevéve</text>
 </label>
 <label>
   <name>ldrb2</name>
@@ -443,7 +443,7 @@
   <parent>reviewpanel</parent>
   <style>reviewlabel</style>
   <align>center</align>
-  <text>Kiszedve</text>
+  <text>Bevéve</text>
 </label>
 
 <custom_button>

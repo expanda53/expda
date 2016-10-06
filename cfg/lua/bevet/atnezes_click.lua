@@ -11,7 +11,7 @@ if (dialogres=="null") then
     sorsz= t['SORSZ']
     cikknev = t['CIKKNEV']
     drb2=t['DRB2']
-    if (drb2~='Kiszedve: 0') then
+    if (drb2~='Bevéve: 0') then
       ui:showDialog("Törli a gyáriszámokat erről a cikkről?\n"..cikknev.."\n".. mibiz.."/" .. sorsz,"kiadas/atnezes_click.lua igen ".. sorsz,"kiadas/atnezes_click.lua nem")
     end
 end
@@ -28,7 +28,7 @@ if (dialogres=="igen") then
             str = 'kiadas_review_sum '..kezelo..' '..mibiz
             sum=luafunc.query_assoc(str,false)
             drb2 = sum[1]['DRB2']
-            ui:executeCommand("valueto","lkiszedve",'Kiszedve ' ..drb2 .. ' drb')
+            ui:executeCommand("valueto","lkiszedve",'Bevéve ' ..drb2 .. ' drb')
             
         end
 end
