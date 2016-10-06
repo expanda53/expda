@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
+import android.widget.LinearLayout;
 
 /**
  * Created by Encsi on 2015.01.31..

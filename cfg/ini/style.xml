@@ -19,6 +19,8 @@
     <padding_right>5</padding_right>
     <padding_top>5</padding_top>
     <padding_bottom>5</padding_bottom>    
+    <border_width>2</border_width>
+    <border_color>#434343</border_color>
 </style>
 <style>
   <name>listhidden</name>
@@ -88,7 +90,7 @@
 </style>
 <style>
   <name>reviewlabel</name>
-  <bgcolor>#d4cfcb</bgcolor>
+  <bgcolor>#434343</bgcolor>
   <font_color>#000000</font_color>
   <padding_left>5</padding_left>
   <padding_right>5</padding_right>

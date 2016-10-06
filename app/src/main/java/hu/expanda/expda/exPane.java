@@ -37,6 +37,8 @@ public class exPane {
     public static boolean dialogRes;
     private WifiManager wifiMan;
     private WifiInfo wifiInfo;
+    private String kezelo = "";
+    private String aktmodul = "";
 
 
     private PHPClient phpcli = null;
@@ -50,6 +52,7 @@ public class exPane {
 
     private boolean createPanel( String xml, String stylexml){
         dbc = new dbClient(this.getContext());
+        setExtras();
         if (MainActivity.a_style == null || MainActivity.a_style.size()==0) {
             xmlParser stobj = new xmlParser(this.getContext(), stylexml);
 
@@ -118,6 +121,7 @@ public class exPane {
     public exPane(Context c, ViewGroup layout, String xml) {
         this.layout = layout;
         this.context = c;
+
         wifiMan = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
         createPanel(xml, Ini.getStyleFile());
 
@@ -822,6 +826,19 @@ public class exPane {
 
     public int getWifiStrength(){
         return getWifiManager().calculateSignalLevel (getWifiInfo().getRssi(),5);
+    }
+
+    public String getKezelo() {
+        return kezelo;
+    }
+
+    public void setExtras() {
+        this.kezelo = getActivity().getIntent().getStringExtra(MainActivity.EXTRA_MSG_KEZELO);
+        this.aktmodul = getActivity().getIntent().getStringExtra(MainActivity.EXTRA_MSG_ITEM);
+    }
+
+    public String getAktmodul() {
+        return aktmodul;
     }
 
 }

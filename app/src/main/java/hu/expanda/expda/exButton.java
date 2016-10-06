@@ -130,6 +130,8 @@ public class exButton extends LinearLayout {
                 if (style.getHeight() != -99) this.setHeight(style.getHeight());
                 if (style.getWidth() != -99) this.setWidth(style.getWidth());
                 if (style.isVisibilityOverride()) this.setVisibility(style.getVisibility());
+                if (style.getBorderWidth()!=-1) getObj().setBorderWidth(style.getBorderWidth());
+                if (style.getBorderColor()!="") getObj().setBorderColor(style.getBorderColor());
             }
             
         }
@@ -139,7 +141,7 @@ public class exButton extends LinearLayout {
         gd.setColor(c); // Changes this drawbale to use a single color instead of a gradient
         gd.setCornerRadius(5);
         if (getObj().getBorderWidth()!=0) {
-            gd.setStroke(getObj().getBorderWidth(), getObj().getBorderColor());
+            gd.setStroke(getObj().getBorderWidth(), Color.parseColor(getObj().getBorderColor()));
         }
         this.setBackground(gd);
         layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));

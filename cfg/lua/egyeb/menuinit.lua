@@ -2,7 +2,7 @@ require 'hu.expanda.expda/LuaFunc'
 params = {...}
 ui = params[1]
 local menuitem = params[2]:gsub(':','')
-local kezelo = "100"
+kezelo = ui:getKezelo()
 if (menuitem~='EXIT') then
   ui:executeCommand('openxml',menuitem,kezelo)
 else

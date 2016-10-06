@@ -21,15 +21,14 @@ import android.util.Log;
     }
 
     private boolean visibilityOverride = false;
-        public int getAlign() {
+    public int getAlign() {
             return align;
-        }
+    }
 
-        public void setAlign(String align) {
+    public void setAlign(String align) {
             if (align.equalsIgnoreCase("CENTER")) this.align = 0;//SWT.CENTER;
             if (align.equalsIgnoreCase("LEFT")) this.align = 1;//SWT.LEFT;
             if (align.equalsIgnoreCase("RIGHT")) this.align = 2;//SWT.RIGHT;
-        }
-
+    }
 }
 

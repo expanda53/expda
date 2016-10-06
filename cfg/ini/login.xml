@@ -43,10 +43,10 @@
   <name>button_login</name>
   <Text>Bejelentkezés</Text>
   <top>610</top>
-  <width>200</width>
+  <width>match</width>
   <height>70</height>
   <left>0</left>
-  <lua_after_click>egyen/login_click.lua [elogin]</lua_after_click>
+  <lua_after_click>egyeb/login_click.lua [elogin]</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
 </custom_button>

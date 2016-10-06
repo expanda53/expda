@@ -37,7 +37,8 @@ public class ObjDefault {
     private boolean FontBold=false;
     private boolean FontItalic=false;
     private String style;
-
+    private String borderColor="";
+    private int borderWidth = -1;
     public ObjDefault(){
         parent="";
     }
@@ -237,6 +238,20 @@ public class ObjDefault {
 
     public void setPaddingLeft(int paddingLeft) {
         this.paddingLeft = paddingLeft;
+    }
+
+    public void setBorderColor(String color){
+        this.borderColor = color;
+    }
+    public String getBorderColor(){
+        return this.borderColor;
+    }
+    public int getBorderWidth() {
+        return borderWidth;
+    }
+
+    public void setBorderWidth(int borderWidth) {
+        this.borderWidth = borderWidth;
     }
 
     }

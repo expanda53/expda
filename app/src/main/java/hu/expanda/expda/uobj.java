@@ -121,11 +121,16 @@ public class uobj {
                     if (property.equalsIgnoreCase("padding_bottom")) ((ObjDefault)obj).setPaddingBottom(Integer.parseInt(value));
                     else
                     if (property.equalsIgnoreCase("parent")) ((ObjDefault)obj).setParent(value);
+                    else
+                    if (property.equalsIgnoreCase("border_width")) ((ObjDefault)obj).setBorderWidth(Integer.parseInt(value));
+                    else
+                    if (property.equalsIgnoreCase("border_color")) ((ObjDefault)obj).setBorderColor(value);
+
                     if (obj instanceof ObjButton) {
                         if (property.equalsIgnoreCase("sql_after_click")) ((ObjButton)obj).setSqlAfterClick(value);
                         if (property.equalsIgnoreCase("lua_after_click")) ((ObjButton)obj).setLuaAfterClick(value);
-                        if (property.equalsIgnoreCase("border_width")) ((ObjButton)obj).setBorderWidth(Integer.parseInt(value));
-                        if (property.equalsIgnoreCase("border_color")) ((ObjButton)obj).setBorderColor(value);
+                        //if (property.equalsIgnoreCase("border_width")) ((ObjButton)obj).setBorderWidth(Integer.parseInt(value));
+                        //if (property.equalsIgnoreCase("border_color")) ((ObjButton)obj).setBorderColor(value);
                         if (property.equalsIgnoreCase("extfunction_after_click")) {
                             ((ObjButton)obj).setExtFunctionAfterClick(value);
                         }

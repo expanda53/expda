@@ -24,7 +24,7 @@
   <Text>100</Text>
 </label>
 <custom_button>
-  <name>Button5</name>
+  <name>ButtonKiadas</name>
   <image>external-link.png</image>
   <Text>Kiadás</Text>
   <top>60</top>
@@ -36,10 +36,22 @@
   <lua_after_click>egyeb/menuinit.lua KIADAS [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
+  <name>ButtonBevet</name>
+  <image>external-link.png</image>
+  <Text>Bevét</Text>
+  <top>195</top>
+  <width>match</width>
+  <height>130</height>
+  <left>1</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua BEVET [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
   <name>ButtonClose</name>
   <left>1</left>
   <Text>Kilépés</Text>
-  <top>195</top>
+  <top>330</top>
   <width>match</width>
   <height>65</height>
   <style>buttondefault</style>

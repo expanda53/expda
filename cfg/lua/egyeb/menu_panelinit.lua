@@ -12,4 +12,8 @@ else
     ui:showMessage('wifi not enabled')
   end
 end
+kezelo = ui:getKezelo()
+ui:executeCommand('valueto','lkezelostat','Kezelő: '..kezelo)
+
+
 

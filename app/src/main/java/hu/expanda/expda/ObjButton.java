@@ -12,19 +12,17 @@ public class ObjButton extends ObjDefault{
     private String SqlAfterClick;
     private String LuaAfterClick;
     private String Image="";
-    private int borderWidth=0;
-    private String borderColor;
-        private int align=Gravity.CENTER; //swt.center
+    private int align=Gravity.CENTER; //swt.center
 
-        public int getAlign() {
+    public int getAlign() {
             return align;
         }
 
-        public void setAlign(String align) {
+    public void setAlign(String align) {
             if (align.equalsIgnoreCase("CENTER")) this.align = Gravity.CENTER;//SWT.CENTER;
             if (align.equalsIgnoreCase("LEFT")) this.align = Gravity.LEFT;//SWT.LEFT;
             if (align.equalsIgnoreCase("RIGHT")) this.align = Gravity.RIGHT;//SWT.RIGHT;
-        }
+    }
     public String getFunction() {
         return Function;
     }
@@ -76,19 +74,5 @@ public class ObjButton extends ObjDefault{
         return fsize;
     }
 
-    public int getBorderWidth() {
-        return borderWidth;
-    }
 
-    public void setBorderWidth(int borderWidth) {
-        this.borderWidth = borderWidth;
-    }
-
-    public int getBorderColor() {
-        return getColor(borderColor);
-    }
-
-    public void setBorderColor(String borderColor) {
-        this.borderColor = borderColor;
-    }
 }

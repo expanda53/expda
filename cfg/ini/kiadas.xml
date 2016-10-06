@@ -31,6 +31,10 @@
   <bgcolor>#000000</bgcolor>
   <left>0</left>
 </panel>
+<panel>
+  <file>pfooter.xml</file>
+</panel>
+
 <label>
   <name>lmibiz</name>
   <top>0</top>
@@ -61,7 +65,7 @@
   <height>match</height>
   <top>0</top>
   <left>0</left>
-  <divider_color>#888892</divider_color>
+  <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
 
   <column_title_mibiz>Mibiz</column_title_mibiz>
@@ -283,7 +287,7 @@
   <height>650</height>
   <top>0</top>
   <left>0</left>
-  <divider_color>#888892</divider_color>
+  <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
   <column_title_gyszam>gyszam</column_title_gyszam>
   <font_size>10</font_size>
@@ -316,12 +320,10 @@
   <Text>Folytatás</Text>
   <top>650</top>
   <width>match</width>
-  <height>100</height>
+  <height>70</height>
   <left>0</left>
   <parent>gyszamlistpanel</parent>
   <visible>true</visible>
-  <border_width>2</border_width>
-  <border_color>#497000</border_color>
   <lua_after_click>kiadas/kiadasfolyt.lua</lua_after_click>
 </custom_button>
 
@@ -344,7 +346,7 @@
   <height>600</height>
   <top>0</top>
   <left>0</left>
-  <divider_color>#888892</divider_color>
+  <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
   
   <column_title_cikknev>Cikk</column_title_cikknev>
@@ -364,7 +366,7 @@
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>115</height>
+    <height>105</height>
     <width>200</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -374,7 +376,7 @@
     <parent>atnezo_sor</parent>
     <width>480</width>
     <height>30</height>
-    <top>5</top>
+    <top>0</top>
     <left>0</left>
     <text>[cikknev]</text>
 </label>
@@ -383,7 +385,7 @@
     <parent>atnezo_sor</parent>
     <width>480</width>
     <height>45</height>
-    <top>35</top>
+    <top>30</top>
     <left>0</left>
     <text>[ean]</text>    
 </label>
@@ -392,7 +394,7 @@
     <parent>atnezo_sor</parent>
     <width>240</width>
     <height>30</height>
-    <top>80</top>
+    <top>75</top>
     <left>0</left>
     <text>[drb]</text>
     <align>center</align>
@@ -402,7 +404,7 @@
     <parent>atnezo_sor</parent>
     <width>240</width>
     <height>30</height>
-    <top>80</top>
+    <top>75</top>
     <left>240</left>
     <text>[drb2]</text>
     <align>center</align>
@@ -450,12 +452,10 @@
   <Text>Folyt. most</Text>
   <top>650</top>
   <width>150</width>
-  <height>100</height>
+  <height>90</height>
   <left>0</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <border_width>2</border_width>
-  <border_color>#497000</border_color>
   <lua_after_click>kiadas/kiadasfolyt.lua</lua_after_click>
 </custom_button>
 
@@ -465,7 +465,7 @@
   <Text>Folyt. később</Text>
   <top>650</top>
   <width>150</width>
-  <height>100</height>
+  <height>90</height>
   <left>160</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
@@ -478,7 +478,7 @@
   <Text>Lezárás</Text>
   <top>650</top>
   <width>150</width>
-  <height>100</height>
+  <height>90</height>
   <left>320</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
@@ -486,7 +486,4 @@
 </custom_button>
 
 
-<panel>
-  <file>pitem.xml</file>
-</panel>
 </Root>

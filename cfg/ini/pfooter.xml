@@ -2,21 +2,40 @@
 <panel>
   <name>pfooter</name>
   <width>match</width>
-  <top>861</top>
+  <top>780</top>
   <left>0</left>
   <height>match</height>
   <visible>true</visible>
-  <bgcolor>#CCAA00</bgcolor>
+  <bgcolor>#000000</bgcolor>
 </panel>
 <label>
-  <name>flabel</name>
+  <name>lverzio</name>
   <Text>exPDA v5.0 2016</Text>
-  <top>20</top>
-  <width>match</width>
-  <bgcolor>#008B8B</bgcolor>
+  <top>1</top>
+  <width>200</width>
   <left>0</left>
   <parent>pfooter</parent>
   <visible>true</visible>
-  <height>match</height>  
+  <style>reviewlabel</style>
+  <align>center</align>
 </label>
+<label>
+  <name>lmodulstat</name>
+  <top>1</top>
+  <width>139</width>
+  <left>201</left>
+  <style>reviewlabel</style>
+  <parent>pfooter</parent>
+  <align>center</align>  
+</label>
+<label>
+  <name>lkezelostat</name>
+  <top>1</top>
+  <width>139</width>
+  <left>341</left>
+  <style>reviewlabel</style>
+  <parent>pfooter</parent>
+  <align>center</align>  
+</label>
+
 </Root>
