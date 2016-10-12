@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by Encsi on 2015.01.31..
@@ -155,8 +156,12 @@ public class exTable extends ListView{
                     String defStyle = col.getStyle();
                     int rnum = col.getRowNum();
                     String[] values;
-                    if (temps.length>1)  values = temps[1].split("@@");
-                    else values = "".split("@@");
+
+                    String delim = "|@@";
+                    String regex = "(?<!\\\\)" + Pattern.quote(delim);
+
+                    if (temps.length>1)  values = temps[1].split(regex);
+                    else values = "".split(regex);
                     String aktData = values[0];
                     String aktStyle = null;
                     if (values.length>1){

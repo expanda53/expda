@@ -51,8 +51,7 @@ public class exButton extends LinearLayout {
         this.setOrientation(LinearLayout.VERTICAL);
         tv = new TextView(parent);
         tv.setText(getObj().getText());
-        tv.setGravity(Gravity.CENTER_VERTICAL |Gravity.CENTER_HORIZONTAL);
-
+        tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         this.setPadding(2, 2, 2, 2);
         //tv.setId(1);
         //RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -62,16 +61,18 @@ public class exButton extends LinearLayout {
         if (this.button.getImage()!="") {
             iv = new ImageView(parent);
             iv.setImageURI(Uri.fromFile(new File(this.button.getImage())));
+            tv.setGravity(Gravity.LEFT|Gravity.CENTER_VERTICAL);
             //iv.setId(2);
-            LinearLayout.LayoutParams ivLP = new LinearLayout.LayoutParams(16,16);
-            ivLP.gravity = Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL;
-            iv.setLayoutParams(ivLP);
-            this.addView(iv);
+            LinearLayout.LayoutParams ivLP = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
+            ivLP.gravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
 
-            //ivId = iv.getId();
+            tv.setLayoutParams(ivLP);
+            Drawable d = iv.getDrawable();
+            tv.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+            tv.setCompoundDrawablePadding(10);
         }
-        //lp.addRule(RelativeLayout.RIGHT_OF,ivId);
         this.addView(tv);
+
 
 
 
