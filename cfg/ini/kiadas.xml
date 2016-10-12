@@ -69,21 +69,42 @@
   <divider_height>2</divider_height>
 
   <column_title_mibiz>Mibiz</column_title_mibiz>
-  <column_rownum_mibiz>2</column_rownum_mibiz>
-
   <column_title_cegnev>Cég</column_title_cegnev>
-  <column_rownum_cegnev>1</column_rownum_cegnev>
 
-  <valuefrom>mibiz;cegnev</valuefrom>
-  <valueto>selcikk;selnev</valueto>
   <font_size>10</font_size>
   <row_height>160</row_height>
   <parent>panel1</parent>
   <visible>false</visible>
-  <lua_on_create>kiadas/mibizlist_load.lua</lua_on_create>
   <lua_after_click>kiadas/mibizlist_click.lua</lua_after_click>
+  <itempanel>mibizlist_sor</itempanel>
 </table>
 
+<panel>
+    <name>mibizlist_sor</name>
+    <parent>panel1</parent>
+    <height>45</height>
+    <width>480</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>mibiz</name>
+    <parent>mibizlist_sor</parent>
+    <width>480</width>
+    <height>wrap</height>
+    <top>5</top>
+    <left>0</left>
+    <text>[mibiz]</text>
+</label>
+<label>
+    <name>cegnev</name>
+    <parent>mibizlist_sor</parent>
+    <width>480</width>
+    <height>wrap</height>
+    <top>35</top>
+    <left>0</left>
+    <text>[cegnev]</text>
+</label>
 
 <custom_button>
   <style>buttondefault</style>

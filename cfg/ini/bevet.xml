@@ -101,14 +101,14 @@
 </custom_button>
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>bevet/bcode1.lua [eean]</lua_after_trigger>
+  <lua_after_trigger>bevet/bcode1.lua [eean] [lean]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
 
 <barcode>
   <name>BCODE2</name>
-  <lua_after_trigger>bevet/bcode2.lua [egyszam]</lua_after_trigger>
+  <lua_after_trigger>bevet/bcode2.lua [eean] [egyszam] [lmibiz] [lsorsz]</lua_after_trigger>
   <valueto>egyszam</valueto>
   <parent>panel1</parent>
 </barcode>

@@ -27,9 +27,9 @@ if (t[1]['SORSZ']>'0') then
     
 else
     if (irany=='+') then 
-        ui:executeCommand('uzenet','Nincs több kiszedendő tétel!','')
+        ui:executeCommand('uzenet','Nincs több bevételezendő tétel!','')
     else
-        ui:executeCommand('uzenet','Nincs előző kiszedendő tétel!','')
+        ui:executeCommand('uzenet','Nincs előző bevételezendő tétel!','')
     end
 end
 --luafunc.log(str)

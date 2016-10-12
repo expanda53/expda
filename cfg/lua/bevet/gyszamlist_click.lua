@@ -11,7 +11,7 @@ if (dialogres=="null") then
     row = ui:findObject('gyszam_table'):getSelectedRow()  
     t = luafunc.rowtotable(row)
     gyszam= t['GYSZAM']
-    ui:showDialog("Törli a " .. gyszam .. " gyáriszámot erről a cikkről?\n"..cikknev.."\n".. mibiz.."/" .. sorsz,"kiadas/gyszamlist_click.lua igen ".. gyszam,"kiadas/gyszamlist_click.lua nem")
+    ui:showDialog("Törli a " .. gyszam .. " gyáriszámot erről a cikkről?\n"..cikknev.."\n".. mibiz.."/" .. sorsz,"bevet/gyszamlist_click.lua igen ".. gyszam,"bevet/gyszamlist_click.lua nem")
 end
 if (dialogres=="igen") then
         gyszam = params[3]    

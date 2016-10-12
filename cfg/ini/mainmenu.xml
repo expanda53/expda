@@ -25,7 +25,7 @@
 </label>
 <custom_button>
   <name>ButtonKiadas</name>
-  <image>external-link.png</image>
+  <image>cart.png</image>
   <Text>Kiadás</Text>
   <top>60</top>
   <width>match</width>
@@ -37,7 +37,7 @@
 </custom_button>
 <custom_button>
   <name>ButtonBevet</name>
-  <image>external-link.png</image>
+  <image>truck.png</image>
   <Text>Bevét</Text>
   <top>195</top>
   <width>match</width>
@@ -57,6 +57,7 @@
   <style>buttondefault</style>
   <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
   <visible>true</visible>
+  <image>exit.png</image>
 </custom_button>
 <label>
   <name>fkep</name>

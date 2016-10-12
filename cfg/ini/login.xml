@@ -49,5 +49,6 @@
   <lua_after_click>egyeb/login_click.lua [elogin]</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
+  <image>arrow-right.png</image>
 </custom_button>
 </Root>

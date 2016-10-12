@@ -12,7 +12,7 @@ if (dialogres=="null") then
     cikknev = t['CIKKNEV']
     drb2=t['DRB2']
     if (drb2~='Bevéve: 0') then
-      ui:showDialog("Törli a gyáriszámokat erről a cikkről?\n"..cikknev.."\n".. mibiz.."/" .. sorsz,"kiadas/atnezes_click.lua igen ".. sorsz,"kiadas/atnezes_click.lua nem")
+      ui:showDialog("Törli a gyáriszámokat erről a cikkről?\n"..cikknev.."\n".. mibiz.."/" .. sorsz,"bevet/atnezes_click.lua igen ".. sorsz,"bevet/atnezes_click.lua nem")
     end
 end
 if (dialogres=="igen") then

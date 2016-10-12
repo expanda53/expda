@@ -15,4 +15,4 @@ ui:executeCommand('valueto','lcegnev', cegnev)
 ui:executeCommand('hideobj','mibizlist_table','')
 
 ui:executeCommand('showobj','pfooter;eean;button_review;button_kovetkezo;button_elozo','')
-ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', mibiz..' 0 +')
+ui:executeCommand('startlua','bevet/kovetkezo_click.lua', mibiz..' 0 +')
