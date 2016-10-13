@@ -106,20 +106,6 @@
     <text>[cegnev]</text>
 </label>
 
-<custom_button>
-  <style>buttondefault</style>
-  <name>pcikkval_bvalaszt</name>
-  <Text>Frissítés</Text>
-  <top>35</top>
-  <width>200</width>
-  <height>70</height>
-  <left>127</left>
-  <lua_after_click1>kiadas/cikkment.lua</lua_after_click1>
-  <extfunction_after_click1>setMantisTitle ujfelirat</extfunction_after_click1>
-  <extfunction_after_click>liteQuery teszt</extfunction_after_click>
-  <parent>panel1</parent>
-  <visible>false</visible>
-</custom_button>
 <barcode>
   <name>BCODE1</name>
   <lua_after_trigger>kiadas/bcode1.lua [eean]</lua_after_trigger>

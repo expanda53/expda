@@ -168,11 +168,11 @@ public class exPane {
     }
 
     public void executeCommand(String command, String p1, String p2) throws Exception{
-        if ((command.equalsIgnoreCase("SHOWOBJ")) || (command.equalsIgnoreCase("HIDEOBJ"))){
+        if ((command.equalsIgnoreCase("SHOWOBJ")) ||  (command.equalsIgnoreCase("SHOW")) || (command.equalsIgnoreCase("HIDEOBJ")) || (command.equalsIgnoreCase("HIDE")) ){
             String[] objlist = p1.split( ";");
             for (int i=0;i<objlist.length;i++){
                 View o = this.findObject(objlist[i]);
-                boolean visbool = (command.equalsIgnoreCase("SHOWOBJ"));
+                boolean visbool = (command.equalsIgnoreCase("SHOWOBJ")) ||  (command.equalsIgnoreCase("SHOW"));
                 int vis = visbool?View.VISIBLE:View.INVISIBLE;
                 if ( o instanceof exTextView){
                      o.setVisibility(vis);
@@ -478,7 +478,7 @@ public class exPane {
         else if (command.equalsIgnoreCase("STARTLUA")){
             luaInit(p1 + ' ' +p2);
         }
-        else if (command.equalsIgnoreCase("STARTEXTFUNC")){
+        else if (command.equalsIgnoreCase("STARTEXTFUNC")) {
             extLibrary.runMethod(p1 + ' ' + p2);
         }
         else if (command.equalsIgnoreCase("TOAST")){
