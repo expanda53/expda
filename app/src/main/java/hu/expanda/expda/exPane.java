@@ -244,8 +244,8 @@ public class exPane {
                     else
                     if (o instanceof exText) {
                         ((exText) o).requestFocus();
-                        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.showSoftInput((exText)o, InputMethodManager.SHOW_IMPLICIT);
+                        //InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        //imm.showSoftInput((exText)o, InputMethodManager.SHOW_IMPLICIT);
                     }
                     else
                     if (o.equals(this)) {

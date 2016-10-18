@@ -19,7 +19,8 @@ if (cikknev~='NOTFOUND') then
     ui:executeCommand('valueto','ldrb2',szamolt)    
 
 else
-  ui:executeCommand('uzenet','Nem található termék ilyen ean kóddal:\n'..ean)
-  ui:executeCommand('valueto','eean','')
-  ui:executeCommand('setfocus','eean','')
+ ui:executeCommand('setfocus','eean','') 
+ ui:executeCommand('toast','Nem található termék ilyen ean kóddal:\n'..ean)
+ ui:executeCommand('valueto','eean','')
+ 
 end

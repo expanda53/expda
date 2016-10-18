@@ -38,13 +38,160 @@
   <font_size>17</font_size>
   <height>60</height>
 </text>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_1</name>
+  <Text>1</Text>
+  <top>210</top>
+  <width>115</width>
+  <height>90</height>
+  <left>0</left>
+  <lua_after_click>egyeb/login_btn_click.lua 1</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_2</name>
+  <Text>2</Text>
+  <top>210</top>
+  <width>115</width>
+  <height>90</height>
+  <left>120</left>
+  <lua_after_click>egyeb/login_btn_click.lua 2</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_3</name>
+  <Text>3</Text>
+  <top>210</top>
+  <width>115</width>
+  <height>90</height>
+  <left>240</left>
+  <lua_after_click>egyeb/login_btn_click.lua 3</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_4</name>
+  <Text>4</Text>
+  <top>210</top>
+  <width>115</width>
+  <height>90</height>
+  <left>360</left>
+  <lua_after_click>egyeb/login_btn_click.lua 4</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_5</name>
+  <Text>5</Text>
+  <top>305</top>
+  <width>115</width>
+  <height>90</height>
+  <left>0</left>
+  <lua_after_click>egyeb/login_btn_click.lua 5</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_6</name>
+  <Text>6</Text>
+  <top>305</top>
+  <width>115</width>
+  <height>90</height>
+  <left>120</left>
+  <lua_after_click>egyeb/login_btn_click.lua 6</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_7</name>
+  <Text>7</Text>
+  <top>305</top>
+  <width>115</width>
+  <height>90</height>
+  <left>240</left>
+  <lua_after_click>egyeb/login_btn_click.lua 7</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_8</name>
+  <Text>8</Text>
+  <top>305</top>
+  <width>115</width>
+  <height>90</height>
+  <left>360</left>
+  <lua_after_click>egyeb/login_btn_click.lua 8</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_9</name>
+  <Text>9</Text>
+  <top>400</top>
+  <width>115</width>
+  <height>90</height>
+  <left>0</left>
+  <lua_after_click>egyeb/login_btn_click.lua 9</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_0</name>
+  <Text>0</Text>
+  <top>400</top>
+  <width>115</width>
+  <height>90</height>
+  <left>120</left>
+  <lua_after_click>egyeb/login_btn_click.lua 0</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_del</name>
+  <Text>Törlés</Text>
+  <top>400</top>
+  <width>235</width>
+  <height>90</height>
+  <left>240</left>
+  <lua_after_click>egyeb/login_btn_click.lua DEL</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+
+
+
 <custom_button>
   <style>buttondefault</style>
   <name>button_login</name>
   <Text>Bejelentkezés</Text>
   <top>610</top>
   <width>match</width>
-  <height>70</height>
+  <height>90</height>
   <left>0</left>
   <lua_after_click>egyeb/login_click.lua [elogin]</lua_after_click>
   <parent>panel1</parent>
