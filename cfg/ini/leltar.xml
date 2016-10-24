@@ -290,13 +290,13 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>600</height>
+  <height>620</height>
   <top>0</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
   
-  <column_title_cikknev>Cikk</column_title_cikknev>
+  <column_title_cikknev>Cikknev</column_title_cikknev>
   <column_title_cikk>Cikk</column_title_cikk>
   <column_title_ean>Ean</column_title_ean>
   <column_title_drb>drb</column_title_drb>
@@ -313,8 +313,8 @@
     <name>atnezo_sor</name>
     <parent>panel1</parent>
     <height>105</height>
-    <width>200</width>
-    <bgcolor>#000000</bgcolor>
+    <width>match</width>
+    <bgcolor>#497000</bgcolor>
     <visible>false</visible>
 </panel>
 <label>
@@ -341,7 +341,7 @@
     <width>240</width>
     <height>30</height>
     <top>75</top>
-    <left>0</left>
+    <left>240</left>
     <text>[drb]</text>
     <align>center</align>
 </label>
@@ -354,18 +354,6 @@
     <left>0</left>
     <text>[cikk]</text>
     <style>listhidden</style>
-</label>
-<label>
-  <name>losszesen</name>
-  <top>610</top>
-  <height>wrap</height>
-  <left>0</left>
-  <width>240</width>
-  <visible>true</visible>
-  <parent>reviewpanel</parent>
-  <style>reviewlabel</style>
-  <align>center</align>
-  <text>Összesen</text>
 </label>
 
 <custom_button>
