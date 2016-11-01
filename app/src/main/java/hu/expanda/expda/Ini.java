@@ -19,12 +19,13 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class Ini {
-	
+	private static String rootDir =  Environment.getExternalStorageDirectory().getPath()+"/expda";
 	private static String iniDir =  Environment.getExternalStorageDirectory().getPath()+"/expda/ini";
 	private static String luaDir = Environment.getExternalStorageDirectory().getPath()+"/expda/lua";
 	private static String imgDir = Environment.getExternalStorageDirectory().getPath()+"/expda/images";
 	private static String exportDir = Environment.getExternalStorageDirectory().getPath()+"/expda/export";
     private static String libraryDir = Environment.getExternalStorageDirectory().getPath()+"/expda/library";
+	private static String updateURL =  "";
     private static String libFile = "";
 
     private static boolean landScape = true;
@@ -41,7 +42,7 @@ public class Ini {
                 Ini.setIniDir("" + System.getProperty("expda.dir") + "/ini");
             new File(Ini.getIniDir()).mkdirs();
             Ini.setIniDir(Ini.getIniDir() + "/");
-            String appconfig = StringFunc.getFile("AppConfig.xml");
+            String appconfig = StringFunc.getIniFile("AppConfig.xml");
             parsing(appconfig);
             created = true;
         }
@@ -98,6 +99,7 @@ public class Ini {
             Ini.setLibFile(domParsing(xml,"library_file","Root"));
 //            Ini.setStyleFile(domParsing(xml,"style_file","Root"));
 			Ini.setStartXML(domParsing(xml, "start_xml", "Root"));
+            Ini.setUpdateURL(domParsing(xml,"update_url","Root"));
 			
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -193,4 +195,16 @@ public class Ini {
 	public static void setStartXML(String startXML) {
 		Ini.startXML = startXML;
 	}
+
+    public static String getUpdateURL() {
+        return updateURL;
+    }
+
+    public static void setUpdateURL(String updateURL) {
+        Ini.updateURL = updateURL;
+    }
+
+    public static String getRootDir() {
+        return rootDir;
+    }
 }

@@ -3,6 +3,7 @@
 <php_url_local>http://192.168.1.105/expda_depo.php</php_url_local>
 <php_url_eles>http://192.168.1.26:82/expda_depo.php</php_url_eles>
 <php_url>http://192.168.1.105/expda_depo.php</php_url>
+<update_url>http://192.168.1.105/updatefiles.xml</update_url>
 <images_folder>\storage\sdcard1\expda\images</images_folder>
 <lua_folder>\storage\sdcard1\expda\lua</lua_folder>
 <export_folder>\storage\sdcard1\expda\export</export_folder>

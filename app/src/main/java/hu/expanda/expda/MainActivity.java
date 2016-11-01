@@ -4,24 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
-import android.widget.TextView;
 
 /*
 import com.symbol.emdk.barcode.Scanner;
 import com.symbol.emdk.barcode.ScannerException;
 */
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-
-import dalvik.system.DexClassLoader;
 
 
 public class MainActivity extends Activity {
@@ -31,6 +22,7 @@ public class MainActivity extends Activity {
     public static Object style = null;
     public static ArrayList<Object> a_style = null;
     public static Symbol symbol = null;
+    public static boolean startUpdate = true;
     private static boolean scannerEnabled = false;
     public static boolean useSymbol = false;
 
@@ -53,7 +45,22 @@ public class MainActivity extends Activity {
 
         String xItem = intent.getStringExtra(EXTRA_MSG_ITEM);
         if (xItem != null && xItem!="") xml = xItem+".xml";
+        new exWifi(this);
+        if (startUpdate && exWifi.isWifiEnabled() && exWifi.getWifiStrength()>0) {
+            try {
+                startUpdate = false;
+                //File dir = this.getFilesDir();
+                UpdateFiles updateFiles = new UpdateFiles(Ini.getUpdateURL());
+                //String[] s={"http://192.168.1.105/updatefiles.xml",dir.getAbsolutePath()};
+                String[] s = {Ini.getUpdateURL(), Ini.getIniDir()};
+
+                updateFiles.execute(s);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         pane = new exPane(this, ll, xml);
+
         setContentView(ll);
         pane.getLayout().requestFocus();
 /*

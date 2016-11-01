@@ -1,27 +1,13 @@
 
 package hu.expanda.expda;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 
 
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import android.app.Application;
 import android.content.Context;
-import android.os.Environment;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * Created by Encsi on 2015.01.27..
@@ -95,7 +81,7 @@ public class xmlParser {
                                     //fileból további xml beolvasás
                                     inObj = false;
                                     XmlPullParserFactory xmlFactoryObjectSub;
-                                    String xmlstring = StringFunc.getFile(text);
+                                    String xmlstring = StringFunc.getIniFile(text);
                                     if (xmlstring!=null) {
                                         xmlFactoryObjectSub = XmlPullParserFactory.newInstance();
                                         XmlPullParser myparserSub = xmlFactoryObject.newPullParser();
@@ -140,7 +126,7 @@ public class xmlParser {
                 try {
 
 
-                    String xmlstring = StringFunc.getFile(xmlFile);
+                    String xmlstring = StringFunc.getIniFile(xmlFile);
                     if (xmlstring!=null) {
                         xmlFactoryObject = XmlPullParserFactory.newInstance();
                         XmlPullParser myparser = xmlFactoryObject.newPullParser();

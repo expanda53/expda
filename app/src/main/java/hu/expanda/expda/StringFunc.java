@@ -45,6 +45,23 @@ public class StringFunc {
 
     public static String getFile(String fn){
         String xmlstring2 = "";
+        String xmlnev = Ini.getRootDir()+"/"+fn;
+        //xmlnev = "./expda/ini/AppConfig.xml";
+        if (new File(xmlnev ).exists()) {
+            try {
+                xmlstring2 = StringFunc.readFiletoString(xmlnev);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        else {
+            xmlstring2 = null;
+        }
+        return xmlstring2;
+    }
+    public static String getIniFile(String fn){
+        String xmlstring2 = "";
         String xmlnev = Ini.getIniDir()+fn;
         //xmlnev = "./expda/ini/AppConfig.xml";
         if (new File(xmlnev ).exists()) {
