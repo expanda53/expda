@@ -4,9 +4,12 @@ package hu.expanda.expda;
  * Created by Encsi on 2015.03.01..
  */
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -28,7 +31,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
-public class UpdateFiles extends AsyncTask<String, Void, String> {
+public class UpdateFiles extends AsyncTask<String, String, String> {
     private HttpURLConnection connection=null;
 
     public ArrayList getResult() {
@@ -38,11 +41,12 @@ public class UpdateFiles extends AsyncTask<String, Void, String> {
     public void setResult(ArrayList result) {
         this.result = result;
     }
-
     private String charset = "UTF-8";
     private String URL = "";
     private String URLRoot = "";
     private ArrayList result = null;
+    private String[] aktItem = {"",""};
+    private Context c;
     //convert InputStream to String
     private static ArrayList IStreamToString(InputStream is) {
 
@@ -74,9 +78,10 @@ public class UpdateFiles extends AsyncTask<String, Void, String> {
 
 
 
-    public UpdateFiles(String url) throws Exception{
+    public UpdateFiles(String url,Context c) throws Exception{
 
         this.setURL(url);
+
         URL urlo = null;
         try {
             urlo = new URL(url);
@@ -85,69 +90,74 @@ public class UpdateFiles extends AsyncTask<String, Void, String> {
         }
         URLRoot = getURL();
         URLRoot = URLRoot.replace(urlo.getFile(),"");
+        this.c = c;
 
     }
 
     private boolean updateFile(String... aktFile){
+        String status = "";
         String fileNev = "";
         String verzio = "";
         if (aktFile.length > 0) fileNev = aktFile[0];
         if (aktFile.length > 1) verzio = aktFile[1];
-        String content = StringFunc.getFile(fileNev);
-        if (content == null || content=="") content=""; //nem talalhato ilyen file, fel kell irni
-        //ha megtalalhato benne az uj verzioszam, nem kell frissiteni
-        if (content.indexOf("<verzio>" + verzio+"</verzio>")>-1) return false;
-        else {
-            //az uj verzio nem talalhato a fileban, frissiteni kell
-            ArrayList response = downloadFile(getURLRoot() + "/" + fileNev);
+        aktItem = aktFile;
+        if (verzio.equalsIgnoreCase("X")) {
+            //torles
             File file = new File(Ini.getRootDir(), fileNev);
-            String dir = file.getParent();
-            File fdir = new File(dir);
-            fdir.mkdirs();
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (file.delete()) status = "Törölve:" +fileNev ;
+            if (status!="") publishProgress(status );
+            return true;
+        }
+        else {
+            String content = StringFunc.getFile(fileNev);
+            if (content == null || content == "") {
+                content = ""; //nem talalhato ilyen file, fel kell irni
+                status = "Új:"+fileNev;
             }
-            FileOutputStream fileOutputStream = null;
-            try {
-                fileOutputStream = new FileOutputStream(file);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            for(int i=0;i<response.size();i++) {
-                String aktrow = response.get(i).toString();
+            //ha megtalalhato benne az uj verzioszam, nem kell frissiteni
+            if (content.indexOf("<verzio>" + verzio + "</verzio>") > -1) return false;
+            else {
+                //az uj verzio nem talalhato a fileban, frissiteni kell
+                if (content!="" && content!=null) status = "Frissítve:" + fileNev;
+                ArrayList response = downloadFile(getURLRoot() + "/" + fileNev);
+                File file = new File(Ini.getRootDir(), fileNev);
+                String dir = file.getParent();
+                File fdir = new File(dir);
+                fdir.mkdirs();
                 try {
-                    fileOutputStream.write(aktrow.getBytes());
-                    fileOutputStream.write("\n".getBytes());
+                    file.createNewFile();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-            try {
-                fileOutputStream.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                fileOutputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                FileOutputStream fileOutputStream = null;
+                try {
+                    fileOutputStream = new FileOutputStream(file);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response.size(); i++) {
+                    String aktrow = response.get(i).toString();
+                    try {
+                        fileOutputStream.write(aktrow.getBytes());
+                        fileOutputStream.write("\n".getBytes());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+                    fileOutputStream.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (status!="") publishProgress(status );
 
-/*
-            File file = new File(path, "updatefiles.xml");
-            file.createNewFile();
-            final FileOutputStream fileOutputStream = new FileOutputStream(file);
-            final byte buffer[] = new byte[16 * 1024];
-
-            int len1 = 0;
-            while ((len1 = inputStream.read(buffer)) > 0) {
-                fileOutputStream.write(buffer, 0, len1);
+                return true;
             }
-            fileOutputStream.flush();
-            fileOutputStream.close();*/
-            return true;
         }
 
     }
@@ -201,19 +211,6 @@ public class UpdateFiles extends AsyncTask<String, Void, String> {
                     updateFile(sor);
                 }
 
-                /*
-                File file = new File(path, "updatefiles.xml");
-                file.createNewFile();
-                final FileOutputStream fileOutputStream = new FileOutputStream(file);
-                final byte buffer[] = new byte[16 * 1024];
-
-                int len1 = 0;
-                while ((len1 = inputStream.read(buffer)) > 0) {
-                    fileOutputStream.write(buffer, 0, len1);
-                }
-                fileOutputStream.flush();
-                fileOutputStream.close();
-                */
             } catch (Exception e) {
                 Log.e("exPda", "Beállítás frissítési hiba...");
                 Log.e("exPda", e.getMessage());
@@ -240,9 +237,18 @@ public class UpdateFiles extends AsyncTask<String, Void, String> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //setResult(res);
         return res;
     }
+
+    @Override
+    protected void onProgressUpdate(String... progress) {
+        Toast.makeText(
+                c,
+                progress[0],
+                Toast.LENGTH_SHORT).show();
+
+    }
+
 
     public String getURLRoot() {
         return URLRoot;

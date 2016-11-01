@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
             try {
                 startUpdate = false;
                 //File dir = this.getFilesDir();
-                UpdateFiles updateFiles = new UpdateFiles(Ini.getUpdateURL());
+                UpdateFiles updateFiles = new UpdateFiles(Ini.getUpdateURL(),this);
                 //String[] s={"http://192.168.1.105/updatefiles.xml",dir.getAbsolutePath()};
                 String[] s = {Ini.getUpdateURL(), Ini.getIniDir()};
 

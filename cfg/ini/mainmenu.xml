@@ -5,6 +5,7 @@
   <bgcolor>#000000</bgcolor>
   <params_to_labels>lkezelo</params_to_labels>
   <lua_on_create>egyeb/menu_panelinit.lua [lkezelo]</lua_on_create>
+  <verzio>20161101</verzio>
 </mainpanel>
 <label>
   <name>lupdate</name>
