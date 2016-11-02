@@ -11,8 +11,9 @@ lua/egyeb/login_btn_click.lua;20161101
 lua/egyeb/login_click.lua;20161101
 lua/egyeb/menu_panelinit.lua;20161101
 lua/egyeb/menuinit.lua;20161101
+lua/egyeb/setfocus.lua;20161102
 lua/leltar/bcode1.lua;20161101
-lua/leltar/bcode2.lua;20161101
+lua/leltar/bcode2.lua;20161102
 lua/leltar/ujean.lua;20161101
 lua/leltar/kiadasfolyt.lua;20161101
 lua/leltar/lezaras.lua;20161101
@@ -23,8 +24,8 @@ lua/leltar/gyszamlist_click.lua;20161101
 lua/leltar/gyszamfolyt.lua;20161101
 lua/leltar/panelinit.lua;20161101
 lua/leltar/kiadaskesobb.lua;20161101
-lua/kiadas/bcode1.lua;20161101
-lua/kiadas/bcode2.lua;20161101
+lua/kiadas/bcode1.lua;20161102
+lua/kiadas/bcode2.lua;20161102
 lua/kiadas/kiadasfolyt.lua;20161101
 lua/kiadas/lezaras.lua;20161101
 lua/kiadas/zaras.lua;20161101
@@ -35,8 +36,8 @@ lua/kiadas/panelinit.lua;20161101
 lua/kiadas/kiadaskesobb.lua;20161101
 lua/kiadas/mibizlist_click.lua;20161101
 lua/kiadas/kovetkezo_click.lua;20161101
-lua/bevet/bcode1.lua;20161101
-lua/bevet/bcode2.lua;20161101
+lua/bevet/bcode1.lua;20161102
+lua/bevet/bcode2.lua;20161102
 lua/bevet/kiadasfolyt.lua;20161101
 lua/bevet/lezaras.lua;20161101
 lua/bevet/zaras.lua;20161101
