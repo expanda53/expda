@@ -1,4 +1,4 @@
---<verzio>20161101</verzio>
+--<verzio>20161102</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -15,6 +15,7 @@ if (result=='OK') then
     ui:executeCommand('showobj','button_gyszamlist','')
     ui:executeCommand('TOAST','Mentés rendben.')
 else
+    ui:executeCommand('uzenet',result,"egyeb/setfocus.lua egyszam")
     ui:executeCommand('uzenet',result)
 end
 ui:executeCommand('valueto','egyszam', '')

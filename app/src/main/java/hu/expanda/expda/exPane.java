@@ -374,7 +374,7 @@ public class exPane {
         }
         */
         else if (command.equalsIgnoreCase("UZENET")){
-            showMessage(p1);
+            showMessage(p1,p2);
         }
 
         else if (command.equalsIgnoreCase("VALUETO")){
@@ -517,7 +517,7 @@ public class exPane {
             String currParam2="";
             for (int j=0;j<row.length ;j++){
                 String temps = parseResponse(row[j]);
-                if (temps!=""){
+                if (!temps.equalsIgnoreCase("")){
                     String[] par = temps.split( ";");
                     if (par[0].equalsIgnoreCase("C") && (par.length>1)) currCommand = par[1];
                     if (par[0].equalsIgnoreCase("P1") && (par.length>1)) {
@@ -533,7 +533,7 @@ public class exPane {
                     if (par[0].equalsIgnoreCase("P2") && (par.length>1)) currParam2 = par[1];
                 }
             }
-            if (currCommand!=""){
+            if (!currCommand.equalsIgnoreCase("")){
                 executeCommand(currCommand, currParam1, currParam2);
             }
 
@@ -591,19 +591,28 @@ public class exPane {
         return layout;
     }
     public void showMessage(String p1) {
-        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
+        showMessage(p1,"");
+    }
+
+    public void showMessage(String p1, final String p2) {
+        final AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
         dlgAlert.setMessage(p1);
         dlgAlert.setTitle("exPDA");
-//        dlgAlert.setPositiveButton("OK", null);
-//        dlgAlert.setCancelable(true);
+        final exPane d = this;
+
+        dlgAlert.setCancelable(false);
+
         dlgAlert.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         //dismiss the dialog
+                        //exPane.dialogRes = true;
+                        if (!p2.equalsIgnoreCase("")) d.luaInit(p2);
                     }
                 });
         dlgAlert.create().show();
     }
+
     public void showDialog(String p1) {
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(context);
         dlgAlert.setMessage(p1);
@@ -644,7 +653,7 @@ public class exPane {
                     public void onClick(DialogInterface dialog, int which) {
                         //dismiss the dialog
                         //exPane.dialogRes = true;
-                        if (p2!="") d.luaInit(p2);
+                        if (!p2.equalsIgnoreCase("")) d.luaInit(p2);
                     }
                 });
 
@@ -653,7 +662,7 @@ public class exPane {
                     public void onClick(DialogInterface dialog, int which) {
                         //dismiss the dialog
                         //exPane.dialogRes = false;
-                        if (p3!="") d.luaInit(p3);
+                        if (!p3.equalsIgnoreCase("")) d.luaInit(p3);
                     }
                 });
 
@@ -679,7 +688,7 @@ public class exPane {
     }
     public String[] extFuncInit(String params){
         String[] p2 = {};
-        if (params!=null && params!="") {
+        if (params!=null && !params.equalsIgnoreCase("")) {
             params = replaceValues(params,"");
             p2 = params.split(" ");
         }
@@ -687,7 +696,7 @@ public class exPane {
 
     }
     public void luaInit(String params) {
-        if (params!=null && params!="") {
+        if (params!=null && !params.equalsIgnoreCase("")) {
             params = replaceValues(params,"");
             String[] p = params.split(" ");
             String[] p2 = {};
