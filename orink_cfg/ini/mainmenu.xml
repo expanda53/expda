@@ -5,7 +5,7 @@
   <bgcolor>#000000</bgcolor>
   <params_to_labels>lkezelo</params_to_labels>
   <lua_on_create>egyeb/menu_panelinit.lua [lkezelo]</lua_on_create>
-  <verzio>20161117</verzio>
+  <verzio>20161117a</verzio>
 </mainpanel>
 <label>
   <name>lupdate</name>
@@ -51,7 +51,7 @@
 <custom_button>
   <name>ButtonLeltar</name>
   <image>leltar.png</image>
-  <Text>Gyáriszámos leltár</Text>
+  <Text>Leltár</Text>
   <top>330</top>
   <width>match</width>
   <height>130</height>

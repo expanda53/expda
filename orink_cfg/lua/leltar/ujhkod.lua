@@ -5,9 +5,10 @@ ui=params[1]
 ui:executeCommand('valuetohidden','lcikknev','')
 ui:executeCommand('valuetohidden','lcikod','')
 ui:executeCommand('valuetohidden','edrb','')
-ui:executeCommand('valueto','eean','')
-ui:executeCommand('hide','cap_drb;edrb;button_ujean;reviewpanel','')
-ui:executeCommand('setfocus','eean','')
+ui:executeCommand('valuetohidden','eean','')
+ui:executeCommand('valueto','ehkod','')
+ui:executeCommand('hide','cap_drb;edrb;cap_ean;eean;button_ujhkod;button_ujean;reviewpanel','')
+ui:executeCommand('setfocus','ehkod','')
 
 
 
