@@ -607,7 +607,7 @@ public class exPane {
                     public void onClick(DialogInterface dialog, int which) {
                         //dismiss the dialog
                         //exPane.dialogRes = true;
-                        if (!p2.equalsIgnoreCase("")) d.luaInit(p2);
+                        if (p2!=null && !p2.equalsIgnoreCase("")) d.luaInit(p2);
                     }
                 });
         dlgAlert.create().show();

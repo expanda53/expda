@@ -1,0 +1,42 @@
+<Root>
+<verzio>20161117</verzio>
+<panel>
+  <name>pfooter</name>
+  <width>match</width>
+  <top>780</top>
+  <left>0</left>
+  <height>match</height>
+  <visible>true</visible>
+  <bgcolor>#000000</bgcolor>
+</panel>
+<label>
+  <name>lverzio</name>
+  <Text>exPDA v5.0 2016</Text>
+  <top>1</top>
+  <width>200</width>
+  <left>0</left>
+  <parent>pfooter</parent>
+  <visible>true</visible>
+  <style>reviewlabel</style>
+  <align>center</align>
+</label>
+<label>
+  <name>lmodulstat</name>
+  <top>1</top>
+  <width>139</width>
+  <left>201</left>
+  <style>reviewlabel</style>
+  <parent>pfooter</parent>
+  <align>center</align>  
+</label>
+<label>
+  <name>lkezelostat</name>
+  <top>1</top>
+  <width>139</width>
+  <left>341</left>
+  <style>reviewlabel</style>
+  <parent>pfooter</parent>
+  <align>center</align>  
+</label>
+
+</Root>

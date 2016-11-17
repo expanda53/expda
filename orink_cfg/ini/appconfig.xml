@@ -1,0 +1,21 @@
+<Root>
+<verzio>20161117</verzio>
+<connection_type>php</connection_type>
+<php_url_local>http://192.168.1.105/expda_orink.php</php_url_local>
+<php_url_eles>http://192.168.1.247:82/expda_orink.php</php_url_eles>
+<update_url_local>http://192.168.1.105/updatefiles.xml</update_url_local>
+<update_url_eles>http://192.168.1.105/updatefiles.xml</update_url_eles>
+<php_url>http://192.168.1.105/expda_orink.php</php_url>
+<update_url>http://192.168.1.105/updatefiles.xml</update_url>
+<images_folder>\storage\sdcard1\expda\images</images_folder>
+<lua_folder>\storage\sdcard1\expda\lua</lua_folder>
+<export_folder>\storage\sdcard1\expda\export</export_folder>
+<library_folder>\storage\sdcard1\expda\library</library_folder>
+<library_file>app-debug.apk</library_file>
+<vkod_teszt>false</vkod_teszt>
+<style_file>/style.xml</style_file>
+<start_xml>login.xml</start_xml>
+<dbmeta>
+CREATE TABLE IF NOT EXISTS LOG(id INTEGER PRIMARY KEY,type TEXT,value TEXT,status INTEGER,dcreate DATETIME,dsync DATETIME);
+</dbmeta>
+</Root>
