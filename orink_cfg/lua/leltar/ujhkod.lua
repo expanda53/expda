@@ -7,7 +7,7 @@ ui:executeCommand('valuetohidden','lcikod','')
 ui:executeCommand('valuetohidden','edrb','')
 ui:executeCommand('valuetohidden','eean','')
 ui:executeCommand('valueto','ehkod','')
-ui:executeCommand('hide','cap_drb;edrb;cap_ean;eean;button_ujhkod;button_ujean;reviewpanel','')
+ui:executeCommand('hide','cap_drb;edrb;cap_ean;eean;button_ujhkod;button_ujean;reviewpanel;cikkvalpanel','')
 ui:executeCommand('setfocus','ehkod','')
 
 

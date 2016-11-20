@@ -10,6 +10,9 @@ lua/egyeb/menuinit.lua;20161117
 ini/pfooter.xml;20161117
 lua/egyeb/setfocus.lua;20161102
 ini/leltar.xml;20161117_teszt
+ini/pcikkval.xml;20161117_teszt
+lua/egyeb/cikkval_refresh.lua;20161117_teszt
+lua/egyeb/cikkval_click.lua;20161117_teszt
 lua/leltar/panelinit.lua;20161117_teszt
 lua/leltar/hkodcheck.lua;20161117_teszt
 lua/leltar/bcode1.lua;20161117_teszt

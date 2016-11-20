@@ -326,4 +326,8 @@
 </custom_button>
 
 
+<panel>
+  <file>pcikkval.xml</file>
+</panel>
+
 </Root>

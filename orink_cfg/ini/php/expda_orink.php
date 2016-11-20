@@ -115,6 +115,13 @@
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }    
+  function cikkval_open($r){
+      $sql="SELECT KOD,NEV FROM ANDROID_CIKK_KERES(:betuz)";
+      $stmt = query_prepare($sql);
+      $betuz=trim($r['p1']);
+	  $stmt->bindParam(':betuz', $betuz, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+  }
   /* altalanos eddig*/
   /* login */
   function login_check($r){
