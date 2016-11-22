@@ -13,8 +13,8 @@ cikkval=0;
 if (result=='0') then
     ui:executeCommand('valueto','lcikknev',cikknev)
     ui:executeCommand('valuetohidden','lcikod',kod)
-    ui:executeCommand('aktbcodeobj','bcode2','')
     ui:executeCommand('showobj','cap_drb;edrb;button_ujean','')
+    ui:executeCommand('setfocus','edrb','') 
 elseif (result=='-1') then
  --ui:executeCommand('setfocus','eean','') 
  ui:executeCommand('toast','Nem található termék ilyen ean kóddal:\n'..ean)
@@ -28,10 +28,14 @@ elseif (result=='-2') then
 end
 
 if (cikkval>0) then
+    if (cikkval==1) then
+      ean='.'
+    end
     str = 'cikkval_open '..ean
     list=luafunc.query_assoc_to_str(str,false)
     luafunc.refreshtable_fromstring('cikkval_table',list)
     ui:executeCommand('show','cikkvalpanel','')
+    if (ean=='.') then ean=''
     ui:executeCommand('valueto','ebetuz',ean)
     ui:executeCommand('setfocus','ebetuz','') 
 end

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161101</verzio>
+<verzio>20161121</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -16,12 +16,29 @@
   <style>hidden</style>
 </label>
 <label>
-  <name>lsorsz</name>
+  <name>lcegazon</name>
   <top>0</top>
   <left>0</left>
   <width>0</width>
   <height>0</height>
   <style>hidden</style>
+</label>
+<label>
+  <name>lcikod</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<label>
+  <name>lfejazon</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+  <text>0</text>
 </label>
 <panel>
   <name>panel1</name>
@@ -58,8 +75,18 @@
   <align>right</align>
   <style>reviewlabel</style>
 </label>
+<panel>
+  <name>ceglistpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>30</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
 <table>
-  <name>mibizlist_table</name>
+  <name>ceglist_table</name>
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
@@ -69,36 +96,52 @@
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
 
-  <column_title_mibiz>Mibiz</column_title_mibiz>
-  <column_rownum_mibiz>2</column_rownum_mibiz>
+  <column_title_nev>Név</column_title_nev>
+  <column_title_azon>Azon</column_title_azon>
 
-  <column_title_cegnev>Cég</column_title_cegnev>
-  <column_rownum_cegnev>1</column_rownum_cegnev>
-
-  <valuefrom>mibiz;cegnev</valuefrom>
-  <valueto>selcikk;selnev</valueto>
   <font_size>10</font_size>
   <row_height>160</row_height>
-  <parent>panel1</parent>
-  <visible>false</visible>
-  <lua_on_create>bevet/mibizlist_load.lua</lua_on_create>
-  <lua_after_click>bevet/mibizlist_click.lua</lua_after_click>
+  <parent>ceglistpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>bevet/ceglist_click.lua</lua_after_click>
+  <itempanel>ceglist_sor</itempanel>
 </table>
+<panel>
+    <name>ceglist_sor</name>
+    <parent>panel1</parent>
+    <height>105</height>
+    <width>match</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>nev</name>
+    <parent>ceglist_sor</parent>
+    <width>480</width>
+    <height>50</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[nev]</text>
+</label>
+<label>
+    <name>azon</name>
+    <parent>ceglist_sor</parent>
+    <width>0</width>
+    <height>0</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[azon]</text>
+    <style>listhidden</style>
+</label>
 
 
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>bevet/bcode1.lua [eean] [lean]</lua_after_trigger>
+  <lua_after_trigger>bevet/bcode1.lua [eean] [lcegazon]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
 
-<barcode>
-  <name>BCODE2</name>
-  <lua_after_trigger>bevet/bcode2.lua [eean] [egyszam] [lmibiz] [lsorsz]</lua_after_trigger>
-  <valueto>egyszam</valueto>
-  <parent>panel1</parent>
-</barcode>
 <label>
   <name>lcikknev</name>
   <top>30</top>
@@ -111,8 +154,9 @@
 </label>
 
 
+
 <label>
-  <name>lean</name>
+  <name>cap_ean</name>
   <top>60</top>
   <left>0</left>
   <width>match</width>
@@ -120,6 +164,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault</style>
+  <text>EAN</text>
 </label>
 <text>
   <name>eean</name>
@@ -128,7 +173,7 @@
   <parent>panel1</parent>
   <left>0</left>
   <visible>false</visible>
-  <lua_on_change>bevet/bcode1.lua [eean] [lean]</lua_on_change>
+  <lua_on_change>bevet/bcode1.lua [eean] [lcegazon]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -146,7 +191,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
-  <text>Bejövő</text>
+  <text>Rendelve</text>
 </label>
 <label>
   <name>ldrb</name>
@@ -154,7 +199,7 @@
   <left>0</left>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault;labeldrb_data</style>
+  <style>labeldefault;labeldrb_cap</style>
   <align>center</align>
 </label>
 
@@ -165,69 +210,36 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
-  <text>Bevéve</text>
+  <text>Érkezett</text>
 </label>
-<label>
-  <name>ldrb2</name>
+<text>
+  <name>edrb2</name>
   <top>190</top>
   <left>300</left>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault;labeldrb_data</style>
-  <align>center</align>
-</label>
-
-
-<label>
-  <name>cap_gyszam</name>
-  <top>235</top>
-  <left>0</left>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault;labeldrb_cap</style>
-  <text>Gyáriszám</text>
-</label>
-
-<text>
-  <name>egyszam</name>
-  <top>275</top>
-  <width>match</width>
-  <height>60</height>
-  <parent>panel1</parent>
-  <font_color>#000000</font_color>
-  <visible>false</visible>
   <bgcolor>#497000</bgcolor>
-  <left>0</left>  
-  <lua_on_change>bevet/bcode2.lua [eean] [egyszam] [lmibiz] [lsorsz]</lua_on_change>
-  <font_size>15</font_size>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>60</height>  
+  <align>center</align>
+  <width>100</width>
+  <lua_on_change>bevet/mentes.lua [lfejazon] [lcegazon] [lcikod] [eean] [edrb2]</lua_on_change>
 </text>
 
 <custom_button>
   <style>buttondefault</style>
-  <name>button_elozo</name>
-  <Text>Előző</Text>
+  <name>button_ujean</name>
+  <Text>Új EAN</Text>
   <top>610</top>
-  <width>153</width>
+  <width>300</width>
   <height>70</height>
   <left>0</left>
-  <lua_after_click>bevet/kovetkezo_click.lua [lmibiz] [lsorsz] -</lua_after_click>
+  <lua_after_click>bevet/ujean.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
 
-
-<custom_button>
-  <style>buttondefault</style>
-  <name>button_kovetkezo</name>
-  <Text>Következő</Text>
-  <top>610</top>
-  <width>154</width>
-  <height>70</height>
-  <left>163</left>
-  <lua_after_click>bevet/kovetkezo_click.lua [lmibiz] [lsorsz] +</lua_after_click>
-  <parent>panel1</parent>
-  <visible>false</visible>
-</custom_button>
 
 <custom_button>
   <style>buttondefault</style>
@@ -240,78 +252,6 @@
   <lua_after_click>bevet/zaras.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
-</custom_button>
-
-<custom_button>
-  <style>buttondefault</style>
-  <name>button_gyszamlist</name>
-  <Text>Gyáriszámok</Text>
-  <top>690</top>
-  <width>match</width>
-  <height>70</height>
-  <left>0</left>
-  <lua_after_click>bevet/gyszamlist.lua [lmibiz] [lsorsz]</lua_after_click>
-  <parent>panel1</parent>
-  <visible>false</visible>
-</custom_button>
-
-<panel>
-  <name>gyszamlistpanel</name>
-  <width>match</width>
-  <height>match</height>
-  <top>30</top>
-  <visible>false</visible>
-  <bgcolor>#000000</bgcolor>
-  <left>0</left>
-  <parent>panel1</parent>
-</panel>
-
-<table>
-  <name>gyszam_table</name>
-  <bgcolor>#000000</bgcolor>
-  <font_color>#497000</font_color>
-  <width>match</width>
-  <height>650</height>
-  <top>0</top>
-  <left>0</left>
-  <divider_color>#434343</divider_color>
-  <divider_height>2</divider_height>
-  <column_title_gyszam>gyszam</column_title_gyszam>
-  <font_size>10</font_size>
-  <row_height>160</row_height>
-  <parent>gyszamlistpanel</parent>
-  <visible>true</visible>
-  <lua_after_click>bevet/gyszamlist_click.lua null</lua_after_click>
-  <itempanel>gyszamlist_sor</itempanel>
-</table>
-<panel>
-    <name>gyszamlist_sor</name>
-    <parent>panel1</parent>
-    <height>55</height>
-    <width>300</width>
-    <bgcolor>#000000</bgcolor>
-    <visible>false</visible>
-</panel>
-<label>
-    <name>gyszam</name>
-    <parent>gyszamlist_sor</parent>
-    <width>500</width>
-    <height>55</height>
-    <top>5</top>
-    <left>0</left>
-    <text>[gyszam]</text>
-</label>
-<custom_button>
-  <style>buttondefault</style>
-  <name>btn_folytmost2</name>
-  <Text>Folytatás</Text>
-  <top>650</top>
-  <width>match</width>
-  <height>70</height>
-  <left>0</left>
-  <parent>gyszamlistpanel</parent>
-  <visible>true</visible>
-  <lua_after_click>bevet/kiadasfolyt.lua</lua_after_click>
 </custom_button>
 
 <panel>
@@ -336,11 +276,10 @@
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
   
-  <column_title_cikknev>Cikk</column_title_cikknev>
+  <column_title_cikk>Cikk</column_title_cikk>
+  <column_title_cikknev>Cikknev</column_title_cikknev>
   <column_title_ean>Ean</column_title_ean>
   <column_title_drb>drb</column_title_drb>
-  <column_title_drb2>drb2</column_title_drb2>
-  <column_title_sorsz>sorsz</column_title_sorsz>
   
   <font_size>10</font_size>
   <row_height>160</row_height>
@@ -353,7 +292,7 @@
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>105</height>
+    <height>80</height>
     <width>200</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -370,7 +309,7 @@
 <label>
     <name>ean</name>
     <parent>atnezo_sor</parent>
-    <width>480</width>
+    <width>240</width>
     <height>45</height>
     <top>30</top>
     <left>0</left>
@@ -380,57 +319,21 @@
     <name>drb</name>
     <parent>atnezo_sor</parent>
     <width>240</width>
-    <height>30</height>
-    <top>75</top>
-    <left>0</left>
+    <height>45</height>
+    <top>30</top>
+    <left>240</left>
     <text>[drb]</text>
     <align>center</align>
 </label>
 <label>
-    <name>drb2</name>
-    <parent>atnezo_sor</parent>
-    <width>240</width>
-    <height>30</height>
-    <top>75</top>
-    <left>240</left>
-    <text>[drb2]</text>
-    <align>center</align>
-</label>
-<label>
-    <name>sorsz</name>
+    <name>cikk</name>
     <parent>atnezo_sor</parent>
     <width>0</width>
     <height>0</height>
     <top>0</top>
     <left>0</left>
-    <text>[sorsz]</text>
+    <text>[cikk]</text>
     <style>listhidden</style>
-</label>
-
-
-<label>
-  <name>losszesen</name>
-  <top>610</top>
-  <height>wrap</height>
-  <left>0</left>
-  <width>240</width>
-  <visible>true</visible>
-  <parent>reviewpanel</parent>
-  <style>reviewlabel</style>
-  <align>center</align>
-  <text>Összesen</text>
-</label>
-<label>
-  <name>lkiszedve</name>
-  <top>610</top>
-  <height>wrap</height>
-  <left>241</left>
-  <width>240</width>
-  <visible>true</visible>
-  <parent>reviewpanel</parent>
-  <style>reviewlabel</style>
-  <align>center</align>
-  <text>Bevéve</text>
 </label>
 
 <custom_button>
@@ -456,7 +359,7 @@
   <left>160</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>bevet/kiadaskesobb.lua</lua_after_click>
+  <lua_after_click>bevet/kesobbfolyt.lua [lfejazon]</lua_after_click>
 </custom_button>
 
 <custom_button>
@@ -471,6 +374,19 @@
   <visible>true</visible>
   <lua_after_click>bevet/lezaras.lua null</lua_after_click>
 </custom_button>
-
-
+<panel>
+  <file>pcikkval.xml</file>
+</panel>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_vissza</name>
+  <Text>Vissza</Text>
+  <top>650</top>
+  <width>150</width>
+  <height>90</height>
+  <left>0</left>
+  <parent>cikkvalpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>bevet/ujean.lua</lua_after_click>
+</custom_button>
 </Root>

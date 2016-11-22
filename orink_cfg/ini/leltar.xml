@@ -68,12 +68,7 @@
   <parent>panel1</parent>
 </barcode>
 
-<barcode>
-  <name>BCODE2</name>
-  <lua_after_trigger>leltar/bcode2.lua [eean] [edrb] [lfejazon] [ehkod]</lua_after_trigger>
-  <valueto>edrb</valueto>
-  <parent>panel1</parent>
-</barcode>
+
 <label>
   <name>lcikknev</name>
   <top>30</top>
@@ -161,7 +156,7 @@
   <visible>false</visible>
   <bgcolor>#497000</bgcolor>
   <left>0</left>  
-  <lua_on_change>leltar/bcode2.lua [eean] [edrb] [lfejazon] [ehkod]</lua_on_change>
+  <lua_on_change>leltar/mentes.lua [lcikod] [eean] [edrb] [lfejazon] [ehkod]</lua_on_change>
   <font_size>15</font_size>
 </text>
 
@@ -329,5 +324,16 @@
 <panel>
   <file>pcikkval.xml</file>
 </panel>
-
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_vissza</name>
+  <Text>Vissza</Text>
+  <top>650</top>
+  <width>150</width>
+  <height>90</height>
+  <left>0</left>
+  <parent>cikkvalpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>leltar/ujhkod.lua</lua_after_click>
+</custom_button>
 </Root>

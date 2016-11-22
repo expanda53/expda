@@ -1,16 +1,50 @@
---<verzio>20161102</verzio>
+--<verzio>20161121</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
 ean = params[2]:gsub("n",""):gsub(':','')
-lean = params[3]:gsub("n",""):gsub(':','')
---lean2 = tostring(ui:findObject('lean'):getText())
-if (ean == lean) then
-  ui:executeCommand('showobj','cap_drb;ldrb;cap_drb2;ldrb2;cap_gyszam;egyszam','')
-else
-  ui:executeCommand('uzenet','A belőtt és a várt EAN eltér!\nvárt:' .. lean .. '\nbelőtt:'..ean,"egyeb/setfocus.lua eean")
-  ui:executeCommand('valueto','eean','')
-  --ui:executeCommand('setfocus','eean','')
+cegazon = params[3]:gsub("n",""):gsub(':','')
+kezelo = ui:getKezelo()
+str = 'beerk_eankeres ' .. cegazon .. ' ' ..  ean .. ' ' .. kezelo
+t=luafunc.query_assoc(str,false)
+cikkval=0
+result=t[1]['RESULT']
+cikk=t[1]['CIKK']
+cikknev=t[1]['CIKKNEV']
+if (result=='0') then
+  ui:executeCommand('valueto','ldrb',t[1]['DRB'])
+  drb2=t[1]['DRB2']
+  if (drb2=='0') then drb2='' end
+  ui:executeCommand('valueto','edrb2',drb2)
+  ui:executeCommand('valuetohidden','lcikod',cikk)
+  ui:executeCommand('valueto','lcikknev',cikknev)
+  ui:executeCommand('showobj','cap_drb;cap_drb2;button_ujean','')
+  ui:executeCommand('aktbcodeobj','bcode2','')
+elseif (result=='1') then
+  cikkval=0
+elseif (result=='2') then
+  cikkval=0
+elseif (result=='-1') then
+  cikkval=1
+  ui:executeCommand('toast','Nem található termék ilyen ean kóddal:\n'..ean)
+elseif (result=='-2') then
+  cikkval=2
+  ui:executeCommand('toast','Több termék is található termék ilyen ean kóddal:\n'..ean)  
 end
-ui:executeCommand('aktbcodeobj','bcode2','')
+
+
 --ui:executeCommand('scanneron','','')
+
+if (cikkval>0) then
+    if (cikkval==1) then
+      ean='.'
+    end
+    str = 'cikkval_open '..ean
+    list=luafunc.query_assoc_to_str(str,false)
+    luafunc.refreshtable_fromstring('cikkval_table',list)
+    ui:executeCommand('show','cikkvalpanel','')
+    if (ean=='.') then ean='' end
+    ui:executeCommand('valueto','ebetuz',ean)
+    ui:executeCommand('setfocus','ebetuz','') 
+end
+

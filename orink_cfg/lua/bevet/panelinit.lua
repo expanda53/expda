@@ -1,11 +1,11 @@
---<verzio>20161101</verzio>
+--<verzio>20161121</verzio>
 local params = {...}
 ui = params[1]
 ui:executeCommand("hideobj","pfooter")
 kezelo = ui:getKezelo()
 ui:executeCommand('valueto','lkezelostat','Kezelő: '..kezelo)
-ui:executeCommand('valueto','lmodulstat','Bevét')
-str = 'bevet_mibizlist '..kezelo
+ui:executeCommand('valueto','lmodulstat','Beérkezés')
+str = 'beerk_ceglist'
 list=luafunc.query_assoc_to_str(str,false)
-luafunc.refreshtable_fromstring('mibizlist_table',list)
-ui:executeCommand("showobj","mibizlist_table")
+luafunc.refreshtable_fromstring('ceglist_table',list)
+ui:executeCommand("showobj","ceglistpanel","")
