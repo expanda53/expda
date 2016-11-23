@@ -11,7 +11,7 @@ cegazon= t['AZON']
 ui:executeCommand('valueto','lcegazon', cegazon)
 ui:executeCommand('valueto','lcegnev', cegnev)
 ui:executeCommand('hideobj','ceglistpanel','')
-ui:executeCommand('showobj','pfooter;cap_ean;eean;button_review','')
+ui:executeCommand('showobj','pfooter;cap_ean;eean;button_review;button_cikkval','')
 ui:executeCommand('aktbcodeobj','bcode1','')
 
 kezelo = ui:getKezelo()

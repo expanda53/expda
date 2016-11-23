@@ -201,6 +201,20 @@
   <visible>true</visible>
 </custom_button>
 
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_cikkval</name>
+  <Text>Cikk választás</Text>
+  <top>365</top>
+  <width>match</width>
+  <height>100</height>
+  <left>0</left>
+  <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+
 <panel>
   <name>reviewpanel</name>
   <width>match</width>

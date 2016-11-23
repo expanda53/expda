@@ -18,5 +18,6 @@ if (aktmodul == 'Beérkezés') then
   ui:executeCommand('setfocus','edrb2','') 
 elseif (aktmodul=='Leltár') then
   ui:executeCommand('showobj','cap_drb;edrb;button_ujean','')
+  ui:executeCommand('valueto','edrb','') 
   ui:executeCommand('setfocus','edrb','') 
 end

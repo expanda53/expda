@@ -229,6 +229,20 @@
 
 <custom_button>
   <style>buttondefault</style>
+  <name>button_cikkval</name>
+  <Text>Cikk választás</Text>
+  <top>505</top>
+  <width>match</width>
+  <height>100</height>
+  <left>0</left>
+  <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+
+<custom_button>
+  <style>buttondefault</style>
   <name>button_ujean</name>
   <Text>Új EAN</Text>
   <top>610</top>
@@ -239,7 +253,6 @@
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
-
 
 <custom_button>
   <style>buttondefault</style>

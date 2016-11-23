@@ -31,11 +31,5 @@ if (cikkval>0) then
     if (cikkval==1) then
       ean='.'
     end
-    str = 'cikkval_open '..ean
-    list=luafunc.query_assoc_to_str(str,false)
-    luafunc.refreshtable_fromstring('cikkval_table',list)
-    ui:executeCommand('show','cikkvalpanel','')
-    if (ean=='.') then ean=''
-    ui:executeCommand('valueto','ebetuz',ean)
-    ui:executeCommand('setfocus','ebetuz','') 
+    ui:executeCommand("startlua","egyeb/cikkval_open.lua",ean)
 end
