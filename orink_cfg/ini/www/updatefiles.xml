@@ -4,7 +4,7 @@ ini/login.xml;20161117
 lua/egyeb/login_init.lua;20161117
 lua/egyeb/login_btn_click.lua;20161117
 lua/egyeb/login_click.lua;20161117
-ini/mainmenu.xml;20161117a
+ini/mainmenu.xml;20161123
 lua/egyeb/menu_panelinit.lua;20161117
 lua/egyeb/menuinit.lua;20161117
 ini/pfooter.xml;20161117
@@ -24,9 +24,9 @@ lua/leltar/showreview.lua;20161117
 lua/leltar/kesobbfolyt.lua;20161117
 lua/leltar/lezaras.lua;20161117
 ini/bevet.xml;20161121
-lua/bevet/zaras.lua;20161121
-lua/bevet/kiadasfolyt.lua;20161101
 lua/bevet/panelinit.lua;20161121
+lua/bevet/zaras.lua;20161121
+lua/bevet/kiadasfolyt.lua;20161121
 lua/bevet/ceglist_click.lua;20161121
 lua/bevet/bcode1.lua;20161121
 lua/bevet/ujean.lua;20161121
@@ -34,7 +34,17 @@ lua/bevet/mentes.lua;20161121
 lua/bevet/lezaras.lua;20161121
 lua/bevet/kesobbfolyt.lua;20161121
 lua/bevet/atnezes_click.lua;20161101
-
+ini/hkod.xml;20161123_TESZT
+lua/hkod/panelinit.lua;20161123_TESZT
+lua/hkod/beki.lua;20161123_TESZT
+lua/hkod/hkodcheck.lua;20161123_TESZT
+lua/hkod/bcode1.lua;20161123_TESZT
+lua/hkod/mentes.lua;20161123_TESZT
+lua/hkod/ujhkod.lua;20161123_TESZT
+lua/hkod/ujean.lua;20161123_TESZT
+lua/hkod/showreview.lua;20161123_TESZT
+lua/hkod/kesobbfolyt.lua;20161123_TESZT
+lua/hkod/lezaras.lua;20161123_TESZT
 
 ini/kiadas.xml;20161101
 lua/kiadas/bcode1.lua;20161102

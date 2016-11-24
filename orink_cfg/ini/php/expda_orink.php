@@ -437,4 +437,24 @@
   }
   
 /* leltar eddig */
+/* hkod rendezés*/
+  function hkod_init($r){
+      $sql = "SELECT AZON,MIBIZ FROM ANDROID_HKODRA_INIT(:login)";
+      $stmt = query_prepare($sql);
+      $hkod=trim($r['p1']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+  }
+  function hkod_cikkhkklt($r){
+      $sql = "SELECT ODRB - FDRB AS MAXKIDRB FROM ANDROID_HKODRA_CIKKHKKLT(:hkod, :cikk)";
+      $stmt = query_prepare($sql);
+      
+      $hkod=trim($r['p1']);
+      $cikk=trim($r['p2']);
+      
+	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+  }
+/* hkod rendezés eddig */
 ?>

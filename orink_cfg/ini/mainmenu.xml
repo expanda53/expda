@@ -5,7 +5,7 @@
   <bgcolor>#000000</bgcolor>
   <params_to_labels>lkezelo</params_to_labels>
   <lua_on_create>egyeb/menu_panelinit.lua [lkezelo]</lua_on_create>
-  <verzio>20161117a</verzio>
+  <verzio>20161123</verzio>
 </mainpanel>
 <label>
   <name>lupdate</name>
@@ -49,10 +49,23 @@
   <lua_after_click>egyeb/menuinit.lua BEVET [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
+  <name>ButtonHkod</name>
+  <image>Trolley.png</image>
+  <Text>Helykód rendezés</Text>
+  <top>330</top>
+  <width>match</width>
+  <height>130</height>
+  <left>1</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua HKOD [lkezelo]</lua_after_click>
+</custom_button>
+
+<custom_button>
   <name>ButtonLeltar</name>
   <image>leltar.png</image>
   <Text>Leltár</Text>
-  <top>330</top>
+  <top>465</top>
   <width>match</width>
   <height>130</height>
   <left>1</left>
@@ -64,7 +77,7 @@
   <name>ButtonClose</name>
   <left>1</left>
   <Text>Kilépés</Text>
-  <top>465</top>
+  <top>600</top>
   <width>match</width>
   <height>130</height>
   <style>buttondefault</style>
@@ -72,18 +85,7 @@
   <visible>true</visible>
   <image>exit.png</image>
 </custom_button>
-<label>
-  <name>fkep</name>
-  <Text>exPDA</Text>
-  <top>620</top>
-  <width>64</width>
-  <bgcolor>#008B8B</bgcolor>
-  <left>0</left>
-  <visible>true</visible>
-  <height>64</height>  
- <image>logoA.png</image>
- <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>
-</label>
+
 <panel>
   <file>pfooter.xml</file>
 </panel>
