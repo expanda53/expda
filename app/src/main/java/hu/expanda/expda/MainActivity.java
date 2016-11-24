@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
     public static boolean startUpdate = true;
     private static boolean scannerEnabled = false;
     public static boolean useSymbol = false;
+    public static exMedia mediaFiles;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,8 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
+        //mp3 fileok felolvasása, mediafiles arraylistbe
+        if (mediaFiles==null) mediaFiles = new exMedia(this);
         pane = new exPane(this, ll, xml);
 
         setContentView(ll);
@@ -169,4 +172,13 @@ public class MainActivity extends Activity {
         }
         */
     }
+/*
+    @Override
+    protected void onStop(){
+        mediaFiles.killAll();
+        super.onStop();
+
+    }
+*/
+
 }

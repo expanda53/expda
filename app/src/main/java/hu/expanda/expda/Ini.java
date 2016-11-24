@@ -25,6 +25,7 @@ public class Ini {
 	private static String imgDir = Environment.getExternalStorageDirectory().getPath()+"/expda/images";
 	private static String exportDir = Environment.getExternalStorageDirectory().getPath()+"/expda/export";
     private static String libraryDir = Environment.getExternalStorageDirectory().getPath()+"/expda/library";
+	private static String audioDir = Environment.getExternalStorageDirectory().getPath()+"/expda/audio";
 	private static String updateURL =  "";
     private static String libFile = "";
 
@@ -188,7 +189,15 @@ public class Ini {
     public static String getLibFile() {        return libFile;    }
     public static void setLibFile(String libFile) {        Ini.libFile = libFile;    }
 
-	public static String getStartXML() {
+    public static String getAudioDir() {
+        return audioDir;
+    }
+
+    public static void setAudioDir(String audioDir) {
+        Ini.audioDir = audioDir;
+    }
+
+    public static String getStartXML() {
 		return startXML;
 	}
 

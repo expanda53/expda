@@ -14,7 +14,7 @@ cikkval=0;
 if (result=='0') then
     ui:executeCommand('valueto','lcikknev',cikknev)
     ui:executeCommand('valuetohidden','lcikod',kod)
-    ui:executeCommand('showobj','cap_drb;edrb;button_ujean','')
+    ui:executeCommand('showobj','cap_drb;edrb;button_ujean;button_cikkklt','')
     szorzo = tostring(ui:findObject('lszorzo'):getText())
 
     str = 'hkod_cikkhkklt '..hkod..' '..kod

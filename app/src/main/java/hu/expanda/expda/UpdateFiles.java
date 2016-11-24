@@ -101,63 +101,67 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
         if (aktFile.length > 0) fileNev = aktFile[0];
         if (aktFile.length > 1) verzio = aktFile[1];
         aktItem = aktFile;
-        if (verzio.equalsIgnoreCase("X")) {
-            //torles
-            File file = new File(Ini.getRootDir(), fileNev);
-            if (file.delete()) status = "Törölve:" +fileNev ;
-            if (status!="") publishProgress(status );
-            return true;
-        }
-        else {
-            String content = StringFunc.getFile(fileNev);
-            if (content == null || content == "") {
-                content = ""; //nem talalhato ilyen file, fel kell irni
-                status = "Új:"+fileNev;
-            }
-            //ha megtalalhato benne az uj verzioszam, nem kell frissiteni
-            if (content.indexOf("<verzio>" + verzio + "</verzio>") > -1) return false;
-            else {
-                //az uj verzio nem talalhato a fileban, frissiteni kell
-                if (content!="" && content!=null) status = "Frissítve:" + fileNev;
-                ArrayList response = downloadFile(getURLRoot() + "/" + fileNev);
+        if (!fileNev.equals("")) {
+            if (verzio.equalsIgnoreCase("X")) {
+                //torles
                 File file = new File(Ini.getRootDir(), fileNev);
-                String dir = file.getParent();
-                File fdir = new File(dir);
-                fdir.mkdirs();
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (file.delete()) status = "Törölve:" + fileNev;
+                if (status != "") publishProgress(status);
+                return true;
+            } else {
+                String content = StringFunc.getFile(fileNev);
+                if (content == null || content == "") {
+                    content = ""; //nem talalhato ilyen file, fel kell irni
+                    status = "Új:" + fileNev;
                 }
-                FileOutputStream fileOutputStream = null;
-                try {
-                    fileOutputStream = new FileOutputStream(file);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                for (int i = 0; i < response.size(); i++) {
-                    String aktrow = response.get(i).toString();
+                //ha megtalalhato benne az uj verzioszam, nem kell frissiteni
+                if (content.indexOf("<verzio>" + verzio + "</verzio>") > -1) return false;
+                else {
+                    //az uj verzio nem talalhato a fileban, frissiteni kell
+                    if (content != "" && content != null) status = "Frissítve:" + fileNev;
+                    ArrayList response = downloadFile(getURLRoot() + "/" + fileNev);
+                    File file = new File(Ini.getRootDir(), fileNev);
+                    String dir = file.getParent();
+                    File fdir = new File(dir);
+                    fdir.mkdirs();
                     try {
-                        fileOutputStream.write(aktrow.getBytes());
-                        fileOutputStream.write("\n".getBytes());
+                        file.createNewFile();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-                try {
-                    fileOutputStream.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    fileOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (status!="") publishProgress(status );
+                    FileOutputStream fileOutputStream = null;
+                    try {
+                        fileOutputStream = new FileOutputStream(file);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    for (int i = 0; i < response.size(); i++) {
+                        String aktrow = response.get(i).toString();
+                        try {
+                            fileOutputStream.write(aktrow.getBytes());
+                            fileOutputStream.write("\n".getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    try {
+                        fileOutputStream.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        fileOutputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if (status != "") publishProgress(status);
 
-                return true;
+                    return true;
+                }
             }
+        }
+        else {
+            return true;
         }
 
     }
@@ -207,8 +211,11 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
                 ArrayList response = downloadFile(getURL());
                 //arraylist feldolgozasa, minden sor egy frissitendo file
                 for(int i=0;i<response.size();i++) {
-                    String[] sor = response.get(i).toString().split(";");
-                    updateFile(sor);
+                    String aktsor = response.get(i).toString();
+                    if (!aktsor.equals("")) {
+                        String[] sor = aktsor.split(";");
+                        updateFile(sor);
+                    }
                 }
 
             } catch (Exception e) {

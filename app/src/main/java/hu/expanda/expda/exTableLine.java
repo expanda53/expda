@@ -27,9 +27,11 @@ public class exTableLine extends LinearLayout {
     private exTable eTable = null;
     private Context c;
     private exPane pane;
+    private Object cells;
     public exTableLine(Context context, Object cells,ObjTable obj,exTable eTable){
         super(context);
         this.obj = obj;
+        this.cells=cells;
         this.setOrientation(VERTICAL);
         this.eTable = eTable;
         this.c=context;
@@ -214,6 +216,11 @@ public class exTableLine extends LinearLayout {
                 ArrayList<ObjStyle> style = cell.getStyle();
                 //View v = pane.findObject('_' + cell.getName());
                 View v = this.findViewWithTag('_'+cell.getName());
+                if (v == null) {
+                    updatePanel(cells); /* ha vmiért nem jött létre korábban a panel és a rajta lévő textview-k, most létrehozza */
+                    v = (exTextView)this.findViewWithTag('_'+cell.getName());
+                }
+
                 update((exTextView)v,style,cell,i);
             }
         }

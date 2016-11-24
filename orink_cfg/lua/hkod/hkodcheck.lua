@@ -11,6 +11,7 @@ if (result=='0') then
   ui:executeCommand('showobj','cap_ean;eean;button_ujhkod;button_cikkval','')
 else
  ui:executeCommand('setfocus','ehkod','') 
+ ui:executeCommand('playaudio','alert.mp3','')
  ui:executeCommand('toast','Nem található a rendszerben ilyen helykód:\n'..hkod)
  ui:executeCommand('valueto','ehkod','')
 

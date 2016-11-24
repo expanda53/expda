@@ -38,6 +38,7 @@
   <width>0</width>
   <height>0</height>
   <style>hidden</style>
+  <text>-1</text>
 </label>
 <panel>
   <name>panel1</name>
@@ -89,25 +90,13 @@
 </label>
 <custom_button>
   <style>buttondefault</style>
-  <name>button_ki</name>
+  <name>button_kibe</name>
   <Text>Kiszedés</Text>
   <top>60</top>
-  <width>233</width>
+  <width>match</width>
   <height>90</height>
   <left>0</left>
-  <lua_after_click>hkod/beki.lua -1</lua_after_click>
-  <parent>panel1</parent>
-  <visible>true</visible>
-</custom_button>
-<custom_button>
-  <style>buttondefault</style>
-  <name>button_be</name>
-  <Text>Berakás</Text>
-  <top>60</top>
-  <width>233</width>
-  <height>90</height>
-  <left>238</left>
-  <lua_after_click>hkod/beki.lua +1</lua_after_click>
+  <lua_after_click>hkod/beki.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
 </custom_button>
@@ -116,9 +105,9 @@
   <name>cap_hkod</name>
   <top>160</top>
   <left>0</left>
-  <width>match</width>
+  <width>300</width>
   <height>wrap</height>
-  <visible>false</visible>
+  <visible>true</visible>
   <parent>panel1</parent>
   <style>labeldefault</style>
   <text>Helykód</text>
@@ -126,16 +115,28 @@
 <text>
   <name>ehkod</name>
   <top>190</top>
-  <width>match</width>
+  <width>300</width>
   <parent>panel1</parent>
   <left>0</left>
-  <visible>false</visible>
+  <visible>true</visible>
   <lua_on_change>hkod/hkodcheck.lua [ehkod]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
   <height>60</height>
 </text>
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_hkodlst</name>
+  <Text>hkód klt</Text>
+  <top>190</top>
+  <width>175</width>
+  <height>60</height>
+  <left>305</left>
+  <lua_after_click>hkod/hkodklt.lua [ehkod]</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
 
 
 
@@ -153,7 +154,7 @@
 <text>
   <name>eean</name>
   <top>290</top>
-  <width>match</width>
+  <width>300</width>
   <parent>panel1</parent>
   <left>0</left>
   <visible>false</visible>
@@ -163,6 +164,18 @@
   <font_size>17</font_size>
   <height>60</height>
 </text>
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_cikkklt</name>
+  <Text>cikk klt</Text>
+  <top>290</top>
+  <width>175</width>
+  <height>60</height>
+  <left>305</left>
+  <lua_after_click>hkod/cikkklt.lua [lcikod]</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
 
 <label>
   <name>cap_maxdrb</name>
@@ -247,12 +260,12 @@
 <custom_button>
   <style>buttondefault</style>
   <name>button_review</name>
-  <Text>Átnézés</Text>
+  <Text>Kilépés</Text>
   <top>680</top>
   <width>match</width>
   <height>100</height>
   <left>0</left>
-  <lua_after_click>hkod/showreview.lua</lua_after_click>
+  <lua_after_click>hkod/lezaras.lua [lfejazon] null</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
 </custom_button>
@@ -270,127 +283,6 @@
   <visible>false</visible>
 </custom_button>
 
-
-<panel>
-  <name>reviewpanel</name>
-  <width>match</width>
-  <height>match</height>
-  <top>30</top>
-  <visible>false</visible>
-  <bgcolor>#000000</bgcolor>
-  <left>0</left>
-  <parent>panel1</parent>
-</panel>
-
-<table>
-  <name>atnezo_table</name>
-  <bgcolor>#000000</bgcolor>
-  <font_color>#497000</font_color>
-  <width>match</width>
-  <height>620</height>
-  <top>0</top>
-  <left>0</left>
-  <divider_color>#434343</divider_color>
-  <divider_height>2</divider_height>
-  
-  <column_title_cikknev>Cikknev</column_title_cikknev>
-  <column_title_ean>Ean</column_title_ean>
-  <column_title_hkod>Hkod</column_title_hkod>
-  <column_title_drb>drb</column_title_drb>
-  
-  <font_size>10</font_size>
-  <row_height>160</row_height>
-  <parent>reviewpanel</parent>
-  <visible>true</visible>
-  <itempanel>atnezo_sor</itempanel>
-</table>
-
-<panel>
-    <name>atnezo_sor</name>
-    <parent>panel1</parent>
-    <height>105</height>
-    <width>match</width>
-    <bgcolor>#497000</bgcolor>
-    <visible>false</visible>
-</panel>
-<label>
-    <name>cikknev</name>
-    <parent>atnezo_sor</parent>
-    <width>480</width>
-    <height>30</height>
-    <top>0</top>
-    <left>0</left>
-    <text>[cikknev]</text>
-</label>
-<label>
-    <name>ean</name>
-    <parent>atnezo_sor</parent>
-    <width>480</width>
-    <height>45</height>
-    <top>30</top>
-    <left>0</left>
-    <text>[ean]</text>    
-</label>
-<label>
-    <name>hkod</name>
-    <parent>atnezo_sor</parent>
-    <width>480</width>
-    <height>45</height>
-    <top>75</top>
-    <left>0</left>
-    <text>[hkod]</text>    
-</label>
-<label>
-    <name>drb</name>
-    <parent>atnezo_sor</parent>
-    <width>240</width>
-    <height>30</height>
-    <top>75</top>
-    <left>240</left>
-    <text>[drb]</text>
-    <align>center</align>
-</label>
-
-<custom_button>
-  <style>buttondefault</style>
-  <name>btn_folytmost</name>
-  <Text>Folyt. most</Text>
-  <top>650</top>
-  <width>150</width>
-  <height>90</height>
-  <left>0</left>
-  <parent>reviewpanel</parent>
-  <visible>true</visible>
-  <lua_after_click>hkod/ujhkod.lua</lua_after_click>
-</custom_button>
-
-<custom_button>
-  <style>buttondefault</style>
-  <name>btn_folytkesobb</name>
-  <Text>Folyt. később</Text>
-  <top>650</top>
-  <width>150</width>
-  <height>90</height>
-  <left>160</left>
-  <parent>reviewpanel</parent>
-  <visible>true</visible>
-  <lua_after_click>hkod/kesobbfolyt.lua [lfejazon]</lua_after_click>
-</custom_button>
-
-<custom_button>
-  <style>buttondefault</style>
-  <name>btn_lezar</name>
-  <Text>Lezárás</Text>
-  <top>650</top>
-  <width>150</width>
-  <height>90</height>
-  <left>320</left>
-  <parent>reviewpanel</parent>
-  <visible>true</visible>
-  <lua_after_click>hkod/lezaras.lua [lfejazon] null</lua_after_click>
-</custom_button>
-
-
 <panel>
   <file>pcikkval.xml</file>
 </panel>
@@ -404,6 +296,168 @@
   <left>0</left>
   <parent>cikkvalpanel</parent>
   <visible>true</visible>
-  <lua_after_click>hkod/ujhkod.lua</lua_after_click>
+  <lua_after_click>hkod/hkodkltvissza.lua</lua_after_click>
 </custom_button>
+
+<panel>
+  <name>hkodkltpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>30</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+
+<table>
+  <name>hkodklt_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>620</height>
+  <top>0</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+  
+  <column_title_cikknev>Cikknev</column_title_cikknev>
+  <column_title_drb>drb</column_title_drb>
+  
+  <font_size>10</font_size>
+  <row_height>160</row_height>
+  <parent>hkodkltpanel</parent>
+  <visible>true</visible>
+  <itempanel>hkodklt_sor</itempanel>
+</table>
+
+<panel>
+    <name>hkodklt_sor</name>
+    <parent>hkodkltpanel</parent>
+    <height>105</height>
+    <width>match</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>cikknev</name>
+    <parent>hkodklt_sor</parent>
+    <width>480</width>
+    <height>30</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[cikknev]</text>
+</label>
+<label>
+    <name>drb</name>
+    <parent>hkodklt_sor</parent>
+    <width>240</width>
+    <height>30</height>
+    <top>75</top>
+    <left>240</left>
+    <text>[drb]</text>
+    <align>center</align>
+</label>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_visszahk</name>
+  <Text>Vissza</Text>
+  <top>650</top>
+  <width>150</width>
+  <height>90</height>
+  <left>0</left>
+  <parent>hkodkltpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>hkod/hkodkltvissza.lua</lua_after_click>
+</custom_button>
+
+
+<panel>
+  <name>cikkkltpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>30</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+<label>
+  <name>lcikknevp</name>
+  <top>0</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>cikkkltpanel</parent>
+  <style>labeldefault;listtitlework</style>
+</label>
+
+<table>
+  <name>cikkklt_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>590</height>
+  <top>30</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+  
+  <column_title_hkod>hkod</column_title_hkod>
+  <column_title_drb>drb</column_title_drb>
+  
+  <font_size>10</font_size>
+  <row_height>160</row_height>
+  <parent>cikkkltpanel</parent>
+  <visible>true</visible>
+  <itempanel>cikkklt_sor</itempanel>
+</table>
+
+<panel>
+    <name>cikkklt_sor</name>
+    <parent>panel1</parent>
+    <height>105</height>
+    <width>match</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>hkod</name>
+    <parent>cikkklt_sor</parent>
+    <width>480</width>
+    <height>30</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[hkod]</text>
+    <font_size>17</font_size>    
+</label>
+<label>
+    <name>drb</name>
+    <parent>cikkklt_sor</parent>
+    <width>240</width>
+    <height>30</height>
+    <top>75</top>
+    <left>240</left>
+    <text>[drb]</text>
+    <align>center</align>
+    <font_size>17</font_size>    
+</label>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_visszacikk</name>
+  <Text>Vissza</Text>
+  <top>650</top>
+  <width>150</width>
+  <height>90</height>
+  <left>0</left>
+  <parent>cikkkltpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>hkod/hkodkltvissza.lua</lua_after_click>
+</custom_button>
+
+
+
 </Root>

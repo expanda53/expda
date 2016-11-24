@@ -307,7 +307,16 @@ public void setBounds(String command, int val){
     }
     public void setBgColor(String colorstr){
         this.getObj().setBackColor(colorstr);
-        this.setBackgroundColor(Color.parseColor(colorstr));
+        c = getObj().getBackColor();
+        //this.setBackgroundColor(Color.parseColor(colorstr));
+
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(c); // Changes this drawbale to use a single color instead of a gradient
+        gd.setCornerRadius(5);
+        if (getObj().getBorderWidth()!=0) {
+            gd.setStroke(getObj().getBorderWidth(), Color.parseColor(getObj().getBorderColor()));
+        }
+        this.setBackground(gd);
     }
 
 

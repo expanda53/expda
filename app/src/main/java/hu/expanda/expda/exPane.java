@@ -485,6 +485,10 @@ public class exPane {
         else if (command.equalsIgnoreCase("NOTIFICATION")){
             showNotification(p1,p2);
         }
+        else if (command.equalsIgnoreCase("PLAYAUDIO")){
+            exMPlayer mp = MainActivity.mediaFiles.getMediaByName(p1);
+            if (mp!=null) mp.play();
+        }
 
 
 

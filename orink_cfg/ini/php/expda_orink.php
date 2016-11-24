@@ -116,7 +116,7 @@
 	  echo query_print($stmt);
   }    
   function cikkval_open($r){
-      $sql="SELECT KOD,NEV FROM ANDROID_CIKK_KERES(:betuz)";
+      $sql="SELECT KOD,NEV FROM ANDROID_CIKK_KERES(:betuz,30)";
       $stmt = query_prepare($sql);
       $betuz=trim($r['p1']);
 	  $stmt->bindParam(':betuz', $betuz, PDO::PARAM_STR);
@@ -441,7 +441,7 @@
   function hkod_init($r){
       $sql = "SELECT AZON,MIBIZ FROM ANDROID_HKODRA_INIT(:login)";
       $stmt = query_prepare($sql);
-      $hkod=trim($r['p1']);
+      $login=trim($r['p1']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
@@ -455,6 +455,57 @@
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
       $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
 	  echo query_print($stmt);      
+  }
+  function hkod_hkklt($r){
+      $sql = "SELECT CIKKNEV||'|@@style:labeldefault' CIKKNEV,DRB||'|@@style:labeldefault' DRB FROM ANDROID_HKODRA_HKKLT(:hkod)";
+      $stmt = query_prepare($sql);
+      if (isset($r['p1'])) $hkod=trim($r['p1']);
+      else $hkod='';
+      
+	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+  }  
+  function hkod_cikkklt($r){
+      $sql = "SELECT HKOD||'|@@style:labeldefault' HKOD,DRB||'|@@style:labeldefault' DRB FROM ANDROID_HKODRA_CIKKKLT(:cikk)";
+      $stmt = query_prepare($sql);
+      if (isset($r['p1'])) $cikk=trim($r['p1']);
+      else $cikk='';
+      
+	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+  }    
+  function hkod_ment($r){
+      $sql = "SELECT RESULT,'' RESULTTEXT,MIBIZ,AZON FROM ANDROID_HKODRA_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $hkod=trim($r['p2']);
+      $cikk=trim($r['p3']);
+      $ean=trim($r['p4']);
+      $drb=trim($r['p5']);
+      $login=trim($r['p6']);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':drb', $drb, PDO::PARAM_STR);
+      $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }
+  
+  function hkod_lezaras($r){
+      $sql = "SELECT RESULT,RESULTTEXT FROM ANDROID_HKODRA_KILEP(:login, :azon)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $login=trim($r['p2']);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
   }
 /* hkod rendezés eddig */
 ?>
