@@ -72,7 +72,6 @@
      return $arr;
   }
   function query_exec($stmt){
-		        
         $stmt->execute();
         if($stmt->errorCode() == 0) {
         } else {
@@ -135,7 +134,13 @@
   /* login eddig */
   /* kiadas */
   function kiadas_mibizlist($r){
-      $sql="SELECT CEGNEV||'|@@style:listtitle' CEGNEV,mibiz||'|@@style:listdetails' MIBIZ FROM ANDROID_KIADAS_MIBIZLIST(':login')";
+      $sql="SELECT CEGNEV||'|@@style:listtitle' CEGNEV,";
+      $sql.="mibiz||'|@@style:listdetails' MIBIZ,";
+      $sql.="'Szállmód:'||COALESCE(SZALLMOD,'')||'|@@style:listdetails' SZALLMOD,";
+      $sql.="'Súly:'||CAST(SULY AS NUMERIC(10,2))||'|@@style:listdetails' SULY,";
+      $sql.="'Térf:'||CAST(TERFOGAT AS NUMERIC(10,2))||'|@@style:listdetails' TERFOGAT,";      
+      $sql.="'Sorok:'||SORDB||'|@@style:listdetails' SORDB";            
+      $sql.="      FROM ANDROID_KIADAS_MIBIZLIST(:login)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
