@@ -139,13 +139,37 @@
       $sql.="'Szállmód:'||COALESCE(SZALLMOD,'')||'|@@style:listdetails' SZALLMOD,";
       $sql.="'Súly:'||CAST(SULY AS NUMERIC(10,2))||'|@@style:listdetails' SULY,";
       $sql.="'Térf:'||CAST(TERFOGAT AS NUMERIC(10,2))||'|@@style:listdetails' TERFOGAT,";      
-      $sql.="'Sorok:'||SORDB||'|@@style:listdetails' SORDB";            
+      $sql.="'Sorok:'||SORDB||'|@@style:listdetails' SORDB,AZON";            
       $sql.="      FROM ANDROID_KIADAS_MIBIZLIST(:login)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }
+  function kiadas_kovsor($r){
+      $sql="SELECT CIKK, CIKKNEV, EAN, HKOD, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2, SULY,TERFOGAT,RESULT FROM ANDROID_KIADAS_LEPTET(:azon,:hkod,:cikk,:irany,:login)";
+      $stmt = query_prepare($sql);
+      $azon=trim($r['p1']);
+      $hkod=trim($r['p2']);
+      $cikk=trim($r['p3']);
+      $irany=trim($r['p4']);
+      $login=trim($r['p5']);
+      
+      if ($cikk=='.') $cikk='';
+      if ($hkod=='.') $hkod='';
+      logol('cikk:'.$cikk.'_');
+      logol('hkod:'.$hkod.'_');
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':irany', $irany, PDO::PARAM_STR);      
+	  echo query_print($stmt);
+  }
+  
+
+  
+  
   function kiadas_review_sum($r){
       $sql="SELECT DRB,DRB2 FROM ANDROID_KIADAS_SUM(:mibiz)";
       $stmt = query_prepare($sql);
@@ -180,20 +204,7 @@
 	  echo query_print($stmt);
   }
 
-  function kiadas_kovsor($r){
-      $sql="SELECT CIKK, CIKKNEV, KOD2 EAN, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2, SORSZ FROM ANDROID_KIADAS_KOVSOR(:mibiz,:aktsorsz,:irany)";
-      $stmt = query_prepare($sql);
-      $login=trim($r['p1']);
-      $mibiz=trim($r['p2']);
-      $aktsorsz=trim($r['p3']);
-      $irany=trim($r['p4']);
-	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
-      $stmt->bindParam(':mibiz', $mibiz, PDO::PARAM_STR);
-      $stmt->bindParam(':aktsorsz', $aktsorsz, PDO::PARAM_STR);
-      $stmt->bindParam(':irany', $irany, PDO::PARAM_STR);      
-	  echo query_print($stmt);
-  }
-  
+ 
   function kiadas_gyszam_ment($r){
       $sql = "SELECT RESULTTEXT,DRB2 FROM ANDROID_KIADAS_GYSZAM_MENT(:mibiz, :sorsz, :ean, :gyszam, :login)";
       $stmt = query_prepare($sql);

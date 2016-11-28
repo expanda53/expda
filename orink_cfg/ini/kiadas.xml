@@ -6,7 +6,14 @@
   <lua_on_create>kiadas/panelinit.lua</lua_on_create>
   <params_to_labels>lkezelo</params_to_labels>
 </mainpanel>
-
+<label>
+  <name>lfejazon</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
 <label>
   <name>lkezelo</name>
   <top>0</top>
@@ -16,7 +23,7 @@
   <style>hidden</style>
 </label>
 <label>
-  <name>lsorsz</name>
+  <name>lcikod</name>
   <top>0</top>
   <left>0</left>
   <width>0</width>
@@ -85,6 +92,7 @@
   <column_title_suly>Súly</column_title_suly>
   <column_title_terfogat>Mibiz</column_title_terfogat>
   <column_title_sordb>Sordb</column_title_sordb>
+  <column_title_azon>Azon</column_title_azon>
 
   <font_size>10</font_size>
   <row_height>160</row_height>
@@ -103,11 +111,21 @@
     <visible>false</visible>
 </panel>
 <label>
+    <name>cegnev</name>
+    <parent>mibizlist_sor</parent>
+    <width>480</width>
+    <height>wrap</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[cegnev]</text>
+</label>
+
+<label>
     <name>mibiz</name>
     <parent>mibizlist_sor</parent>
     <width>200</width>
     <height>wrap</height>
-    <top>5</top>
+    <top>50</top>
     <left>0</left>
     <text>[mibiz]</text>
 </label>
@@ -116,18 +134,9 @@
     <parent>mibizlist_sor</parent>
     <width>100</width>
     <height>wrap</height>
-    <top>5</top>
+    <top>50</top>
     <left>235</left>
     <text>[szallmod]</text>
-</label>
-<label>
-    <name>cegnev</name>
-    <parent>mibizlist_sor</parent>
-    <width>480</width>
-    <height>wrap</height>
-    <top>35</top>
-    <left>0</left>
-    <text>[cegnev]</text>
 </label>
 
 <label>
@@ -157,7 +166,16 @@
     <left>420</left>
     <text>[sordb]</text>
 </label>
-
+<label>
+    <name>azon</name>
+    <parent>mibizlist_sor</parent>
+    <width>0</width>
+    <height>0</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[azon]</text>
+    <style>listhidden</style>
+</label>
 <barcode>
   <name>BCODE1</name>
   <lua_after_trigger>kiadas/bcode1.lua [eean]</lua_after_trigger>
@@ -181,6 +199,33 @@
   <parent>panel1</parent>
   <style>labeldefault;listtitlework</style>
 </label>
+
+<label>
+  <name>cap_hkod</name>
+  <top>160</top>
+  <left>0</left>
+  <width>300</width>
+  <height>wrap</height>
+  <visible>true</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Helykód</text>
+</label>
+<text>
+  <name>ehkod</name>
+  <top>190</top>
+  <width>300</width>
+  <parent>panel1</parent>
+  <left>0</left>
+  <visible>true</visible>
+  <lua_on_change>hkod/hkodcheck.lua [ehkod]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>60</height>
+</text>
+
+
 
 
 <label>
@@ -250,6 +295,7 @@
 </label>
 
 
+
 <label>
   <name>cap_gyszam</name>
   <top>235</top>
@@ -282,7 +328,7 @@
   <width>153</width>
   <height>70</height>
   <left>0</left>
-  <lua_after_click>kiadas/kovetkezo_click.lua [lmibiz] [lsorsz] -</lua_after_click>
+  <lua_after_click>kiadas/kovetkezo_click.lua [lfejazon] [ehkod] [lcikod] -1</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -296,7 +342,7 @@
   <width>154</width>
   <height>70</height>
   <left>163</left>
-  <lua_after_click>kiadas/kovetkezo_click.lua [lmibiz] [lsorsz] +</lua_after_click>
+  <lua_after_click>kiadas/kovetkezo_click.lua [lfejazon] [ehkod] [lcikod] 1</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>

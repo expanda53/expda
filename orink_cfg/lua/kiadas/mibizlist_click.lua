@@ -1,4 +1,4 @@
---<verzio>20161101</verzio>
+--<verzio>20161125</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -11,9 +11,11 @@ t = luafunc.rowtotable(row)
 
 cegnev= t['CEGNEV']
 mibiz= t['MIBIZ']
+azon= t['AZON']
+ui:executeCommand('valuetohidden','lfejazon', azon)
 ui:executeCommand('valueto','lmibiz', mibiz)
 ui:executeCommand('valueto','lcegnev', cegnev)
 ui:executeCommand('hideobj','mibizlist_table','')
 
 ui:executeCommand('showobj','pfooter;eean;button_review;button_kovetkezo;button_elozo','')
-ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', mibiz..' 0 +')
+ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', azon..' . . 1')
