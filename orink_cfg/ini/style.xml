@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161117</verzio>
+<verzio>20161130</verzio>
 <style>
  <name>hidden</name>
  <visible>false</visible>
@@ -15,7 +15,7 @@
     <name>buttondefault</name>
     <bgcolor>#FF7F50</bgcolor>
     <font_color>#000000</font_color>
-    <font_size>20</font_size>
+    <font_size>18</font_size>
     <padding_left>5</padding_left>
     <padding_right>5</padding_right>
     <padding_top>5</padding_top>

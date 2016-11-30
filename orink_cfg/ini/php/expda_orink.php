@@ -147,7 +147,7 @@
 	  echo query_print($stmt);
   }
   function kiadas_kovsor($r){
-      $sql="SELECT CIKK, CIKKNEV, EAN, HKOD, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2, SULY,TERFOGAT,RESULT FROM ANDROID_KIADAS_LEPTET(:azon,:hkod,:cikk,:irany,:login)";
+      $sql="SELECT CIKK, CIKKNEV, HKOD, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2, SULY,TERFOGAT,RESULT FROM ANDROID_KIADAS_LEPTET(:azon,:hkod,:cikk,:irany,:login)";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);
       $hkod=trim($r['p2']);

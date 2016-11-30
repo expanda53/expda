@@ -1,6 +1,8 @@
 package hu.expanda.expda;
 
 import android.app.ActionBar;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.widget.AbsoluteLayout;
 
 import java.util.ArrayList;
@@ -15,6 +17,11 @@ public class uobj {
         public uobj(String name, ArrayList<String> props){
             this.items=props;
             this.name=name;
+        }
+        public static int dpToPx(int dp) {
+            return  (int)(MainActivity.dmetrics.density * dp);
+            //int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
+            //return  height;
         }
 
         private Object setClass(){

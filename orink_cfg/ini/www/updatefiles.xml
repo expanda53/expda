@@ -1,10 +1,10 @@
 ini/appconfig.xml;20161117
-ini/style.xml;20161117
-ini/login.xml;20161117
+ini/style.xml;20161130_teszt
+ini/login.xml;20161130_teszt
 lua/egyeb/login_init.lua;20161117
 lua/egyeb/login_btn_click.lua;20161117
 lua/egyeb/login_click.lua;20161117
-ini/mainmenu.xml;20161123
+ini/mainmenu.xml;20161130_teszt
 lua/egyeb/menu_panelinit.lua;20161117
 lua/egyeb/menuinit.lua;20161117
 ini/pfooter.xml;20161117
@@ -34,7 +34,7 @@ lua/bevet/mentes.lua;20161121
 lua/bevet/lezaras.lua;20161121
 lua/bevet/kesobbfolyt.lua;20161121
 lua/bevet/atnezes_click.lua;20161101
-ini/hkod.xml;20161123
+ini/hkod.xml;20161130_teszt
 lua/hkod/panelinit.lua;20161123
 lua/hkod/beki.lua;20161123
 lua/hkod/hkodcheck.lua;20161123

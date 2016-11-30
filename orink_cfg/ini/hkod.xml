@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161123</verzio>
+<verzio>20161130</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Hkód rendezés</text>
@@ -57,8 +57,8 @@
   <name>lmibiz</name>
   <top>0</top>
   <left>0</left>
-  <width>150</width>
-  <height>wrap</height>
+  <width>100</width>
+  <height>35</height>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>reviewlabel</style>
@@ -78,24 +78,14 @@
   <parent>panel1</parent>
 </barcode>
 
-<label>
-  <name>lcikknev</name>
-  <top>30</top>
-  <left>0</left>
-  <width>match</width>
-  <height>wrap</height>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault;listtitlework</style>
-</label>
 <custom_button>
   <style>buttondefault</style>
   <name>button_kibe</name>
   <Text>Kiszedés</Text>
-  <top>60</top>
-  <width>match</width>
-  <height>90</height>
-  <left>0</left>
+  <top>0</top>
+  <width>218</width>
+  <height>35</height>
+  <left>102</left>
   <lua_after_click>hkod/beki.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
@@ -103,9 +93,9 @@
 
 <label>
   <name>cap_hkod</name>
-  <top>160</top>
+  <top>37</top>
   <left>0</left>
-  <width>300</width>
+  <width>50</width>
   <height>wrap</height>
   <visible>true</visible>
   <parent>panel1</parent>
@@ -114,25 +104,25 @@
 </label>
 <text>
   <name>ehkod</name>
-  <top>190</top>
-  <width>300</width>
+  <top>37</top>
+  <width>170</width>
   <parent>panel1</parent>
-  <left>0</left>
+  <left>51</left>
   <visible>true</visible>
   <lua_on_change>hkod/hkodcheck.lua [ehkod]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
-  <height>60</height>
+  <height>35</height>
 </text>
 <custom_button>
   <style>buttondefault</style>
   <name>button_hkodlst</name>
   <Text>hkód klt</Text>
-  <top>190</top>
-  <width>175</width>
-  <height>60</height>
-  <left>305</left>
+  <top>37</top>
+  <width>95</width>
+  <height>35</height>
+  <left>225</left>
   <lua_after_click>hkod/hkodklt.lua [ehkod]</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
@@ -142,9 +132,9 @@
 
 <label>
   <name>cap_ean</name>
-  <top>260</top>
+  <top>75</top>
   <left>0</left>
-  <width>match</width>
+  <width>50</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -153,35 +143,45 @@
 </label>
 <text>
   <name>eean</name>
-  <top>290</top>
-  <width>300</width>
+  <top>75</top>
+  <width>170</width>
   <parent>panel1</parent>
-  <left>0</left>
+  <left>51</left>
   <visible>false</visible>
   <lua_on_change>hkod/bcode1.lua [eean] [ehkod]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
-  <height>60</height>
+  <height>35</height>
 </text>
 <custom_button>
   <style>buttondefault</style>
   <name>button_cikkklt</name>
   <Text>cikk klt</Text>
-  <top>290</top>
-  <width>175</width>
-  <height>60</height>
-  <left>305</left>
+  <top>75</top>
+  <width>90</width>
+  <height>35</height>
+  <left>225</left>
   <lua_after_click>hkod/cikkklt.lua [lcikod]</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
+<label>
+  <name>lcikknev</name>
+  <top>115</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+</label>
 
 <label>
   <name>cap_maxdrb</name>
-  <top>360</top>
+  <top>240</top>
   <left>0</left>
-  <width>350</width>
+  <width>220</width>
   <visible>false</visible>
   <parent>panel1</parent>
   <font_size>17</font_size>
@@ -190,23 +190,10 @@
   <style>labeldefault</style>
 </label>
 <label>
-  <name>lmaxdrb</name>
-  <top>395</top>
-  <left>0</left>
-  <width>350</width>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <font_size>17</font_size>
-  <height>30</height>
-  <text>0</text>
-  <style>labeldefault;labeldrb_cap</style>
-</label>
-
-<label>
   <name>cap_drb</name>
-  <top>360</top>
-  <left>330</left>
-  <height>20</height>
+  <top>240</top>
+  <left>225</left>
+  <height>30</height>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
@@ -214,16 +201,30 @@
   <align>right</align>
 </label>
 
+<label>
+  <name>lmaxdrb</name>
+  <top>270</top>
+  <left>0</left>
+  <width>220</width>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <font_size>17</font_size>
+  <height>20</height>
+  <text>0</text>
+  <style>labeldefault;labeldrb_cap</style>
+</label>
+
+
 <text>
   <name>edrb</name>
-  <top>395</top>
-  <width>150</width>
-  <height>60</height>
+  <top>270</top>
+  <width>95</width>
+  <height>20</height>
   <parent>panel1</parent>
   <font_color>#000000</font_color>
   <visible>false</visible>
   <bgcolor>#497000</bgcolor>
-  <left>380</left>  
+  <left>225</left>  
   <lua_on_change>hkod/mentes.lua [lcikod] [eean] [edrb] [lfejazon] [ehkod]</lua_on_change>
   <font_size>15</font_size>
   <align>right</align>
@@ -236,9 +237,9 @@
   <style>buttondefault</style>
   <name>button_ujhkod</name>
   <Text>Új helykód</Text>
-  <top>570</top>
+  <top>290</top>
   <width>233</width>
-  <height>100</height>
+  <height>45</height>
   <left>0</left>
   <lua_after_click>hkod/ujhkod.lua</lua_after_click>
   <parent>panel1</parent>

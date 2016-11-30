@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsoluteLayout;
@@ -26,9 +27,11 @@ public class MainActivity extends Activity {
     private static boolean scannerEnabled = false;
     public static boolean useSymbol = false;
     public static exMedia mediaFiles;
+    public static DisplayMetrics dmetrics;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dmetrics = getResources().getDisplayMetrics();
         AbsoluteLayout ll = new AbsoluteLayout(this);
 //        String xml = loadXml();
         if(android.os.Build.MANUFACTURER.contains("Zebra Technologies") || android.os.Build.MANUFACTURER.contains("Motorola Solutions") ){

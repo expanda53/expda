@@ -90,7 +90,11 @@ public class ObjDefault {
 
 
     public int getTop() {
-        return Top;
+        int x = Top;
+        if (x>0) {
+            x = uobj.dpToPx(x);
+        }
+        return x;
     }
 
     public void setTop(int top) {
@@ -98,7 +102,11 @@ public class ObjDefault {
     }
 
     public int getLeft() {
-        return Left;
+        int x = Left;
+        if (x>0) {
+            x = uobj.dpToPx(x);
+        }
+        return x;
     }
 
     public void setLeft(int left) {
@@ -106,15 +114,27 @@ public class ObjDefault {
     }
 
     public int getWidth() {
-        return Width;
+        int x = Width;
+        if (x>0) {
+            x = uobj.dpToPx(x);
+        }
+        return x;
+
+        //return Width;
     }
 
     public void setWidth(int width) {
+
         Width = width;
     }
 
     public int getHeight() {
-        return Height;
+        int x = Height;
+        if (x>0) {
+            x = uobj.dpToPx(x);
+        }
+        return x;
+        //return Height;
     }
 
     public void setHeight(int height) {
@@ -209,6 +229,7 @@ public class ObjDefault {
     }
 
     public int getPaddingRight() {
+        //return uobj.dpToPx(paddingRight,MainActivity.dmetrics);
         return paddingRight;
     }
 
@@ -217,6 +238,7 @@ public class ObjDefault {
     }
 
     public int getPaddingTop() {
+        //return uobj.dpToPx(paddingTop,MainActivity.dmetrics);
         return paddingTop;
     }
 
@@ -225,6 +247,7 @@ public class ObjDefault {
     }
 
     public int getPaddingBottom() {
+        //return uobj.dpToPx(paddingBottom,MainActivity.dmetrics);
         return paddingBottom;
     }
 
@@ -233,6 +256,7 @@ public class ObjDefault {
     }
 
     public int getPaddingLeft() {
+        //return uobj.dpToPx(paddingLeft,MainActivity.dmetrics);
         return paddingLeft;
     }
 
@@ -247,6 +271,7 @@ public class ObjDefault {
         return this.borderColor;
     }
     public int getBorderWidth() {
+        //return uobj.dpToPx(borderWidth,MainActivity.dmetrics);
         return borderWidth;
     }
 

@@ -128,7 +128,7 @@ public class exButton extends LinearLayout {
                     this.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC);
                 if (style.getTop() != -99) this.setTop(style.getTop());
                 if (style.getLeft() != -99) this.setLeft(style.getLeft());
-                if (style.getHeight() != -99) this.setHeight(style.getHeight());
+                if (style.getHeight() != -99) this.setHeight1(style.getHeight());
                 if (style.getWidth() != -99) this.setWidth(style.getWidth());
                 if (style.isVisibilityOverride()) this.setVisibility(style.getVisibility());
                 if (style.getBorderWidth()!=-1) getObj().setBorderWidth(style.getBorderWidth());
@@ -322,7 +322,8 @@ public void setBounds(String command, int val){
 
     public void setWidth1(int width){
         getObj().setWidth(width);
-        this.setWidth(getObj().getWidth());
+
+        this.setWidth( getObj().getWidth());
     }
     public void setHeight1(int height){
         getObj().setHeight(height);

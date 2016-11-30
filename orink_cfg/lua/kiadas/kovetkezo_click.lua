@@ -14,7 +14,6 @@ result = t[1]['RESULT']
 if (result=='0') then
     ui:executeCommand('valueto','lcikknev', t[1]['CIKKNEV'])
     ui:executeCommand('valuetohidden','lcikod', t[1]['CIKK'])
-    ui:executeCommand('valueto','lean', t[1]['EAN'])
     ui:executeCommand('aktbcodeobj','bcode1','')
     --ui:executeCommand('showobj','eean;button_review;button_kovetkezo','')
 
