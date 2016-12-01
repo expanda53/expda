@@ -128,6 +128,7 @@ public class exPane {
         }
 
         extLibrary.Create(this);
+        if (MainActivity.useSymbol) MainActivity.symbol.setPane(this);
 
 
     }
@@ -211,6 +212,12 @@ public class exPane {
             }
         }
         else if ((command.equalsIgnoreCase("SETFOCUS")) ){
+            /*
+            for (int i=0;i<getLayout().getChildCount();i++){
+                View o = getLayout().getChildAt(i);
+                if (o.isFocusable()) o.clearFocus();
+            }
+            */
             String[] objlist = p1.split( ";");
             for (int i=0;i<objlist.length;i++){
                 View o = this.findObject(objlist[i]);
@@ -443,11 +450,11 @@ public class exPane {
         }
 
         else if (command.equalsIgnoreCase("SCANNERON")){
-            /*MainActivity.symbol.startRead();*/
+            if (MainActivity.useSymbol) MainActivity.symbol.startRead();
 
         }
         else if (command.equalsIgnoreCase("SCANNEROFF")){
-            /*MainActivity.symbol.stopRead();*/
+            if (MainActivity.useSymbol) MainActivity.symbol.stopRead();
         }
         /*
         else if (command.equalsIgnoreCase("CLOSE")){
@@ -489,10 +496,21 @@ public class exPane {
             exMPlayer mp = MainActivity.mediaFiles.getMediaByName(p1);
             if (mp!=null) mp.play();
         }
+        else if (command.equalsIgnoreCase("ENABLED") || command.equalsIgnoreCase("DISABLED")){
+            boolean enabled = command.equalsIgnoreCase("ENABLED");
+            String[] objlist = p1.split(";");
+            for (int i=0;i<objlist.length;i++) {
+                View o = this.findObject(objlist[i]);
 
-
-
-
+                if (o instanceof exButton) {
+                    ((exButton) o).setEnabled(enabled);
+                } else if (o instanceof exText) {
+                    ((exText) o).setEnabled(enabled);
+                } else if (o instanceof exSpinner) {
+                    ((exSpinner) o).setEnabled(enabled);
+                }
+            }
+        }
     }
 
     private void showNotification(String title, String text){

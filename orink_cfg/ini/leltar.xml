@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161117</verzio>
+<verzio>20161201</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Leltár</text>
@@ -70,21 +70,10 @@
 
 
 <label>
-  <name>lcikknev</name>
-  <top>30</top>
-  <left>0</left>
-  <width>match</width>
-  <height>wrap</height>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault;listtitlework</style>
-</label>
-
-<label>
   <name>cap_hkod</name>
-  <top>60</top>
+  <top>48</top>
   <left>0</left>
-  <width>match</width>
+  <width>70</width>
   <height>wrap</height>
   <visible>true</visible>
   <parent>panel1</parent>
@@ -93,25 +82,23 @@
 </label>
 <text>
   <name>ehkod</name>
-  <top>90</top>
+  <top>35</top>
   <width>match</width>
   <parent>panel1</parent>
-  <left>0</left>
+  <left>75</left>
   <visible>true</visible>
   <lua_on_change>leltar/hkodcheck.lua [ehkod]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
-  <height>60</height>
+  <height>45</height>
 </text>
-
-
 
 <label>
   <name>cap_ean</name>
-  <top>160</top>
+  <top>93</top>
   <left>0</left>
-  <width>match</width>
+  <width>70</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -120,23 +107,32 @@
 </label>
 <text>
   <name>eean</name>
-  <top>190</top>
+  <top>85</top>
   <width>match</width>
   <parent>panel1</parent>
-  <left>0</left>
+  <left>75</left>
   <visible>false</visible>
   <lua_on_change>leltar/bcode1.lua [eean]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
-  <height>60</height>
+  <height>45</height>
 </text>
-
+<label>
+  <name>lcikknev</name>
+  <top>135</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+</label>
 
 
 <label>
   <name>cap_drb</name>
-  <top>260</top>
+  <top>180</top>
   <left>0</left>
   <width>100</width>
   <height>20</height>
@@ -148,9 +144,9 @@
 
 <text>
   <name>edrb</name>
-  <top>295</top>
+  <top>205</top>
   <width>match</width>
-  <height>60</height>
+  <height>45</height>
   <parent>panel1</parent>
   <font_color>#000000</font_color>
   <visible>false</visible>
@@ -167,9 +163,9 @@
   <style>buttondefault</style>
   <name>button_ujhkod</name>
   <Text>Új helykód</Text>
-  <top>470</top>
-  <width>233</width>
-  <height>100</height>
+  <top>255</top>
+  <width>130</width>
+  <height>45</height>
   <left>0</left>
   <lua_after_click>leltar/ujhkod.lua</lua_after_click>
   <parent>panel1</parent>
@@ -179,11 +175,23 @@
   <style>buttondefault</style>
   <name>button_ujean</name>
   <Text>Új EAN</Text>
-  <top>470</top>
-  <width>233</width>
-  <height>100</height>
-  <left>235</left>
+  <top>255</top>
+  <width>130</width>
+  <height>45</height>
+  <left>135</left>
   <lua_after_click>leltar/ujean.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_cikkval</name>
+  <Text>Cikk választás</Text>
+  <top>255</top>
+  <width>125</width>
+  <height>95</height>
+  <left>270</left>
+  <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -192,27 +200,15 @@
   <style>buttondefault</style>
   <name>button_review</name>
   <Text>Átnézés</Text>
-  <top>580</top>
-  <width>match</width>
-  <height>100</height>
+  <top>305</top>
+  <width>265</width>
+  <height>45</height>
   <left>0</left>
   <lua_after_click>leltar/showreview.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
 </custom_button>
 
-<custom_button>
-  <style>buttondefault</style>
-  <name>button_cikkval</name>
-  <Text>Cikk választás</Text>
-  <top>365</top>
-  <width>match</width>
-  <height>100</height>
-  <left>0</left>
-  <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
-  <parent>panel1</parent>
-  <visible>false</visible>
-</custom_button>
 
 
 <panel>
@@ -231,7 +227,7 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>620</height>
+  <height>270</height>
   <top>0</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
@@ -299,7 +295,7 @@
   <style>buttondefault</style>
   <name>btn_folytmost</name>
   <Text>Folyt. most</Text>
-  <top>650</top>
+  <top>345</top>
   <width>150</width>
   <height>90</height>
   <left>0</left>
@@ -312,7 +308,7 @@
   <style>buttondefault</style>
   <name>btn_folytkesobb</name>
   <Text>Folyt. később</Text>
-  <top>650</top>
+  <top>345</top>
   <width>150</width>
   <height>90</height>
   <left>160</left>
@@ -325,7 +321,7 @@
   <style>buttondefault</style>
   <name>btn_lezar</name>
   <Text>Lezárás</Text>
-  <top>650</top>
+  <top>345</top>
   <width>150</width>
   <height>90</height>
   <left>320</left>
@@ -342,9 +338,9 @@
   <style>buttondefault</style>
   <name>btn_vissza</name>
   <Text>Vissza</Text>
-  <top>650</top>
+  <top>290</top>
   <width>150</width>
-  <height>90</height>
+  <height>45</height>
   <left>0</left>
   <parent>cikkvalpanel</parent>
   <visible>true</visible>

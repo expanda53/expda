@@ -11,6 +11,7 @@ if (str=='OK') then
        ui:executeCommand('TOAST','Lezárás rendben.')
        
 else
+       ui:executeCommand('playaudio','alert.mp3','') 
        ui:executeCommand('TOAST',str)
        --ui:executeCommand('uzenet',str)
 end

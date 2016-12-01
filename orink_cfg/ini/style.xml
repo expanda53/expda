@@ -8,7 +8,7 @@
     <name>labeldefault</name>
     <bgcolor>#000000</bgcolor>
     <font_color>#497000</font_color>  
-    <font_size>13</font_size>
+    <font_size>16</font_size>
 </style>
 
 <style>
@@ -81,7 +81,6 @@
     <name>labeldrb_cap</name>
     <font_size>17</font_size>
     <height>30</height>
-    <width>150</width>
 </style>
 <style>
     <name>labeldrb_data</name>

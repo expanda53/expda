@@ -39,6 +39,8 @@ public class exText extends EditText {
         this.textobj=(ObjText)b;
         this.pane = pane;
         this.setVisibility(getObj().getVisibility());
+        this.setFocusable(true);
+        this.setFocusableInTouchMode(true);
 
         this.setText(getObj().getText());
         int width = getObj().getWidth();

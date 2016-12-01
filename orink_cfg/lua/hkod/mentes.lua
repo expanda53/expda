@@ -1,4 +1,4 @@
---<verzio>20161123</verzio>
+--<verzio>20161130</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -22,9 +22,10 @@ if (result=='0') then
     ui:executeCommand('TOAST','Mentés rendben.')
 else
     --ui:executeCommand('TOAST','Hiba:' .. resulttext)
+    ui:executeCommand('playaudio','alert.mp3','')
     ui:executeCommand('uzenet',resulttext,"egyeb/setfocus.lua eean")
 end
-ui:executeCommand('hideobj','cap_drb;cap_maxdrb;edrb;button_ujean;lcikknev','')
+ui:executeCommand('hideobj','cap_drb;cap_maxdrb;lmaxdrb;edrb;button_ujean;lcikknev','')
 ui:executeCommand('setfocus','eean', '')
 ui:executeCommand('valueto','eean', '')
 

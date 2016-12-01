@@ -71,20 +71,22 @@ class Symbol implements Scanner.DataListener, EMDKManager.EMDKListener,Scanner.S
 
         protected void onPostExecute(String result) {
 
-            if (result != null) {
-                pane.getAktBCodeObj().setPane(pane);
-                pane.getAktBCodeObj().valueTo(result);
-                String msg = pane.getAktBCodeObj().getSqlAfterTrigger();
-                pane.sendGetExecute(msg,true);
-                msg = pane.getAktBCodeObj().getLuaAfterTrigger();
-                pane.luaInit(msg);
-                msg = pane.getAktBCodeObj().getExtFunctionAfterTrigger();
-                try {
-                    extLibrary.runMethod(msg);
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+            if (result != null && pane!=null) {
+                if (pane.getAktBCodeObj()!=null) {
+                    pane.getAktBCodeObj().setPane(pane);
+                    pane.getAktBCodeObj().valueTo(result);
+                    String msg = pane.getAktBCodeObj().getSqlAfterTrigger();
+                    pane.sendGetExecute(msg, true);
+                    msg = pane.getAktBCodeObj().getLuaAfterTrigger();
+                    pane.luaInit(msg);
+                    msg = pane.getAktBCodeObj().getExtFunctionAfterTrigger();
+                    try {
+                        extLibrary.runMethod(msg);
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

@@ -31,11 +31,13 @@ if (result=='0') then
     ui:executeCommand('setfocus','edrb','') 
 elseif (result=='-1') then
  --ui:executeCommand('setfocus','eean','') 
+ ui:executeCommand('playaudio','alert.mp3','')
  ui:executeCommand('toast','Nem található termék ilyen ean kóddal:\n'..ean)
  --ui:executeCommand('valueto','eean','')
  cikkval=1
 elseif (result=='-2') then
  --ui:executeCommand('setfocus','eean','') 
+ ui:executeCommand('playaudio','alert.mp3','') 
  ui:executeCommand('toast','Több termék is található termék ilyen ean kóddal:\n'..ean)
  --ui:executeCommand('valueto','eean','')
  cikkval=2

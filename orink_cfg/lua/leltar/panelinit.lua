@@ -1,4 +1,4 @@
---<verzio>20161117</verzio>
+--<verzio>20161201</verzio>
 local params = {...}
 ui = params[1]
 kezelo = ui:getKezelo()
@@ -20,4 +20,5 @@ if (t[1]['MIBIZ']~='HIBA') then
     end
     ui:executeCommand('valueto','lmibiz', mibiz)
     ui:executeCommand('valueto','lfejazon', azon)
+    ui:executeCommand('aktbcodeobj','bcode0','')
 end
