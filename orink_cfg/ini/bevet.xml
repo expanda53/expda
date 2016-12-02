@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161121</verzio>
+<verzio>20161201</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -68,7 +68,7 @@
   <name>lcegnev</name>
   <top>0</top>
   <left>151</left>
-  <width>330</width>
+  <width>250</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -79,7 +79,7 @@
   <name>ceglistpanel</name>
   <width>match</width>
   <height>match</height>
-  <top>30</top>
+  <top>0</top>
   <visible>false</visible>
   <bgcolor>#000000</bgcolor>
   <left>0</left>
@@ -90,7 +90,7 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>match</height>
+  <height>320</height>
   <top>0</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
@@ -98,9 +98,7 @@
 
   <column_title_nev>Név</column_title_nev>
   <column_title_azon>Azon</column_title_azon>
-
-  <font_size>10</font_size>
-  <row_height>160</row_height>
+  <row_height>10</row_height>
   <parent>ceglistpanel</parent>
   <visible>true</visible>
   <lua_after_click>bevet/ceglist_click.lua</lua_after_click>
@@ -108,21 +106,12 @@
 </table>
 <panel>
     <name>ceglist_sor</name>
-    <parent>panel1</parent>
-    <height>105</height>
+    <parent>ceglistpanel</parent>
+    <height>80</height>
     <width>match</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
 </panel>
-<label>
-    <name>nev</name>
-    <parent>ceglist_sor</parent>
-    <width>480</width>
-    <height>50</height>
-    <top>0</top>
-    <left>0</left>
-    <text>[nev]</text>
-</label>
 <label>
     <name>azon</name>
     <parent>ceglist_sor</parent>
@@ -131,7 +120,16 @@
     <top>0</top>
     <left>0</left>
     <text>[azon]</text>
-    <style>listhidden</style>
+</label>
+
+<label>
+    <name>nev</name>
+    <parent>ceglist_sor</parent>
+    <width>400</width>
+    <height>35</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[nev]</text>
 </label>
 
 
@@ -143,23 +141,10 @@
 </barcode>
 
 <label>
-  <name>lcikknev</name>
-  <top>30</top>
-  <left>0</left>
-  <width>match</width>
-  <height>wrap</height>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault;listtitlework</style>
-</label>
-
-
-
-<label>
   <name>cap_ean</name>
-  <top>60</top>
+  <top>40</top>
   <left>0</left>
-  <width>match</width>
+  <width>60</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -168,18 +153,27 @@
 </label>
 <text>
   <name>eean</name>
-  <top>90</top>
+  <top>32</top>
   <width>match</width>
   <parent>panel1</parent>
-  <left>0</left>
+  <left>60</left>
   <visible>false</visible>
   <lua_on_change>bevet/bcode1.lua [eean] [lcegazon]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
-  <height>60</height>
+  <height>40</height>
 </text>
-
+<label>
+  <name>lcikknev</name>
+  <top>74</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+</label>
 
 
 <label>
@@ -211,6 +205,8 @@
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
   <text>Érkezett</text>
+  <width>100</width>
+  <height>20</height>
 </label>
 <text>
   <name>edrb2</name>
@@ -221,7 +217,7 @@
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
-  <height>60</height>  
+  <height>40</height>  
   <align>center</align>
   <width>100</width>
   <lua_on_change>bevet/mentes.lua [lfejazon] [lcegazon] [lcikod] [eean] [edrb2]</lua_on_change>

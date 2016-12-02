@@ -188,7 +188,7 @@
   <name>button_cikkval</name>
   <Text>Cikk választás</Text>
   <top>255</top>
-  <width>125</width>
+  <width>123</width>
   <height>95</height>
   <left>270</left>
   <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
@@ -239,7 +239,7 @@
   <column_title_drb>drb</column_title_drb>
   
   <font_size>10</font_size>
-  <row_height>160</row_height>
+  <row_height>130</row_height>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <itempanel>atnezo_sor</itempanel>
@@ -248,7 +248,7 @@
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>105</height>
+    <height>85</height>
     <width>match</width>
     <bgcolor>#497000</bgcolor>
     <visible>false</visible>
@@ -256,7 +256,7 @@
 <label>
     <name>cikknev</name>
     <parent>atnezo_sor</parent>
-    <width>480</width>
+    <width>400</width>
     <height>30</height>
     <top>0</top>
     <left>0</left>
@@ -265,7 +265,7 @@
 <label>
     <name>ean</name>
     <parent>atnezo_sor</parent>
-    <width>480</width>
+    <width>400</width>
     <height>45</height>
     <top>30</top>
     <left>0</left>
@@ -274,19 +274,19 @@
 <label>
     <name>hkod</name>
     <parent>atnezo_sor</parent>
-    <width>480</width>
-    <height>45</height>
-    <top>75</top>
+    <width>200</width>
+    <height>20</height>
+    <top>65</top>
     <left>0</left>
     <text>[hkod]</text>    
 </label>
 <label>
     <name>drb</name>
     <parent>atnezo_sor</parent>
-    <width>240</width>
-    <height>30</height>
-    <top>75</top>
-    <left>240</left>
+    <width>200</width>
+    <height>20</height>
+    <top>65</top>
+    <left>200</left>
     <text>[drb]</text>
     <align>center</align>
 </label>
@@ -295,9 +295,9 @@
   <style>buttondefault</style>
   <name>btn_folytmost</name>
   <Text>Folyt. most</Text>
-  <top>345</top>
-  <width>150</width>
-  <height>90</height>
+  <top>275</top>
+  <width>130</width>
+  <height>45</height>
   <left>0</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
@@ -308,10 +308,10 @@
   <style>buttondefault</style>
   <name>btn_folytkesobb</name>
   <Text>Folyt. később</Text>
-  <top>345</top>
-  <width>150</width>
-  <height>90</height>
-  <left>160</left>
+  <top>275</top>
+  <width>130</width>
+  <height>45</height>
+  <left>135</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>leltar/kesobbfolyt.lua [lfejazon]</lua_after_click>
@@ -321,10 +321,10 @@
   <style>buttondefault</style>
   <name>btn_lezar</name>
   <Text>Lezárás</Text>
-  <top>345</top>
-  <width>150</width>
-  <height>90</height>
-  <left>320</left>
+  <top>275</top>
+  <width>127</width>
+  <height>45</height>
+  <left>270</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>leltar/lezaras.lua [lfejazon] null</lua_after_click>

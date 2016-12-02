@@ -45,8 +45,7 @@
   <font_style>bold</font_style>
   <padding_left>5</padding_left>
   <padding_right>5</padding_right>
-  <padding_top>15</padding_top>
-  <padding_bottom>5</padding_bottom>
+  <padding_top>5</padding_top>
   <bgcolor>#000000</bgcolor>
   <font_color>#FF7F50</font_color>
 </style>

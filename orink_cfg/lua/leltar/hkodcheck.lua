@@ -10,6 +10,9 @@ result=t[1]['RESULT']
 if (result=='0') then
   ui:executeCommand('aktbcodeobj','bcode1','')
   ui:executeCommand('showobj','cap_ean;eean;button_ujhkod;button_cikkval','')
+  ui:executeCommand('disabled','ehkod','')
+  ui:executeCommand('setbgcolor','ehkod','#434343')
+  
 else
  ui:executeCommand('setfocus','ehkod','') 
  ui:executeCommand('playaudio','alert.mp3','')

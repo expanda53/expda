@@ -7,7 +7,6 @@ kezelo = ui:getKezelo()
 azon = tostring(ui:findObject('lfejazon'):getText())
 str = 'leltar_cikklist '..kezelo..' '..azon
 list=luafunc.query_assoc_to_str(str,false)
-luafunc.refreshtable_fromstring('atnezo_table',list)
 if (list~=nil) then
    luafunc.refreshtable_fromstring('atnezo_table',list)
    ui:executeCommand('show','atnezo_table','')

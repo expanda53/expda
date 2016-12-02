@@ -282,7 +282,7 @@
   /* beerkezes */
 
   function beerk_ceglist($r){
-      $sql="SELECT NEV||'|@@style:listtitle' NEV,AZON FROM ANDROID_BEERK_CEGLIST";
+      $sql="SELECT NEV||'|@@style:listtitle' NEV,AZON||'|@@style:listhidden' AZON FROM ANDROID_BEERK_CEGLIST";
       $stmt = query_prepare($sql);
 	  echo query_print($stmt);
   }    
