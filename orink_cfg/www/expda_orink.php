@@ -115,7 +115,7 @@
 	  echo query_print($stmt);
   }    
   function cikkval_open($r){
-      $sql="SELECT KOD,NEV FROM ANDROID_CIKK_KERES(:betuz,30)";
+      $sql="SELECT KOD,NEV||'|@@style:listtitle' NEV FROM ANDROID_CIKK_KERES(:betuz,30)";
       $stmt = query_prepare($sql);
       $betuz=trim($r['p1']);
 	  $stmt->bindParam(':betuz', $betuz, PDO::PARAM_STR);

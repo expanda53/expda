@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161117</verzio>
+<verzio>20161202</verzio>
 <connection_type>php</connection_type>
 <php_url_local>http://192.168.1.105/expda_orink.php</php_url_local>
 <php_url_eles>http://192.168.1.247:82/expda_orink.php</php_url_eles>
@@ -15,6 +15,7 @@
 <vkod_teszt>false</vkod_teszt>
 <style_file>/style.xml</style_file>
 <start_xml>login.xml</start_xml>
+<backbutton_disabled>true</backbutton_disabled>
 <dbmeta>
 CREATE TABLE IF NOT EXISTS LOG(id INTEGER PRIMARY KEY,type TEXT,value TEXT,status INTEGER,dcreate DATETIME,dsync DATETIME);
 </dbmeta>

@@ -1,8 +1,8 @@
---<verzio>20161121</verzio>
+--<verzio>20161201</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
-ean = params[2]:gsub("n",""):gsub(':','')
+ean = params[2]:gsub("\n",""):gsub(':','')
 str = 'cikkval_open '..ean
 list=luafunc.query_assoc_to_str(str,false)
 luafunc.refreshtable_fromstring('cikkval_table',list)

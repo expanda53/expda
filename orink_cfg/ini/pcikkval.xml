@@ -1,5 +1,5 @@
 <root>
-<verzio>20161130</verzio>
+<verzio>20161201</verzio>
 <panel>
   <name>cikkvalpanel</name>
   <width>match</width>
@@ -21,15 +21,15 @@
   <bgcolor>#fffffa</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
-  <height>60</height>
+  <height>45</height>
 </text>
 <table>
   <name>cikkval_table</name>
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>200</height>
-  <top>60</top>
+  <height>210</height>
+  <top>50</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
@@ -50,7 +50,7 @@
     <parent>cikkvalpanel</parent>
     <height>60</height>
     <width>match</width>
-    <bgcolor>#497000</bgcolor>
+    <bgcolor>#000000</bgcolor>
     <visible>false</visible>
 </panel>
 <label>
@@ -61,7 +61,6 @@
     <top>0</top>
     <left>0</left>
     <text>[nev]</text>
-    <font_size>17</font_size>
 </label>
 <label>
     <name>kod</name>

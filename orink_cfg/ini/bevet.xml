@@ -68,7 +68,7 @@
   <name>lcegnev</name>
   <top>0</top>
   <left>151</left>
-  <width>250</width>
+  <width>249</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -225,12 +225,25 @@
 
 <custom_button>
   <style>buttondefault</style>
+  <name>button_review</name>
+  <Text>Átnézés</Text>
+  <top>320</top>
+  <width>110</width>
+  <height>45</height>
+  <left>0</left>
+  <lua_after_click>bevet/zaras.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
   <name>button_cikkval</name>
   <Text>Cikk választás</Text>
-  <top>505</top>
-  <width>match</width>
-  <height>100</height>
-  <left>0</left>
+  <top>320</top>
+  <width>165</width>
+  <height>45</height>
+  <left>115</left>
   <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
@@ -241,24 +254,11 @@
   <style>buttondefault</style>
   <name>button_ujean</name>
   <Text>Új EAN</Text>
-  <top>610</top>
-  <width>300</width>
-  <height>70</height>
-  <left>0</left>
+  <top>320</top>
+  <width>110</width>
+  <height>45</height>
+  <left>285</left>
   <lua_after_click>bevet/ujean.lua</lua_after_click>
-  <parent>panel1</parent>
-  <visible>false</visible>
-</custom_button>
-
-<custom_button>
-  <style>buttondefault</style>
-  <name>button_review</name>
-  <Text>Átnézés</Text>
-  <top>610</top>
-  <width>153</width>
-  <height>70</height>
-  <left>327</left>
-  <lua_after_click>bevet/zaras.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -301,15 +301,15 @@
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>80</height>
-    <width>200</width>
-    <bgcolor>#000000</bgcolor>
+    <height>60</height>
+    <width>match</width>
+    <bgcolor>#497000</bgcolor>
     <visible>false</visible>
 </panel>
 <label>
     <name>cikknev</name>
     <parent>atnezo_sor</parent>
-    <width>480</width>
+    <width>400</width>
     <height>30</height>
     <top>0</top>
     <left>0</left>
@@ -318,8 +318,8 @@
 <label>
     <name>ean</name>
     <parent>atnezo_sor</parent>
-    <width>240</width>
-    <height>45</height>
+    <width>195</width>
+    <height>30</height>
     <top>30</top>
     <left>0</left>
     <text>[ean]</text>    
@@ -327,12 +327,12 @@
 <label>
     <name>drb</name>
     <parent>atnezo_sor</parent>
-    <width>240</width>
-    <height>45</height>
+    <width>200</width>
+    <height>30</height>
     <top>30</top>
-    <left>240</left>
+    <left>195</left>
     <text>[drb]</text>
-    <align>center</align>
+    <align>right</align>
 </label>
 <label>
     <name>cikk</name>
@@ -349,9 +349,9 @@
   <style>buttondefault</style>
   <name>btn_folytmost</name>
   <Text>Folyt. most</Text>
-  <top>650</top>
-  <width>150</width>
-  <height>90</height>
+  <top>290</top>
+  <width>130</width>
+  <height>45</height>
   <left>0</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
@@ -362,10 +362,10 @@
   <style>buttondefault</style>
   <name>btn_folytkesobb</name>
   <Text>Folyt. később</Text>
-  <top>650</top>
-  <width>150</width>
-  <height>90</height>
-  <left>160</left>
+  <top>290</top>
+  <width>130</width>
+  <height>45</height>
+  <left>135</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>bevet/kesobbfolyt.lua [lfejazon]</lua_after_click>
@@ -375,10 +375,10 @@
   <style>buttondefault</style>
   <name>btn_lezar</name>
   <Text>Lezárás</Text>
-  <top>650</top>
-  <width>150</width>
-  <height>90</height>
-  <left>320</left>
+  <top>290</top>
+  <width>130</width>
+  <height>45</height>
+  <left>270</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>bevet/lezaras.lua null</lua_after_click>
@@ -390,9 +390,9 @@
   <style>buttondefault</style>
   <name>btn_vissza</name>
   <Text>Vissza</Text>
-  <top>650</top>
+  <top>290</top>
   <width>150</width>
-  <height>90</height>
+  <height>45</height>
   <left>0</left>
   <parent>cikkvalpanel</parent>
   <visible>true</visible>

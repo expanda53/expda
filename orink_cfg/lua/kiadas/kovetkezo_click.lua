@@ -1,4 +1,4 @@
---<verzio>20161125</verzio>
+--<verzio>20161202</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -12,14 +12,17 @@ str = 'kiadas_kovsor '..fejazon..' '..hkod..' ' ..cikk..' '..irany..' '..kezelo
 t=luafunc.query_assoc(str,false)
 result = t[1]['RESULT']
 if (result=='0') then
-    ui:executeCommand('valueto','lcikknev', t[1]['CIKKNEV'])
+    ui:executeCommand('showobj','cap_hkod;ehkod','')
+    ui:executeCommand('toast',t[1]['HKOD'],'')
+    ui:executeCommand('valueto','lhkod', t[1]['HKOD'])
+    ui:executeCommand('valuetohidden','lcikknev', t[1]['CIKKNEV'])
     ui:executeCommand('valuetohidden','lcikod', t[1]['CIKK'])
     ui:executeCommand('aktbcodeobj','bcode1','')
-    --ui:executeCommand('showobj','eean;button_review;button_kovetkezo','')
+    
 
     ui:executeCommand('valuetohidden','ldrb', t[1]['DRB'])
     ui:executeCommand('valuetohidden','ldrb2', t[1]['DRB2'])
-    ui:executeCommand('setfocus','eean','')
+    ui:executeCommand('setfocus','ehkod','')
     
 else
     if (irany=='1') then 

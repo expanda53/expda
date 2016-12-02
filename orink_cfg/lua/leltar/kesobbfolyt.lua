@@ -1,4 +1,4 @@
---<verzio>20161117</verzio>
+--<verzio>20161201</verzio>
 local params = {...}
 ui = params[1]
 fejazon = params[2]:gsub("n",""):gsub(':','')
@@ -10,6 +10,7 @@ resulttext = t[1]['RESULTTEXT']
 if (result=='0') then
     ui:executeCommand('TOAST','Leltár megszakítás rendben.')
 else
+    ui:executeCommand('playaudio','alert.mp3','')
     ui:executeCommand('TOAST','Hiba:' .. resulttext)
 end
 ui:executeCommand("close","","")

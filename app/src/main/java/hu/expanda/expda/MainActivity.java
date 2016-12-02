@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
         String xItem = intent.getStringExtra(EXTRA_MSG_ITEM);
         if (xItem != null && xItem!="") xml = xItem+".xml";
         new exWifi(this);
-        if (startUpdate && exWifi.isWifiEnabled() && exWifi.getWifiStrength()>0) {
+        /*if (startUpdate && exWifi.isWifiEnabled() && exWifi.getWifiStrength()>0) {
             try {
                 startUpdate = false;
                 //File dir = this.getFilesDir();
@@ -63,6 +63,7 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
+        */
         //mp3 fileok felolvasása, mediafiles arraylistbe
         if (mediaFiles==null) mediaFiles = new exMedia(this);
         pane = new exPane(this, ll, xml);
@@ -174,6 +175,12 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
         */
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!Ini.isBackButtonDisabled()) super.onBackPressed();
+
     }
 /*
     @Override

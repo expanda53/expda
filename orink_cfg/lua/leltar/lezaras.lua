@@ -1,4 +1,4 @@
---<verzio>20161117</verzio>
+--<verzio>20161201</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -17,6 +17,7 @@ if (dialogres=="igen") then
        ui:executeCommand('TOAST','Lezárás rendben.')
        ui:executeCommand('CLOSE','','')
    else
+       ui:executeCommand('playaudio','alert.mp3','')
        ui:executeCommand('uzenet',str)
    end
         

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161130</verzio>
+<verzio>20161202</verzio>
 <mainpanel>
   <name>loginpanel</name>
   <text>Bejelentkezés</text>
@@ -54,4 +54,19 @@
   <visible>true</visible>
   <image>arrow-right.png</image>
 </custom_button>
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_exit</name>
+  <Text>Kilépés</Text>
+  <top>185</top>
+  <width>match</width>
+  <height>70</height>
+  <left>0</left>
+  <lua_after_click>egyeb/login_exit.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+  <image>exit.png</image>
+</custom_button>
+
+
 </Root>

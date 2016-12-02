@@ -1,4 +1,4 @@
---<verzio>20161121</verzio>
+--<verzio>20161201</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -27,8 +27,10 @@ elseif (result=='2') then
 elseif (result=='-1') then
   cikkval=1
   ui:executeCommand('toast','Nem található termék ilyen ean kóddal:\n'..ean)
+  ui:executeCommand('playaudio','alert.mp3','')
 elseif (result=='-2') then
   cikkval=2
+  ui:executeCommand('playaudio','alert.mp3','')
   ui:executeCommand('toast','Több termék is található termék ilyen ean kóddal:\n'..ean)  
 end
 

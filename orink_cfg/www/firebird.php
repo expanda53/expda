@@ -5,19 +5,15 @@ class Firebird {
 	private static function getLink(){
 		if (self::$link) return self::$link;
 
-		$driver="firebird";
-		$user="SYSDBA";
-		$password="masterkey";
+        $driver="firebird";
+        $user="SYSDBA";
+        $password="masterkey";
         $host="192.168.1.105";
-		$dbname_depo="F:\ALFA\TIR\DAT\DEPO12\DEPO12.GDB" ;
+        $dbname_depo="F:\ALFA\TIR\DAT\DEPO12\DEPO12.GDB" ;
         $dbname_orink="F:\ALFA\TIR\DAT\ORINK\ORINKMUNKA.GDB" ;
         $dbname=$dbname_orink;
-		//$host="192.168.1.6";
-		//$dbname="I:\\alfa\\tir\\dat\\depo16\\DEPO16.GDB" ;
 
 		$port="3050";
-		
-        		
 		
 		$dsn = "${driver}:";
 		$dsn .= 'dbname='.$host.':'.$dbname;

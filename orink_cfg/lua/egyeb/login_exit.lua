@@ -2,5 +2,4 @@
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
-ui:executeCommand('updatecfg','','')
-ui:executeCommand('setfocus','elogin','')
+ui:executeCommand("exit","","")

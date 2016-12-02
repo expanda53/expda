@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161125</verzio>
+<verzio>20161202</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -58,7 +58,7 @@
   <name>lcegnev</name>
   <top>0</top>
   <left>151</left>
-  <width>330</width>
+  <width>249</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -113,7 +113,7 @@
 <label>
     <name>cegnev</name>
     <parent>mibizlist_sor</parent>
-    <width>480</width>
+    <width>400</width>
     <height>wrap</height>
     <top>0</top>
     <left>0</left>
@@ -178,20 +178,83 @@
 </label>
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>kiadas/bcode1.lua [eean]</lua_after_trigger>
-  <valueto>eean</valueto>
+  <lua_after_trigger>kiadas/hkodcheck.lua [ehkod] [lhkod]</lua_after_trigger>
+  <valueto>ehkod</valueto>
   <parent>panel1</parent>
 </barcode>
 
 <barcode>
   <name>BCODE2</name>
-  <lua_after_trigger>kiadas/bcode2.lua [egyszam]</lua_after_trigger>
-  <valueto>egyszam</valueto>
+  <lua_after_trigger>kiadas/eancheck.lua [eean] [lcikod]</lua_after_trigger>
+  <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
+
+<label>
+  <name>cap_hkod</name>
+  <top>38</top>
+  <left>0</left>
+  <width>70</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Helykód</text>
+</label>
+<label>
+  <name>lhkod</name>
+  <top>38</top>
+  <left>70</left>
+  <width>130</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Helykód</text>
+</label>
+<text>
+  <name>ehkod</name>
+  <top>30</top>
+  <width>200</width>
+  <parent>panel1</parent>
+  <left>201</left>
+  <visible>false</visible>
+  <lua_on_change>kiadas/hkodcheck.lua [ehkod] [lhkod]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
+
+
+
+<label>
+  <name>cap_ean</name>
+  <top>78</top>
+  <left>0</left>
+  <width>70</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>EAN</text>
+</label>
+<text>
+  <name>eean</name>
+  <top>70</top>
+  <width>match</width>
+  <parent>panel1</parent>
+  <left>70</left>
+  <visible>false</visible>
+  <lua_on_change>kiadas/eancheck.lua [eean] [lcikod]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
 <label>
   <name>lcikknev</name>
-  <top>30</top>
+  <top>120</top>
   <left>0</left>
   <width>match</width>
   <height>wrap</height>
@@ -199,58 +262,6 @@
   <parent>panel1</parent>
   <style>labeldefault;listtitlework</style>
 </label>
-
-<label>
-  <name>cap_hkod</name>
-  <top>160</top>
-  <left>0</left>
-  <width>300</width>
-  <height>wrap</height>
-  <visible>true</visible>
-  <parent>panel1</parent>
-  <style>labeldefault</style>
-  <text>Helykód</text>
-</label>
-<text>
-  <name>ehkod</name>
-  <top>190</top>
-  <width>300</width>
-  <parent>panel1</parent>
-  <left>0</left>
-  <visible>true</visible>
-  <lua_on_change>hkod/hkodcheck.lua [ehkod]</lua_on_change>
-  <bgcolor>#497000</bgcolor>
-  <font_color>#000000</font_color>
-  <font_size>17</font_size>
-  <height>60</height>
-</text>
-
-
-
-
-<label>
-  <name>lean</name>
-  <top>60</top>
-  <left>0</left>
-  <width>match</width>
-  <height>wrap</height>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault</style>
-</label>
-<text>
-  <name>eean</name>
-  <top>90</top>
-  <width>match</width>
-  <parent>panel1</parent>
-  <left>0</left>
-  <visible>false</visible>
-  <lua_on_change>kiadas/bcode1.lua [eean] [lean]</lua_on_change>
-  <bgcolor>#497000</bgcolor>
-  <font_color>#000000</font_color>
-  <font_size>17</font_size>
-  <height>60</height>
-</text>
 
 
 

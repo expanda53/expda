@@ -496,6 +496,24 @@ public class exPane {
             exMPlayer mp = MainActivity.mediaFiles.getMediaByName(p1);
             if (mp!=null) mp.play();
         }
+        else if (command.equalsIgnoreCase("EXIT")) {
+            this.getActivity().finishAffinity();
+        }
+        else if (command.equalsIgnoreCase("UPDATECFG")) {
+            if (MainActivity.startUpdate && exWifi.isWifiEnabled() && exWifi.getWifiStrength()>0) {
+                try {
+                    MainActivity.startUpdate = false;
+                    //File dir = this.getFilesDir();
+                    UpdateFiles updateFiles = new UpdateFiles(Ini.getUpdateURL(),getContext());
+                    //String[] s={"http://192.168.1.105/updatefiles.xml",dir.getAbsolutePath()};
+                    String[] s = {Ini.getUpdateURL(), Ini.getIniDir()};
+
+                    updateFiles.execute(s);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         else if (command.equalsIgnoreCase("ENABLED") || command.equalsIgnoreCase("DISABLED")){
             boolean enabled = command.equalsIgnoreCase("ENABLED");
             String[] objlist = p1.split(";");

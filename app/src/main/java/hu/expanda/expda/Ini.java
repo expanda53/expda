@@ -31,6 +31,7 @@ public class Ini {
 
     private static boolean landScape = true;
     private static boolean teszt = false;
+	private static boolean disableBackButton = false;
 	private static String connectionType = "php";
 	private static String phpUrl = "";
     private static String[] dbMeta = {};
@@ -94,6 +95,7 @@ public class Ini {
 			Ini.setConnectionType(domParsing(xml,"connection_type","Root"));
 			Ini.setPhpUrl(domParsing(xml,"php_url","Root"));
 			Ini.setTeszt(domParsing(xml,"vkod_teszt","Root").equalsIgnoreCase("true"));
+            Ini.setDisableBackButton(domParsing(xml,"backbutton_disabled","Root").equalsIgnoreCase("true"));
             Ini.setLandScape(domParsing(xml,"orientation_landscape","Root").equalsIgnoreCase("true"));
             Ini.setDbMeta(domParsing(xml,"dbmeta","Root"));
             //Ini.setLibraryDir(domParsing(xml,"library_folder","Root"));
@@ -216,4 +218,12 @@ public class Ini {
     public static String getRootDir() {
         return rootDir;
     }
+
+	public static boolean isBackButtonDisabled() {
+		return disableBackButton;
+	}
+
+	public static void setDisableBackButton(boolean disableBackButton) {
+		Ini.disableBackButton = disableBackButton;
+	}
 }
