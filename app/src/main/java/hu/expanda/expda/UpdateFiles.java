@@ -217,6 +217,7 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
                         updateFile(sor);
                     }
                 }
+                MainActivity.startUpdate = true;
 
             } catch (Exception e) {
                 Log.e("exPda", "Beállítás frissítési hiba...");

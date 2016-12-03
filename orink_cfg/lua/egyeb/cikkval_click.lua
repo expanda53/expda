@@ -12,7 +12,7 @@ ui:executeCommand('valueto','lcikknev',nev)
 ui:executeCommand('valuetohidden','lcikod',kod)
 aktmodul = tostring(ui:findObject('lmodulstat'):getText())
 if (aktmodul == 'Beérkezés') then
-  ui:executeCommand('showobj','cap_drb;ldrb;cap_drb2;edrb2;button_ujean','')
+  ui:executeCommand('showobj','cap_drb;ldrb;cap_drb2;edrb2;button_ujean;pfooter','')
   ui:executeCommand('valueto','ldrb','0') 
   ui:executeCommand('valueto','edrb2','') 
   ui:executeCommand('setfocus','edrb2','') 
@@ -21,7 +21,7 @@ elseif (aktmodul=='Leltár') then
   ui:executeCommand('valueto','edrb','') 
   ui:executeCommand('setfocus','edrb','') 
 elseif (aktmodul=='Hkód rendezés') then
-  ui:executeCommand('showobj','cap_drb;edrb;button_ujean;button_cikkklt','')
+  ui:executeCommand('showobj','cap_drb;edrb;button_ujean;button_cikkklt;pfooter','')
   ui:executeCommand('valueto','edrb','') 
 
     szorzo = tostring(ui:findObject('lszorzo'):getText())

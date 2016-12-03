@@ -15,7 +15,8 @@
 <vkod_teszt>false</vkod_teszt>
 <style_file>/style.xml</style_file>
 <start_xml>login.xml</start_xml>
-<backbutton_disabled>true</backbutton_disabled>
+<backbutton_disabled>false</backbutton_disabled>
+<orientation_landscape>false</orientation_landscape>
 <dbmeta>
 CREATE TABLE IF NOT EXISTS LOG(id INTEGER PRIMARY KEY,type TEXT,value TEXT,status INTEGER,dcreate DATETIME,dsync DATETIME);
 </dbmeta>

@@ -10,6 +10,7 @@ if (lotthkod==varthkod) then
   ui:executeCommand('disabled','ehkod','')
   ui:executeCommand('setbgcolor','ehkod','#434343')
   ui:executeCommand('showobj','cap_ean;eean;lcikknev','')
+  ui:executeCommand('valueto','eean','')
   ui:executeCommand('setfocus','eean','')
 else
  ui:executeCommand('playaudio','alert.mp3','')

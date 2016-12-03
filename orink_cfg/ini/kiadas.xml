@@ -304,42 +304,30 @@
   <style>labeldefault;labeldrb_data</style>
   <align>center</align>
 </label>
-
-
-
-<label>
-  <name>cap_gyszam</name>
-  <top>235</top>
-  <left>0</left>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault;labeldrb_cap</style>
-  <text>Gyáriszám</text>
-</label>
-
 <text>
-  <name>egyszam</name>
-  <top>275</top>
-  <width>match</width>
-  <height>60</height>
+  <name>edrb2</name>
+  <top>190</top>
+  <width>60</width>
   <parent>panel1</parent>
-  <font_color>#000000</font_color>
+  <left>350</left>
   <visible>false</visible>
+  <lua_on_change>kiadas/mentes.lua [lfejazon] [lcikod] [eean] [ehkod] [ldrb2] [edrb2] [ldrb] .</lua_on_change>
   <bgcolor>#497000</bgcolor>
-  <left>0</left>  
-  <lua_on_change>kiadas/bcode2.lua [eean] [egyszam] [lmibiz] [lsorsz]</lua_on_change>
-  <font_size>15</font_size>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
 </text>
+
 
 <custom_button>
   <style>buttondefault</style>
-  <name>button_elozo</name>
-  <Text>Előző</Text>
-  <top>610</top>
-  <width>153</width>
-  <height>70</height>
+  <name>button_nincsmeg</name>
+  <Text>Nincs meg</Text>
+  <top>220</top>
+  <width>130</width>
+  <height>45</height>
   <left>0</left>
-  <lua_after_click>kiadas/kovetkezo_click.lua [lfejazon] [ehkod] [lcikod] -1</lua_after_click>
+  <lua_after_click>kiadas/mentes.lua [lfejazon] [lcikod] . [ehkod] [ldrb2] 0 [ldrb] H</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -599,6 +587,22 @@
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>kiadas/lezaras.lua null</lua_after_click>
+</custom_button>
+
+<panel>
+  <file>pcikkval.xml</file>
+</panel>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_vissza</name>
+  <Text>Vissza</Text>
+  <top>290</top>
+  <width>150</width>
+  <height>45</height>
+  <left>0</left>
+  <parent>cikkvalpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadas/cikkvissza.lua</lua_after_click>
 </custom_button>
 
 

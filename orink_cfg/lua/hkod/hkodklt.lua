@@ -1,9 +1,10 @@
---<verzio>20161123</verzio>
+--<verzio>20161203</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
 kezelo = ui:getKezelo()
 hkod = params[2]:gsub("n",""):gsub(':','')
+ui:executeCommand('hide','pfooter','')
 str = 'hkod_hkklt '..hkod
 list=luafunc.query_assoc_to_str(str,false)
 luafunc.refreshtable_fromstring('hkodklt_table',list)

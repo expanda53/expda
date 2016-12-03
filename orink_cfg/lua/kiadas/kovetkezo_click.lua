@@ -13,10 +13,12 @@ t=luafunc.query_assoc(str,false)
 result = t[1]['RESULT']
 if (result=='0') then
     ui:executeCommand('showobj','cap_hkod;ehkod','')
-    ui:executeCommand('toast',t[1]['HKOD'],'')
     ui:executeCommand('valueto','lhkod', t[1]['HKOD'])
     ui:executeCommand('valuetohidden','lcikknev', t[1]['CIKKNEV'])
     ui:executeCommand('valuetohidden','lcikod', t[1]['CIKK'])
+    ui:executeCommand('valuetohidden','ldrb', t[1]['DRB'])
+    ui:executeCommand('valuetohidden','ldrb2', t[1]['DRB2'])
+    ui:executeCommand('valuetohidden','edrb2', '')
     ui:executeCommand('aktbcodeobj','bcode1','')
     
 
