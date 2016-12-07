@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161201</verzio>
+<verzio>20161206</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -135,7 +135,7 @@
 
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>bevet/bcode1.lua [eean] [lcegazon]</lua_after_trigger>
+  <lua_after_trigger>bevet/bcode1.lua [eean] . [lcegazon]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
@@ -158,7 +158,7 @@
   <parent>panel1</parent>
   <left>60</left>
   <visible>false</visible>
-  <lua_on_change>bevet/bcode1.lua [eean] [lcegazon]</lua_on_change>
+  <lua_on_change>bevet/bcode1.lua [eean] . [lcegazon]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -227,7 +227,7 @@
   <style>buttondefault</style>
   <name>button_review</name>
   <Text>Átnézés</Text>
-  <top>320</top>
+  <top>275</top>
   <width>110</width>
   <height>45</height>
   <left>0</left>
@@ -240,7 +240,7 @@
   <style>buttondefault</style>
   <name>button_cikkval</name>
   <Text>Cikk választás</Text>
-  <top>320</top>
+  <top>275</top>
   <width>165</width>
   <height>45</height>
   <left>115</left>
@@ -254,7 +254,7 @@
   <style>buttondefault</style>
   <name>button_ujean</name>
   <Text>Új EAN</Text>
-  <top>320</top>
+  <top>275</top>
   <width>110</width>
   <height>45</height>
   <left>285</left>
@@ -279,7 +279,7 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>600</height>
+  <height>275</height>
   <top>0</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
@@ -349,7 +349,7 @@
   <style>buttondefault</style>
   <name>btn_folytmost</name>
   <Text>Folyt. most</Text>
-  <top>290</top>
+  <top>255</top>
   <width>130</width>
   <height>45</height>
   <left>0</left>
@@ -362,7 +362,7 @@
   <style>buttondefault</style>
   <name>btn_folytkesobb</name>
   <Text>Folyt. később</Text>
-  <top>290</top>
+  <top>255</top>
   <width>130</width>
   <height>45</height>
   <left>135</left>
@@ -375,7 +375,7 @@
   <style>buttondefault</style>
   <name>btn_lezar</name>
   <Text>Lezárás</Text>
-  <top>290</top>
+  <top>255</top>
   <width>130</width>
   <height>45</height>
   <left>270</left>
@@ -390,7 +390,7 @@
   <style>buttondefault</style>
   <name>btn_vissza</name>
   <Text>Vissza</Text>
-  <top>290</top>
+  <top>275</top>
   <width>150</width>
   <height>45</height>
   <left>0</left>

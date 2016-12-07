@@ -61,15 +61,23 @@ public class exButton extends LinearLayout {
         if (this.button.getImage()!="") {
             iv = new ImageView(parent);
             iv.setImageURI(Uri.fromFile(new File(this.button.getImage())));
-            tv.setGravity(Gravity.LEFT|Gravity.CENTER_VERTICAL);
+            tv.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
             //iv.setId(2);
             LinearLayout.LayoutParams ivLP = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
             ivLP.gravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
 
             tv.setLayoutParams(ivLP);
             Drawable d = iv.getDrawable();
-            tv.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
-            tv.setCompoundDrawablePadding(10);
+            if (getObj().getImageAlign()==Gravity.LEFT)  {
+                tv.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+                tv.setCompoundDrawablePadding(uobj.dpToPx(10));
+            }
+            if (getObj().getImageAlign()==Gravity.RIGHT)  {
+                tv.setCompoundDrawablesWithIntrinsicBounds(null, null, d, null);
+                tv.setCompoundDrawablePadding(uobj.dpToPx(10));
+            }
+            if (getObj().getImageAlign()==Gravity.BOTTOM)  tv.setCompoundDrawablesWithIntrinsicBounds(null, null, null, d);
+            if (getObj().getImageAlign()==Gravity.TOP)  tv.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
         }
         this.addView(tv);
 

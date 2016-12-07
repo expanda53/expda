@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161130</verzio>
+<verzio>20161206</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Hkód rendezés</text>
@@ -181,14 +181,28 @@
   <left>0</left>
   <visible>false</visible>
   <parent>panel1</parent>
-  <text>Max kiszedhető</text>
-  <style>labeldefault;labeldrb_cap</style>
-  <width>170</width>
+  <text>Max</text>
+  <style>labeldefault;reviewlabel</style>
+  <height>30</height>
+  <width>60</width>
 </label>
+<label>
+  <name>lmaxdrb</name>
+  <top>170</top>
+  <left>61</left>
+  <width>100</width>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <font_size>17</font_size>
+  <height>30</height>
+  <text>0</text>
+  <style>labeldefault;reviewlabel</style>
+</label>
+
 <label>
   <name>cap_drb</name>
   <top>170</top>
-  <left>225</left>
+  <left>195</left>
   <height>30</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -197,31 +211,18 @@
   <width>120</width>  
 </label>
 
-<label>
-  <name>lmaxdrb</name>
-  <top>205</top>
-  <left>0</left>
-  <width>170</width>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <font_size>17</font_size>
-  <height>20</height>
-  <text>0</text>
-  <align>center</align>
-  <style>labeldefault;labeldrb_cap</style>
-</label>
 
 
 <text>
   <name>edrb</name>
-  <top>205</top>
+  <top>170</top>
   <width>95</width>
   <height>40</height>
   <parent>panel1</parent>
   <font_color>#000000</font_color>
   <visible>false</visible>
   <bgcolor>#497000</bgcolor>
-  <left>225</left>  
+  <left>285</left>  
   <lua_on_change>hkod/mentes.lua [lcikod] [eean] [edrb] [lfejazon] [ehkod]</lua_on_change>
   <font_size>15</font_size>
   <align>right</align>
@@ -231,7 +232,7 @@
   <style>buttondefault</style>
   <name>button_cikkval</name>
   <Text>Cikk választás</Text>
-  <top>270</top>
+  <top>235</top>
   <width>match</width>
   <height>45</height>
   <left>0</left>
@@ -245,7 +246,7 @@
   <style>buttondefault</style>
   <name>button_review</name>
   <Text>Kilépés</Text>
-  <top>320</top>
+  <top>280</top>
   <width>110</width>
   <height>45</height>
   <left>0</left>
@@ -258,7 +259,7 @@
   <style>buttondefault</style>
   <name>button_ujhkod</name>
   <Text>Új helykód</Text>
-  <top>320</top>
+  <top>280</top>
   <width>175</width>
   <height>45</height>
   <left>115</left>
@@ -270,7 +271,7 @@
   <style>buttondefault</style>
   <name>button_ujean</name>
   <Text>Új EAN</Text>
-  <top>320</top>
+  <top>280</top>
   <width>100</width>
   <height>45</height>
   <left>295</left>

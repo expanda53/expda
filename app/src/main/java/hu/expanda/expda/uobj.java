@@ -143,6 +143,7 @@ public class uobj {
                         }
                         if (property.equalsIgnoreCase("function")) ((ObjButton)obj).setFunction(value);
                         if (property.equalsIgnoreCase("image")) ((ObjButton)obj).setImage(value);
+                        if (property.equalsIgnoreCase("image_align")) ((ObjButton)obj).setImageAlign(value);
                     }
                     if (obj instanceof ObjPanel) {
                         if (property.equalsIgnoreCase("sql_on_create")) ((ObjPanel)obj).setSqlOnCreate(value);

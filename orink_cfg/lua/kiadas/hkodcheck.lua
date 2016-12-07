@@ -9,7 +9,7 @@ if (lotthkod==varthkod) then
   ui:executeCommand('aktbcodeobj','bcode2','')
   ui:executeCommand('disabled','ehkod','')
   ui:executeCommand('setbgcolor','ehkod','#434343')
-  ui:executeCommand('showobj','cap_ean;eean;lcikknev','')
+  ui:executeCommand('showobj','cap_ean;eean;lcikknev;button_nincsmeg','')
   ui:executeCommand('valueto','eean','')
   ui:executeCommand('setfocus','eean','')
 else

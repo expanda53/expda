@@ -13,6 +13,7 @@ public class ObjButton extends ObjDefault{
     private String LuaAfterClick;
     private String Image="";
     private int align=Gravity.CENTER; //swt.center
+    private int imageAlign=Gravity.LEFT; //swt.center
 
     public int getAlign() {
             return align;
@@ -23,6 +24,18 @@ public class ObjButton extends ObjDefault{
             if (align.equalsIgnoreCase("LEFT")) this.align = Gravity.LEFT;//SWT.LEFT;
             if (align.equalsIgnoreCase("RIGHT")) this.align = Gravity.RIGHT;//SWT.RIGHT;
     }
+
+    public int getImageAlign() {
+        return imageAlign;
+    }
+
+    public void setImageAlign(String imageAlign) {
+        if (imageAlign.equalsIgnoreCase("LEFT")) this.imageAlign = Gravity.LEFT;//SWT.LEFT;
+        if (imageAlign.equalsIgnoreCase("RIGHT")) this.imageAlign = Gravity.RIGHT;//SWT.RIGHT;
+        if (imageAlign.equalsIgnoreCase("TOP")) this.imageAlign = Gravity.TOP;//SWT.CENTER;
+        if (imageAlign.equalsIgnoreCase("BOTTOM")) this.imageAlign = Gravity.BOTTOM;//SWT.CENTER;
+    }
+
     public String getFunction() {
         return Function;
     }

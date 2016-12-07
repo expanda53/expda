@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161130</verzio>
+<verzio>20161206</verzio>
 <style>
  <name>hidden</name>
  <visible>false</visible>
@@ -51,7 +51,7 @@
 </style>
 <style>
   <name>listtitlewait</name>
-  <bgcolor>#c62828</bgcolor>
+  <bgcolor>#FF7F50</bgcolor>
   <font_color>#000000</font_color>
   <padding_left>5</padding_left>
   <padding_right>5</padding_right>
@@ -80,12 +80,13 @@
     <name>labeldrb_cap</name>
     <font_size>17</font_size>
     <height>30</height>
+    <width>110</width>
 </style>
 <style>
     <name>labeldrb_data</name>
     <font_size>22</font_size>
     <height>40</height>
-    <width>100</width>
+    <width>110</width>
 </style>
 <style>
   <name>reviewlabel</name>

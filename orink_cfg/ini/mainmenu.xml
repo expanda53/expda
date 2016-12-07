@@ -1,6 +1,6 @@
 <Root>
 <mainpanel>
-  <verzio>20161130</verzio>
+  <verzio>20161206</verzio>
   <name>mainpanel1</name>
   <text>Fomenü</text>
   <bgcolor>#000000</bgcolor>
@@ -27,11 +27,12 @@
 <custom_button>
   <name>ButtonKiadas</name>
   <image>cart.png</image>
+  <image_align>top</image_align>
   <Text>Kiadás</Text>
-  <top>0</top>
-  <width>match</width>
-  <height>70</height>
-  <left>1</left>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>20</left>
   <style>buttondefault</style>
   <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua KIADAS [lkezelo]</lua_after_click>
@@ -39,11 +40,12 @@
 <custom_button>
   <name>ButtonBevet</name>
   <image>truck.png</image>
+  <image_align>top</image_align>
   <Text>Bevét</Text>
-  <top>70</top>
-  <width>match</width>
-  <height>70</height>
-  <left>1</left>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>135</left>
   <style>buttondefault</style>
   <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua BEVET [lkezelo]</lua_after_click>
@@ -51,11 +53,12 @@
 <custom_button>
   <name>ButtonHkod</name>
   <image>Trolley.png</image>
+  <image_align>top</image_align>
   <Text>Helykód rendezés</Text>
-  <top>140</top>
-  <width>match</width>
-  <height>70</height>
-  <left>1</left>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>250</left>
   <style>buttondefault</style>
   <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua HKOD [lkezelo]</lua_after_click>
@@ -64,26 +67,28 @@
 <custom_button>
   <name>ButtonLeltar</name>
   <image>leltar.png</image>
+  <image_align>top</image_align>
   <Text>Leltár</Text>
-  <top>210</top>
-  <width>match</width>
-  <height>70</height>
-  <left>1</left>
+  <top>140</top>
+  <width>110</width>
+  <height>120</height>
+  <left>20</left>
   <style>buttondefault</style>
   <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
   <name>ButtonClose</name>
-  <left>1</left>
+  <left>135</left>
   <Text>Kilépés</Text>
-  <top>280</top>
-  <width>match</width>
-  <height>70</height>
+  <top>140</top>
+  <width>110</width>
+  <height>120</height>
   <style>buttondefault</style>
   <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
   <visible>true</visible>
   <image>exit.png</image>
+  <image_align>top</image_align>
 </custom_button>
 
 <panel>

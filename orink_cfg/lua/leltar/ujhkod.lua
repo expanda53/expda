@@ -1,4 +1,4 @@
---<verzio>20161201</verzio>
+--<verzio>20161206</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]

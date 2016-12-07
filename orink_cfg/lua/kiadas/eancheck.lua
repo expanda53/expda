@@ -12,7 +12,7 @@ result=t[1]['RESULT']
 cikkval=0;
 if (result=='0') then
     if (cikod==kod) then
-      ui:executeCommand('showobj','cap_drb;ldrb;cap_drb2;ldrb2;edrb2','')
+      ui:executeCommand('showobj','cap_drb;ldrb;cap_drb2;ldrb2;cap_edrb2;edrb2','')
       ui:executeCommand('setfocus','edrb2','') 
     else 
       ui:executeCommand('playaudio','alert.mp3','') 
@@ -35,8 +35,10 @@ elseif (result=='-2') then
 end
 
 if (cikkval>0) then
-    if (cikkval==1) then
-      ean='.'
-    end
-    ui:executeCommand("startlua","egyeb/cikkval_open.lua",ean)
+    --if (cikkval==1) then
+      --ean='.'
+    --end
+    --ui:executeCommand("startlua","egyeb/cikkval_open.lua",ean)
+      ui:executeCommand('valueto','eean','') 
+      ui:executeCommand('setfocus','eean','') 
 end
