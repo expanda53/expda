@@ -118,6 +118,7 @@
       $sql="SELECT KOD,NEV||'|@@style:listtitle' NEV FROM ANDROID_CIKK_KERES(:betuz,30)";
       $stmt = query_prepare($sql);
       $betuz=trim($r['p1']);
+      $betuz=utf8_decode($betuz);
 	  $stmt->bindParam(':betuz', $betuz, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
@@ -280,7 +281,7 @@
 	  echo query_print($stmt);      
   }  
   function beerk_eankeres($r){
-      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login)";
+      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login)";
       $stmt = query_prepare($sql);
       
       $ceg=trim($r['p1']);

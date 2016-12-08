@@ -16,16 +16,19 @@ cikkval=0
 result=t[1]['RESULT']
 cikk=t[1]['CIKK']
 cikknev=t[1]['CIKKNEV']
+drb3=t[1]['DRB3']
 drb2=t[1]['DRB2']
 drb=t[1]['DRB']
 if (result=='0') then
   ui:executeCommand('valueto','ldrb',t[1]['DRB'])
   
   if (drb2=='0') then drb2='' end
-  ui:executeCommand('valueto','edrb2',drb2)
+  ui:executeCommand('valueto','edrb2','')
+  ui:executeCommand('valueto','ldrb3',drb3)
+  ui:executeCommand('valueto','ldrb4',drb2)
   ui:executeCommand('valuetohidden','lcikod',cikk)
   ui:executeCommand('valueto','lcikknev',cikknev)
-  ui:executeCommand('showobj','cap_drb;cap_drb2;button_ujean','')
+  ui:executeCommand('showobj','cap_drb;cap_drb2;cap_drb3;cap_drb4;button_ujean','')
   ui:executeCommand('aktbcodeobj','bcode2','')
 elseif (result=='1') then
   cikkval=0

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161202</verzio>
+<verzio>20161206</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -539,7 +539,7 @@
   <left>0</left>
   <parent>cikkvalpanel</parent>
   <visible>true</visible>
-  <lua_after_click>kiadas/cikkvissza.lua</lua_after_click>
+  <lua_after_click>egyeb/cikkvissza.lua</lua_after_click>
 </custom_button>
 
 <panel>

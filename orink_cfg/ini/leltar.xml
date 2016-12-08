@@ -301,7 +301,7 @@
   <left>0</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>leltar/ujhkod.lua</lua_after_click>
+  <lua_after_click>egyeb/cikkvissza.lua</lua_after_click>
 </custom_button>
 
 <custom_button>

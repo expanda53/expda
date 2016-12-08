@@ -90,7 +90,7 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>320</height>
+  <height>300</height>
   <top>0</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
@@ -107,7 +107,7 @@
 <panel>
     <name>ceglist_sor</name>
     <parent>ceglistpanel</parent>
-    <height>80</height>
+    <height>60</height>
     <width>match</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -121,7 +121,6 @@
     <left>0</left>
     <text>[azon]</text>
 </label>
-
 <label>
     <name>nev</name>
     <parent>ceglist_sor</parent>
@@ -131,6 +130,18 @@
     <left>0</left>
     <text>[nev]</text>
 </label>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_mibizvissza</name>
+  <Text>Vissza</Text>
+  <top>305</top>
+  <width>match</width>
+  <height>45</height>
+  <left>0</left>
+  <parent>ceglistpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadas/mibizvissza.lua</lua_after_click>
+</custom_button>
 
 
 <barcode>
@@ -178,8 +189,8 @@
 
 <label>
   <name>cap_drb</name>
-  <top>160</top>
-  <left>0</left>
+  <top>140</top>
+  <left>10</left>
   <width>100</width>
   <height>20</height>
   <visible>false</visible>
@@ -189,28 +200,63 @@
 </label>
 <label>
   <name>ldrb</name>
-  <top>190</top>
-  <left>0</left>
+  <top>140</top>
+  <left>110</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <align>center</align>
+</label>
+<label>
+  <name>cap_drb3</name>
+  <top>170</top>
+  <left>10</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>Átvéve</text>
+</label>
+<label>
+  <name>ldrb3</name>
+  <top>170</top>
+  <left>110</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <align>center</align>
+</label>
+<label>
+  <name>cap_drb4</name>
+  <top>200</top>
+  <left>10</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>Összesen átvéve</text>
+</label>
+<label>
+  <name>ldrb4</name>
+  <top>200</top>
+  <left>110</left>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
   <align>center</align>
 </label>
 
+
 <label>
   <name>cap_drb2</name>
-  <top>160</top>
+  <top>140</top>
   <left>300</left>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
   <text>Érkezett</text>
-  <width>100</width>
-  <height>20</height>
 </label>
 <text>
   <name>edrb2</name>
-  <top>190</top>
+  <top>170</top>
   <left>300</left>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -219,8 +265,8 @@
   <font_size>17</font_size>
   <height>40</height>  
   <align>center</align>
-  <width>100</width>
-  <lua_on_change>bevet/mentes.lua [lfejazon] [lcegazon] [lcikod] [eean] [edrb2]</lua_on_change>
+  <width>60</width>
+  <lua_on_change>bevet/mentes.lua [lfejazon] [lcegazon] [lcikod] [eean] [edrb2] [ldrb3] [ldrb4] [ldrb]</lua_on_change>
 </text>
 
 <custom_button>
@@ -294,7 +340,6 @@
   <row_height>160</row_height>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>bevet/atnezes_click.lua null</lua_after_click>
   <itempanel>atnezo_sor</itempanel>
 </table>
 
@@ -396,6 +441,6 @@
   <left>0</left>
   <parent>cikkvalpanel</parent>
   <visible>true</visible>
-  <lua_after_click>bevet/ujean.lua</lua_after_click>
+  <lua_after_click>egyeb/cikkvissza.lua</lua_after_click>
 </custom_button>
 </Root>

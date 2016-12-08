@@ -1,4 +1,4 @@
---<verzio>20161201</verzio>
+--<verzio>20161206</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -13,7 +13,8 @@ cikkval=0;
 if (result=='0') then
     ui:executeCommand('valueto','lcikknev',cikknev)
     ui:executeCommand('valuetohidden','lcikod',kod)
-    ui:executeCommand('showobj','cap_drb;edrb;button_ujean','')
+    ui:executeCommand('showobj','cap_drb;button_ujean','')
+    ui:executeCommand('valueto','edrb','')
     ui:executeCommand('setfocus','edrb','') 
 elseif (result=='-1') then
  --ui:executeCommand('setfocus','eean','') 
