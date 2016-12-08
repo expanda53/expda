@@ -485,9 +485,17 @@ public class exPane {
             extLibrary.runMethod(p1 + ' ' + p2);
         }
         else if (command.equalsIgnoreCase("TOAST")){
+            /*int duration = Toast.LENGTH_SHORT;
+            if (p2.equalsIgnoreCase("LONG")) duration = Toast.LENGTH_LONG;
             Toast.makeText(getContext(),
                     p1,
-                    Toast.LENGTH_SHORT).show();
+                    duration).show();
+
+            */
+            if (p2==null || p2.equalsIgnoreCase("")) p2="3";
+
+            exToast t = new exToast(getContext(),p1,Integer.parseInt(p2));
+            t.start();
         }
         else if (command.equalsIgnoreCase("NOTIFICATION")){
             showNotification(p1,p2);

@@ -250,10 +250,12 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
 
     @Override
     protected void onProgressUpdate(String... progress) {
-        Toast.makeText(
+        new exToast(c,progress[0],2).start();
+        /*Toast.makeText(
                 c,
                 progress[0],
                 Toast.LENGTH_SHORT).show();
+        */
 
     }
 

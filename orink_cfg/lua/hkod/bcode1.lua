@@ -1,9 +1,10 @@
---<verzio>20161123</verzio>
+--<verzio>20161208</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
-ean = params[2]:gsub("n",""):gsub(':','')
-hkod = params[3]:gsub("n",""):gsub(':','')
+ean = params[2]:gsub("\n",""):gsub(':','')
+hkod = params[3]:gsub("\n",""):gsub(':','')
+azon = params[4]:gsub("\n",""):gsub(':','')
 kezelo = ui:getKezelo()
 str = 'ean_check '..ean
 t=luafunc.query_assoc(str,false)
@@ -21,12 +22,16 @@ if (result=='0') then
     t2=luafunc.query_assoc(str,false)
     maxkidrb=t2[1]['MAXKIDRB']
 
+    str = 'hkod_kocsiklt '..azon..' '..kod
+    t2=luafunc.query_assoc(str,false)
+    maxbedrb=t2[1]['DRB']
+
     if (szorzo=='-1') then
       ui:executeCommand('valueto','lmaxdrb',maxkidrb)
       ui:executeCommand('showobj','cap_maxdrb','')
     else
-      ui:executeCommand('valuetohidden','cap_maxdrb',maxkidrb)
-      ui:executeCommand('hideobj','cap_maxdrb','')
+      ui:executeCommand('valueto','lmaxdrb',maxbedrb)
+      ui:executeCommand('showobj','cap_maxdrb','')
     end
     ui:executeCommand('setfocus','edrb','') 
 elseif (result=='-1') then

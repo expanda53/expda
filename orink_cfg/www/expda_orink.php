@@ -475,6 +475,16 @@
 	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }    
+  function hkod_kocsiklt($r){
+      $sql = "SELECT DRB FROM ANDROID_HKODRA_KOCSIKLT(:azon,:cikk)";
+      $stmt = query_prepare($sql);
+      $azon=trim($r['p1']);
+      $cikk=trim($r['p2']);
+      
+	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+  }
   function hkod_ment($r){
       $sql = "SELECT RESULT,'' RESULTTEXT,MIBIZ,AZON FROM ANDROID_HKODRA_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login)";
       $stmt = query_prepare($sql);

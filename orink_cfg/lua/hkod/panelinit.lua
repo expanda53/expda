@@ -1,4 +1,4 @@
---<verzio>20161123</verzio>
+--<verzio>20161208</verzio>
 local params = {...}
 ui = params[1]
 kezelo = ui:getKezelo()
@@ -16,3 +16,4 @@ end
 ui:executeCommand('valueto','lmibiz', mibiz)
 ui:executeCommand('valueto','lfejazon', azon)
 ui:executeCommand('aktbcodeobj','bcode0','')
+ui:executeCommand('setbgcolor','button_kibe','#497000')

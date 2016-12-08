@@ -61,7 +61,7 @@
 </barcode>
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>hkod/bcode1.lua [eean] [ehkod]</lua_after_trigger>
+  <lua_after_trigger>hkod/bcode1.lua [eean] [ehkod] [lfejazon]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
@@ -81,7 +81,7 @@
   <name>button_kibe</name>
   <Text>Kiszedés</Text>
   <top>0</top>
-  <width>295</width>
+  <width>290</width>
   <height>35</height>
   <left>102</left>
   <lua_after_click>hkod/beki.lua</lua_after_click>
@@ -92,7 +92,7 @@
 <label>
   <name>cap_hkod</name>
   <top>45</top>
-  <left>0</left>
+  <left>5</left>
   <width>70</width>
   <height>wrap</height>
   <visible>true</visible>
@@ -118,7 +118,7 @@
   <name>button_hkodlst</name>
   <Text>hkód klt</Text>
   <top>37</top>
-  <width>95</width>
+  <width>145</width>
   <height>45</height>
   <left>245</left>
   <lua_after_click>hkod/hkodklt.lua [ehkod]</lua_after_click>
@@ -131,7 +131,7 @@
 <label>
   <name>cap_ean</name>
   <top>93</top>
-  <left>0</left>
+  <left>5</left>
   <width>50</width>
   <height>wrap</height>
   <visible>false</visible>
@@ -146,7 +146,7 @@
   <parent>panel1</parent>
   <left>71</left>
   <visible>false</visible>
-  <lua_on_change>hkod/bcode1.lua [eean] [ehkod]</lua_on_change>
+  <lua_on_change>hkod/bcode1.lua [eean] [ehkod] [lfejazon]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -157,7 +157,7 @@
   <name>button_cikkklt</name>
   <Text>cikk klt</Text>
   <top>85</top>
-  <width>95</width>
+  <width>145</width>
   <height>45</height>
   <left>245</left>
   <lua_after_click>hkod/cikkklt.lua [lcikod]</lua_after_click>
@@ -232,7 +232,7 @@
   <style>buttondefault</style>
   <name>button_cikkval</name>
   <Text>Cikk választás</Text>
-  <top>235</top>
+  <top>230</top>
   <width>match</width>
   <height>45</height>
   <left>0</left>
@@ -246,7 +246,7 @@
   <style>buttondefault</style>
   <name>button_review</name>
   <Text>Kilépés</Text>
-  <top>280</top>
+  <top>275</top>
   <width>110</width>
   <height>45</height>
   <left>0</left>
@@ -259,7 +259,7 @@
   <style>buttondefault</style>
   <name>button_ujhkod</name>
   <Text>Új helykód</Text>
-  <top>280</top>
+  <top>275</top>
   <width>175</width>
   <height>45</height>
   <left>115</left>
@@ -271,7 +271,7 @@
   <style>buttondefault</style>
   <name>button_ujean</name>
   <Text>Új EAN</Text>
-  <top>280</top>
+  <top>275</top>
   <width>100</width>
   <height>45</height>
   <left>295</left>
@@ -324,7 +324,7 @@
   <column_title_drb>drb</column_title_drb>
   
   <font_size>10</font_size>
-  <row_height>60</row_height>
+  <row_height>40</row_height>
   <parent>hkodkltpanel</parent>
   <visible>true</visible>
   <itempanel>hkodklt_sor</itempanel>
@@ -333,7 +333,7 @@
 <panel>
     <name>hkodklt_sor</name>
     <parent>hkodkltpanel</parent>
-    <height>60</height>
+    <height>40</height>
     <width>match</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -341,8 +341,8 @@
 <label>
     <name>cikknev</name>
     <parent>hkodklt_sor</parent>
-    <width>340</width>
-    <height>60</height>
+    <width>320</width>
+    <height>40</height>
     <top>0</top>
     <left>0</left>
     <text>[cikknev]</text>
@@ -350,8 +350,8 @@
 <label>
     <name>drb</name>
     <parent>hkodklt_sor</parent>
-    <width>50</width>
-    <height>60</height>
+    <width>55</width>
+    <height>40</height>
     <top>0</top>
     <left>341</left>
     <text>[drb]</text>
@@ -417,7 +417,7 @@
 <panel>
     <name>cikkklt_sor</name>
     <parent>panel1</parent>
-    <height>105</height>
+    <height>40</height>
     <width>match</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -425,8 +425,8 @@
 <label>
     <name>hkod</name>
     <parent>cikkklt_sor</parent>
-    <width>320</width>
-    <height>30</height>
+    <width>340</width>
+    <height>40</height>
     <top>0</top>
     <left>0</left>
     <text>[hkod]</text>
@@ -435,10 +435,10 @@
 <label>
     <name>drb</name>
     <parent>cikkklt_sor</parent>
-    <width>240</width>
-    <height>30</height>
-    <top>75</top>
-    <left>240</left>
+    <width>60</width>
+    <height>40</height>
+    <top>0</top>
+    <left>340</left>
     <text>[drb]</text>
     <align>center</align>
     <font_size>17</font_size>    
@@ -450,7 +450,7 @@
   <Text>Vissza</Text>
   <top>290</top>
   <width>150</width>
-  <height>35</height>
+  <height>45</height>
   <left>0</left>
   <parent>cikkkltpanel</parent>
   <visible>true</visible>

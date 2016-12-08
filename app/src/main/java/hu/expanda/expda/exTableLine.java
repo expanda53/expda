@@ -3,6 +3,7 @@ package hu.expanda.expda;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
@@ -73,6 +74,7 @@ public class exTableLine extends LinearLayout {
                     }
                 }
 //            addView(l,new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
                 addView(l, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
             }
         }
@@ -110,8 +112,8 @@ public class exTableLine extends LinearLayout {
                     //tv.setClickable(false);
                     tv.setFocusable(false);
                     tv.setTag('_' + tv.getObj().getName());
-
                     p.addView(tv, new AbsoluteLayout.LayoutParams(tv.getMinimumWidth(), tv.getMinimumHeight(), tv.getLeft(), tv.getTop()));
+
 
                 }
             }
