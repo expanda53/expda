@@ -137,10 +137,10 @@
   function kiadas_mibizlist($r){
       $sql="SELECT CEGNEV||'|@@style:listtitle;listtitledone' CEGNEV,";
       $sql.="mibiz||'|@@style:listtitle;listtitledone' MIBIZ,";
-      $sql.="'Szállmód:'||COALESCE(SZALLMOD,'')||'|@@style:listdetails' SZALLMOD,";
-      $sql.="'Súly:'||CAST(SULY AS NUMERIC(10,2))||'|@@style:listdetails' SULY,";
-      $sql.="'Térf:'||CAST(TERFOGAT AS NUMERIC(10,2))||'|@@style:listdetails' TERFOGAT,";      
-      $sql.="'Sorok:'||SORDB||'|@@style:listdetails' SORDB,AZON";            
+      $sql.="'Szállmód: '||COALESCE(SZALLMOD,'')||'|@@style:listdetails' SZALLMOD,";
+      $sql.="'Súly: '||CAST(SULY AS NUMERIC(10,2))||'|@@style:listdetails' SULY,";
+      $sql.="'Térf: '||CAST(TERFOGAT AS NUMERIC(10,2))||'|@@style:listdetails' TERFOGAT,";      
+      $sql.="'Sorok: '||SORDB||'|@@style:listdetails' SORDB,AZON";            
       $sql.="      FROM ANDROID_KIADAS_MIBIZLIST(:login)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
@@ -263,7 +263,7 @@
   /* beerkezes */
 
   function beerk_ceglist($r){
-      $sql="SELECT NEV||'|@@style:listtitle' NEV,AZON||'|@@style:listhidden' AZON FROM ANDROID_BEERK_CEGLIST";
+      $sql="SELECT NEV||'|@@style:listtitle' NEV,RENTIP||'|@@style:listtitle' RENTIP,AZON||'|@@style:listhidden' AZON FROM ANDROID_BEERK_CEGLIST";
       $stmt = query_prepare($sql);
 	  echo query_print($stmt);
   }    
@@ -344,14 +344,16 @@
   }
   
   function beerk_lezaras($r){
-      $sql = "SELECT RESULTTEXT FROM ANDROID_BEERK_LEZAR(:login,:azon)";
+      $sql = "SELECT RESULTTEXT FROM ANDROID_BEERK_LEZAR(:login,:azon,:rentip)";
       $stmt = query_prepare($sql);
       
       $login=trim($r['p1']);
       $azon=trim($r['p2']);
+      $rentip=trim($r['p3']);
       
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':rentip', $rentip, PDO::PARAM_STR);
 	  echo query_print($stmt);      
       Firebird::commit();
   }  

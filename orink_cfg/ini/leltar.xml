@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161206</verzio>
+<verzio>20161215</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Leltár</text>
@@ -53,6 +53,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>reviewlabel</style>
+  <align>center</align>
 </label>
 
 <barcode>
@@ -344,6 +345,6 @@
   <left>0</left>
   <parent>cikkvalpanel</parent>
   <visible>true</visible>
-  <lua_after_click>leltar/cikkvissza.lua</lua_after_click>
+  <lua_after_click>egyeb/cikkvissza.lua</lua_after_click>
 </custom_button>
 </Root>

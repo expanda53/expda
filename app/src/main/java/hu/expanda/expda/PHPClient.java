@@ -4,7 +4,11 @@ package hu.expanda.expda;
  * Created by Encsi on 2015.03.01..
  */
 
+        import android.app.Application;
+        import android.app.ProgressDialog;
+        import android.content.Context;
         import android.os.AsyncTask;
+        import android.view.Window;
 
         import java.io.BufferedReader;
         import java.io.IOException;
@@ -32,6 +36,8 @@ public class PHPClient extends AsyncTask<String, Void, ArrayList> {
     private String URL = "";
     private ArrayList result = null;
     //convert InputStream to String
+    ProgressDialog progressDialog;
+    private Context c;
     private static ArrayList IStreamToString(InputStream is) {
 
         BufferedReader br = null;
@@ -70,7 +76,7 @@ public class PHPClient extends AsyncTask<String, Void, ArrayList> {
 
     public ArrayList sendMessage(String msg) throws Exception{
         try {
-
+//            MainActivity.showProgress();
             connection = (HttpURLConnection) new URL(getURL()).openConnection();
             connection.setDoOutput(true);
             connection.setDoInput(true);
@@ -132,6 +138,7 @@ public class PHPClient extends AsyncTask<String, Void, ArrayList> {
                 e.printStackTrace();
             }
         }
+//        MainActivity.hideProgress();
         return response;
     }
 
@@ -146,15 +153,43 @@ public class PHPClient extends AsyncTask<String, Void, ArrayList> {
 
     @Override
     protected ArrayList doInBackground(String... params) {
-        this.setURL(params[0]);
-        ArrayList a = null;
-        try {
-            a = this.sendMessage(params[1]);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        setResult(a);
-        return a;
+            this.setURL(params[0]);
+            ArrayList a = null;
+            try {
+                a = this.sendMessage(params[1]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            setResult(a);
+
+            return a;
     }
 
+    @Override
+    protected void onPostExecute(ArrayList result) {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+
+    }
+
+
+    @Override
+    protected void onPreExecute() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this.getContext());
+            progressDialog.setMessage("Várjon...");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+    }
+
+    public Context getContext() {
+        return c;
+    }
+
+    public void setContext(Context c) {
+        this.c = c;
+    }
 }

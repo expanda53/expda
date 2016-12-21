@@ -1,12 +1,16 @@
 package hu.expanda.expda;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.AbsoluteLayout;
 
 /*
@@ -20,6 +24,7 @@ public class MainActivity extends Activity {
     private exPane pane;
     public static String EXTRA_MSG_KEZELO = "hu.expanda.expda.KEZELO";
     public static String EXTRA_MSG_ITEM = "hu.expanda.expda.ITEM";
+    public static String EXTRA_MSG_GLOBALS = "hu.expanda.expda.GLOBALS";
     public static Object style = null;
     public static ArrayList<Object> a_style = null;
     public static Symbol symbol = null;
@@ -28,9 +33,13 @@ public class MainActivity extends Activity {
     public static boolean useSymbol = false;
     public static exMedia mediaFiles;
     public static DisplayMetrics dmetrics;
+    public static Activity act;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        ArrayList<String> globals ;
         dmetrics = getResources().getDisplayMetrics();
         AbsoluteLayout ll = new AbsoluteLayout(this);
 //        String xml = loadXml();
@@ -66,10 +75,13 @@ public class MainActivity extends Activity {
         */
         //mp3 fileok felolvasása, mediafiles arraylistbe
         if (mediaFiles==null) mediaFiles = new exMedia(this);
-        pane = new exPane(this, ll, xml);
+        act=this;
+        pane = new exPane(this, ll);
+        pane.Build(xml);
 
         setContentView(ll);
         pane.getLayout().requestFocus();
+
 /*
         if (!Ini.getLibFile().equalsIgnoreCase("")) {
             String libPath = Environment.getExternalStorageDirectory() +"/" + Ini.getLibFile();
@@ -182,6 +194,7 @@ public class MainActivity extends Activity {
         if (!Ini.isBackButtonDisabled()) super.onBackPressed();
 
     }
+
 /*
     @Override
     protected void onStop(){
@@ -190,5 +203,9 @@ public class MainActivity extends Activity {
 
     }
 */
+    public String getImei(){
+        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.getDeviceId();
+    }
 
 }

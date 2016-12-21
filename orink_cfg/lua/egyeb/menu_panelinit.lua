@@ -2,6 +2,9 @@
 params = {...}
 ui = params[1]
 require 'hu.expanda.expda/LuaFunc'
+--imei = ui:getImei()
+--mac = ui:getMacAddress()
+--ui:executeCommand('toast','imei:' .. imei ..', mac:' .. mac,'')
 wifienabled = ui:isWifiEnabled()
 wfs = ui:getWifiStrength()
 if (wifienabled and wfs>0) then 

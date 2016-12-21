@@ -24,6 +24,7 @@ import android.widget.Toast;
             this.duration = duration;
             this.text=text;
             toast = new Toast(c);
+
             TextView textView=new TextView(c);
             textView.setTextColor(Color.BLACK);
             //textView.setBackgroundColor(Color.WHITE);
@@ -55,6 +56,7 @@ import android.widget.Toast;
                 public void onFinish()
                 {
                     toast.cancel();
+
                 }
 
             }.start();

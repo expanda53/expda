@@ -1,4 +1,4 @@
---<verzio>20161208</verzio>
+--<verzio>20161218</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -38,12 +38,16 @@ elseif (result=='-1') then
  --ui:executeCommand('setfocus','eean','') 
  ui:executeCommand('playaudio','alert.mp3','')
  ui:executeCommand('toast','Nem található termék ilyen ean kóddal:\n'..ean)
+ ui:executeCommand('hideobj','cap_maxdrb;lmaxdrb;cap_drb;edrb;button_cikkklt;lcikknev','')
+ ui:executeCommand('showobj','button_ujean','')
  --ui:executeCommand('valueto','eean','')
  cikkval=1
 elseif (result=='-2') then
  --ui:executeCommand('setfocus','eean','') 
  ui:executeCommand('playaudio','alert.mp3','') 
  ui:executeCommand('toast','Több termék is található termék ilyen ean kóddal:\n'..ean)
+ ui:executeCommand('hideobj','cap_maxdrb;lmaxdrb;cap_drb;edrb;button_cikkklt;lcikknev','')
+ ui:executeCommand('showobj','button_ujean','')
  --ui:executeCommand('valueto','eean','')
  cikkval=2
 end

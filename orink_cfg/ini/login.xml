@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161202</verzio>
+<verzio>20161221</verzio>
 <mainpanel>
   <name>loginpanel</name>
   <text>Bejelentkezés</text>
@@ -40,12 +40,39 @@
   <height>40</height>
 </text>
 
+<label>
+  <name>lkulso</name>
+  <top>80</top>
+  <left>0</left>
+  <width>100</width>
+  <height>wrap</height>
+  <visible>true</visible>
+  <parent>panel1</parent>
+  <style>reviewlabel</style>
+  <text>Külső raktár</text>
+</label>
+
+<toggle_button>
+  <style>buttondefault</style>
+  <name>button_login</name>
+  <Text_on>Igen</Text_on>
+  <Text_off>Nem</Text_off>
+  <Checked>false</Checked>
+  <top>80</top>
+  <width>100</width>
+  <height>wrap</height>
+  <left>100</left>
+  <lua_after_on_click>egyeb/login_kulso.lua igen</lua_after_on_click>
+  <lua_after_off_click>egyeb/login_kulso.lua nem</lua_after_off_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</toggle_button>
 
 <custom_button>
   <style>buttondefault</style>
   <name>button_login</name>
   <Text>Bejelentkezés</Text>
-  <top>110</top>
+  <top>130</top>
   <width>match</width>
   <height>70</height>
   <left>0</left>
@@ -58,7 +85,7 @@
   <style>buttondefault</style>
   <name>button_exit</name>
   <Text>Kilépés</Text>
-  <top>185</top>
+  <top>205</top>
   <width>match</width>
   <height>70</height>
   <left>0</left>

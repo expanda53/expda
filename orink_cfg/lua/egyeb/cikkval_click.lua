@@ -62,6 +62,7 @@ elseif (aktmodul=='Hkód rendezés') then
       ui:executeCommand('valueto','lmaxdrb',maxbedrb)
       ui:executeCommand('showobj','cap_maxdrb','')
   end
+  ui:executeCommand('valueto','edrb','') 
   ui:executeCommand('setfocus','edrb','') 
 end
 ui:executeCommand('showobj','pfooter','')

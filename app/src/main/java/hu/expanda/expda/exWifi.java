@@ -12,7 +12,6 @@ public class exWifi {
     private static WifiManager wifiMan;
     private static WifiInfo wifiInfo;
 
-
     public exWifi (Context c) {
         if (wifiMan==null)  wifiMan = (WifiManager) ((Activity)c).getSystemService(Context.WIFI_SERVICE);
 
@@ -34,6 +33,12 @@ public class exWifi {
     public static int getWifiStrength(){
             return getWifiManager().calculateSignalLevel (getWifiInfo().getRssi(),5);
     }
+
+    public static String getMacAddress(){
+        return getWifiInfo().getMacAddress();
+    }
+
+
 
 
 

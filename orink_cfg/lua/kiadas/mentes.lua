@@ -1,4 +1,4 @@
---<verzio>20161205</verzio>
+--<verzio>20161218</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -14,12 +14,15 @@ stat = params[9]:gsub("\n",""):gsub(':','')
 kezelo = ui:getKezelo()
 
 if (eddigki=='') then
+  --eddig kiadott
   eddigki='0'
 end
 if (aktki=='') then
+  --aktualisan kiadott
   aktki='0'
 end 
 if (osszki=='') then
+  --ossz kiadando
   osszki='0'
 end
 ujki = tonumber(eddigki) + tonumber(aktki)
@@ -31,7 +34,7 @@ elseif (ujki>osszki) then
       ui:executeCommand('valueto','edrb2','')
       ui:executeCommand('setfocus','edrb2','')
 else 
-      --selejt, hiany felirasnal
+      --selejt, hiany felirasnal osszki-ujki>0
       hiany = osszki - ujki
       str = 'kiadas_mentes ' .. azon .. ' ' .. cikk .. ' ' .. ean .. ' ' .. hkod .. ' ' .. ujki .. ' '..hiany.. ' ' .. stat .. ' '.. kezelo
       t=luafunc.query_assoc(str,false)

@@ -33,37 +33,36 @@ public class uobj {
                     String res[] = line.split("=");
                     if (res.length>1){
                         String type = res[1];
-                        if (type.toUpperCase().equalsIgnoreCase("label")) aktobj = new ObjLabel();
-                        if (type.toUpperCase().equalsIgnoreCase("panel")) aktobj = new ObjPanel(false,false,false);
-                        if (type.toUpperCase().equalsIgnoreCase("imgbutton")) {
+                        if (type.equalsIgnoreCase("label")) aktobj = new ObjLabel();
+                        if (type.equalsIgnoreCase("panel")) aktobj = new ObjPanel(false,false,false);
+                        if (type.equalsIgnoreCase("imgbutton")) {
                             aktobj = new ObjButton();
                             ((ObjButton)aktobj).setFunction("custom");
                         }
-                        if (type.toUpperCase().equalsIgnoreCase("custom_button")) {
+                        if (type.equalsIgnoreCase("custom_button")) {
                             aktobj = new ObjButton();
                             ((ObjButton)aktobj).setFunction("custom");
                         }
-                        if (type.toUpperCase().equalsIgnoreCase("print_button")) {
+                        if (type.equalsIgnoreCase("print_button")) {
                             aktobj = new ObjButton();
                             ((ObjButton)aktobj).setFunction("print");
                         }
-                        if (type.toUpperCase().equalsIgnoreCase("edit") || type.toUpperCase().equalsIgnoreCase("text")) aktobj = new ObjText();
-
-
-                        if (type.toUpperCase().equalsIgnoreCase("barcode")) aktobj = new ObjBarcode();
-
-                        if (type.toUpperCase().equalsIgnoreCase("panel")) aktobj = new ObjPanel(false,false,false);
-                        if (type.toUpperCase().equalsIgnoreCase("mainpanel")) aktobj = new ObjPanel(true,false,false);
-                        if (type.toUpperCase().equalsIgnoreCase("taskpanel")) aktobj = new ObjPanel(true,true,false);
-                        if (type.toUpperCase().equalsIgnoreCase("menupanel")) aktobj = new ObjPanel(true,false,true);
-                        if (type.toUpperCase().equalsIgnoreCase("table"))     aktobj = new ObjTable("list");
-                        if (type.toUpperCase().equalsIgnoreCase("list"))     aktobj = new ObjTable("list");
-                        if (type.toUpperCase().equalsIgnoreCase("grid"))      aktobj = new ObjTable("grid");
-                        if (type.toUpperCase().equalsIgnoreCase("style")) aktobj = new ObjStyle();
+                        if (type.equalsIgnoreCase("toggle_button")) {
+                            aktobj = new ObjButton();
+                            ((ObjButton)aktobj).setFunction("toggle");
+                        }
+                        if (type.equalsIgnoreCase("edit") || type.equalsIgnoreCase("text")) aktobj = new ObjText();
+                        if (type.equalsIgnoreCase("barcode")) aktobj = new ObjBarcode();
+                        if (type.equalsIgnoreCase("panel")) aktobj = new ObjPanel(false,false,false);
+                        if (type.equalsIgnoreCase("mainpanel")) aktobj = new ObjPanel(true,false,false);
+                        if (type.equalsIgnoreCase("taskpanel")) aktobj = new ObjPanel(true,true,false);
+                        if (type.equalsIgnoreCase("menupanel")) aktobj = new ObjPanel(true,false,true);
+                        if (type.equalsIgnoreCase("table"))     aktobj = new ObjTable("list");
+                        if (type.equalsIgnoreCase("list"))     aktobj = new ObjTable("list");
+                        if (type.equalsIgnoreCase("grid"))      aktobj = new ObjTable("grid");
+                        if (type.equalsIgnoreCase("style")) aktobj = new ObjStyle();
                     }
-
                 }
-
             }
             return aktobj;
         }
@@ -136,11 +135,16 @@ public class uobj {
                     if (obj instanceof ObjButton) {
                         if (property.equalsIgnoreCase("sql_after_click")) ((ObjButton)obj).setSqlAfterClick(value);
                         if (property.equalsIgnoreCase("lua_after_click")) ((ObjButton)obj).setLuaAfterClick(value);
+                        if (property.equalsIgnoreCase("lua_after_on_click")) ((ObjButton)obj).setLuaAfterClickToggleOn(value);
+                        if (property.equalsIgnoreCase("lua_after_off_click")) ((ObjButton)obj).setLuaAfterClickToggleOff(value);
+                        if (property.equalsIgnoreCase("text_on")) ((ObjButton)obj).setTextOn(value);
+                        if (property.equalsIgnoreCase("text_off")) ((ObjButton)obj).setTextOff(value);
+                        if (property.equalsIgnoreCase("checked")) ((ObjButton)obj).setToggleChecked(value.equalsIgnoreCase("true"));
                         //if (property.equalsIgnoreCase("border_width")) ((ObjButton)obj).setBorderWidth(Integer.parseInt(value));
                         //if (property.equalsIgnoreCase("border_color")) ((ObjButton)obj).setBorderColor(value);
-                        if (property.equalsIgnoreCase("extfunction_after_click")) {
-                            ((ObjButton)obj).setExtFunctionAfterClick(value);
-                        }
+                        if (property.equalsIgnoreCase("extfunction_after_click"))  ((ObjButton)obj).setExtFunctionAfterClick(value);
+                        if (property.equalsIgnoreCase("extfunction_after_on_click"))  ((ObjButton)obj).setExtFunctionAfterClickToggleOn(value);
+                        if (property.equalsIgnoreCase("extfunction_after_off_click"))  ((ObjButton)obj).setExtFunctionAfterClickToggleOff(value);
                         if (property.equalsIgnoreCase("function")) ((ObjButton)obj).setFunction(value);
                         if (property.equalsIgnoreCase("image")) ((ObjButton)obj).setImage(value);
                         if (property.equalsIgnoreCase("image_align")) ((ObjButton)obj).setImageAlign(value);

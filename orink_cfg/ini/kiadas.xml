@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161206</verzio>
+<verzio>20161219</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -52,6 +52,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>reviewlabel</style>
+  <align>center</align>
 </label>
 
 <label>
@@ -62,7 +63,7 @@
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
-  <align>right</align>
+  <align>center</align>
   <style>reviewlabel</style>
 </label>
 <panel>
@@ -131,28 +132,19 @@
     <align>right</align>
 </label>
 <label>
-    <name>sordb</name>
+    <name>szallmod</name>
     <parent>mibizlist_sor</parent>
-    <width>200</width>
+    <width>400</width>
     <height>wrap</height>
     <top>30</top>
     <left>0</left>
-    <text>[sordb]</text>
-</label>
-<label>
-    <name>szallmod</name>
-    <parent>mibizlist_sor</parent>
-    <width>100</width>
-    <height>wrap</height>
-    <top>30</top>
-    <left>235</left>
     <text>[szallmod]</text>
 </label>
 
 <label>
     <name>terfogat</name>
     <parent>mibizlist_sor</parent>
-    <width>200</width>
+    <width>130</width>
     <height>wrap</height>
     <top>65</top>
     <left>0</left>
@@ -161,12 +153,22 @@
 <label>
     <name>suly</name>
     <parent>mibizlist_sor</parent>
-    <width>200</width>
+    <width>130</width>
     <height>wrap</height>
     <top>65</top>
-    <left>235</left>
+    <left>130</left>
     <text>[suly]</text>
 </label>
+<label>
+    <name>sordb</name>
+    <parent>mibizlist_sor</parent>
+    <width>130</width>
+    <height>wrap</height>
+    <top>65</top>
+    <left>260</left>
+    <text>[sordb]</text>
+</label>
+
 <label>
     <name>azon</name>
     <parent>mibizlist_sor</parent>
@@ -349,7 +351,7 @@
   <width>130</width>
   <height>45</height>
   <left>0</left>
-  <lua_after_click>kiadas/mentes.lua [lfejazon] [lcikod] . [ehkod] [ldrb2] 0 [ldrb] H</lua_after_click>
+  <lua_after_click>kiadas/nincsmeg.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -412,7 +414,6 @@
   <row_height>65</row_height>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>kiadas/atnezes_click.lua null</lua_after_click>
   <itempanel>atnezo_sor</itempanel>
 </table>
 
@@ -552,11 +553,24 @@
   <bgcolor>#000000</bgcolor>
   <left>0</left>
 </panel>
+<label>
+  <name>lhianysorsa</name>
+  <top>10</top>
+  <height>wrap</height>
+  <left>0</left>
+  <width>match</width>
+  <visible>true</visible>
+  <parent>phiany</parent>
+  <style>reviewlabel</style>
+  <align>center</align>
+  <text>Maradék sorsa</text>
+</label>
+
 <custom_button>
   <style>buttondefault</style>
   <name>btn_hiany</name>
   <Text>Hiány</Text>
-  <top>10</top>
+  <top>30</top>
   <width>match</width>
   <height>45</height>
   <left>0</left>
@@ -568,7 +582,7 @@
   <style>buttondefault</style>
   <name>btn_selejt</name>
   <Text>Selejt</Text>
-  <top>65</top>
+  <top>85</top>
   <width>match</width>
   <height>45</height>
   <left>0</left>

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161206</verzio>
+<verzio>20161215</verzio>
 <style>
  <name>hidden</name>
  <visible>false</visible>
@@ -90,8 +90,8 @@
 </style>
 <style>
   <name>reviewlabel</name>
-  <bgcolor>#434343</bgcolor>
-  <font_color>#000000</font_color>
+  <bgcolor>#455A64</bgcolor>
+  <font_color>#FF9800</font_color>
   <padding_left>5</padding_left>
   <padding_right>5</padding_right>
   <padding_top>5</padding_top>

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161206</verzio>
+<verzio>20161215</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -40,6 +40,15 @@
   <style>hidden</style>
   <text>0</text>
 </label>
+<label>
+  <name>lrentip</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+
 <panel>
   <name>panel1</name>
   <width>match</width>
@@ -62,6 +71,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>reviewlabel</style>
+  <align>center</align>
 </label>
 
 <label>
@@ -72,7 +82,7 @@
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
-  <align>right</align>
+  <align>center</align>
   <style>reviewlabel</style>
 </label>
 <panel>
@@ -98,6 +108,7 @@
 
   <column_title_nev>Név</column_title_nev>
   <column_title_azon>Azon</column_title_azon>
+  <column_title_rentip>Rentip</column_title_rentip>
   <row_height>10</row_height>
   <parent>ceglistpanel</parent>
   <visible>true</visible>
@@ -124,11 +135,20 @@
 <label>
     <name>nev</name>
     <parent>ceglist_sor</parent>
-    <width>400</width>
+    <width>350</width>
     <height>35</height>
     <top>0</top>
     <left>0</left>
     <text>[nev]</text>
+</label>
+<label>
+    <name>rentip</name>
+    <parent>ceglist_sor</parent>
+    <width>50</width>
+    <height>35</height>
+    <top>0</top>
+    <left>350</left>
+    <text>[rentip]</text>
 </label>
 <custom_button>
   <style>buttondefault</style>

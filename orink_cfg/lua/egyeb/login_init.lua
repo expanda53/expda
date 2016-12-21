@@ -1,6 +1,9 @@
---<verzio>20161202</verzio>
+--<verzio>20161221</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
+ui:executeCommand('showprogress','Várjon...','')
 ui:executeCommand('updatecfg','','')
+ui:executeCommand('hideprogress','','')
 ui:executeCommand('setfocus','elogin','')
+ui:setGlobal("kulsoraktar","nem")

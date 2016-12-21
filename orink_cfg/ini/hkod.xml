@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161206</verzio>
+<verzio>20161215</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Hkód rendezés</text>
@@ -74,6 +74,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>reviewlabel</style>
+  <align>center</align>
 </label>
 
 <custom_button>

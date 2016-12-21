@@ -1,4 +1,4 @@
---<verzio>20161201</verzio>
+--<verzio>20161215</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -10,7 +10,8 @@ if (dialogres=="null") then
 end
 if (dialogres=="igen") then
             fejazon = tostring(ui:findObject('lfejazon'):getText())
-            str = 'beerk_lezaras ' .. kezelo .. ' ' .. fejazon
+            rentip = tostring(ui:findObject('lrentip'):getText())
+            str = 'beerk_lezaras ' .. kezelo .. ' ' .. fejazon .. ' ' ..rentip
             list=luafunc.query_assoc(str,false)
             str = list[1]['RESULTTEXT']
             

@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
 import android.support.v4.app.NotificationCompat;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,10 +38,12 @@ public class exPane {
     public static boolean dialogRes;
     private String kezelo = "";
     private String aktmodul = "";
-
+    private static exGlobals globals;
 
     private PHPClient phpcli = null;
     private dbClient dbc = null;
+    public String aktGlobal = "";
+    ProgressDialog progressDialog;
     public Context getContext() {
         return context;
     }
@@ -93,7 +98,8 @@ public class exPane {
                 else new exPanel(this.getContext(), o, parent);
             }
             if (o instanceof ObjButton) {
-                new exButton(this.getContext(), o, parent,this);
+                if (((ObjButton) o).getFunction().equalsIgnoreCase("toggle") ) new exToggle(this.getContext(), o, parent,this);
+                else new exButton(this.getContext(), o, parent,this);
             }
             if (o instanceof ObjText) {
                 new exText(this.getContext(), o, parent,this);
@@ -114,11 +120,12 @@ public class exPane {
         return extLib;
     }
 
-    public exPane(Context c, ViewGroup layout, String xml) {
+    public exPane(Context c, ViewGroup layout) {
         this.layout = layout;
         this.context = c;
-
-
+    }
+    public void Build(String xml){
+        showProgress();
         createPanel(xml, Ini.getStyleFile());
 
         if (Ini.getConnectionType().equalsIgnoreCase("PHP")) try {
@@ -129,7 +136,7 @@ public class exPane {
 
         extLibrary.Create(this);
         if (MainActivity.useSymbol) MainActivity.symbol.setPane(this);
-
+        hideProgress();
 
     }
     public View findObject(String name) {
@@ -431,6 +438,7 @@ public class exPane {
 
             resultIntent.putExtra(MainActivity.EXTRA_MSG_ITEM,p1);
             resultIntent.putExtra(MainActivity.EXTRA_MSG_KEZELO,p2);
+            resultIntent.putExtra(MainActivity.EXTRA_MSG_GLOBALS,exGlobals.toStringRow());
             getContext().startActivity(resultIntent);
 //            ((Activity)getContext()).finish();
 
@@ -507,6 +515,12 @@ public class exPane {
         else if (command.equalsIgnoreCase("EXIT")) {
             this.getActivity().finishAffinity();
         }
+        else if (command.equalsIgnoreCase("SHOWPROGRESS")){
+            showProgress(p1);
+        }
+        else if (command.equalsIgnoreCase("HIDEPROGRESS")){
+            hideProgress();
+        }
         else if (command.equalsIgnoreCase("UPDATECFG")) {
             if (MainActivity.startUpdate && exWifi.isWifiEnabled() && exWifi.getWifiStrength()>0) {
                 try {
@@ -537,6 +551,14 @@ public class exPane {
                 }
             }
         }
+    }
+
+    public String getGlobal(String option) {
+        return exGlobals.getItemByName(option).getValue();
+    }
+
+    public void setGlobal(String option,String value){
+        exGlobals.addItem(option,value);
     }
 
     private void showNotification(String title, String text){
@@ -639,7 +661,7 @@ public class exPane {
         return layout;
     }
     public void showMessage(String p1) {
-        showMessage(p1,"");
+        showMessage(p1, "");
     }
 
     public void showMessage(String p1, final String p2) {
@@ -655,7 +677,7 @@ public class exPane {
                     public void onClick(DialogInterface dialog, int which) {
                         //dismiss the dialog
                         //exPane.dialogRes = true;
-                        if (p2!=null && !p2.equalsIgnoreCase("")) d.luaInit(p2);
+                        if (p2 != null && !p2.equalsIgnoreCase("")) d.luaInit(p2);
                     }
                 });
         dlgAlert.create().show();
@@ -770,7 +792,7 @@ public class exPane {
         }
         catch (Exception e1) {
             e1.printStackTrace();
-            showDialog("Script betöltés nem sikerült. Kilép?");
+            showDialog("Script hiba. Kilép?");
             if (exPane.dialogRes) {
                 try {
 //                    setScannerOff();
@@ -778,7 +800,7 @@ public class exPane {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                System.exit(0);
+                this.getActivity().finishAffinity();
             }
         }
 
@@ -797,57 +819,68 @@ public class exPane {
     public ArrayList sendGetExecute(String message,boolean parsing)
 
     {
-        if (message!=null){
-            try {
-                message = replaceValues(message,":");
-                if (1==1 || this.getPhpcli()!=null) {
-//                    ArrayList response = getPhpcli().sendMessage(message);
-                    String[] s={"",""};
-
-                    s[0] = Ini.getPhpUrl();
-                    s[1] = message;
-                    PHPClient phpcli = new PHPClient(s[0]);
-                    phpcli.execute(s);
-                    ArrayList response = null ;
-                    while (response == null) {
-                        response = phpcli.getResult();
-                    }
-
-                    if (parsing) {parseTcpResponse(response);return null;}
-                    else {return response;}
-                }
-                else return null;
-            }
-            catch (Exception e){
-                System.out.println(e.getMessage());
+        if (message!=null) {
+            if (exWifi.isWifiEnabled() && exWifi.getWifiStrength() > 0) {
                 try {
-                    if (getPhpcli()!=null) {
-                        ArrayList response = getPhpcli().sendMessage(message);
-                        if (parsing) {parseTcpResponse(response);return null;}
-                        else {return response;}
+                    message = replaceValues(message, ":");
+                    if (1 == 1 || this.getPhpcli() != null) {
+//                    ArrayList response = getPhpcli().sendMessage(message);
+                        String[] s = {"", ""};
 
-                    }
-                    else return null;
-                } catch (Exception e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                    System.out.println(e.getMessage());
-                    showDialog("Üzenetküldés nem sikerült.Kilép?");
-                    if (exPane.dialogRes) {
-
-                        try {
-//                            setScannerOff();
-                        } catch (Exception e2) {
-                            // TODO Auto-generated catch block
-                            e2.printStackTrace();
+                        s[0] = Ini.getPhpUrl();
+                        s[1] = message;
+                        PHPClient phpcli = new PHPClient(s[0]);
+                        phpcli.setContext(this.getContext());
+                        phpcli.execute(s);
+                        ArrayList response = null;
+                        while (response == null) {
+                            response = phpcli.getResult();
                         }
+                        if (parsing) {
+                            parseTcpResponse(response);
+                            return null;
+                        } else {
+                            return response;
+                        }
+                    } else return null;
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    try {
+                        if (getPhpcli() != null) {
+                            ArrayList response = getPhpcli().sendMessage(message);
+                            if (parsing) {
+                                parseTcpResponse(response);
+                                return null;
+                            } else {
+                                return response;
+                            }
 
-                        System.exit(0);
+                        } else return null;
+                    } catch (Exception e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                        System.out.println(e.getMessage());
+                        showDialog("Üzenetküldés nem sikerült.Kilép?");
+                        if (exPane.dialogRes) {
+
+                            try {
+//                            setScannerOff();
+                            } catch (Exception e2) {
+                                // TODO Auto-generated catch block
+                                e2.printStackTrace();
+                            }
+
+                            System.exit(0);
+                        }
                     }
+                    return null;
                 }
+
+            }
+            else {
+                new exToast(this.getContext(),"Wifi probléma",2).start();
                 return null;
             }
-
         }
         else return null;
     }
@@ -872,6 +905,15 @@ public class exPane {
         return exWifi.getWifiStrength();
     }
 
+    public String getMacAddress(){
+        return exWifi.getMacAddress();
+    }
+
+    public String getImei(){
+        return ((MainActivity)getContext()).getImei();
+    }
+
+
     public String getKezelo() {
         return kezelo;
     }
@@ -879,10 +921,48 @@ public class exPane {
     public void setExtras() {
         this.kezelo = getActivity().getIntent().getStringExtra(MainActivity.EXTRA_MSG_KEZELO);
         this.aktmodul = getActivity().getIntent().getStringExtra(MainActivity.EXTRA_MSG_ITEM);
+        String globalsStr = getActivity().getIntent().getStringExtra(MainActivity.EXTRA_MSG_GLOBALS);
+        if (globals==null)  globals = new exGlobals(globalsStr);
+        else globals.setGlobals(globalsStr);
     }
 
     public String getAktmodul() {
         return aktmodul;
     }
+    public void hideProgress(){
+            //act.setProgressBarIndeterminateVisibility(false);
+                if (progressDialog!=null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+    }
+    public void showProgress() {
+        if (this.getContext()!=null) {
+            if (progressDialog == null) {
+                progressDialog = new ProgressDialog(this.getContext());
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.setCancelable(false);
+                progressDialog.setIndeterminate(true);
+            }
+            progressDialog.setMessage("Várjon...");
+            progressDialog.show();
+        }
+
+    }
+    public void showProgress(String p1){
+            //act.setProgressBarIndeterminateVisibility(true);
+
+        if (this.getContext()!=null) {
+                if (progressDialog == null) {
+                    progressDialog = new ProgressDialog(this.getContext());
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.setCancelable(false);
+                    progressDialog.setIndeterminate(true);
+                }
+            progressDialog.setMessage(p1);
+            progressDialog.show();
+        }
+
+    }
+
 
 }
