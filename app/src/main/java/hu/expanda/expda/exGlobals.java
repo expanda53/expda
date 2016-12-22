@@ -37,7 +37,7 @@ public class exGlobals {
             exGlobals.getGlobals().clear();
             String[] Items = globals.split(";");
             for (int i = 0; i < Items.length; i++) {
-                exGlobals.addItem(Items[i]);
+                if (Items[i]!="") exGlobals.addItem(Items[i]);
             }
         }
     }
@@ -69,7 +69,7 @@ public class exGlobals {
         String result = "";
         if (getGlobals()!=null) {
             for (int i = 0; i < getGlobals().size(); i++) {
-                result += getGlobals().get(i);
+                result += getGlobals().get(i) + ";";
             }
         }
         return result;

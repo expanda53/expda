@@ -8,6 +8,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -23,12 +24,14 @@ public class exSpinner extends Spinner {
     public exPane getPane() {
     return pane;
 }
-
+    public int selectedIndex;
+    public String selectedValue = "";
     private exPane pane;
     public exSpinner(Context context, Object o, ViewGroup layout, exPane pane) {
         super(context);
         obj = ((ObjCombo)o);
         this.pane = pane;
+        if (getObj().getItems()!=null && getObj().getItems().length()!=0) this.setItems(getObj().getItems());
 //        this.setText(obj.getText().replace("<enter>","\n"));
         this.setTop(obj.getTop());
         this.setLeft(obj.getLeft());
@@ -44,16 +47,32 @@ public class exSpinner extends Spinner {
 //        else
 //        if (!obj.isFontBold() && obj.isFontItalic()) this.setTypeface(null, Typeface.ITALIC);
 /*
-        this.setOnClickListener(new OnClickListener() {
+        this.setOnItemClickListener(new OnItemClickListener() {
 
-            public void onClick(View v) {
-
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 getPane().luaInit(getObj().getLuaAfterClick());
-//                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
+            }
+
+        });
+*/
+        final exSpinner sp = this;
+        this.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sp.setSelectedIndex(position);
+                sp.setSelectedValue(parent.getSelectedItem().toString());
+                getPane().luaInit(getObj().getLuaAfterClick());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                sp.setSelectedIndex(-1);
+                sp.setSelectedValue("");
+                getPane().luaInit(getObj().getLuaAfterClick());
 
             }
         });
-*/
         ArrayList<ObjStyle> styles = getObj().getStyle();
 
         if (styles!=null){
@@ -135,5 +154,35 @@ public class exSpinner extends Spinner {
         this.setAdapter(adapter);
     }
 
+    public void setItems(String itemsString){
+        this.setItems(itemsString, ";");
+    }
 
+
+    public void refresh(ArrayList items){
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(pane.getContext(), android.R.layout.simple_spinner_item,items);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            this.setAdapter(adapter);
+
+    }
+
+    public int getSelectedIndex() {
+        return selectedIndex;
+    }
+
+    public void setSelectedIndex(int selectedIndex) {
+        this.selectedIndex = selectedIndex;
+    }
+
+    public String getSelectedValue() {
+        return selectedValue;
+    }
+
+    public void setSelectedValue(String selectedValue) {
+        this.selectedValue = selectedValue;
+    }
+
+    public String getText(){
+        return this.getSelectedItem().toString();
+    }
 }

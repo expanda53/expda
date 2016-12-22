@@ -60,6 +60,7 @@ public class uobj {
                         if (type.equalsIgnoreCase("table"))     aktobj = new ObjTable("list");
                         if (type.equalsIgnoreCase("list"))     aktobj = new ObjTable("list");
                         if (type.equalsIgnoreCase("grid"))      aktobj = new ObjTable("grid");
+                        if (type.equalsIgnoreCase("select") || type.equalsIgnoreCase("spinner") || type.equalsIgnoreCase("combo"))      aktobj = new ObjCombo();
                         if (type.equalsIgnoreCase("style")) aktobj = new ObjStyle();
                     }
                 }
@@ -214,6 +215,12 @@ public class uobj {
                         if (property.equalsIgnoreCase("lua_on_exit")) ((ObjText)obj).setLuaOnExit(value);
                         if (property.equalsIgnoreCase("extfunction_on_change")) ((ObjText)obj).setExtFunctionOnChange(value);
                         if (property.equalsIgnoreCase("extfunction_on_exit")) ((ObjText)obj).setExtFunctionOnExit(value);
+                    }
+                    if (obj instanceof ObjCombo) {
+                        if (property.equalsIgnoreCase("lua_after_click")) ((ObjCombo)obj).setLuaAfterClick(value);
+                        if (property.equalsIgnoreCase("lua_on_create")) ((ObjCombo)obj).setLuaOnCreate(value);
+                        //if (property.equalsIgnoreCase("extfunction_after_click"))  ((ObjCombo)obj).setExtFunctionAfterClick(value);
+                        if (property.equalsIgnoreCase("items"))  ((ObjCombo)obj).setItems(value);
                     }
 
 

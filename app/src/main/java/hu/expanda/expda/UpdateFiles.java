@@ -7,6 +7,10 @@ package hu.expanda.expda;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -109,54 +113,128 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
                 if (status != "") publishProgress(status);
                 return true;
             } else {
-                String content = StringFunc.getFile(fileNev);
-                if (content == null || content == "") {
-                    content = ""; //nem talalhato ilyen file, fel kell irni
-                    status = "Új:" + fileNev;
-                }
-                //ha megtalalhato benne az uj verzioszam, nem kell frissiteni
-                if (content.indexOf("<verzio>" + verzio + "</verzio>") > -1) return false;
-                else {
-                    //az uj verzio nem talalhato a fileban, frissiteni kell
-                    if (content != "" && content != null) status = "Frissítve:" + fileNev;
-                    ArrayList response = downloadFile(getURLRoot() + "/" + fileNev);
-                    File file = new File(Ini.getRootDir(), fileNev);
-                    String dir = file.getParent();
-                    File fdir = new File(dir);
-                    fdir.mkdirs();
+                if (fileNev.indexOf("apk/expda")>-1) {
+                    PackageInfo pInfo = null;
                     try {
-                        file.createNewFile();
-                    } catch (IOException e) {
+                        pInfo = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
+                    } catch (PackageManager.NameNotFoundException e) {
                         e.printStackTrace();
                     }
-                    FileOutputStream fileOutputStream = null;
-                    try {
-                        fileOutputStream = new FileOutputStream(file);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    for (int i = 0; i < response.size(); i++) {
-                        String aktrow = response.get(i).toString();
+                    String liveVersion = pInfo.versionName;
+                    if (!liveVersion.equalsIgnoreCase(verzio)){
+                        InputStream response = downloadStream(getURLRoot() + "/" + fileNev);
+                        File file = new File(Ini.getRootDir(), fileNev);
+                        String dir = file.getParent();
+                        File fdir = new File(dir);
+                        fdir.mkdirs();
                         try {
-                            fileOutputStream.write(aktrow.getBytes());
-                            fileOutputStream.write("\n".getBytes());
+                            file.createNewFile();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }
-                    try {
-                        fileOutputStream.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        fileOutputStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    if (status != "") publishProgress(status);
+                        FileOutputStream fileOutputStream = null;
+                        try {
+                            fileOutputStream = new FileOutputStream(file);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        byte[] buffer = new byte[1024];
+                        int len1 = 0;
+                        try {
+                            while ((len1 = response.read(buffer)) != -1) {
+                                fileOutputStream.write(buffer, 0, len1);
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            fileOutputStream.flush();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            response.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            fileOutputStream.flush();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if (status != "") publishProgress(status);
 
+
+                        file.setReadable(true, false);
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+                        c.startActivity(intent);
+                    }
                     return true;
+
+                }
+                else {
+
+
+                    String content = StringFunc.getFile(fileNev);
+                    if (content == null || content == "") {
+                        content = ""; //nem talalhato ilyen file, fel kell irni
+                        status = "Új:" + fileNev;
+                    }
+                    //ha megtalalhato benne az uj verzioszam, nem kell frissiteni
+                    if (content.indexOf("<verzio>" + verzio + "</verzio>") > -1) return false;
+                    else {
+                        //az uj verzio nem talalhato a fileban, frissiteni kell
+                        if (content != "" && content != null) status = "Frissítve:" + fileNev;
+                        ArrayList response = downloadFile(getURLRoot() + "/" + fileNev);
+                        File file = new File(Ini.getRootDir(), fileNev);
+                        String dir = file.getParent();
+                        File fdir = new File(dir);
+                        fdir.mkdirs();
+                        try {
+                            file.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        FileOutputStream fileOutputStream = null;
+                        try {
+                            fileOutputStream = new FileOutputStream(file);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        for (int i = 0; i < response.size(); i++) {
+                            String aktrow = response.get(i).toString();
+                            try {
+                                fileOutputStream.write(aktrow.getBytes());
+                                fileOutputStream.write("\n".getBytes());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        try {
+                            fileOutputStream.flush();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if (status != "") publishProgress(status);
+
+                        return true;
+                    }
                 }
             }
         }
@@ -203,6 +281,43 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
         //updatefiles.xml beolvasas arraylistbe
         ArrayList response = IStreamToString(inputStream);
         return response;
+
+    }
+    public InputStream downloadStream(String urlStr) {
+        URL url = null;
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            connection = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.setRequestMethod("GET");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        //connection.setDoOutput(true);
+        connection.setConnectTimeout(10000);
+        connection.setReadTimeout(10000);
+        try {
+            connection.connect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        InputStream inputStream = null;
+        try {
+            inputStream = connection.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return inputStream;
 
     }
 

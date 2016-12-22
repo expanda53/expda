@@ -217,6 +217,10 @@ public class LuaFunc extends TwoArgFunction {
             if ( o instanceof exGrid){
                 ((exGrid) o).refresh(list);
             }
+            else
+            if ( o instanceof exSpinner){
+                ((exSpinner) o).refresh(list);
+            }
             return null;
         }
     }
@@ -249,6 +253,19 @@ public class LuaFunc extends TwoArgFunction {
 
                 }
                 ((exGrid) o).refresh(arrlist);
+
+            }
+            else
+            if ( o instanceof exSpinner){
+                String[] rows = content.split( "\n");
+
+                if (rows.length>0){
+                    for (int j=0; j<rows.length; j++){
+                        arrlist.add(rows[j] );
+                    }
+
+                }
+                ((exSpinner) o).refresh(arrlist);
 
             }
             return null;

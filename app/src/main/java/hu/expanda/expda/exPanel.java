@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AbsoluteLayout;
 import android.widget.LinearLayout;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Created by Encsi on 2015.01.31..
  */
@@ -15,9 +17,10 @@ import android.widget.LinearLayout;
 
 public class exPanel extends AbsoluteLayout{
     private ObjPanel obj;
-    public exPanel(Context parent, Object panel,ViewGroup layout){
+    private exPane pane;
+    public exPanel(Context parent, Object panel,ViewGroup layout,exPane pane){
         super(parent);
-
+        this.setPane(pane);
         this.obj=(ObjPanel)panel;
         this.setVisibility(obj.getVisibility());
         if (this.getVisibility()== exTextView.VISIBLE) this.bringToFront();
@@ -43,7 +46,23 @@ public class exPanel extends AbsoluteLayout{
 
 //		System.out.println(this.getData("NAME"));
 
+        getPane().luaInit(getObj().getLuaOnCreate());
+        try {
+            getPane().getExtLib().runMethod(getObj().getExtFunctionOnCreate());
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    public exPane getPane() {
+        return pane;
+    }
+
+    public void setPane(exPane pane) {
+        this.pane = pane;
     }
 
     public void setBounds(String command, int val){

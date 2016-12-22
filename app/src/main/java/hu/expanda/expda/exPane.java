@@ -9,6 +9,8 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.CountDownTimer;
@@ -95,7 +97,7 @@ public class exPane {
 
 
                 }
-                else new exPanel(this.getContext(), o, parent);
+                else new exPanel(this.getContext(), o, parent,this);
             }
             if (o instanceof ObjButton) {
                 if (((ObjButton) o).getFunction().equalsIgnoreCase("toggle") ) new exToggle(this.getContext(), o, parent,this);
@@ -107,6 +109,9 @@ public class exPane {
             if (o instanceof ObjTable) {
                 if( ((ObjTable)o).getViewType().equalsIgnoreCase("list")) new exTable(this.getContext(), o, parent,this);
                 else new exGrid(this.getContext(), o, parent,this);
+            }
+            if (o instanceof ObjCombo) {
+                new exSpinner(this.getContext(), o, parent,this);
             }
 
         }
@@ -139,6 +144,16 @@ public class exPane {
         hideProgress();
 
     }
+    public String getAppVersion(){
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return pInfo.versionName;
+    }
+
     public View findObject(String name) {
         return layout.findViewWithTag(name);
     }
@@ -161,6 +176,10 @@ public class exPane {
             else
             if ( o instanceof exText){
                 val=((exText) o).getText().toString();
+            }
+            else
+            if ( o instanceof exSpinner){
+                val=((exSpinner) o).getText().toString();
             }
 //			res=res.replaceAll("\\["+part+"\\]", val);
             val=val.replaceAll( " ", "%20"); //szóköz lecserélése. sqlben majd vissza kell cserélni
@@ -424,6 +443,12 @@ public class exPane {
                 if ( o instanceof exGrid){
                     if (((exGrid) o).getObj().getLuaOnCreate()!=null) {
                         String msg=((exGrid) o).getObj().getLuaOnCreate();
+                        luaInit(msg); //lua.queryvel refresht kell meghivni (parsing false)
+                    }
+                }
+                if ( o instanceof exSpinner){
+                    if (((exSpinner) o).getObj().getLuaOnCreate()!=null) {
+                        String msg=((exSpinner) o).getObj().getLuaOnCreate();
                         luaInit(msg); //lua.queryvel refresht kell meghivni (parsing false)
                     }
                 }

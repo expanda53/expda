@@ -1,6 +1,7 @@
 package hu.expanda.expda;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -41,6 +42,7 @@ public class exToggle extends ToggleButton {
                 if (style.getFontSize()>0) getObj().setFontSize(style.getFontSize());
                 if (style.getForeColor() != 0) this.setTextColor(style.getForeColor());
                 //else this.setTextColor(Color.BLACK);
+
                 if (style.getBackColor() != 0) this.setBackgroundColor(style.getBackColor());
                 if (style.isFontBold() && style.isFontItalic()) {
                     getObj().setFontBold(true);

@@ -10,14 +10,26 @@ import android.net.Uri;
 
     public class ObjCombo extends ObjDefault {
         private String LuaAfterClick="";
+        private String LuaOnCreate="";
+        private String Items="";
 
     public String getLuaAfterClick() {
         return LuaAfterClick;
     }
-
     public void setLuaAfterClick(String luaAfterClick) {
         LuaAfterClick = luaAfterClick;
     }
+
+    public String getLuaOnCreate() {
+        return LuaOnCreate;
+    }
+    public void setLuaOnCreate(String luaOnCreate) {
+        LuaOnCreate = luaOnCreate;
+    }
+
+
+
+
     @Override
     public int getFontSize(){
         int fsize = super.getFontSize();
@@ -27,5 +39,12 @@ import android.net.Uri;
         return fsize;
     }
 
+    public String getItems() {
+        return Items;
+    }
+
+    public void setItems(String items) {
+        Items = items;
+    }
 }
 

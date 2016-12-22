@@ -81,7 +81,7 @@ public class exTableLine extends LinearLayout {
     }
 
     private void updatePanel(Object cells){
-        exPanel p = new exPanel(c,masterPanel.getObj(), null);
+        exPanel p = new exPanel(c,masterPanel.getObj(), null,this.pane);
         p.setWidth1(masterPanel.getMinimumWidth());
         p.setHeight1(masterPanel.getMinimumHeight());
         //p.setMinimumHeight(masterPanel.getHeight());
