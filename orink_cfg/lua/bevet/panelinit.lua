@@ -1,6 +1,8 @@
---<verzio>20161121</verzio>
+--<verzio>20161222</verzio>
 local params = {...}
 ui = params[1]
+version = ui:getGlobal("appversion")
+ui:executeCommand('valueto',"lverzio",'exPDA v' .. version)
 ui:executeCommand("hideobj","pfooter")
 kezelo = ui:getKezelo()
 ui:executeCommand('valueto','lkezelostat','Kezelő: '..kezelo)

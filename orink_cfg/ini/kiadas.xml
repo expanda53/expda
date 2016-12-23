@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161219</verzio>
+<verzio>20161223</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -570,7 +570,7 @@
   <style>buttondefault</style>
   <name>btn_hiany</name>
   <Text>Hiány</Text>
-  <top>30</top>
+  <top>50</top>
   <width>match</width>
   <height>45</height>
   <left>0</left>
@@ -582,7 +582,7 @@
   <style>buttondefault</style>
   <name>btn_selejt</name>
   <Text>Selejt</Text>
-  <top>85</top>
+  <top>105</top>
   <width>match</width>
   <height>45</height>
   <left>0</left>

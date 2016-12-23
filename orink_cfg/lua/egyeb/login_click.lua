@@ -1,5 +1,6 @@
---<verzio>20161117</verzio>
+--<verzio>20161223</verzio>
 require 'hu.expanda.expda/LuaFunc'
+require '.egyeb.functions'
 local params = {...}
 ui = params[1]
 kezelo = params[2]:gsub("n",""):gsub(':','')
@@ -9,7 +10,7 @@ if (t[1]['RESULTTEXT']=='OK') then
     ui:executeCommand("valueto","elogin","")
     ui:executeCommand('openxml','mainmenu.xml',kezelo)
 else
-    ui:executeCommand("toast","Nem megfelelő bejelentkezési adatok!","")
+    alert(ui,"Nem megfelelő bejelentkezési adatok!")
     ui:executeCommand("valueto","elogin","")
     ui:executeCommand("setfocus","elogin","")
 end

@@ -1,4 +1,4 @@
---<verzio>20161219a</verzio>
+--<verzio>20161223</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -49,7 +49,8 @@ else
         ui:executeCommand('valuetohidden','ldrb2','')
         ui:executeCommand('valueto','lcikknev', 'Nincs több szedhető tétel!')
         ui:executeCommand('valuetohidden','lcikod', '')
-        ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_hkod;lhkod','')      
+        ui:executeCommand('valuetohidden','eean', '')
+        ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_hkod;lhkod;cap_ean','')      
 
         ui:executeCommand('toast','Nincs több kiszedendő tétel!','')
         ui:executeCommand('startlua','kiadas/showreview.lua','')

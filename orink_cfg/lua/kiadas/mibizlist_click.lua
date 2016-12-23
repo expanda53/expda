@@ -1,4 +1,4 @@
---<verzio>20161206</verzio>
+--<verzio>20161221</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -13,7 +13,8 @@ cegnev= t['CEGNEV']
 mibiz= t['MIBIZ']
 azon= t['AZON']
 kezelo = ui:getKezelo()
-str = 'kiadas_init '..azon..' '..kezelo
+kulsoraktar = ui:getGlobal("kulsoraktar")
+str = 'kiadas_init '..azon..' '..kezelo.. ' ' .. kulsoraktar
 q=luafunc.query_assoc(str,false)
 if (q[1]['RESULT']~='0') then
     text = q[1]['RESULTTEXT']

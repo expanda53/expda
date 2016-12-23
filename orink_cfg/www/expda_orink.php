@@ -141,20 +141,24 @@
       $sql.="'Súly: '||CAST(SULY AS NUMERIC(10,2))||'|@@style:listdetails' SULY,";
       $sql.="'Térf: '||CAST(TERFOGAT AS NUMERIC(10,2))||'|@@style:listdetails' TERFOGAT,";      
       $sql.="'Sorok: '||SORDB||'|@@style:listdetails' SORDB,AZON";            
-      $sql.="      FROM ANDROID_KIADAS_MIBIZLIST(:login)";
+      $sql.="      FROM ANDROID_KIADAS_MIBIZLIST(:login,:kulso)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
+      $kulso=trim($r['p2']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);      
 	  echo query_print($stmt);
   }
   function kiadas_init($r){
-      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_KIADAS_INIT(:azon,:login)";
+      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_KIADAS_INIT(:azon,:login,:kulso)";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);
       $login=trim($r['p2']);
+      $kulso=trim($r['p3']);
       
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);
       Firebird::commit();
   }
@@ -178,7 +182,7 @@
   }
   
   function kiadas_mentes($r){
-      $sql = "SELECT RESULTTEXT,RESULT FROM ANDROID_KIADAS_MENTES(:azon, :cikk, :ean, :hkod,:drb2,:hiany,:hiany_oka, :login)";
+      $sql = "SELECT RESULTTEXT,RESULT FROM ANDROID_KIADAS_MENTES(:azon, :cikk, :ean, :hkod,:drb2,:hiany,:hiany_oka, :login, :kulso)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
@@ -189,6 +193,7 @@
       $hiany=trim($r['p6']);
       $hiany_oka=trim($r['p7']);
       $login=trim($r['p8']);
+      $kulso=trim($r['p9']);
       if ($hiany_oka=='.') $hiany_oka='';
       
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
@@ -199,6 +204,7 @@
       $stmt->bindParam(':hiany', $hiany, PDO::PARAM_STR);
       $stmt->bindParam(':hiany_oka', $hiany_oka, PDO::PARAM_STR);
       $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
       Firebird::commit();
   }
@@ -206,22 +212,26 @@
 
   function kiadas_cikklist($r){
       $sql="SELECT CIKK, CIKKNEV||case ";
-      $sql.="  when (abs(drb) = drb2 ) then '|@@style:listtitle;listtitledone' ";
+      $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')<>'H') then '|@@style:listtitle;listtitledone' ";
+      $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')='H') then '|@@style:listtitle;listtitlemiss' ";
       $sql.= " when (drb2=0) then '|@@style:listtitle;listtitlewait' ";
       $sql.= " when (abs(drb) > drb2 and drb2>0) then '|@@style:listtitle;listtitlework' end CIKKNEV,";
           
       $sql.= " 'Helykód:'||HKOD||case ";
-      $sql.="  when (abs(drb) = drb2 ) then '|@@style:listtitle;listtitledone' ";
+      $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')<>'H') then '|@@style:listtitle;listtitledone' ";
+      $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')='H') then '|@@style:listtitle;listtitlemiss' ";
       $sql.= " when (drb2=0) then '|@@style:listtitle;listtitlewait' ";
       $sql.= " when (abs(drb) > drb2 and drb2>0) then '|@@style:listtitle;listtitlework' end HKOD,";
 
       $sql.= " 'Kiszedendõ: '||cast(DRB as integer)||case ";
-      $sql.="  when (abs(drb) = drb2 ) then '|@@style:listtitle;listtitledone' ";
+      $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')<>'H') then '|@@style:listtitle;listtitledone' ";
+      $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')='H') then '|@@style:listtitle;listtitlemiss' ";
       $sql.= " when (drb2=0) then '|@@style:listtitle;listtitlewait' ";
       $sql.= " when (abs(drb) > drb2 and drb2>0) then '|@@style:listtitle;listtitlework' end DRB,";
       
       $sql.= " 'Kiszedve: '||cast(DRB2 as integer)||case ";
-      $sql.="  when (abs(drb) = drb2 ) then '|@@style:listtitle;listtitledone' ";
+      $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')<>'H') then '|@@style:listtitle;listtitledone' ";
+      $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')='H') then '|@@style:listtitle;listtitlemiss' ";
       $sql.= " when (drb2=0) then '|@@style:listtitle;listtitlewait' ";
       $sql.= " when (abs(drb) > drb2 and drb2>0) then '|@@style:listtitle;listtitlework' end DRB2";      
       
@@ -269,25 +279,27 @@
   }    
   
   function beerk_bizkeres($r){
-      $sql = "SELECT AZON,MIBIZ FROM ANDROID_BEERK_BIZKERES(:ceg,:login)";
+      $sql = "SELECT AZON,MIBIZ FROM ANDROID_BEERK_BIZKERES(:ceg,:login,:kulso)";
       $stmt = query_prepare($sql);
       
       $ceg=trim($r['p1']);
       $login=trim($r['p2']);
+      $kulso=trim($r['p3']);
       
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
-      $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
       $stmt->bindParam(':ceg', $ceg, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }  
   function beerk_eankeres($r){
-      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login)";
+      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login,:kulso)";
       $stmt = query_prepare($sql);
       
       $ceg=trim($r['p1']);
       $ean=trim($r['p2']);
       $cikod=trim($r['p3']);
       $login=trim($r['p4']);
+      $kulso=trim($r['p5']);
       if ($ean=='.') $ean='';
       if ($cikod=='.') $cikod='';
       
@@ -295,10 +307,11 @@
       $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
       $stmt->bindParam(':cikod', $cikod, PDO::PARAM_STR);  
       $stmt->bindParam(':ceg', $ceg, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }  
   function beerk_ment($r){
-      $sql = "SELECT RESULT,RESULTTEXT,MIBIZ,AZON FROM ANDROID_BEERK_MENTES(:azon, :ceg, :cikk, :ean, :drb, :login)";
+      $sql = "SELECT RESULT,RESULTTEXT,MIBIZ,AZON FROM ANDROID_BEERK_MENTES(:azon, :ceg, :cikk, :ean, :drb, :login, :kulso)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
@@ -307,6 +320,7 @@
       $ean=trim($r['p4']);
       $drb=trim($r['p5']);
       $login=trim($r['p6']);
+      $kulso=trim($r['p7']);
       
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
@@ -314,6 +328,7 @@
       $stmt->bindParam(':ceg', $ceg, PDO::PARAM_STR);
       $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
       $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
       Firebird::commit();
   }
@@ -360,26 +375,30 @@
   /* bevet eddig */
   /* leltar innen */
   function leltar_mibizlist($r){
-      $sql="SELECT AZON,MIBIZ FROM ANDROID_LELTAR_MIBIZLIST(:login)";
+      $sql="SELECT AZON,MIBIZ FROM ANDROID_LELTAR_MIBIZLIST(:login,:kulso)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
+      $kulso=trim($r['p2']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }  
 
   function leltar_init($r){
-      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_LELTAR_INIT(:azon,:login)";
+      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_LELTAR_INIT(:azon,:login,:kulso)";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);
       $login=trim($r['p2']);
+      $kulso=trim($r['p3']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);
       Firebird::commit();
   }  
 
   function leltar_ment($r){
-      $sql = "SELECT RESULT,RESULTTEXT,MIBIZ,AZON FROM ANDROID_LELTAR_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login)";
+      $sql = "SELECT RESULT,RESULTTEXT,MIBIZ,AZON FROM ANDROID_LELTAR_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login, :kulso)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
@@ -388,13 +407,14 @@
       $ean=trim($r['p4']);
       $drb=trim($r['p5']);
       $login=trim($r['p6']);
-      
+      $kulso=trim($r['p7']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
       $stmt->bindParam(':drb', $drb, PDO::PARAM_STR);
       $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
       $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
       $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
       Firebird::commit();
   }
@@ -442,39 +462,47 @@
 /* leltar eddig */
 /* hkod rendezés*/
   function hkod_init($r){
-      $sql = "SELECT AZON,MIBIZ FROM ANDROID_HKODRA_INIT(:login)";
+      $sql = "SELECT AZON,MIBIZ FROM ANDROID_HKODRA_INIT(:login,:kulso)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
+      $kulso=trim($r['p2']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
   function hkod_cikkhkklt($r){
-      $sql = "SELECT ODRB - FDRB AS MAXKIDRB FROM ANDROID_HKODRA_CIKKHKKLT(:hkod, :cikk)";
+      $sql = "SELECT ODRB - FDRB AS MAXKIDRB FROM ANDROID_HKODRA_CIKKHKKLT(:hkod, :cikk, :kulso)";
       $stmt = query_prepare($sql);
       
       $hkod=trim($r['p1']);
       $cikk=trim($r['p2']);
+      $kulso=trim($r['p3']);
       
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
       $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
   function hkod_hkklt($r){
-      $sql = "SELECT CIKKNEV||'|@@style:labeldefault' CIKKNEV,DRB||'|@@style:labeldefault' DRB FROM ANDROID_HKODRA_HKKLT(:hkod)";
+      $sql = "SELECT CIKKNEV||'|@@style:labeldefault' CIKKNEV,DRB||'|@@style:labeldefault' DRB FROM ANDROID_HKODRA_HKKLT(:hkod,:kulso)";
       $stmt = query_prepare($sql);
       if (isset($r['p1'])) $hkod=trim($r['p1']);
       else $hkod='';
+      $kulso=trim($r['p2']);
       
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }  
   function hkod_cikkklt($r){
-      $sql = "SELECT HKOD||'|@@style:labeldefault' HKOD,DRB||'|@@style:labeldefault' DRB FROM ANDROID_HKODRA_CIKKKLT(:cikk)";
+      $sql = "SELECT HKOD||'|@@style:labeldefault' HKOD,DRB||'|@@style:labeldefault' DRB FROM ANDROID_HKODRA_CIKKKLT(:cikk,:kulso)";
       $stmt = query_prepare($sql);
       if (isset($r['p1'])) $cikk=trim($r['p1']);
       else $cikk='';
+      $kulso=trim($r['p2']);
       
 	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }    
   function hkod_kocsiklt($r){
@@ -488,7 +516,7 @@
 	  echo query_print($stmt);      
   }
   function hkod_ment($r){
-      $sql = "SELECT RESULT,'' RESULTTEXT,MIBIZ,AZON FROM ANDROID_HKODRA_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login)";
+      $sql = "SELECT RESULT,'' RESULTTEXT,MIBIZ,AZON FROM ANDROID_HKODRA_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login,:kulso)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
@@ -497,6 +525,7 @@
       $ean=trim($r['p4']);
       $drb=trim($r['p5']);
       $login=trim($r['p6']);
+      $kulso=trim($r['p7']);
       
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
@@ -504,6 +533,7 @@
       $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
       $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
       $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
       Firebird::commit();
   }

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161221</verzio>
+<verzio>20161222</verzio>
 <mainpanel>
   <name>loginpanel</name>
   <text>Bejelentkezés</text>
@@ -40,39 +40,26 @@
   <height>40</height>
 </text>
 
-<label>
-  <name>lkulso</name>
+<combo>
+  <name>combo_raktar</name>
+  <Items>Belső raktár;Külső raktár</Items>
   <top>80</top>
+  <width>match</width>
+  <height>60</height>
   <left>0</left>
-  <width>100</width>
-  <height>wrap</height>
-  <visible>true</visible>
   <parent>panel1</parent>
-  <style>reviewlabel</style>
-  <text>Külső raktár</text>
-</label>
+  <visible>true</visible>
+  <bgcolor>#fafafa</bgcolor>
+  <font_color>#000000</font_color>
+  <lua_after_click>egyeb/login_kulso.lua [combo_raktar]</lua_after_click>
 
-<toggle_button>
-  <style>buttondefault</style>
-  <name>button_login</name>
-  <Text_on>Igen</Text_on>
-  <Text_off>Nem</Text_off>
-  <Checked>false</Checked>
-  <top>80</top>
-  <width>100</width>
-  <height>wrap</height>
-  <left>100</left>
-  <lua_after_on_click>egyeb/login_kulso.lua igen</lua_after_on_click>
-  <lua_after_off_click>egyeb/login_kulso.lua nem</lua_after_off_click>
-  <parent>panel1</parent>
-  <visible>true</visible>
-</toggle_button>
+</combo>
 
 <custom_button>
   <style>buttondefault</style>
   <name>button_login</name>
   <Text>Bejelentkezés</Text>
-  <top>130</top>
+  <top>150</top>
   <width>match</width>
   <height>70</height>
   <left>0</left>
@@ -85,7 +72,7 @@
   <style>buttondefault</style>
   <name>button_exit</name>
   <Text>Kilépés</Text>
-  <top>205</top>
+  <top>225</top>
   <width>match</width>
   <height>70</height>
   <left>0</left>

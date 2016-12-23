@@ -1,5 +1,6 @@
---<verzio>20161123</verzio>
+--<verzio>20161223</verzio>
 require 'hu.expanda.expda/LuaFunc'
+require '.egyeb.functions'
 local params = {...}
 ui = params[1]
 azon = params[2]:gsub("n",""):gsub(':','')
@@ -11,8 +12,7 @@ if (str=='OK') then
        ui:executeCommand('TOAST','Lezárás rendben.')
        
 else
-       ui:executeCommand('playaudio','alert.mp3','') 
-       ui:executeCommand('TOAST',str)
+       alert(ui,str)
        --ui:executeCommand('uzenet',str)
 end
 ui:executeCommand('CLOSE','','')

@@ -1,4 +1,4 @@
---<verzio>20161218</verzio>
+--<verzio>20161221</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -12,7 +12,7 @@ aktki = params[7]:gsub("\n",""):gsub(':','')
 osszki = params[8]:gsub("\n",""):gsub(':','')
 stat = params[9]:gsub("\n",""):gsub(':','')
 kezelo = ui:getKezelo()
-
+kulsoraktar = ui:getGlobal("kulsoraktar")
 if (eddigki=='') then
   --eddig kiadott
   eddigki='0'
@@ -36,7 +36,7 @@ elseif (ujki>osszki) then
 else 
       --selejt, hiany felirasnal osszki-ujki>0
       hiany = osszki - ujki
-      str = 'kiadas_mentes ' .. azon .. ' ' .. cikk .. ' ' .. ean .. ' ' .. hkod .. ' ' .. ujki .. ' '..hiany.. ' ' .. stat .. ' '.. kezelo
+      str = 'kiadas_mentes ' .. azon .. ' ' .. cikk .. ' ' .. ean .. ' ' .. hkod .. ' ' .. ujki .. ' '..hiany.. ' ' .. stat .. ' '.. kezelo .. ' ' .. kulsoraktar
       t=luafunc.query_assoc(str,false)
       result = t[1]['RESULT']
       resulttext = t[1]['RESULTTEXT']

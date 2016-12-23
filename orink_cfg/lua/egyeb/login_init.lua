@@ -6,4 +6,9 @@ ui:executeCommand('showprogress','Várjon...','')
 ui:executeCommand('updatecfg','','')
 ui:executeCommand('hideprogress','','')
 ui:executeCommand('setfocus','elogin','')
-ui:setGlobal("kulsoraktar","nem")
+ui:setGlobal("kulsoraktar","RA01")
+version = ui:getAppVersion()
+ui:setGlobal("appversion",version)
+
+
+

@@ -1,5 +1,6 @@
---<verzio>20161202</verzio>
+--<verzio>20161223</verzio>
 require 'hu.expanda.expda/LuaFunc'
+require '.egyeb.functions'
 local params = {...}
 ui=params[1]
 lotthkod = params[2]:gsub("\n",""):gsub(':','')
@@ -13,8 +14,7 @@ if (lotthkod==varthkod) then
   ui:executeCommand('valueto','eean','')
   ui:executeCommand('setfocus','eean','')
 else
- ui:executeCommand('playaudio','alert.mp3','')
- ui:executeCommand('toast','Nem egyezik a várt és a lőtt helykód!')
+ alert(ui,'Nem egyezik a várt és a lőtt helykód!')
  ui:executeCommand('valueto','ehkod','')
  ui:executeCommand('setfocus','ehkod','')   
 end

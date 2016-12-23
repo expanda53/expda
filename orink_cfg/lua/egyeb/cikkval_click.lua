@@ -1,5 +1,6 @@
---<verzio>20161208</verzio>
+--<verzio>20161223</verzio>
 require 'hu.expanda.expda/LuaFunc'
+require '.egyeb.functions'
 local params = {...}
 ui=params[1]
     
@@ -34,8 +35,7 @@ elseif (aktmodul=='Kiadás') then
       ui:executeCommand('showobj','cap_drb;ldrb;cap_drb2;ldrb2;cap_edrb2;edrb2','')
       ui:executeCommand('setfocus','edrb2','') 
   else 
-      ui:executeCommand('playaudio','alert.mp3','') 
-      ui:executeCommand('toast','Nem egyezik a várt és a kiválasztott cikk!')
+      alert(ui,'Nem egyezik a várt és a kiválasztott cikk!')
       ui:executeCommand('valueto','eean','') 
       ui:executeCommand('setfocus','eean','') 
   end

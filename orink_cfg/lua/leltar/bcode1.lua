@@ -1,5 +1,6 @@
---<verzio>20161206</verzio>
+--<verzio>20161223</verzio>
 require 'hu.expanda.expda/LuaFunc'
+require '.egyeb.functions'
 local params = {...}
 ui=params[1]
 ean = params[2]:gsub("n",""):gsub(':','')
@@ -18,14 +19,12 @@ if (result=='0') then
     ui:executeCommand('setfocus','edrb','') 
 elseif (result=='-1') then
  --ui:executeCommand('setfocus','eean','') 
- ui:executeCommand('playaudio','alert.mp3','')
- ui:executeCommand('toast','Nem található termék ilyen ean kóddal:\n'..ean)
+ alert(ui,'Nem található termék ilyen ean kóddal:\n'..ean)
  --ui:executeCommand('valueto','eean','')
  cikkval=1
 elseif (result=='-2') then
  --ui:executeCommand('setfocus','eean','') 
- ui:executeCommand('playaudio','alert.mp3','')
- ui:executeCommand('toast','Több termék is található termék ilyen ean kóddal:\n'..ean)
+  alert(ui,'Több termék is található termék ilyen ean kóddal:\n'..ean)
  --ui:executeCommand('valueto','eean','')
  cikkval=2
 end

@@ -1,5 +1,6 @@
---<verzio>20161203</verzio>
+--<verzio>20161223</verzio>
 require 'hu.expanda.expda/LuaFunc'
+require '.egyeb.functions'
 local params = {...}
 ui=params[1]
 ean = params[2]:gsub("\n",""):gsub(':','')
@@ -15,21 +16,18 @@ if (result=='0') then
       ui:executeCommand('showobj','cap_drb;ldrb;cap_drb2;ldrb2;cap_edrb2;edrb2','')
       ui:executeCommand('setfocus','edrb2','') 
     else 
-      ui:executeCommand('playaudio','alert.mp3','') 
-      ui:executeCommand('toast','Nem egyezik a várt és a lőtt cikk!')
+      alert(ui,'Nem egyezik a várt és a lőtt cikk!')
       ui:executeCommand('valueto','eean','') 
       ui:executeCommand('setfocus','eean','') 
     end
 elseif (result=='-1') then
  --ui:executeCommand('setfocus','eean','') 
- ui:executeCommand('playaudio','alert.mp3','')
- ui:executeCommand('toast','Nem található termék ilyen ean kóddal:\n'..ean)
+ alert(ui,'Nem található termék ilyen ean kóddal:\n'..ean)
  --ui:executeCommand('valueto','eean','')
  cikkval=1
 elseif (result=='-2') then
  --ui:executeCommand('setfocus','eean','') 
- ui:executeCommand('playaudio','alert.mp3','') 
- ui:executeCommand('toast','Több termék is található termék ilyen ean kóddal:\n'..ean)
+ alert(ui,'Több termék is található termék ilyen ean kóddal:\n'..ean)
  --ui:executeCommand('valueto','eean','')
  cikkval=2
 end

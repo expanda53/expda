@@ -1,9 +1,7 @@
---<verzio>20161215</verzio>
+--<verzio>20161221</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
-
-
 row = ui:findObject('ceglist_table'):getSelectedRow()  
 t = luafunc.rowtotable(row)
 cegnev= t['NEV']
@@ -17,7 +15,8 @@ ui:executeCommand('showobj','pfooter;cap_ean;eean;button_review;button_cikkval',
 ui:executeCommand('aktbcodeobj','bcode1','')
 
 kezelo = ui:getKezelo()
-str = 'beerk_bizkeres ' .. cegazon .. ' ' .. kezelo
+kulsoraktar = ui:getGlobal("kulsoraktar")
+str = 'beerk_bizkeres ' .. cegazon .. ' ' .. kezelo .. ' ' .. kulsoraktar
 t=luafunc.query_assoc(str,false)
 fejazon=t[1]['AZON']
 mibiz=t[1]['MIBIZ']
