@@ -10,7 +10,10 @@ import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsoluteLayout;
 
 /*
@@ -51,13 +54,19 @@ public class MainActivity extends Activity {
         }
 
         Ini.Create();
-        if (Ini.isLandScape())  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-        else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
-        String xml = Ini.getStartXML();
+        String startXml = Ini.getStartXML();
+        String xml = startXml;
         Intent intent =this.getIntent();
 
         String xItem = intent.getStringExtra(EXTRA_MSG_ITEM);
         if (xItem != null && xItem!="") xml = xItem+".xml";
+        if (xml.equalsIgnoreCase(startXml)) {
+            Ini.setCreated(false);
+            Ini.Create();
+        }
+        if (Ini.isLandScape())  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+
         new exWifi(this);
         /*if (startUpdate && exWifi.isWifiEnabled() && exWifi.getWifiStrength()>0) {
             try {
@@ -206,6 +215,15 @@ public class MainActivity extends Activity {
     public String getImei(){
         TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();
+    }
+    public void hideSoftKeyboard(View view){
+        if (!Ini.isSoftKeyboardNeed()) {
+            getWindow().setSoftInputMode(
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+            );
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 }

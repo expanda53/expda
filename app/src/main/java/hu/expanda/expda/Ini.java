@@ -38,6 +38,7 @@ public class Ini {
     private static boolean created = false;
     private static String styleFile = "style.xml";
 	private static String startXML = "mainmenu.xml";
+	private static boolean needSoftKeyboard = true;
 	public static void Create(){
         if (!created) {
             if (System.getProperty("expda.dir") != null)
@@ -103,6 +104,7 @@ public class Ini {
 //            Ini.setStyleFile(domParsing(xml,"style_file","Root"));
 			Ini.setStartXML(domParsing(xml, "start_xml", "Root"));
             Ini.setUpdateURL(domParsing(xml,"update_url","Root"));
+            Ini.setNeedSoftKeyboard(domParsing(xml,"need_softkeyboard","Root").equalsIgnoreCase("true"));
 			
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -225,5 +227,21 @@ public class Ini {
 
 	public static void setDisableBackButton(boolean disableBackButton) {
 		Ini.disableBackButton = disableBackButton;
+	}
+
+    public static boolean isSoftKeyboardNeed() {
+        return needSoftKeyboard;
+    }
+
+    public static void setNeedSoftKeyboard(boolean needSoftKeyboard) {
+        Ini.needSoftKeyboard = needSoftKeyboard;
+    }
+
+	public static boolean isCreated() {
+		return created;
+	}
+
+	public static void setCreated(boolean created) {
+		Ini.created = created;
 	}
 }

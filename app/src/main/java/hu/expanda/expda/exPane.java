@@ -19,6 +19,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class exPane {
     }
 
     private boolean createPanel( String xml, String stylexml){
+
         dbc = new dbClient(this.getContext());
         setExtras();
         if (MainActivity.a_style == null || MainActivity.a_style.size()==0) {
@@ -68,7 +70,6 @@ public class exPane {
         obj.fetchXML();
         while (obj.parsingComplete) ;
         objects = obj.getObjects();
-
         for (int i = 0; i < objects.size(); i++) {
             Object o = objects.get(i);
 
@@ -91,7 +92,7 @@ public class exPane {
             if (o instanceof ObjPanel) {
                 if (((ObjPanel) o).isMainPanel()){
                     setLuaOnCreate(((ObjPanel) o).getLuaOnCreate());
-                    setExtFunctionOnCreate(((ObjPanel)o).getExtFunctionOnCreate());
+                    setExtFunctionOnCreate(((ObjPanel) o).getExtFunctionOnCreate());
                     if (((ObjPanel) o).getBackColor() != -1)
                         this.getLayout().setBackgroundColor(((ObjPanel) o).getBackColor());
 
@@ -104,7 +105,9 @@ public class exPane {
                 else new exButton(this.getContext(), o, parent,this);
             }
             if (o instanceof ObjText) {
-                new exText(this.getContext(), o, parent,this);
+                exText e = new exText(this.getContext(), o, parent,this);
+                ((MainActivity)getContext()).hideSoftKeyboard(e);
+
             }
             if (o instanceof ObjTable) {
                 if( ((ObjTable)o).getViewType().equalsIgnoreCase("list")) new exTable(this.getContext(), o, parent,this);
@@ -120,7 +123,6 @@ public class exPane {
         return true;
 
     }
-
     public extLibrary getExtLib(){
         return extLib;
     }

@@ -6,9 +6,11 @@ import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsoluteLayout;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -92,10 +94,24 @@ public class exText extends EditText {
 
         this.setTag(getObj().getName());
 
+        this.setOnTouchListener((new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                 return false;
+            }
+        }));
+        this.setOnClickListener((new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getContext()).hideSoftKeyboard(v);
+                    }
+                })
 
+        );
         this.setOnFocusChangeListener((new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                ((MainActivity)getContext()).hideSoftKeyboard(v);
                 if (!hasFocus) {
                     getPane().luaInit(getObj().getLuaOnExit());
                     try {

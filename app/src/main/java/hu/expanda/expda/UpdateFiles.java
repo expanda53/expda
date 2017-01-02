@@ -122,6 +122,8 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
                     }
                     String liveVersion = pInfo.versionName;
                     if (!liveVersion.equalsIgnoreCase(verzio)){
+                        status="";
+                        publishProgress("Program frissítés, verzió: " + verzio);
                         InputStream response = downloadStream(getURLRoot() + "/" + fileNev);
                         File file = new File(Ini.getRootDir(), fileNev);
                         String dir = file.getParent();
@@ -131,12 +133,14 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
                             file.createNewFile();
                         } catch (IOException e) {
                             e.printStackTrace();
+                            status = e.getMessage();
                         }
                         FileOutputStream fileOutputStream = null;
                         try {
                             fileOutputStream = new FileOutputStream(file);
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
+                            status = e.getMessage();
                         }
                         byte[] buffer = new byte[1024];
                         int len1 = 0;
@@ -146,39 +150,46 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
+                            status = e.getMessage();
                         }
                         try {
                             fileOutputStream.flush();
                         } catch (IOException e) {
                             e.printStackTrace();
+                            status = e.getMessage();
                         }
                         try {
                             fileOutputStream.close();
                         } catch (IOException e) {
                             e.printStackTrace();
+                            status = e.getMessage();
                         }
                         try {
                             response.close();
                         } catch (IOException e) {
                             e.printStackTrace();
+                            status = e.getMessage();
                         }
                         try {
                             fileOutputStream.flush();
                         } catch (IOException e) {
                             e.printStackTrace();
+                            status = e.getMessage();
                         }
                         try {
                             fileOutputStream.close();
                         } catch (IOException e) {
                             e.printStackTrace();
+                            status = e.getMessage();
                         }
-                        if (status != "") publishProgress(status);
-
-
-                        file.setReadable(true, false);
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-                        c.startActivity(intent);
+                        if (status == "") publishProgress("Program telepítés...");
+                        else publishProgress(status);
+                        if (status=="") {
+                            file.setReadable(true, false);
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+                            c.startActivity(intent);
+                        }
                     }
                     return true;
 
