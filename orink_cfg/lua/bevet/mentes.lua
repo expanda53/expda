@@ -1,4 +1,4 @@
---<verzio>20161223</verzio>
+--<verzio>20170105</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -13,7 +13,7 @@ drb4 = params[8]:gsub("\n",""):gsub(':','')
 drb = params[9]:gsub("\n",""):gsub(':','')
 -- aktualisan megadott mennyiseg
 if (drb2=='') then drb2='0' end
-if (drb2>0) then
+if (tonumber(drb2)>0) then
     -- vart mennyiseg
     if (drb=='') then drb='0' end
     -- kezelo altal atveve

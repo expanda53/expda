@@ -1,4 +1,4 @@
---<verzio>20161223</verzio>
+--<verzio>20170105</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -15,6 +15,7 @@ t = luafunc.rowtotable(row)
 kod= t['KOD']
 nev= t['NEV']
 ui:executeCommand('hide','cikkvalpanel','')
+kulsoraktar = ui:getGlobal("kulsoraktar")
 aktmodul = tostring(ui:findObject('lmodulstat'):getText())
 if (aktmodul == 'Beérkezés') then
   cegazon = tostring(ui:findObject('lcegazon'):getText())
@@ -47,7 +48,7 @@ elseif (aktmodul=='Hkód rendezés') then
   szorzo = tostring(ui:findObject('lszorzo'):getText())
   hkod = tostring(ui:findObject('ehkod'):getText())
   azon = tostring(ui:findObject('lfejazon'):getText())
-  str = 'hkod_cikkhkklt '..hkod..' '..kod
+  str = 'hkod_cikkhkklt '..hkod..' '..kod.. ' ' .. kulsoraktar
   t2=luafunc.query_assoc(str,false)
   maxkidrb=t2[1]['MAXKIDRB']
 

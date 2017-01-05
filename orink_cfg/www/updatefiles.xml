@@ -1,5 +1,5 @@
-apk/expda-debug.apk;5.031
-ini/appconfig.xml;20161202
+apk/expda-debug.apk;5.034
+ini/appconfig.xml;20161229
 ini/style.xml;20161222
 ini/login.xml;20161222
 lua/egyeb/login_init.lua;20161221
@@ -16,7 +16,7 @@ ini/pfooter.xml;20161221
 lua/egyeb/setfocus.lua;20161102
 ini/pcikkval.xml;20161208
 lua/egyeb/cikkval_refresh.lua;20161201
-lua/egyeb/cikkval_click.lua;20161223
+lua/egyeb/cikkval_click.lua;20170105
 lua/egyeb/cikkval_open.lua;20161203
 ini/leltar.xml;20161215
 lua/leltar/panelinit.lua;20161222
@@ -35,7 +35,7 @@ lua/bevet/kiadasfolyt.lua;20161121
 lua/bevet/ceglist_click.lua;20161221
 lua/bevet/bcode1.lua;20161223
 lua/bevet/ujean.lua;20161206
-lua/bevet/mentes.lua;20161223
+lua/bevet/mentes.lua;20170105
 lua/bevet/lezaras.lua;20161223
 lua/bevet/kesobbfolyt.lua;20161223
 ini/hkod.xml;20161215
@@ -43,7 +43,7 @@ lua/hkod/panelinit.lua;20161222
 lua/hkod/beki.lua;20161219
 lua/hkod/hkodcheck.lua;20161223
 lua/hkod/bcode1.lua;20161223
-lua/hkod/mentes.lua;20161223
+lua/hkod/mentes.lua;20170105
 lua/hkod/ujhkod.lua;20161130
 lua/hkod/hkodklt.lua;20161221
 lua/hkod/hkodkltvissza.lua;20161203

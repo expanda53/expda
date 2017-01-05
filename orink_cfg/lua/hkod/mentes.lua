@@ -1,4 +1,4 @@
---<verzio>20161223</verzio>
+--<verzio>20170105</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -8,7 +8,7 @@ ean = params[3]:gsub("\n",""):gsub(':','')
 drb = params[4]:gsub("\n",""):gsub(':',''):gsub('-','')
 fejazon = params[5]:gsub("\n",""):gsub(':','')
 hkod = params[6]:gsub("\n",""):gsub(':','')
-if (drb>0) then
+if (tonumber(drb)>0) then
     kezelo = ui:getKezelo()
     kulsoraktar = ui:getGlobal("kulsoraktar")
     szorzo = tostring(ui:findObject('lszorzo'):getText())
