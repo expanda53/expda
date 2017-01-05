@@ -819,6 +819,13 @@ public class exPane {
         }
         catch (Exception e1) {
             e1.printStackTrace();
+            String logs = e1.getMessage();
+            try {
+                logs = logs.replace(" ","_");
+                this.sendGetExecute("applog " + this.getKezelo()+" luaerror " + logs,false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             showDialog("Script hiba. Kilép?");
             if (exPane.dialogRes) {
                 try {

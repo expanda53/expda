@@ -99,6 +99,13 @@
 	return $utf;	
   }    
   /* altalanos */
+  function applog($r){
+      $kezelo=$r['p1'];
+      $logtip=$r['p2'];
+      $logtext=$r['p3'];
+      logol('['.$logtip.']' . 'kezelo:' .$kezelo.' log:'.$logtext);
+      echo "ok";
+  }
   function ean_check($r){
       $sql="SELECT CIKK,CIKKNEV,RESULT FROM ANDROID_EAN_CHECK(:ean)";
       $stmt = query_prepare($sql);
@@ -551,4 +558,5 @@
       Firebird::commit();
   }
 /* hkod rendezés eddig */
+    
 ?>
