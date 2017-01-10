@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161229</verzio>
+<verzio>20170102</verzio>
 <connection_type>php</connection_type>
 <php_url_local>http://192.168.1.105/expda_orink.php</php_url_local>
 <php_url_eles>http://192.168.1.247:82/expda_orink.php</php_url_eles>

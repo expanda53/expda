@@ -1,5 +1,5 @@
 apk/expda-debug.apk;5.035
-ini/appconfig.xml;20161229
+ini/appconfig.xml;20170102
 ini/style.xml;20161222
 ini/login.xml;20161222
 lua/egyeb/login_init.lua;20161221
@@ -20,7 +20,7 @@ lua/egyeb/cikkval_click.lua;20170105
 lua/egyeb/cikkval_open.lua;20161203
 ini/leltar.xml;20161215
 lua/leltar/panelinit.lua;20161222
-lua/leltar/hkodcheck.lua;20161223
+lua/leltar/hkodcheck.lua;20170110
 lua/leltar/bcode1.lua;20161223
 lua/leltar/mentes.lua;20161223
 lua/leltar/ujhkod.lua;20161206
@@ -41,7 +41,7 @@ lua/bevet/kesobbfolyt.lua;20161223
 ini/hkod.xml;20161215
 lua/hkod/panelinit.lua;20161222
 lua/hkod/beki.lua;20161219
-lua/hkod/hkodcheck.lua;20161223
+lua/hkod/hkodcheck.lua;20170110
 lua/hkod/bcode1.lua;20161223
 lua/hkod/mentes.lua;20170105
 lua/hkod/ujhkod.lua;20161130

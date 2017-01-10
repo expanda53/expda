@@ -115,10 +115,12 @@
   }  
 
   function hkod_check($r){
-      $sql="SELECT RESULT FROM ANDROID_HKOD_CHECK(:hkod)";
+      $sql="SELECT RESULT FROM ANDROID_HKOD_CHECK(:hkod,:kulso)";
       $stmt = query_prepare($sql);
       $hkod=trim($r['p1']);
+      $kulso=trim($r['p2']);
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }    
   function cikkval_open($r){
