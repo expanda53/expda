@@ -1,0 +1,241 @@
+<Root>
+<verzio>20170116</verzio>
+<mainpanel>
+  <name>altalanos</name>
+  <text>Spot leltár - cikkre</text>
+  <lua_on_create>spotcikk/panelinit.lua</lua_on_create>
+  <params_to_labels>lkezelo</params_to_labels>
+</mainpanel>
+
+<label>
+  <name>lkezelo</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<label>
+  <name>lcikod</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<panel>
+  <name>panel1</name>
+  <width>match</width>
+  <height>match</height>
+  <top>0</top>
+  <visible>true</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+</panel>
+<panel>
+  <file>pfooter.xml</file>
+</panel>
+
+
+<barcode>
+  <name>BCODE1</name>
+  <lua_after_trigger>spotcikk/eancheck.lua [eean]</lua_after_trigger>
+  <valueto>eean</valueto>
+  <parent>panel1</parent>
+</barcode>
+
+<label>
+  <name>cap_ean</name>
+  <top>93</top>
+  <left>5</left>
+  <width>50</width>
+  <height>wrap</height>
+  <visible>true</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>EAN</text>
+</label>
+<text>
+  <name>eean</name>
+  <top>85</top>
+  <width>170</width>
+  <parent>panel1</parent>
+  <left>71</left>
+  <visible>true</visible>
+  <lua_on_change>spotcikk/eancheck.lua [eean]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_cikkklt</name>
+  <Text>cikk klt</Text>
+  <top>85</top>
+  <width>145</width>
+  <height>45</height>
+  <left>245</left>
+  <lua_after_click>hkod/cikkklt.lua [lcikod]</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+<label>
+  <name>lcikknev</name>
+  <top>135</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+</label>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_cikkval</name>
+  <Text>Cikk választás</Text>
+  <top>230</top>
+  <width>match</width>
+  <height>45</height>
+  <left>0</left>
+  <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_review</name>
+  <Text>Kilépés</Text>
+  <top>275</top>
+  <width>110</width>
+  <height>45</height>
+  <left>0</left>
+  <lua_after_click>spotcikk/kilep.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_ujean</name>
+  <Text>Új EAN</Text>
+  <top>275</top>
+  <width>100</width>
+  <height>45</height>
+  <left>295</left>
+  <lua_after_click>spotcikk/ujean.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+
+
+<panel>
+  <file>pcikkval.xml</file>
+</panel>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_vissza</name>
+  <Text>Vissza</Text>
+  <top>290</top>
+  <width>150</width>
+  <height>90</height>
+  <left>0</left>
+  <parent>cikkvalpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>spotcikk/hkodkltvissza.lua</lua_after_click>
+</custom_button>
+
+
+
+<panel>
+  <name>cikkkltpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>35</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+<label>
+  <name>lcikknevp</name>
+  <top>0</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>cikkkltpanel</parent>
+  <style>labeldefault;listtitlework</style>
+</label>
+
+<table>
+  <name>cikkklt_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>290</height>
+  <top>20</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+  
+  <column_title_hkod>hkod</column_title_hkod>
+  <column_title_drb>drb</column_title_drb>
+  
+  <font_size>10</font_size>
+  <row_height>160</row_height>
+  <parent>cikkkltpanel</parent>
+  <visible>true</visible>
+  <itempanel>cikkklt_sor</itempanel>
+</table>
+
+<panel>
+    <name>cikkklt_sor</name>
+    <parent>panel1</parent>
+    <height>40</height>
+    <width>match</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>hkod</name>
+    <parent>cikkklt_sor</parent>
+    <width>340</width>
+    <height>40</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[hkod]</text>
+    <font_size>17</font_size>    
+</label>
+<label>
+    <name>drb</name>
+    <parent>cikkklt_sor</parent>
+    <width>60</width>
+    <height>40</height>
+    <top>0</top>
+    <left>340</left>
+    <text>[drb]</text>
+    <align>center</align>
+    <font_size>17</font_size>    
+</label>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_visszacikk</name>
+  <Text>Vissza</Text>
+  <top>290</top>
+  <width>150</width>
+  <height>45</height>
+  <left>0</left>
+  <parent>cikkkltpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>spotcikk/hkodkltvissza.lua</lua_after_click>
+</custom_button>
+
+
+
+</Root>

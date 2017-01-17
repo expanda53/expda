@@ -140,10 +140,6 @@ public class exTable extends ListView{
         ArrayList a = new ArrayList();
         exTableAdapter myAd = (exTableAdapter) this.getAdapter();
 
-        if (myAd!=null) {
-            myAd.getAll().clear();
-        }
-
         for(int i=0;i<res.size();i++){
             String[] row = res.get(i).toString().split("]]");
             ArrayList<ObjTableCell> currentLine = new ArrayList<ObjTableCell>();
@@ -181,8 +177,7 @@ public class exTable extends ListView{
         }
         if (myAd!=null) {
             myAd.setAll(a);
-            myAd.notifyDataSetChanged();
-
+            this.setAdapter(myAd);
         }
         else {
             this.setAdapter(new exTableAdapter(context, a,getObj(),this));

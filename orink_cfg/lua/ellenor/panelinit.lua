@@ -1,4 +1,4 @@
---<verzio>20161222</verzio>
+--<verzio>20170116</verzio>
 local params = {...}
 ui = params[1]
 ui:executeCommand("showprogress","Megnyitás...","")
@@ -8,9 +8,9 @@ version = ui:getGlobal("appversion")
 ui:executeCommand('valueto',"lverzio",'exPDA v' .. version)
 kulsoraktar = ui:getGlobal("kulsoraktar")
 ui:executeCommand('valueto','lkezelostat','Kezelő: '..kezelo)
-ui:executeCommand('valueto','lmodulstat','Kiadás')
---str = 'kiadas_mibizlist '..kezelo .. ' ' .. kulsoraktar
---list=luafunc.query_assoc_to_str(str,false)
---luafunc.refreshtable_fromstring('mibizlist_table',list)
+ui:executeCommand('valueto','lmodulstat','Kiadás ellenőrzés')
+str = 'ellenor_mibizlist '..kezelo .. ' ' .. kulsoraktar
+list=luafunc.query_assoc_to_str(str,false)
+luafunc.refreshtable_fromstring('mibizlist_table',list)
 ui:executeCommand("showobj","mibizlistpanel")
 ui:executeCommand("hideprogress","","")

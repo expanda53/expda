@@ -1,10 +1,9 @@
-
 <Root>
-<verzio>20161215</verzio>
+<verzio>20170116</verzio>
 <mainpanel>
   <name>altalanos</name>
-  <text>Bevét</text>
-  <lua_on_create>bevet/panelinit.lua</lua_on_create>
+  <text>Kiszedés ellenőrzés</text>
+  <lua_on_create>ellenor/panelinit.lua</lua_on_create>
   <params_to_labels>lkezelo</params_to_labels>
 </mainpanel>
 
@@ -113,7 +112,7 @@
   <row_height>10</row_height>
   <parent>ceglistpanel</parent>
   <visible>true</visible>
-  <lua_after_click>bevet/ceglist_click.lua</lua_after_click>
+  <lua_after_click>ellenor/ceglist_click.lua</lua_after_click>
   <itempanel>ceglist_sor</itempanel>
 </table>
 <panel>
@@ -167,7 +166,7 @@
 
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>bevet/bcode1.lua [eean] . [lcegazon]</lua_after_trigger>
+  <lua_after_trigger>ellenor/bcode1.lua [eean] . [lcegazon]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
@@ -190,7 +189,7 @@
   <parent>panel1</parent>
   <left>60</left>
   <visible>false</visible>
-  <lua_on_change>bevet/bcode1.lua [eean] . [lcegazon]</lua_on_change>
+  <lua_on_change>ellenor/bcode1.lua [eean] . [lcegazon]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -287,7 +286,7 @@
   <height>40</height>  
   <align>center</align>
   <width>60</width>
-  <lua_on_change>bevet/mentes.lua [lfejazon] [lcegazon] [lcikod] [eean] [edrb2] [ldrb3] [ldrb4] [ldrb]</lua_on_change>
+  <lua_on_change>ellenor/mentes.lua [lfejazon] [lcegazon] [lcikod] [eean] [edrb2] [ldrb3] [ldrb4] [ldrb]</lua_on_change>
 </text>
 
 <custom_button>
@@ -298,7 +297,7 @@
   <width>110</width>
   <height>45</height>
   <left>0</left>
-  <lua_after_click>bevet/zaras.lua</lua_after_click>
+  <lua_after_click>ellenor/zaras.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -325,7 +324,7 @@
   <width>110</width>
   <height>45</height>
   <left>285</left>
-  <lua_after_click>bevet/ujean.lua</lua_after_click>
+  <lua_after_click>ellenor/ujean.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -421,7 +420,7 @@
   <left>0</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>bevet/kiadasfolyt.lua</lua_after_click>
+  <lua_after_click>ellenor/kiadasfolyt.lua</lua_after_click>
 </custom_button>
 
 <custom_button>
@@ -434,7 +433,7 @@
   <left>135</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>bevet/kesobbfolyt.lua [lfejazon]</lua_after_click>
+  <lua_after_click>ellenor/kesobbfolyt.lua [lfejazon]</lua_after_click>
 </custom_button>
 
 <custom_button>
@@ -447,7 +446,7 @@
   <left>270</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>bevet/lezaras.lua null</lua_after_click>
+  <lua_after_click>ellenor/lezaras.lua null</lua_after_click>
 </custom_button>
 <panel>
   <file>pcikkval.xml</file>

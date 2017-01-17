@@ -32,7 +32,9 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class UpdateFiles extends AsyncTask<String, String, String> {
@@ -112,18 +114,31 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
                 if (file.delete()) status = "Törölve:" + fileNev;
                 if (status != "") publishProgress(status);
                 return true;
-            } else {
-                if (fileNev.indexOf("apk/expda")>-1) {
-                    PackageInfo pInfo = null;
-                    try {
-                        pInfo = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
-                    } catch (PackageManager.NameNotFoundException e) {
-                        e.printStackTrace();
+            }  else {
+                if (fileNev.indexOf("apk/expda")>-1 || fileNev.indexOf("images/") > -1 || fileNev.indexOf("audio/") > -1) {
+                    boolean updateKell=false;
+                    if (fileNev.indexOf("images/") > -1 || fileNev.indexOf("audio/") > -1) {
+                        File file = new File(Ini.getRootDir(), fileNev);
+                        Date lastModDate = new Date(file.lastModified());
+                        verzio = verzio.replace(".", "").replace("-","");
+                        String ds = DateFormat.getDateInstance().format(lastModDate).replace(".","").replace("-","");
+                        updateKell = !(verzio.equalsIgnoreCase(ds));
                     }
-                    String liveVersion = pInfo.versionName;
-                    if (!liveVersion.equalsIgnoreCase(verzio)){
+
+                    if (fileNev.indexOf("apk/expda")>-1) {
+                        PackageInfo pInfo = null;
+                        try {
+                            pInfo = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        String liveVersion = pInfo.versionName;
+                        updateKell = !liveVersion.equalsIgnoreCase(verzio);
+                    }
+                    if (updateKell){
                         status="";
-                        publishProgress("Program frissítés, verzió: " + verzio);
+                        if (fileNev.indexOf("apk/expda")>-1) publishProgress("Program frissítés, verzió: " + verzio);
+                        else publishProgress("Frissítve:" + fileNev);
                         InputStream response = downloadStream(getURLRoot() + "/" + fileNev);
                         File file = new File(Ini.getRootDir(), fileNev);
                         String dir = file.getParent();
@@ -182,13 +197,15 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
                             e.printStackTrace();
                             status = e.getMessage();
                         }
-                        if (status == "") publishProgress("Program telepítés...");
-                        else publishProgress(status);
-                        if (status=="") {
-                            file.setReadable(true, false);
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-                            c.startActivity(intent);
+                        if (fileNev.indexOf("apk/expda")>-1) {
+                            if (status == "") publishProgress("Program telepítés...");
+                            else publishProgress(status);
+                            if (status == "") {
+                                file.setReadable(true, false);
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+                                c.startActivity(intent);
+                            }
                         }
                     }
                     return true;
@@ -198,12 +215,18 @@ public class UpdateFiles extends AsyncTask<String, String, String> {
 
 
                     String content = StringFunc.getFile(fileNev);
+                    boolean updateKell = false;
                     if (content == null || content == "") {
                         content = ""; //nem talalhato ilyen file, fel kell irni
                         status = "Új:" + fileNev;
+                        updateKell = true;
+                    } else {
+                        updateKell = (content.indexOf("<verzio>" + verzio + "</verzio>") == -1);
                     }
+
+
                     //ha megtalalhato benne az uj verzioszam, nem kell frissiteni
-                    if (content.indexOf("<verzio>" + verzio + "</verzio>") > -1) return false;
+                    if (!updateKell) return false;
                     else {
                         //az uj verzio nem talalhato a fileban, frissiteni kell
                         if (content != "" && content != null) status = "Frissítve:" + fileNev;

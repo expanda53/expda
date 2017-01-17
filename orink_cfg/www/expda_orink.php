@@ -9,7 +9,7 @@
      return $vissza;
   }
   
-  function logol($szoveg) {
+  function logol($szoveg,$css="") {
        //return false;
 	   
        $dat=date('y.m.d H:i:s');
@@ -19,14 +19,30 @@
        
        $ip = strip_tags($_SERVER['REMOTE_ADDR']);
        if ($ip=='::1') $ip='127001';
-	   $fnev = str_replace('.','',$ip).'_'.$dats.'.log';
+	   $fnev = str_replace('.','',$ip).'_'.$dats.'.html';
 	   @mkdir("log", 0700);
        $fnev="log/$fnev";
+	   $includecss="";
+	   if (!file_exists($fnev)) {
+		   $includecss='<link rel="stylesheet" type="text/css" href="../log.css">';
+	   }
        $fp = fopen($fnev, 'a');
-       $szoveg1='###'.$dat." $ip:";
-       $return=" \r\n";
-       fwrite($fp, $szoveg1.$szoveg.$return);
-       fwrite($fp, '*****'.$return);
+	   $return=" \r\n";
+	   if ($includecss!="") {
+		   fwrite($fp, $includecss.$return);
+	   }
+	   
+	   if (stripos($szoveg,'error')!==false) {
+		   $szoveg1="<div class=diverror".$css.">";
+	   }
+	   else {
+		   $szoveg1="<div class=divnormal".$css.">";
+	   }
+       $szoveg1.="<span class='header_text'>".$dat." $ip</span>:";
+       
+       fwrite($fp, $szoveg1.'<pre>'.$szoveg.'</pre>'.$return);
+       //fwrite($fp, '*****'.$return);
+	   fwrite($fp, '</div>'.$return);
        fclose($fp);
   }
 	
@@ -51,13 +67,16 @@
    }
    // print_r($_POST);
   if (function_exists($command)) {
-   logol('start: '.json_encode($_REQUEST))  ;
-   call_user_func($command,$_REQUEST);
-   logol('finish: '.$command)  ;
+   logol('start: '.$command.' params:'.json_encode($_REQUEST),'_header')  ;
+   try {
+     call_user_func($command,$_REQUEST);
+   } finally {
+     logol('finish: '.$command,'_footer')  ;
+   }
 
   }
   else if ($command=='') echo "welcome, no command";
-  else {logol('function not exists:'.$command. ' params: '.json_encode($_REQUEST));echo "'$command' function doesn't exist";}
+  else {logol('error: function not exists:'.$command. ' params: '.json_encode($_REQUEST));echo "'$command' function doesn't exist";}
   
 
   function query_prepare($sql){
@@ -66,7 +85,7 @@
      $arr = Firebird::prepare($sql);
      if (!$arr) {
          $errors = Firebird::errorInfo();
-         logol($errors[2]);
+         logol('error:'.$errors[2]);
      }
 
      return $arr;
@@ -76,7 +95,7 @@
         if($stmt->errorCode() == 0) {
         } else {
             $errors = $stmt->errorInfo();
-            logol($errors[2]);
+            logol('error:'.$errors[2]);
         }
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
@@ -149,13 +168,17 @@
       $sql.="'Szállmód: '||COALESCE(SZALLMOD,'')||'|@@style:listdetails' SZALLMOD,";
       $sql.="'Súly: '||CAST(SULY AS NUMERIC(10,2))||'|@@style:listdetails' SULY,";
       $sql.="'Térf: '||CAST(TERFOGAT AS NUMERIC(10,2))||'|@@style:listdetails' TERFOGAT,";      
+      $sql.="'Dev: '||DEVIZA||'|@@style:listdetails' DEVIZA,";            
       $sql.="'Sorok: '||SORDB||'|@@style:listdetails' SORDB,AZON";            
-      $sql.="      FROM ANDROID_KIADAS_MIBIZLIST(:login,:kulso)";
+      $sql.="      FROM ANDROID_KIADAS_MIBIZLIST(:login,:kulso,:biztip)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
       $kulso=trim($r['p2']);
+      if (isset($r['p3'])) $biztip=trim($r['p3']);
+      else $biztip='';
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);      
+      $stmt->bindParam(':biztip', $biztip, PDO::PARAM_STR);      
 	  echo query_print($stmt);
   }
   function kiadas_init($r){
@@ -545,6 +568,18 @@
       $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);      
       Firebird::commit();
+  }
+  function hkod_cikklist($r){
+      $sql="SELECT trim(CIKKNEV||'|@@style:listtitle;listtitlewait') CIKKNEVR,";
+      $sql.= " trim('Helykód:'||HKOD||'|@@style:listtitle;listtitlewait') HKODR, ";
+      $sql.= " trim('Mennyiség:'||cast(DRB as integer)||'|@@style:listtitle;listtitlewait') DRBR ";
+      $sql.= "  FROM ANDROID_HKODRA_REVIEW(:login,:azon)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $azon=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);
   }
   
   function hkod_lezaras($r){

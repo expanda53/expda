@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161223</verzio>
+<verzio>20170117</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -24,6 +24,14 @@
 </label>
 <label>
   <name>lcikod</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<label>
+  <name>lbiztip</name>
   <top>0</top>
   <left>0</left>
   <width>0</width>
@@ -76,13 +84,27 @@
   <left>0</left>
   <parent>panel1</parent>
 </panel>
+<combo>
+  <name>combo_biztip</name>
+  <Items>Mind;Belfoldi;Export</Items>
+  <top>0</top>
+  <width>match</width>
+  <height>50</height>
+  <left>0</left>
+  <parent>mibizlistpanel</parent>
+  <visible>true</visible>
+  <bgcolor>#fafafa</bgcolor>
+  <font_color>#000000</font_color>
+  <lua_after_click>kiadas/mibizlist_filter.lua [combo_biztip]</lua_after_click>
+</combo>
+
 <table>
   <name>mibizlist_table</name>
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>300</height>
-  <top>0</top>
+  <height>250</height>
+  <top>50</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
@@ -90,6 +112,7 @@
   <column_title_mibiz>Mibiz</column_title_mibiz>
   <column_title_cegnev>Cég</column_title_cegnev>
   <column_title_szallmod>Szállmód</column_title_szallmod>
+  <column_title_deviza>Deviza</column_title_deviza>
   <column_title_suly>Súly</column_title_suly>
   <column_title_terfogat>Mibiz</column_title_terfogat>
   <column_title_sordb>Sordb</column_title_sordb>
@@ -134,13 +157,21 @@
 <label>
     <name>szallmod</name>
     <parent>mibizlist_sor</parent>
-    <width>400</width>
+    <width>300</width>
     <height>wrap</height>
     <top>30</top>
     <left>0</left>
     <text>[szallmod]</text>
 </label>
-
+<label>
+    <name>deviza</name>
+    <parent>mibizlist_sor</parent>
+    <width>100</width>
+    <height>wrap</height>
+    <top>30</top>
+    <left>300</left>
+    <text>[deviza]</text>
+</label>
 <label>
     <name>terfogat</name>
     <parent>mibizlist_sor</parent>
@@ -348,8 +379,8 @@
   <name>button_nincsmeg</name>
   <Text>Nincs meg</Text>
   <top>240</top>
-  <width>130</width>
-  <height>45</height>
+  <width>120</width>
+  <height>60</height>
   <left>0</left>
   <lua_after_click>kiadas/nincsmeg.lua</lua_after_click>
   <parent>panel1</parent>
@@ -361,10 +392,10 @@
   <style>buttondefault</style>
   <name>button_kovetkezo</name>
   <Text>Következő</Text>
-  <top>610</top>
-  <width>154</width>
-  <height>70</height>
-  <left>163</left>
+  <top>240</top>
+  <width>120</width>
+  <height>60</height>
+  <left>122</left>
   <lua_after_click>kiadas/kovetkezo_click.lua [lfejazon] [ehkod] [lcikod] 1</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
@@ -375,9 +406,9 @@
   <name>button_review</name>
   <Text>Átnézés</Text>
   <top>240</top>
-  <width>153</width>
-  <height>45</height>
-  <left>135</left>
+  <width>120</width>
+  <height>60</height>
+  <left>244</left>
   <lua_after_click>kiadas/showreview.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>

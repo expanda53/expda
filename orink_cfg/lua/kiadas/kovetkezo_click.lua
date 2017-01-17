@@ -1,4 +1,4 @@
---<verzio>20161223</verzio>
+--<verzio>20170117</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -26,7 +26,7 @@ if (result=='0') then
       ui:executeCommand('valuetohidden','lcikod', t[1]['CIKK'])
       ui:executeCommand('valuetohidden','eean', '')
       ui:executeCommand('aktbcodeobj','bcode1','')
-      ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_ean;eean;button_nincsmeg','')      
+      ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_ean;eean;button_nincsmeg;button_kovetkezo','')      
       ui:executeCommand('setfocus','ehkod','')      
     else
       ui:executeCommand('valueto','lcikknev', t[1]['CIKKNEV'])
@@ -42,18 +42,21 @@ if (result=='0') then
 
     
 else
-    if (irany=='1') then 
-        ui:executeCommand('valuetohidden','ehkod','')
-        ui:executeCommand('valuetohidden','edrb2','')
-        ui:executeCommand('valuetohidden','ldrb','')
-        ui:executeCommand('valuetohidden','ldrb2','')
-        ui:executeCommand('valueto','lcikknev', 'Nincs több szedhető tétel!')
-        ui:executeCommand('valuetohidden','lcikod', '')
-        ui:executeCommand('valuetohidden','eean', '')
-        ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_hkod;lhkod;cap_ean','')      
-
-        ui:executeCommand('toast','Nincs több kiszedendő tétel!','')
-        ui:executeCommand('startlua','kiadas/showreview.lua','')
+    if (irany=='1') then
+        if (cikk=='.') then
+            ui:executeCommand('valuetohidden','ehkod','')
+            ui:executeCommand('valuetohidden','edrb2','')
+            ui:executeCommand('valuetohidden','ldrb','')
+            ui:executeCommand('valuetohidden','ldrb2','')
+            ui:executeCommand('valueto','lcikknev', 'Nincs több szedhető tétel!')
+            ui:executeCommand('valuetohidden','lcikod', '')
+            ui:executeCommand('valuetohidden','eean', '')
+            ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_hkod;lhkod;cap_ean','')      
+            ui:executeCommand('toast','Nincs több kiszedendő tétel!','')
+            ui:executeCommand('startlua','kiadas/showreview.lua','')
+        else
+          ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', fejazon..' . . 1')
+        end
     else
         ui:executeCommand('toast','Nincs előző kiszedendő tétel!','')
     end

@@ -1,6 +1,6 @@
 <Root>
 <mainpanel>
-  <verzio>20161206</verzio>
+  <verzio>20170116</verzio>
   <name>mainpanel1</name>
   <text>Fomenü</text>
   <bgcolor>#000000</bgcolor>
@@ -35,7 +35,7 @@
   <left>20</left>
   <style>buttondefault</style>
   <visible>true</visible>
-  <lua_after_click>egyeb/menuinit.lua KIADAS [lkezelo]</lua_after_click>
+  <lua_after_click>egyeb/menuinit.lua MENU_KIADAS [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
   <name>ButtonBevet</name>
@@ -75,7 +75,7 @@
   <left>20</left>
   <style>buttondefault</style>
   <visible>true</visible>
-  <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>
+  <lua_after_click>egyeb/menuinit.lua MENU_LELTAR [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
   <name>ButtonClose</name>

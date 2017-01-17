@@ -102,6 +102,8 @@ public class exTableAdapter extends BaseAdapter {
         return mItems;
     }
     public void setAll(ArrayList<Object> items){
+        this.getAll().clear();
         mItems=items;
+        this.notifyDataSetChanged();
     }
 }

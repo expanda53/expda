@@ -1,0 +1,62 @@
+<Root>
+<mainpanel>
+  <verzio>20170116</verzio>
+  <name>mainpanel1</name>
+  <text>Fomenü</text>
+  <bgcolor>#000000</bgcolor>
+  <params_to_labels>lkezelo</params_to_labels>
+  <lua_on_create>egyeb/almenu_panelinit.lua [lkezelo]</lua_on_create>
+</mainpanel>
+<label>
+  <name>lkezelo</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <visible>false</visible>
+  <Text>100</Text>
+</label>
+<custom_button>
+  <name>ButtonCikk</name>
+  <image>box.png</image>
+  <image_align>top</image_align>
+  <Text>SPOT Cikk</Text>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>20</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua SPOTCIKK [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonLeltar</name>
+  <image>leltar.png</image>
+  <image_align>top</image_align>
+  <Text>Leltár</Text>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>135</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonClose</name>
+  <left>135</left>
+  <Text>Vissza</Text>
+  <top>140</top>
+  <width>110</width>
+  <height>120</height>
+  <style>buttondefault</style>
+  <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
+  <visible>true</visible>
+  <image>exit.png</image>
+  <image_align>top</image_align>
+</custom_button>
+
+<panel>
+  <file>pfooter.xml</file>
+</panel>
+</Root>

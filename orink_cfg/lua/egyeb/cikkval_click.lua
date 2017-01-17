@@ -1,4 +1,4 @@
---<verzio>20170105</verzio>
+--<verzio>20170117</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -25,11 +25,13 @@ if (aktmodul == 'Beérkezés') then
   --ui:executeCommand('valueto','edrb2','') 
   --ui:executeCommand('setfocus','edrb2','') 
     ui:executeCommand('startlua','bevet/bcode1.lua','. ' .. kod .. ' ' .. cegazon)
+    ui:executeCommand('showobj','pfooter','')
 elseif (aktmodul=='Leltár') then
   cikkUpdate(kod,nev)
   ui:executeCommand('showobj','cap_drb;edrb;button_ujean','')
   ui:executeCommand('valueto','edrb','') 
   ui:executeCommand('setfocus','edrb','') 
+  ui:executeCommand('showobj','pfooter','')
 elseif (aktmodul=='Kiadás') then
   cikod = tostring(ui:findObject('lcikod'):getText())
   if (cikod==kod) then
@@ -40,6 +42,7 @@ elseif (aktmodul=='Kiadás') then
       ui:executeCommand('valueto','eean','') 
       ui:executeCommand('setfocus','eean','') 
   end
+  ui:executeCommand('showobj','pfooter','')
 elseif (aktmodul=='Hkód rendezés') then
   cikkUpdate(kod,nev)
   ui:executeCommand('showobj','cap_drb;edrb;button_ujean;button_cikkklt','')
@@ -65,5 +68,10 @@ elseif (aktmodul=='Hkód rendezés') then
   end
   ui:executeCommand('valueto','edrb','') 
   ui:executeCommand('setfocus','edrb','') 
+  ui:executeCommand('showobj','pfooter','')
+elseif (aktmodul=='Spot leltár cikkre')  then
+  cikkUpdate(kod,nev)
+  ui:executeCommand('showobj','button_ujean;button_cikkklt','')
+  ui:executeCommand('startlua','hkod/cikkklt.lua', kod)
 end
-ui:executeCommand('showobj','pfooter','')
+
