@@ -1,6 +1,5 @@
-
 <Root>
-<verzio>20161215</verzio>
+<verzio>20170118</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -362,6 +361,7 @@
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <itempanel>atnezo_sor</itempanel>
+  <lua_after_click>bevet/sortorol.lua [lfejazon] [lcegazon] null</lua_after_click>
 </table>
 
 <panel>
