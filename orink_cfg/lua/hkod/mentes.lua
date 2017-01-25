@@ -1,4 +1,4 @@
---<verzio>20170105</verzio>
+--<verzio>20170125</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -6,6 +6,9 @@ ui=params[1]
 cikk = params[2]:gsub("\n",""):gsub(':','')
 ean = params[3]:gsub("\n",""):gsub(':','')
 drb = params[4]:gsub("\n",""):gsub(':',''):gsub('-','')
+if (drb=='' or drb==nil) then
+  drb = 0
+end  
 fejazon = params[5]:gsub("\n",""):gsub(':','')
 hkod = params[6]:gsub("\n",""):gsub(':','')
 if (tonumber(drb)>0) then
