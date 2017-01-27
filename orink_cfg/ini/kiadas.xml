@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170117</verzio>
+<verzio>20170127</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -436,6 +436,7 @@
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
   
+  <column_title_cikk>Kod</column_title_cikk>
   <column_title_cikknev>Cikk</column_title_cikknev>
   <column_title_drb>drb</column_title_drb>
   <column_title_drb2>drb2</column_title_drb2>
@@ -446,6 +447,7 @@
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <itempanel>atnezo_sor</itempanel>
+  <lua_after_click>kiadas/javit.lua [lfejazon] null</lua_after_click>
 </table>
 
 <panel>
@@ -456,6 +458,16 @@
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
 </panel>
+<label>
+    <name>cikk</name>
+    <parent>atnezo_sor</parent>
+    <width>0</width>
+    <height>0</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[cikk]</text>
+    <visible>false</visible>
+</label>
 <label>
     <name>cikknev</name>
     <parent>atnezo_sor</parent>
@@ -620,5 +632,17 @@
   <parent>phiany</parent>
   <visible>true</visible>
   <lua_after_click>kiadas/mentes.lua [lfejazon] [lcikod] [eean] [ehkod] [ldrb2] [edrb2] [ldrb] S</lua_after_click>
+</custom_button>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_hvissza</name>
+  <Text>Vissza</Text>
+  <top>160</top>
+  <width>match</width>
+  <height>45</height>
+  <left>0</left>
+  <parent>phiany</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadas/kiadasfolyt.lua</lua_after_click>
 </custom_button>
 </Root>

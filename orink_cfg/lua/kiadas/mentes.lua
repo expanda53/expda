@@ -1,4 +1,4 @@
---<verzio>20161221</verzio>
+--<verzio>20170127</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -43,7 +43,9 @@ else
       if (result=='0') then
           ui:executeCommand('TOAST','Mentés rendben.')
           ui:executeCommand('hide','phiany','')
-          ui:executeCommand('startlua','kiadas/kovetkezo_click.lua',azon..' '..hkod..' '..cikk..' 1')
+          if (osszki~=0) then 
+            ui:executeCommand('startlua','kiadas/kovetkezo_click.lua',azon..' '..hkod..' '..cikk..' 1')
+          end
       else
           ui:executeCommand('uzenet',resulttext,"egyeb/setfocus.lua eean")
       end
