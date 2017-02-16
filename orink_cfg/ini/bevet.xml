@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170118</verzio>
+<verzio>20170131</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -166,7 +166,7 @@
 
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>bevet/bcode1.lua [eean] . [lcegazon]</lua_after_trigger>
+  <lua_after_trigger>bevet/bcode1.lua [eean] . [lcegazon] [lrentip]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
@@ -189,7 +189,7 @@
   <parent>panel1</parent>
   <left>60</left>
   <visible>false</visible>
-  <lua_on_change>bevet/bcode1.lua [eean] . [lcegazon]</lua_on_change>
+  <lua_on_change>bevet/bcode1.lua [eean] . [lcegazon]  [lrentip]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>

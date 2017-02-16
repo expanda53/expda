@@ -1,4 +1,4 @@
---<verzio>20170117</verzio>
+--<verzio>20170201</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -15,7 +15,8 @@ t=luafunc.query_assoc(str,false)
 result = t[1]['RESULT']
 if (result=='0') then
     ujhkod=t[1]['HKOD']
-    if (ujhkod~=hkod) then
+    akthkod = tostring(ui:findObject('ehkod'):getText())
+    if (ujhkod~=hkod or ujhkod~=akthkod) then
       --uj helykod kulonbozik
       ui:executeCommand('enabled','ehkod','')
       ui:executeCommand('setbgcolor','ehkod','#497000')
@@ -42,6 +43,7 @@ if (result=='0') then
 
     
 else
+  if (result~='-1') then
     if (irany=='1') then
         if (cikk=='.') then
             ui:executeCommand('valuetohidden','ehkod','')
@@ -57,8 +59,16 @@ else
         else
           ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', fejazon..' . . 1')
         end
-    else
+    elseif (irany=='0') then
+        if (result=='2') then
+          ui:executeCommand('toast','Nincs ilyen kiszedendő tétel!','')
+          ui:executeCommand('startlua','kiadas/showreview.lua','')
+        end
+    elseif (irany=='-1') then
         ui:executeCommand('toast','Nincs előző kiszedendő tétel!','')
     end
+  else
+    ui:executeCommand('toast','Adatbázis hiba!','')
+  end
 end
 --luafunc.log(str)

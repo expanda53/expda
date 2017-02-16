@@ -1,6 +1,6 @@
 <Root>
 <mainpanel>
-  <verzio>20170116</verzio>
+  <verzio>20170212</verzio>
   <name>mainpanel1</name>
   <text>Fomenü</text>
   <bgcolor>#000000</bgcolor>
@@ -30,6 +30,19 @@
   <lua_after_click>egyeb/menuinit.lua SPOTCIKK [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
+  <name>ButtonCikk</name>
+  <image>question.png</image>
+  <image_align>top</image_align>
+  <Text>SPOT Hkód</Text>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>135</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua SPOTHKOD [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
   <name>ButtonLeltar</name>
   <image>leltar.png</image>
   <image_align>top</image_align>
@@ -37,7 +50,7 @@
   <top>10</top>
   <width>110</width>
   <height>120</height>
-  <left>135</left>
+  <left>250</left>
   <style>buttondefault</style>
   <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>

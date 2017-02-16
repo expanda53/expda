@@ -1,4 +1,4 @@
---<verzio>20161101</verzio>
+--<verzio>20170216</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -25,6 +25,10 @@ if (dialogres=="igen") then
             stop=1
         end
         hibastr = hibastr .. "Hiány: " .. t[1]['HIANY'] .. " db\n"
+        
+        str = t[1]['RESULTTEXT']~='OK' then
+          hibastr = hibastr .. str .. "\n"
+        end
         
         if (stop~=0) then
             hibastr = hibastr .. "\nLezárás leállítva."

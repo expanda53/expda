@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170127</verzio>
+<verzio>20170201</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -122,7 +122,7 @@
   <row_height>160</row_height>
   <parent>mibizlistpanel</parent>
   <visible>true</visible>
-  <lua_after_click>kiadas/mibizlist_click.lua</lua_after_click>
+  <lua_after_click>kiadas/mibizlist_click.lua null</lua_after_click>
   <itempanel>mibizlist_sor</itempanel>
 </table>
 
@@ -447,7 +447,7 @@
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <itempanel>atnezo_sor</itempanel>
-  <lua_after_click>kiadas/javit.lua [lfejazon] null</lua_after_click>
+  <lua_after_click>kiadas/atnezoclick.lua</lua_after_click>
 </table>
 
 <panel>
@@ -571,6 +571,66 @@
 </custom_button>
 
 <panel>
+  <name>reviewpaneldlg</name>
+  <width>match</width>
+  <height>match</height>
+  <top>30</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+<label>
+  <name>ldlgcikknev</name>
+  <top>10</top>
+  <height>wrap</height>
+  <left>0</left>
+  <width>match</width>
+  <visible>true</visible>
+  <parent>reviewpaneldlg</parent>
+  <style>reviewlabel</style>
+  <align>center</align>
+  <text>cikknév</text>
+</label>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_javit</name>
+  <Text>Javítás</Text>
+  <top>50</top>
+  <width>match</width>
+  <height>55</height>
+  <left>0</left>
+  <parent>reviewpaneldlg</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadas/javit.lua [lfejazon] null</lua_after_click>
+</custom_button>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_cikk</name>
+  <Text>Cikkhez ugrik</Text>
+  <top>115</top>
+  <width>match</width>
+  <height>55</height>
+  <left>0</left>
+  <parent>reviewpaneldlg</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadas/ugrik.lua [lfejazon]</lua_after_click>
+</custom_button>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_rpvissza</name>
+  <Text>Vissza</Text>
+  <top>180</top>
+  <width>match</width>
+  <height>55</height>
+  <left>0</left>
+  <parent>reviewpaneldlg</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadas/dlgclose.lua</lua_after_click>
+</custom_button>
+
+<panel>
   <file>pcikkval.xml</file>
 </panel>
 <custom_button>
@@ -615,7 +675,7 @@
   <Text>Hiány</Text>
   <top>50</top>
   <width>match</width>
-  <height>45</height>
+  <height>55</height>
   <left>0</left>
   <parent>phiany</parent>
   <visible>true</visible>
@@ -625,9 +685,9 @@
   <style>buttondefault</style>
   <name>btn_selejt</name>
   <Text>Selejt</Text>
-  <top>105</top>
+  <top>115</top>
   <width>match</width>
-  <height>45</height>
+  <height>55</height>
   <left>0</left>
   <parent>phiany</parent>
   <visible>true</visible>
@@ -637,9 +697,9 @@
   <style>buttondefault</style>
   <name>btn_hvissza</name>
   <Text>Vissza</Text>
-  <top>160</top>
+  <top>180</top>
   <width>match</width>
-  <height>45</height>
+  <height>55</height>
   <left>0</left>
   <parent>phiany</parent>
   <visible>true</visible>

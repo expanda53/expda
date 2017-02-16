@@ -1,4 +1,4 @@
---<verzio>20170127</verzio>
+--<verzio>20170201</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -29,5 +29,6 @@ elseif (dialogres=="igen") then
         str = 'kiadas_cikklist ' .. kezelo .. ' ' .. fejazon
         list=luafunc.query_assoc_to_str(str,false)
         luafunc.refreshtable_fromstring('atnezo_table',list)
+        ui:executeCommand("hideobj","reviewpaneldlg")
         ui:executeCommand("showobj","reviewpanel")
 end

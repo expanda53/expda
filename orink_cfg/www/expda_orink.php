@@ -324,7 +324,7 @@
 	  echo query_print($stmt);      
   }  
   function beerk_eankeres($r){
-      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login,:kulso)";
+      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login,:kulso,:rentip)";
       $stmt = query_prepare($sql);
       
       $ceg=trim($r['p1']);
@@ -332,6 +332,8 @@
       $cikod=trim($r['p3']);
       $login=trim($r['p4']);
       $kulso=trim($r['p5']);
+      $rentip=trim($r['p6']);
+      if ($rentip=='.') $rentip='';
       if ($ean=='.') $ean='';
       if ($cikod=='.') $cikod='';
       
@@ -340,6 +342,7 @@
       $stmt->bindParam(':cikod', $cikod, PDO::PARAM_STR);  
       $stmt->bindParam(':ceg', $ceg, PDO::PARAM_STR);
       $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
+      $stmt->bindParam(':rentip', $rentip, PDO::PARAM_STR);      
 	  echo query_print($stmt);      
   }  
   function beerk_ment($r){
@@ -595,5 +598,65 @@
       Firebird::commit();
   }
 /* hkod rendezés eddig */
-    
+/* spot hkod leltar */    
+  function spothkod_check($r){
+      $sql="SELECT * FROM ANDROID_SPOTHKOD_HKODCHECK(:hkod,:login,:kulso)";
+      $stmt = query_prepare($sql);
+      $hkod=trim($r['p1']);
+      $login=trim($r['p2']);
+      $kulso=trim($r['p3']);
+	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
+      $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+	  echo query_print($stmt);
+      Firebird::commit();
+  }    
+  function spothkod_ment($r){
+      $sql = "SELECT RESULT,RESULTTEXT FROM ANDROID_SPOTHKOD_MENTES(:azon, :cikk, :drb, :login,:kulso)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $hkod=trim($r['p2']);//nem kell
+      $cikk=trim($r['p3']);
+      $ean=trim($r['p4']);//nem kell
+      $drb=trim($r['p5']);
+      $login=trim($r['p6']);
+      $kulso=trim($r['p7']);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':drb', $drb, PDO::PARAM_STR);
+      //$stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      //$stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }
+  function spothkod_cikklist($r){
+      $sql="SELECT CIKK, CIKKNEV||'|@@style:listtitle;listtitledone' AS CIKKNEV,";
+      $sql.= " 'Számolt: '||cast(DRB as integer)||'|@@style:listdetails;listtitledone' AS DRB,";
+      $sql.= " 'Rendszerben: '||cast(DRB2 as integer)||'|@@style:listdetails;listtitledone' AS DRB2";      
+      $sql.= "  FROM ANDROID_SPOTHKOD_REVIEW(:azon,:login)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $azon=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }    
+  function spothkod_lezaras($r){
+      $sql = "SELECT RESULT,RESULTTEXT FROM ANDROID_SPOTHKOD_LEZAR(:azon, :login, :kulso)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $login=trim($r['p2']);
+      $kulso=trim($r['p3']);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }/* spot hkod leltar eddig */
 ?>

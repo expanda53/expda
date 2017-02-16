@@ -216,7 +216,7 @@
       Firebird::commit();
   }
   function kiadas_lezaras_check($r){
-      $sql = "SELECT TOBBLET,HIANY,KIADVA FROM ANDROID_KIADAS_LEZAR_CHECK(:mibiz)";
+      $sql = "SELECT TOBBLET,HIANY,KIADVA,RESULTTEXT FROM ANDROID_KIADAS_LEZAR_CHECK(:mibiz)";
       $stmt = query_prepare($sql);
       
       $mibiz=trim($r['p1']);

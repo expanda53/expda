@@ -1,4 +1,4 @@
---<verzio>20161223</verzio>
+--<verzio>20170208</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -6,9 +6,16 @@ ui=params[1]
 ean = params[2]:gsub("\n",""):gsub(':','')
 acikod = params[3]:gsub("\n",""):gsub(':','')
 cegazon = params[4]:gsub("\n",""):gsub(':','')
+rentip = params[5]:gsub("\n",""):gsub(':','')
+if (rentip=='') then
+  rentip = tostring(ui:findObject('lrentip'):getText())
+end  
+if (rentip=='') then
+  rentip='.'
+end  
 kezelo = ui:getKezelo()
 kulsoraktar = ui:getGlobal("kulsoraktar")
-str = 'beerk_eankeres ' .. cegazon .. ' ' ..  ean .. ' ' .. acikod .. ' ' .. kezelo .. ' ' .. kulsoraktar
+str = 'beerk_eankeres ' .. cegazon .. ' ' ..  ean .. ' ' .. acikod .. ' ' .. kezelo .. ' ' .. kulsoraktar .. ' ' .. rentip
 --ean=. ha a cikk kódra keresünk 
 if (ean=='.') then
   ean = acikod

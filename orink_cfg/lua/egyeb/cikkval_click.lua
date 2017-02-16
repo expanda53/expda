@@ -1,4 +1,4 @@
---<verzio>20170117</verzio>
+--<verzio>20170212</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -73,5 +73,13 @@ elseif (aktmodul=='Spot leltár cikkre')  then
   cikkUpdate(kod,nev)
   ui:executeCommand('showobj','button_ujean;button_cikkklt','')
   ui:executeCommand('startlua','hkod/cikkklt.lua', kod)
+elseif (aktmodul=='Spot leltár hkódra')  then
+  cikkUpdate(kod,nev)
+  ui:executeCommand('showobj','cap_drb','')
+  ui:executeCommand('valueto','edrb','') 
+  ui:executeCommand('setfocus','edrb','') 
+  ui:executeCommand('showobj','pfooter','')
 end
+
+
 
