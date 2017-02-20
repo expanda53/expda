@@ -1,4 +1,4 @@
---<verzio>20170208</verzio>
+--<verzio>20170220</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -6,8 +6,9 @@ ui=params[1]
 ean = params[2]:gsub("\n",""):gsub(':','')
 acikod = params[3]:gsub("\n",""):gsub(':','')
 cegazon = params[4]:gsub("\n",""):gsub(':','')
-rentip = params[5]:gsub("\n",""):gsub(':','')
-if (rentip=='') then
+if (#params>=5) then
+  rentip = params[5]:gsub("\n",""):gsub(':','')
+else
   rentip = tostring(ui:findObject('lrentip'):getText())
 end  
 if (rentip=='') then
@@ -38,7 +39,13 @@ if (result=='0') then
   ui:executeCommand('valuetohidden','lcikod',cikk)
   ui:executeCommand('valueto','lcikknev',cikknev)
   ui:executeCommand('showobj','cap_drb;cap_drb2;cap_drb3;cap_drb4;button_ujean','')
-  ui:executeCommand('aktbcodeobj','bcode2','')
+  ui:executeCommand('setfocus','edrb2','') 
+  bevmod = tostring(ui:findObject('lbevmod'):getText())
+  if (bevmod=='auto') then
+    --ui:executeCommand('valueto','edrb2','1')
+    fejazon = tostring(ui:findObject('lfejazon'):getText())
+    ui:executeCommand("startlua","bevet/mentes.lua",fejazon .. ' ' .. cegazon .. ' ' .. cikk .. ' ' .. ean .. ' ' .. '1' .. ' ' .. drb3 .. ' ' .. drb2 .. ' ' .. drb)
+  end
 elseif (result=='1') then
   cikkval=0
   alert(ui,'Nem található ilyen termék a rendeléseken:\n'..cikknev)
@@ -46,7 +53,11 @@ elseif (result=='1') then
   
 elseif (result=='2') then
   cikkval=0
-  alert(ui,'Több van átvéve, mint a rendelt:\n'..'Rendelt:' .. drb .. ' Átvéve:'..drb2)
+  if (drb==drb2) then
+    alert(ui,'A teljes rendelt mennyiség átvéve!\n'..'Átvéve:' .. drb )
+  else
+    alert(ui,'Több van átvéve, mint a rendelt:\n'..'Rendelt:' .. drb .. ' Átvéve:'..drb2)
+  end
   ui:executeCommand('valueto','eean','') 
 elseif (result=='-1') then
   cikkval=1

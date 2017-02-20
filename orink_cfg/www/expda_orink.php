@@ -146,6 +146,7 @@
       $sql="SELECT KOD,NEV||'|@@style:listtitle' NEV FROM ANDROID_CIKK_KERES(:betuz,30)";
       $stmt = query_prepare($sql);
       $betuz=trim($r['p1']);
+      $betuz=str_replace('%20',' ',$betuz);
       $betuz=utf8_decode($betuz);
 	  $stmt->bindParam(':betuz', $betuz, PDO::PARAM_STR);
 	  echo query_print($stmt);      

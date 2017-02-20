@@ -1,21 +1,32 @@
---<verzio>20161223</verzio>
+--<verzio>20170220</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
 ui = params[1]
 azon = params[2]:gsub("n",""):gsub(':','')
-kezelo = ui:getKezelo()
-str = 'hkod_lezaras '..azon..' '.. kezelo
-list=luafunc.query_assoc(str,false)
-str = list[1]['RESULTTEXT']
-if (str=='OK') then
-       ui:executeCommand('TOAST','Lezárás rendben.')
-       
+if (#params>=3) then
+  dialogres = params[3]    
 else
-       alert(ui,str)
-       --ui:executeCommand('uzenet',str)
+  dialogres = "null"
+end  
+if (dialogres=="null") then
+    mibiz = tostring(ui:findObject('lmibiz'):getText())
+    ui:showDialog("Biztos befejezi a helykód rendezést? ".. mibiz,"hkod/lezaras.lua " .. azon .. " igen","hkod/lezaras.lua 0 nem")
 end
-ui:executeCommand('CLOSE','','')
+if (dialogres=="igen") then
+    kezelo = ui:getKezelo()
+    str = 'hkod_lezaras '..azon..' '.. kezelo
+    list=luafunc.query_assoc(str,false)
+    str = list[1]['RESULTTEXT']
+    if (str=='OK') then
+           ui:executeCommand('TOAST','Lezárás rendben.')
+           
+    else
+           alert(ui,str)
+           --ui:executeCommand('uzenet',str)
+    end
+    ui:executeCommand('CLOSE','','')
+end    
         
 
 

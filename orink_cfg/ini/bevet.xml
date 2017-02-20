@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170131</verzio>
+<verzio>20170220</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -47,6 +47,15 @@
   <width>0</width>
   <height>0</height>
   <style>hidden</style>
+</label>
+<label>
+  <name>lbevmod</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+  <text>drb</text>
 </label>
 
 <panel>
@@ -294,7 +303,7 @@
   <name>button_review</name>
   <Text>Átnézés</Text>
   <top>275</top>
-  <width>110</width>
+  <width>100</width>
   <height>45</height>
   <left>0</left>
   <lua_after_click>bevet/zaras.lua</lua_after_click>
@@ -305,11 +314,11 @@
 <custom_button>
   <style>buttondefault</style>
   <name>button_cikkval</name>
-  <Text>Cikk választás</Text>
+  <Text>Cikk vál.</Text>
   <top>275</top>
-  <width>165</width>
+  <width>85</width>
   <height>45</height>
-  <left>115</left>
+  <left>105</left>
   <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
@@ -321,12 +330,25 @@
   <name>button_ujean</name>
   <Text>Új EAN</Text>
   <top>275</top>
-  <width>110</width>
+  <width>90</width>
   <height>45</height>
-  <left>285</left>
+  <left>195</left>
   <lua_after_click>bevet/ujean.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_bevmod</name>
+  <Text>Mód:drb</Text>
+  <top>275</top>
+  <width>95</width>
+  <height>45</height>
+  <left>290</left>
+  <lua_after_click>bevet/modvalt.lua [lbevmod]</lua_after_click>
+  <parent>panel1</parent>
+  <visible>true</visible>
 </custom_button>
 
 <panel>

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170201</verzio>
+<verzio>20170220</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -453,7 +453,7 @@
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>65</height>
+    <height>80</height>
     <width>match</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -481,30 +481,31 @@
     <name>hkod</name>
     <parent>atnezo_sor</parent>
     <width>130</width>
-    <height>30</height>
+    <height>40</height>
     <top>30</top>
     <left>0</left>
     <text>[hkod]</text>
+    <align>left</align>
 </label>
 <label>
     <name>drb</name>
     <parent>atnezo_sor</parent>
     <width>130</width>
-    <height>30</height>
+    <height>40</height>
     <top>30</top>
     <left>130</left>
     <text>[drb]</text>
-    <align>center</align>
+    <align>left</align>
 </label>
 <label>
     <name>drb2</name>
     <parent>atnezo_sor</parent>
-    <width>135</width>
-    <height>30</height>
+    <width>136</width>
+    <height>40</height>
     <top>30</top>
     <left>259</left>
     <text>[drb2]</text>
-    <align>center</align>
+    <align>left</align>
 </label>
 <label>
   <name>losszesen</name>
