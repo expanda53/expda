@@ -1,19 +1,23 @@
---<verzio>20170214</verzio>
+--<verzio>20170221</verzio>
 require '.egyeb.functions'
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
 hkod = params[2]:gsub("n",""):gsub(':','')
-kulsoraktar = ui:getGlobal("kulsoraktar")
-kezelo = ui:getKezelo()
-ui:executeCommand("showprogress","Megnyitás...","")
---hkod ellenorzes
-str = 'spothkod_check '..hkod..' '..kezelo..' '..kulsoraktar
-t=luafunc.query_assoc(str,false)
-result=t[1]['RESULT']
-resulttext=t[1]['RESULTTEXT']
-azon=t[1]['AZON']
-mibiz= t[1]['MIBIZ']
+if (hkod:len()<=10) then
+    kulsoraktar = ui:getGlobal("kulsoraktar")
+    kezelo = ui:getKezelo()
+    ui:executeCommand("showprogress","Megnyitás...","")
+    --hkod ellenorzes
+    str = 'spothkod_check '..hkod..' '..kezelo..' '..kulsoraktar
+    t=luafunc.query_assoc(str,false)
+    result=t[1]['RESULT']
+    resulttext=t[1]['RESULTTEXT']
+    azon=t[1]['AZON']
+    mibiz= t[1]['MIBIZ']
+else
+    result='-11'
+end
 if (result=='0' or result=='1') then
   ui:executeCommand('aktbcodeobj','bcode2','')
   ui:executeCommand('disabled','ehkod','')
@@ -31,6 +35,8 @@ else
     msg = 'Téves raktár választás, ebben a raktárban nem található ilyen helykód:\n'..hkod
  elseif (result=='-1') then
     msg = 'Nem található a rendszerben ilyen helykód:\n'..hkod
+ elseif (result=='-11') then
+    msg = 'A helykód hossza max 10 karakter lehet!'
  else 
     msg = resulttext
  end

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170117</verzio>
+<verzio>20170223</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Hkód rendezés</text>
@@ -60,9 +60,21 @@
   <parent>panel1</parent>
 </barcode>
 <barcode>
+  <name>BCODE_HKP</name>
+  <lua_after_trigger>hkod/hkodcheck_hkp.lua [ehkod_hkp]</lua_after_trigger>
+  <valueto>ehkod_hkp</valueto>
+  <parent>panel1</parent>
+</barcode>
+<barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>hkod/bcode1.lua [eean] [ehkod] [lfejazon]</lua_after_trigger>
+  <lua_after_trigger>hkod/eancheck.lua [eean] [ehkod] [lfejazon]</lua_after_trigger>
   <valueto>eean</valueto>
+  <parent>panel1</parent>
+</barcode>
+<barcode>
+  <name>BCODE_CKP</name>
+  <lua_after_trigger>hkod/eancheck_ckp.lua [eean_ckp] [ehkod] [lfejazon]</lua_after_trigger>
+  <valueto>eean_ckp</valueto>
   <parent>panel1</parent>
 </barcode>
 <label>
@@ -147,7 +159,7 @@
   <parent>panel1</parent>
   <left>71</left>
   <visible>false</visible>
-  <lua_on_change>hkod/bcode1.lua [eean] [ehkod] [lfejazon]</lua_on_change>
+  <lua_on_change>hkod/eancheck.lua [eean] [ehkod] [lfejazon]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -281,8 +293,6 @@
   <visible>false</visible>
 </custom_button>
 
-
-
 <panel>
   <file>pcikkval.xml</file>
 </panel>
@@ -292,11 +302,11 @@
   <Text>Vissza</Text>
   <top>290</top>
   <width>150</width>
-  <height>90</height>
+  <height>45</height>
   <left>0</left>
   <parent>cikkvalpanel</parent>
   <visible>true</visible>
-  <lua_after_click>hkod/hkodkltvissza.lua</lua_after_click>
+  <lua_after_click>hkod/cikkvalvissza.lua</lua_after_click>
 </custom_button>
 
 <panel>
@@ -315,8 +325,8 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>290</height>
-  <top>0</top>
+  <height>260</height>
+  <top>30</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
@@ -330,6 +340,30 @@
   <visible>true</visible>
   <itempanel>hkodklt_sor</itempanel>
 </table>
+<label>
+    <name>lhkod_hkp</name>
+    <parent>hkodkltpanel</parent>
+    <width>100</width>
+    <height>29</height>
+    <top>1</top>
+    <left>0</left>
+    <text>Helykód</text>
+    <style>labeldefault;listtitlework</style>
+    <align>center</align>
+</label>
+<text>
+  <name>ehkod_hkp</name>
+  <top>1</top>
+  <width>100</width>
+  <height>30</height>
+  <parent>hkodkltpanel</parent>
+  <font_color>#000000</font_color>
+  <bgcolor>#999999</bgcolor>
+  <left>105</left>  
+  <lua_on_change>hkod/hkodcheck_hkp.lua [ehkod_hkp]</lua_on_change>
+  <font_size>15</font_size>
+  <align>center</align>
+</text>
 
 <panel>
     <name>hkodklt_sor</name>
@@ -384,8 +418,33 @@
   <parent>panel1</parent>
 </panel>
 <label>
+  <name>leanp</name>
+  <top>1</top>
+  <left>0</left>
+  <width>100</width>
+  <height>wrap</height>
+  <visible>true</visible>
+  <parent>cikkkltpanel</parent>
+  <style>labeldefault;listtitlework</style>
+  <text>EAN</text>
+  <align>center</align>
+</label>
+<text>
+  <name>eean_ckp</name>
+  <top>1</top>
+  <width>200</width>
+  <height>30</height>
+  <parent>cikkkltpanel</parent>
+  <font_color>#000000</font_color>
+  <bgcolor>#999999</bgcolor>
+  <left>105</left>  
+  <lua_on_change>hkod/eancheck_ckp.lua [eean_ckp] [ehkod] [lfejazon]</lua_on_change>
+  <font_size>15</font_size>
+  <align>center</align>
+</text>
+<label>
   <name>lcikknevp</name>
-  <top>0</top>
+  <top>25</top>
   <left>0</left>
   <width>match</width>
   <height>wrap</height>
@@ -399,8 +458,8 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>290</height>
-  <top>20</top>
+  <height>265</height>
+  <top>45</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
@@ -455,7 +514,7 @@
   <left>0</left>
   <parent>cikkkltpanel</parent>
   <visible>true</visible>
-  <lua_after_click>hkod/hkodkltvissza.lua</lua_after_click>
+  <lua_after_click>hkod/cikkkltvissza.lua</lua_after_click>
 </custom_button>
 
 

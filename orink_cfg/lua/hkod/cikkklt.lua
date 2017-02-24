@@ -1,4 +1,4 @@
---<verzio>20161221</verzio>
+--<verzio>20170223</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -17,7 +17,12 @@ else
 end
 
 cikknev = tostring(ui:findObject('lcikknev'):getText())
+ean = tostring(ui:findObject('eean'):getText())
 ui:executeCommand("valueto","lcikknevp",cikknev)
+ui:executeCommand('aktbcodeobj','bcode_ckp','')
+ui:setGlobal("aktbcodeobj",'bcode_ckp')
+ui:executeCommand('valueto','eean_ckp',ean)   
+ui:executeCommand('setfocus','eean_ckp','')   
 ui:executeCommand("showobj","cikkkltpanel")
 
 

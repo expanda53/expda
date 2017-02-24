@@ -1,4 +1,4 @@
---<verzio>20161221</verzio>
+--<verzio>20170223</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -16,5 +16,8 @@ else
    ui:executeCommand('hide','hkodklt_table','')
 end
 ui:executeCommand("showobj","hkodkltpanel")
+ui:executeCommand('aktbcodeobj','bcode_hkp','')
+ui:executeCommand('valueto','ehkod_hkp',hkod)   
+ui:executeCommand('setfocus','ehkod_hkp','')   
 
 

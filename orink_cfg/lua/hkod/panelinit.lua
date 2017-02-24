@@ -1,4 +1,4 @@
---<verzio>20161222</verzio>
+--<verzio>20170223</verzio>
 local params = {...}
 ui = params[1]
 kezelo = ui:getKezelo()
@@ -17,6 +17,7 @@ end
 ui:executeCommand('valueto','lmibiz', mibiz)
 ui:executeCommand('valueto','lfejazon', azon)
 ui:executeCommand('aktbcodeobj','bcode0','')
+ui:setGlobal("aktbcodeobj",'bcode0')
 ui:executeCommand('setbgcolor','button_kibe','#497000')
 version = ui:getGlobal("appversion")
 ui:executeCommand('valueto',"lverzio",'exPDA v' .. version)

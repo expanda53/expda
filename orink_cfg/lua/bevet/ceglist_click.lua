@@ -1,4 +1,4 @@
---<verzio>20161221</verzio>
+--<verzio>20170221</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -11,7 +11,7 @@ ui:executeCommand('valuetohidden','lrentip', rentip)
 ui:executeCommand('valuetohidden','lcegazon', cegazon)
 ui:executeCommand('valueto','lcegnev', cegnev..' ('..rentip..')')
 ui:executeCommand('hideobj','ceglistpanel','')
-ui:executeCommand('showobj','pfooter;cap_ean;eean;button_review;button_cikkval','')
+ui:executeCommand('showobj','pfooter;cap_ean;eean;button_review;button_cikkval;button_bevmod','')
 ui:executeCommand('aktbcodeobj','bcode1','')
 
 kezelo = ui:getKezelo()

@@ -1,8 +1,9 @@
---<verzio>20161130</verzio>
+--<verzio>20170223</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
 ui:executeCommand('aktbcodeobj','bcode0','')
+ui:setGlobal("aktbcodeobj",'bcode0')
 ui:executeCommand('valuetohidden','lcikknev','')
 ui:executeCommand('valuetohidden','lcikod','')
 ui:executeCommand('valuetohidden','edrb','')
