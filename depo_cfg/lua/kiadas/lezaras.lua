@@ -1,4 +1,4 @@
---<verzio>20170216</verzio>
+--<verzio>20170301</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -26,7 +26,7 @@ if (dialogres=="igen") then
         end
         hibastr = hibastr .. "Hiány: " .. t[1]['HIANY'] .. " db\n"
         
-        str = t[1]['RESULTTEXT']~='OK' then
+        if (t[1]['RESULTTEXT']~='OK') then
           hibastr = hibastr .. str .. "\n"
         end
         
