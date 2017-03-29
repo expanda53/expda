@@ -1,6 +1,6 @@
 <Root>
 <mainpanel>
-  <verzio>20170116</verzio>
+  <verzio>20170329</verzio>
   <name>mainpanel1</name>
   <text>Fomenü</text>
   <bgcolor>#000000</bgcolor>
@@ -39,7 +39,7 @@
   <height>120</height>
   <left>135</left>
   <style>buttondefault</style>
-  <visible>false</visible>
+  <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua ELLENOR [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>

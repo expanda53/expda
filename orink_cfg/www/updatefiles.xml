@@ -4,7 +4,7 @@ images/question.png;20170213
 ini/appconfig.xml;20170220
 ini/style.xml;20161222
 ini/login.xml;20161222
-ini/menu_kiadas.xml;20170116
+ini/menu_kiadas.xml;20170329
 ini/menu_leltar.xml;20170212
 ini/mainmenu.xml;20170116
 ini/pfooter.xml;20161221
@@ -21,7 +21,7 @@ lua/egyeb/menuinit.lua;20161117
 lua/egyeb/almenu_panelinit.lua;20170116
 lua/egyeb/setfocus.lua;20161102
 lua/egyeb/cikkval_refresh.lua;20161201
-lua/egyeb/cikkval_click.lua;20170223
+lua/egyeb/cikkval_click.lua;20170329_
 lua/egyeb/cikkval_open.lua;20161203
 ini/leltar.xml;20161215
 lua/leltar/panelinit.lua;20161222
@@ -101,3 +101,15 @@ lua/spothkod/showreview.lua;20170212
 lua/spothkod/lezaras.lua;20170220
 lua/spothkod/sortorol.lua;20170212
 lua/spothkod/kilep.lua;20170214
+ini/ellenor.xml;20170329_
+lua/ellenor/panelinit.lua;20170329_
+lua/ellenor/mibizlist_filter.lua;20170329_
+lua/ellenor/mibizlist_click.lua;20170329_
+lua/ellenor/mibizvissza.lua;20170329_
+lua/ellenor/bcode1.lua;20170329_
+lua/ellenor/showreview.lua;20170329_
+lua/ellenor/ujean.lua;20170329_
+lua/ellenor/mentes.lua;20170329_
+lua/ellenor/lezaras.lua;20170329_
+lua/ellenor/kiadasfolyt.lua;20170329_
+lua/ellenor/kesobbfolyt.lua;20170329_

@@ -3,6 +3,7 @@
   require_once 'firebird.php';
   require_once 'converter.php';
   header('Access-Control-Allow-Origin: *');  
+  date_default_timezone_set('Europe/Budapest');
   function leftcut ($arg1, $arg2) {
      $arg2 = '/'.$arg2.'/';
      $vissza = preg_split($arg2, $arg1);
@@ -660,4 +661,122 @@
 	  echo query_print($stmt);      
       Firebird::commit();
   }/* spot hkod leltar eddig */
+  /* kiadas ellenor */
+  function ellenor_mibizlist($r){
+      $sql="SELECT CEGNEV||'|@@style:listtitle;listtitledone' CEGNEV,";
+      $sql.="mibiz||'|@@style:listtitle;listtitledone' MIBIZ,";
+      $sql.="'Mozgás: '||MOZGAS||'|@@style:listdetails' MOZGAS,";
+      $sql.="'Sorok: '||SORDB||'|@@style:listdetails' SORDB,AZON";            
+      $sql.="      FROM ANDROID_KIADELLENOR_MIBIZLIST(:login,:kulso)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $kulso=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);      
+	  echo query_print($stmt);
+  }
+  function ellenor_init($r){
+      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_KIADELLENOR_INIT(:azon,:login,:kulso)";
+      $stmt = query_prepare($sql);
+      $azon=trim($r['p1']);
+      $login=trim($r['p2']);
+      $kulso=trim($r['p3']);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
+	  echo query_print($stmt);
+      Firebird::commit();
+  }
+  function ellenor_eankeres($r){
+      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, RESULT FROM ANDROID_KIADELLENOR_EANKERES(:azon,:ean,:cikod,:login,:kulso)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $ean=trim($r['p2']);
+      $cikod=trim($r['p3']);
+      $login=trim($r['p4']);
+      $kulso=trim($r['p5']);
+      if ($ean=='.') $ean='';
+      if ($cikod=='.') $cikod='';
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
+      $stmt->bindParam(':cikod', $cikod, PDO::PARAM_STR);  
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+  }        
+  function ellenor_cikklist($r){
+      $sql="SELECT CIKK, CIKKNEV||case ";
+      $sql.="  when (abs(drb) = coalesce(drb2,0) ) then '|@@style:listtitle;listtitledone' ";
+      $sql.= " when (coalesce(drb2,0)=0) then '|@@style:listtitle;listtitlewait' ";
+      $sql.= " when (abs(drb) > coalesce(drb2,0) and coalesce(drb2,0)>0) then '|@@style:listtitle;listtitlework' end CIKKNEV,";
+
+      $sql.= " 'Kiszedendõ: '||cast(DRB as integer)||case ";
+      $sql.="  when (abs(drb) = coalesce(drb2,0)) then '|@@style:listtitle;listtitledone' ";
+      $sql.= " when (coalesce(drb2,0)=0) then '|@@style:listtitle;listtitlewait' ";
+      $sql.= " when (abs(drb) > coalesce(drb2,0) and coalesce(drb2,0)>0) then '|@@style:listtitle;listtitlework' end DRB,";
+      
+      $sql.= " 'Kiszedve: '||cast(coalesce(DRB2,0) as integer)||case ";
+      $sql.="  when (abs(drb) = coalesce(drb2,0) ) then '|@@style:listtitle;listtitledone' ";
+      $sql.= " when (coalesce(drb2,0)=0) then '|@@style:listtitle;listtitlewait' ";
+      $sql.= " when (abs(drb) > coalesce(drb2,0) and coalesce(drb2,0)>0) then '|@@style:listtitle;listtitlework' end DRB2";      
+      
+      $sql.= "  FROM ANDROID_KIADELLENOR_REVIEW(:login,:azon)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $azon=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }
+  function ellenor_kesobb($r){
+      $sql="SELECT RESULT,RESULTTEXT ";      
+      $sql.= "  FROM ANDROID_KIADELLENOR_KESOBBFOLYT(:login,:azon)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $azon=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);
+      Firebird::commit();
+  }
+  function ellenor_mentes($r){
+      $sql = "SELECT RESULTTEXT,RESULT FROM ANDROID_KIADELLENOR_MENTES(:azon, :cikk, :ean, :drb2, :login, :kulso)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $cikk=trim($r['p2']);
+      $ean=trim($r['p3']);
+      $drb2=trim($r['p4']);
+      $login=trim($r['p5']);
+      $kulso=trim($r['p6']);
+      if ($ean=='.') $ean='';
+      if ($cikk=='.') $cikk='';
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':drb2', $drb2, PDO::PARAM_STR);
+      $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
+      $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }
+  function ellenor_lezaras($r){
+      $sql = "SELECT RESULTTEXT FROM ANDROID_KIADELLENOR_LEZAR(:login,:azon)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $login=trim($r['p2']);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }
+  
+  /* kiadas ellenor eddig*/  
+  
 ?>

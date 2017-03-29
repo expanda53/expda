@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170116</verzio>
+<verzio>20170329</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiszedés ellenőrzés</text>
@@ -85,88 +85,11 @@
   <align>center</align>
   <style>reviewlabel</style>
 </label>
-<panel>
-  <name>ceglistpanel</name>
-  <width>match</width>
-  <height>match</height>
-  <top>0</top>
-  <visible>false</visible>
-  <bgcolor>#000000</bgcolor>
-  <left>0</left>
-  <parent>panel1</parent>
-</panel>
-<table>
-  <name>ceglist_table</name>
-  <bgcolor>#000000</bgcolor>
-  <font_color>#497000</font_color>
-  <width>match</width>
-  <height>300</height>
-  <top>0</top>
-  <left>0</left>
-  <divider_color>#434343</divider_color>
-  <divider_height>2</divider_height>
-
-  <column_title_nev>Név</column_title_nev>
-  <column_title_azon>Azon</column_title_azon>
-  <column_title_rentip>Rentip</column_title_rentip>
-  <row_height>10</row_height>
-  <parent>ceglistpanel</parent>
-  <visible>true</visible>
-  <lua_after_click>ellenor/ceglist_click.lua</lua_after_click>
-  <itempanel>ceglist_sor</itempanel>
-</table>
-<panel>
-    <name>ceglist_sor</name>
-    <parent>ceglistpanel</parent>
-    <height>60</height>
-    <width>match</width>
-    <bgcolor>#000000</bgcolor>
-    <visible>false</visible>
-</panel>
-<label>
-    <name>azon</name>
-    <parent>ceglist_sor</parent>
-    <width>0</width>
-    <height>0</height>
-    <top>0</top>
-    <left>0</left>
-    <text>[azon]</text>
-</label>
-<label>
-    <name>nev</name>
-    <parent>ceglist_sor</parent>
-    <width>350</width>
-    <height>35</height>
-    <top>0</top>
-    <left>0</left>
-    <text>[nev]</text>
-</label>
-<label>
-    <name>rentip</name>
-    <parent>ceglist_sor</parent>
-    <width>50</width>
-    <height>35</height>
-    <top>0</top>
-    <left>350</left>
-    <text>[rentip]</text>
-</label>
-<custom_button>
-  <style>buttondefault</style>
-  <name>btn_mibizvissza</name>
-  <Text>Vissza</Text>
-  <top>305</top>
-  <width>match</width>
-  <height>45</height>
-  <left>0</left>
-  <parent>ceglistpanel</parent>
-  <visible>true</visible>
-  <lua_after_click>kiadas/mibizvissza.lua</lua_after_click>
-</custom_button>
 
 
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>ellenor/bcode1.lua [eean] . [lcegazon]</lua_after_trigger>
+  <lua_after_trigger>ellenor/bcode1.lua [eean] . [lfejazon]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
@@ -189,7 +112,7 @@
   <parent>panel1</parent>
   <left>60</left>
   <visible>false</visible>
-  <lua_on_change>ellenor/bcode1.lua [eean] . [lcegazon]</lua_on_change>
+  <lua_on_change>ellenor/bcode1.lua [eean] . [lfejazon]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -211,53 +134,41 @@
   <name>cap_drb</name>
   <top>140</top>
   <left>10</left>
-  <width>100</width>
+  <width>70</width>
   <height>20</height>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
-  <text>Rendelve</text>
+  <align>center</align>
+  <text>Kiszedve</text>
 </label>
 <label>
   <name>ldrb</name>
+  <top>170</top>
+  <left>10</left>
+  <width>70</width>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <align>center</align>
+</label>
+<label>
+  <name>cap_edrb2</name>
   <top>140</top>
-  <left>110</left>
+  <left>130</left>
+  <width>70</width>
+  <height>20</height>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
   <align>center</align>
+  <text>Ellenőrizve</text>
 </label>
 <label>
-  <name>cap_drb3</name>
+  <name>ldrb2</name>
   <top>170</top>
-  <left>10</left>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault;labeldrb_cap</style>
-  <text>Átvéve</text>
-</label>
-<label>
-  <name>ldrb3</name>
-  <top>170</top>
-  <left>110</left>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault;labeldrb_cap</style>
-  <align>center</align>
-</label>
-<label>
-  <name>cap_drb4</name>
-  <top>200</top>
-  <left>10</left>
-  <visible>false</visible>
-  <parent>panel1</parent>
-  <style>labeldefault;labeldrb_cap</style>
-  <text>Összesen átvéve</text>
-</label>
-<label>
-  <name>ldrb4</name>
-  <top>200</top>
-  <left>110</left>
+  <left>130</left>
+  <width>100</width>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
@@ -272,7 +183,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
-  <text>Érkezett</text>
+  <text>Ellenőrzés</text>
 </label>
 <text>
   <name>edrb2</name>
@@ -286,7 +197,7 @@
   <height>40</height>  
   <align>center</align>
   <width>60</width>
-  <lua_on_change>ellenor/mentes.lua [lfejazon] [lcegazon] [lcikod] [eean] [edrb2] [ldrb3] [ldrb4] [ldrb]</lua_on_change>
+  <lua_on_change>ellenor/mentes.lua [lfejazon] [lcikod] [eean] [edrb2] [ldrb2] [ldrb]</lua_on_change>
 </text>
 
 <custom_button>
@@ -297,7 +208,7 @@
   <width>110</width>
   <height>45</height>
   <left>0</left>
-  <lua_after_click>ellenor/zaras.lua</lua_after_click>
+  <lua_after_click>ellenor/showreview.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -345,32 +256,44 @@
   <bgcolor>#000000</bgcolor>
   <font_color>#497000</font_color>
   <width>match</width>
-  <height>275</height>
+  <height>240</height>
   <top>0</top>
   <left>0</left>
   <divider_color>#434343</divider_color>
   <divider_height>2</divider_height>
   
-  <column_title_cikk>Cikk</column_title_cikk>
-  <column_title_cikknev>Cikknev</column_title_cikknev>
-  <column_title_ean>Ean</column_title_ean>
+  <column_title_cikk>Kod</column_title_cikk>
+  <column_title_cikknev>Cikk</column_title_cikknev>
   <column_title_drb>drb</column_title_drb>
+  <column_title_drb2>drb2</column_title_drb2>
+  
   
   <font_size>10</font_size>
-  <row_height>160</row_height>
+  <row_height>65</row_height>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <itempanel>atnezo_sor</itempanel>
+  
 </table>
 
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>60</height>
+    <height>75</height>
     <width>match</width>
-    <bgcolor>#497000</bgcolor>
+    <bgcolor>#000000</bgcolor>
     <visible>false</visible>
 </panel>
+<label>
+    <name>cikk</name>
+    <parent>atnezo_sor</parent>
+    <width>0</width>
+    <height>0</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[cikk]</text>
+    <visible>false</visible>
+</label>
 <label>
     <name>cikknev</name>
     <parent>atnezo_sor</parent>
@@ -381,34 +304,51 @@
     <text>[cikknev]</text>
 </label>
 <label>
-    <name>ean</name>
-    <parent>atnezo_sor</parent>
-    <width>195</width>
-    <height>30</height>
-    <top>30</top>
-    <left>0</left>
-    <text>[ean]</text>    
-</label>
-<label>
     <name>drb</name>
     <parent>atnezo_sor</parent>
-    <width>200</width>
-    <height>30</height>
+    <width>400</width>
+    <height>40</height>
     <top>30</top>
-    <left>195</left>
+    <left>0</left>
     <text>[drb]</text>
-    <align>right</align>
+    <align>left</align>
 </label>
 <label>
-    <name>cikk</name>
+    <name>drb2</name>
     <parent>atnezo_sor</parent>
-    <width>0</width>
-    <height>0</height>
-    <top>0</top>
+    <width>400</width>
+    <height>40</height>
+    <top>55</top>
     <left>0</left>
-    <text>[cikk]</text>
-    <style>listhidden</style>
+    <text>[drb2]</text>
+    <align>left</align>
 </label>
+<label>
+  <name>losszesen</name>
+  <top>610</top>
+  <height>wrap</height>
+  <left>0</left>
+  <width>240</width>
+  <visible>true</visible>
+  <parent>reviewpanel</parent>
+  <style>reviewlabel</style>
+  <align>center</align>
+  <text>Kiszedve</text>
+</label>
+<label>
+  <name>lkiszedve</name>
+  <top>610</top>
+  <height>wrap</height>
+  <left>241</left>
+  <width>240</width>
+  <visible>true</visible>
+  <parent>reviewpanel</parent>
+  <style>reviewlabel</style>
+  <align>center</align>
+  <text>Ellenőrizve</text>
+</label>
+
+
 
 <custom_button>
   <style>buttondefault</style>
@@ -433,7 +373,7 @@
   <left>135</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>ellenor/kesobbfolyt.lua [lfejazon]</lua_after_click>
+  <lua_after_click>ellenor/kesobbfolyt.lua</lua_after_click>
 </custom_button>
 
 <custom_button>
@@ -463,4 +403,136 @@
   <visible>true</visible>
   <lua_after_click>egyeb/cikkvissza.lua</lua_after_click>
 </custom_button>
+
+
+<panel>
+  <name>mibizlistpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>0</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+<combo>
+  <name>combo_biztip</name>
+  <Items>Mind;Belfoldi;Export</Items>
+  <top>0</top>
+  <width>match</width>
+  <height>50</height>
+  <left>0</left>
+  <parent>mibizlistpanel</parent>
+  <visible>false</visible>
+  <bgcolor>#fafafa</bgcolor>
+  <font_color>#000000</font_color>
+  <lua_after_click>ellenor/mibizlist_filter.lua [combo_biztip]</lua_after_click>
+</combo>
+
+<table>
+  <name>mibizlist_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>250</height>
+  <top>0</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+
+  <column_title_mibiz>Mibiz</column_title_mibiz>
+  <column_title_cegnev>Cég</column_title_cegnev>
+  <column_title_mozgas>Mozgás</column_title_mozgas>
+  <column_title_deviza>Deviza</column_title_deviza>
+  <column_title_sordb>Sordb</column_title_sordb>
+  <column_title_azon>Azon</column_title_azon>
+
+  <font_size>10</font_size>
+  <row_height>160</row_height>
+  <parent>mibizlistpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>ellenor/mibizlist_click.lua null</lua_after_click>
+  <itempanel>mibizlist_sor</itempanel>
+</table>
+
+<panel>
+    <name>mibizlist_sor</name>
+    <parent>mibizlistpanel</parent>
+    <height>40</height>
+    <width>match</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>cegnev</name>
+    <parent>mibizlist_sor</parent>
+    <width>270</width>
+    <height>wrap</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[cegnev]</text>
+</label>
+
+<label>
+    <name>mibiz</name>
+    <parent>mibizlist_sor</parent>
+    <width>130</width>
+    <height>wrap</height>
+    <top>0</top>
+    <left>271</left>
+    <text>[mibiz]</text>
+    <align>right</align>
+</label>
+<label>
+    <name>mozgas</name>
+    <parent>mibizlist_sor</parent>
+    <width>100</width>
+    <height>wrap</height>
+    <top>30</top>
+    <left>0</left>
+    <text>[mozgas]</text>
+</label>
+<label>
+    <name>sordb</name>
+    <parent>mibizlist_sor</parent>
+    <width>130</width>
+    <height>wrap</height>
+    <top>30</top>
+    <left>100</left>
+    <text>[sordb]</text>
+</label>
+
+<label>
+    <name>deviza</name>
+    <parent>mibizlist_sor</parent>
+    <width>100</width>
+    <height>wrap</height>
+    <top>30</top>
+    <left>300</left>
+    <text>[deviza]</text>
+</label>
+
+<label>
+    <name>azon</name>
+    <parent>mibizlist_sor</parent>
+    <width>0</width>
+    <height>0</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[azon]</text>
+    <style>listhidden</style>
+</label>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_mibizvissza</name>
+  <Text>Vissza</Text>
+  <top>305</top>
+  <width>match</width>
+  <height>45</height>
+  <left>0</left>
+  <parent>mibizlistpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>ellenor/mibizvissza.lua</lua_after_click>
+</custom_button>
+
 </Root>

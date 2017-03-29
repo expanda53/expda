@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170220</verzio>
+<verzio>20170221</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -348,7 +348,7 @@
   <left>290</left>
   <lua_after_click>bevet/modvalt.lua [lbevmod]</lua_after_click>
   <parent>panel1</parent>
-  <visible>true</visible>
+  <visible>false</visible>
 </custom_button>
 
 <panel>

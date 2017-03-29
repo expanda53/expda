@@ -1,16 +1,27 @@
---<verzio>20161223</verzio>
-require '.egyeb.functions'
+--<verzio>20170329</verzio>
 local params = {...}
 ui = params[1]
-fejazon = params[2]:gsub("n",""):gsub(':','')
 kezelo = ui:getKezelo()
-str = 'beerk_kesobbfolyt ' .. fejazon .. ' ' .. kezelo
-t=luafunc.query_assoc(str,false)
-result = t[1]['RESULT']
-resulttext = t[1]['RESULTTEXT']
-if (result=='0') then
-    ui:executeCommand('TOAST','Beérkezés megszakítás rendben.')
+if (#params>=2) then
+  dialogres = params[2]    
 else
-    alert(ui,'Hiba:' .. resulttext)
+  dialogres = "null"
+end  
+
+if (dialogres=="null") then
+    mibiz = tostring(ui:findObject('lmibiz'):getText())
+    ui:showDialog("Biztos megszakítja a kiszedés ellenőrzést? ".. mibiz,"ellenor/kesobbfolyt.lua igen ","ellenor/kesobbfolyt.lua nem")
 end
-ui:executeCommand("close","","")
+if (dialogres=="igen") then
+    fejazon = tostring(ui:findObject('lfejazon'):getText())
+    str = 'ellenor_kesobb '..kezelo..' '..fejazon
+    t=luafunc.query_assoc(str,false)
+    result=t[1]['RESULT']
+    resulttext=t[1]['RESULTTEXT']
+    if (result=='0') then
+       ui:executeCommand('toast','Kiszedés ellenőrzés megszakítása rendben.','')
+    else
+      ui:executeCommand('toast',resulttext,'')
+    end
+    ui:executeCommand("close","","")
+end
