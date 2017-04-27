@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161222</verzio>
+<verzio>20170404</verzio>
 <mainpanel>
   <name>loginpanel</name>
   <text>Bejelentkezés</text>
@@ -48,7 +48,7 @@
   <height>60</height>
   <left>0</left>
   <parent>panel1</parent>
-  <visible>true</visible>
+  <visible>false</visible>
   <bgcolor>#fafafa</bgcolor>
   <font_color>#000000</font_color>
   <lua_after_click>egyeb/login_kulso.lua [combo_raktar]</lua_after_click>
@@ -59,7 +59,7 @@
   <style>buttondefault</style>
   <name>button_login</name>
   <Text>Bejelentkezés</Text>
-  <top>150</top>
+  <top>80</top>
   <width>match</width>
   <height>70</height>
   <left>0</left>
@@ -72,7 +72,7 @@
   <style>buttondefault</style>
   <name>button_exit</name>
   <Text>Kilépés</Text>
-  <top>225</top>
+  <top>155</top>
   <width>match</width>
   <height>70</height>
   <left>0</left>

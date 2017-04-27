@@ -1,4 +1,4 @@
---<verzio>20170329</verzio>
+--<verzio>20170405</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -30,18 +30,33 @@ if (ujki>osszki) then
       ui:executeCommand('TOAST','HIBA! Több az ellenőrzött, mint az előírt!')
       ui:executeCommand('valueto','edrb2','')
       ui:executeCommand('setfocus','edrb2','')
-else 
+else
+  if (tonumber(aktki)==0 and tonumber(osszki)>0) then
+      ui:executeCommand('TOAST','HIBA! Nem adott meg ellenőrizendő mennyiséget!')
+      ui:executeCommand('valueto','edrb2','')
+      ui:executeCommand('setfocus','edrb2','')
+  else
       str = 'ellenor_mentes ' .. azon .. ' ' .. cikk .. ' ' .. ean .. ' '  .. aktki .. ' '.. kezelo .. ' ' .. kulsoraktar
       t=luafunc.query_assoc(str,false)
       result = t[1]['RESULT']
       resulttext = t[1]['RESULTTEXT']
       if (result=='0') then
-          ui:executeCommand('TOAST','Mentés rendben.')
-          ui:executeCommand('valueto','ldrb2',ujki)
-          ui:executeCommand('valueto','edrb2','')
+        if (ujki==0) then
+          str = 'Törlés rendben.'
+        else
+            bevmod = tostring(ui:findObject('lbevmod'):getText())
+            if (bevmod=='auto') then
+              str = "Mentés rendben. Ellenőrizve: " .. osszki .. "/" .. ujki
+            else
+              str = "Mentés rendben."
+            end
+        end
+        ui:executeCommand('TOAST',str)
+        ui:executeCommand("startlua","ellenor/ujean.lua",'')
       else
           ui:executeCommand('uzenet',resulttext,"egyeb/setfocus.lua eean")
       end
+  end
 end
 
 

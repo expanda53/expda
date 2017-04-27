@@ -99,6 +99,13 @@
     logol($utf);
 	return $utf;	
   }    
+  function applog($r){
+      $kezelo=$r['p1'];
+      $logtip=$r['p2'];
+      $logtext=$r['p3'];
+      logol('['.$logtip.']' . 'kezelo:' .$kezelo.' log:'.$logtext);
+      echo "ok";
+  }
   
   /* login */
   function login_check($r){
@@ -220,7 +227,7 @@
       $stmt = query_prepare($sql);
       
       $mibiz=trim($r['p1']);
-      $login=trim($r['p2']);
+      //$login=trim($r['p2']);
       
 	  //$stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':mibiz', $mibiz, PDO::PARAM_STR);

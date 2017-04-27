@@ -14,14 +14,17 @@ public class exMedia implements FilenameFilter{
     public exMedia(Context c){
         String path = Ini.getAudioDir();
         File f = new File(path);
+        if (!f.exists()) f.mkdirs();
         File[] files = f.listFiles();
-        this.files = new ArrayList<exMPlayer>();
-        for (int i=0;i<files.length;i++){
-        //for (File f in files) {
-            File aktFile = files[i];
-            exMPlayer mp = new exMPlayer (c, aktFile.getName());
+        if (files!=null) {
+            this.files = new ArrayList<exMPlayer>();
+            for (int i = 0; i < files.length; i++) {
+                //for (File f in files) {
+                File aktFile = files[i];
+                exMPlayer mp = new exMPlayer(c, aktFile.getName());
 
-            this.files.add(mp);
+                this.files.add(mp);
+            }
         }
     }
 
@@ -32,9 +35,11 @@ public class exMedia implements FilenameFilter{
     }
 
     public exMPlayer getMediaByName(String name){
-        for (int i=0;i<files.size();i++){
-            if (files.get(i).getName().equalsIgnoreCase(name)){
-                return files.get(i);
+        if (files!=null) {
+            for (int i = 0; i < files.size(); i++) {
+                if (files.get(i).getName().equalsIgnoreCase(name)) {
+                    return files.get(i);
+                }
             }
         }
         return null;

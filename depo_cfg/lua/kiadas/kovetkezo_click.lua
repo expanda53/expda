@@ -1,4 +1,4 @@
---<verzio>20161101</verzio>
+--<verzio>20170420</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -24,6 +24,7 @@ if (t[1]['SORSZ']>'0') then
     else
       ui:executeCommand('showobj','button_gyszamlist', '')
     end
+	ui:executeCommand('valueto','eean', '')
     ui:executeCommand('setfocus','eean','')
     
 else

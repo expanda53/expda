@@ -19,6 +19,7 @@
   <visible>true</visible>
   <style>reviewlabel</style>
   <align>center</align>
+  <lua_after_click>egyeb/cfgupdate.lua</lua_after_click>
 </label>
 <label>
   <name>lmodulstat</name>

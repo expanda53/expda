@@ -1,4 +1,4 @@
---<verzio>20170329</verzio>
+--<verzio>20170405</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -28,8 +28,15 @@ if (result=='0') then
   ui:executeCommand('valueto','edrb2','')
   ui:executeCommand('valuetohidden','lcikod',cikk)
   ui:executeCommand('valueto','lcikknev',cikknev)
-  ui:executeCommand('showobj','cap_drb;cap_drb2;cap_edrb2;button_ujean','')
-  ui:executeCommand('setfocus','edrb2','') 
+  bevmod = tostring(ui:findObject('lbevmod'):getText())
+  if (bevmod=='auto') then
+    fejazon = tostring(ui:findObject('lfejazon'):getText())
+    ui:executeCommand("startlua","ellenor/mentes.lua",fejazon .. ' ' .. cikk .. ' ' .. ean .. ' ' .. '1' .. ' '  .. drb2 .. ' ' .. drb)
+  else
+    ui:executeCommand('showobj','cap_drb;cap_drb2;cap_edrb2;button_ujean','')
+    ui:executeCommand('setfocus','edrb2','') 
+  end
+  
 elseif (result=='1') then
   cikkval=0
   alert(ui,'Nem található ilyen termék a bizonylaton:\n'..cikknev)

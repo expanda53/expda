@@ -19,7 +19,9 @@ public class uobj {
             this.name=name;
         }
         public static int dpToPx(int dp) {
-            return  (int)(MainActivity.dmetrics.density * dp);
+            if (MainActivity.dmetrics.density!=1.5)  return  (int)(MainActivity.dmetrics.density * dp); //mc vkod
+            else return dp; //cat mobil
+
             //int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
             //return  height;
         }

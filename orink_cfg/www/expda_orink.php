@@ -83,7 +83,7 @@
   function query_prepare($sql){
      logol($sql);
      
-     $arr = Firebird::prepare($sql);
+     $arr = Firebird::prepare($sql,'orink');
      if (!$arr) {
          $errors = Firebird::errorInfo();
          logol('error:'.$errors[2]);
@@ -144,12 +144,16 @@
 	  echo query_print($stmt);
   }    
   function cikkval_open($r){
-      $sql="SELECT KOD,NEV||'|@@style:listtitle' NEV FROM ANDROID_CIKK_KERES(:betuz,30)";
+      $sql="SELECT KOD,NEV||'|@@style:listtitle' NEV FROM ANDROID_CIKK_KERES(:betuz,30,:filterstr)";
       $stmt = query_prepare($sql);
       $betuz=trim($r['p1']);
       $betuz=str_replace('%20',' ',$betuz);
       $betuz=utf8_decode($betuz);
+      
+      $filterstr = trim($r['p2']);
+      
 	  $stmt->bindParam(':betuz', $betuz, PDO::PARAM_STR);
+	  $stmt->bindParam(':filterstr', $filterstr, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
   /* altalanos eddig*/
@@ -713,22 +717,25 @@
       $sql.= " when (coalesce(drb2,0)=0) then '|@@style:listtitle;listtitlewait' ";
       $sql.= " when (abs(drb) > coalesce(drb2,0) and coalesce(drb2,0)>0) then '|@@style:listtitle;listtitlework' end CIKKNEV,";
 
-      $sql.= " 'Kiszedendõ: '||cast(DRB as integer)||case ";
+      $sql.= " 'Kiszedve: '||cast(DRB as integer)||case ";
       $sql.="  when (abs(drb) = coalesce(drb2,0)) then '|@@style:listtitle;listtitledone' ";
       $sql.= " when (coalesce(drb2,0)=0) then '|@@style:listtitle;listtitlewait' ";
       $sql.= " when (abs(drb) > coalesce(drb2,0) and coalesce(drb2,0)>0) then '|@@style:listtitle;listtitlework' end DRB,";
       
-      $sql.= " 'Kiszedve: '||cast(coalesce(DRB2,0) as integer)||case ";
+      $sql.= " 'Ellenorizve: '||cast(coalesce(DRB2,0) as integer)||case ";
       $sql.="  when (abs(drb) = coalesce(drb2,0) ) then '|@@style:listtitle;listtitledone' ";
       $sql.= " when (coalesce(drb2,0)=0) then '|@@style:listtitle;listtitlewait' ";
       $sql.= " when (abs(drb) > coalesce(drb2,0) and coalesce(drb2,0)>0) then '|@@style:listtitle;listtitlework' end DRB2";      
       
-      $sql.= "  FROM ANDROID_KIADELLENOR_REVIEW(:login,:azon)";
+      $sql.= "  FROM ANDROID_KIADELLENOR_REVIEW(:login,:azon,:szuro)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
       $azon=trim($r['p2']);
+      $szuro='N';
+      if (isset($r['p3'])) $szuro=trim($r['p3']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':szuro', $szuro, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }
   function ellenor_kesobb($r){
