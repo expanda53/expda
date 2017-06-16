@@ -5,9 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,8 +39,7 @@ public class MainActivity extends Activity {
     public static exMedia mediaFiles;
     public static DisplayMetrics dmetrics;
     public static Activity act;
-
-
+    public static int displayWidth = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -54,6 +55,7 @@ public class MainActivity extends Activity {
         }
 
         Ini.Create();
+
         String startXml = Ini.getStartXML();
         String xml = startXml;
         Intent intent =this.getIntent();
@@ -66,6 +68,11 @@ public class MainActivity extends Activity {
         }
         if (Ini.isLandScape())  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
         else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        displayWidth = size.x;
 
         new exWifi(this);
         /*if (startUpdate && exWifi.isWifiEnabled() && exWifi.getWifiStrength()>0) {

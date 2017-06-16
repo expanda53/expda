@@ -1,5 +1,6 @@
 
 package hu.expanda.expda;
+import java.io.File;
 import java.io.StringReader;
 import java.util.ArrayList;
 
@@ -22,8 +23,40 @@ public class xmlParser {
 
     public xmlParser(Context context, String fnev){
         this.context=context;
-        xmlFile = fnev;
+        //szelesseg fuggo xml megkeresese
+        //pl
+        //leltar.xml
+        //leltar@1000.xml
+        String minWidth = "0";
+        String path = Ini.getIniDir();
+        File f = new File(path);
+        if (!f.exists()) f.mkdirs();
+        File[] files = f.listFiles();
+        if (files!=null) {
+            for (int i = 0; i < files.length; i++) {
+                File aktFile = files[i];
+                //filenev + extensionra bontas
+                String aktName = aktFile.getName().split("\\.(?=[^\\.]+$)")[0];
+                //width levagasa
+                String[] parts = aktName.split("@");
+                if (parts.length>1) {
+                    //ha a keresett filenev azonos a megtalalttal (extension és width nélkül)
+                    if (parts[0].equalsIgnoreCase(fnev.split("\\.(?=[^\\.]+$)")[0])) {
+                        String twidth = parts[parts.length - 1];
+                        if (Integer.parseInt(twidth) < MainActivity.displayWidth && Integer.parseInt(twidth) > Integer.parseInt(minWidth)) {
+                            minWidth = twidth;
+                        }
+                    }
+                }
 
+            }
+        }
+
+        xmlFile = fnev;
+        if (!minWidth.equalsIgnoreCase("0")) {
+            String[] parts = fnev.split("\\.(?=[^\\.]+$)");
+            xmlFile = parts[0] + "@"+minWidth+"."+parts[1];
+        }
     }
 
 
