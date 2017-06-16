@@ -1,4 +1,4 @@
---<verzio>20170201</verzio>
+--<verzio>20170530</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -23,6 +23,7 @@ if (result=='0') then
       ui:executeCommand('showobj','cap_hkod','')
       ui:executeCommand('valueto','ehkod', '')
       ui:executeCommand('valueto','lhkod', t[1]['HKOD'])
+      ui:executeCommand('valuetohidden','lmegys', t[1]['MEGYS'])
       ui:executeCommand('valuetohidden','lcikknev', t[1]['CIKKNEV'])
       ui:executeCommand('valuetohidden','lcikod', t[1]['CIKK'])
       ui:executeCommand('valuetohidden','eean', '')
@@ -30,6 +31,7 @@ if (result=='0') then
       ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_ean;eean;button_nincsmeg;button_kovetkezo','')      
       ui:executeCommand('setfocus','ehkod','')      
     else
+      ui:executeCommand('valueto','lmegys', t[1]['MEGYS'])
       ui:executeCommand('valueto','lcikknev', t[1]['CIKKNEV'])
       ui:executeCommand('valueto','lcikod', t[1]['CIKK'])
       ui:executeCommand('valueto','eean', '')
@@ -53,7 +55,7 @@ else
             ui:executeCommand('valueto','lcikknev', 'Nincs több szedhető tétel!')
             ui:executeCommand('valuetohidden','lcikod', '')
             ui:executeCommand('valuetohidden','eean', '')
-            ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_hkod;lhkod;cap_ean','')      
+            ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_hkod;lhkod;cap_ean;cap_megys;lmegys','')      
             ui:executeCommand('toast','Nincs több kiszedendő tétel!','')
             ui:executeCommand('startlua','kiadas/showreview.lua','')
         else

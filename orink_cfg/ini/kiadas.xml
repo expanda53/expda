@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170220</verzio>
+<verzio>20170530</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -242,7 +242,7 @@
   <name>cap_hkod</name>
   <top>38</top>
   <left>0</left>
-  <width>70</width>
+  <width>60</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -252,20 +252,20 @@
 <label>
   <name>lhkod</name>
   <top>38</top>
-  <left>70</left>
-  <width>130</width>
+  <left>60</left>
+  <width>90</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
-  <style>labeldefault</style>
+  <style>labeldefault;listtitlework</style>
   <text>Helykód</text>
 </label>
 <text>
   <name>ehkod</name>
-  <top>30</top>
-  <width>200</width>
+  <top>70</top>
+  <width>150</width>
   <parent>panel1</parent>
-  <left>201</left>
+  <left>0</left>
   <visible>false</visible>
   <lua_on_change>kiadas/hkodcheck.lua [ehkod] [lhkod]</lua_on_change>
   <bgcolor>#497000</bgcolor>
@@ -278,8 +278,8 @@
 
 <label>
   <name>cap_ean</name>
-  <top>78</top>
-  <left>0</left>
+  <top>38</top>
+  <left>155</left>
   <width>70</width>
   <height>wrap</height>
   <visible>false</visible>
@@ -290,9 +290,9 @@
 <text>
   <name>eean</name>
   <top>70</top>
-  <width>match</width>
+  <width>150</width>
   <parent>panel1</parent>
-  <left>70</left>
+  <left>155</left>
   <visible>false</visible>
   <lua_on_change>kiadas/eancheck.lua [eean] [lcikod]</lua_on_change>
   <bgcolor>#497000</bgcolor>
@@ -300,6 +300,29 @@
   <font_size>17</font_size>
   <height>45</height>
 </text>
+
+<label>
+  <name>cap_megys</name>
+  <top>38</top>
+  <left>310</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Cs. egység</text>
+  <width>90</width>
+</label>
+<label>
+  <name>lmegys</name>
+  <top>70</top>
+  <left>310</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+  <text>Darab</text>
+  <width>90</width>
+</label>
+
+
 <label>
   <name>lcikknev</name>
   <top>120</top>
@@ -316,7 +339,7 @@
 <label>
   <name>cap_drb</name>
   <top>160</top>
-  <left>0</left>
+  <left>2</left>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
@@ -325,7 +348,7 @@
 <label>
   <name>ldrb</name>
   <top>190</top>
-  <left>0</left>
+  <left>2</left>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_data</style>

@@ -1,5 +1,5 @@
 <root>
-<verzio>20161208</verzio>
+<verzio>20170529</verzio>
 <panel>
   <name>cikkvalpanel</name>
   <width>match</width>
@@ -48,7 +48,7 @@
 <panel>
     <name>cikkval_sor</name>
     <parent>cikkvalpanel</parent>
-    <height>45</height>
+    <height>65</height>
     <width>match</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -57,7 +57,7 @@
     <name>nev</name>
     <parent>cikkval_sor</parent>
     <width>400</width>
-    <height>45</height>
+    <height>65</height>
     <top>0</top>
     <left>0</left>
     <text>[nev]</text>

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170407</verzio>
+<verzio>20170529</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiszedés ellenőrzés</text>
@@ -208,6 +208,27 @@
   <width>60</width>
   <lua_on_change>ellenor/mentes.lua [lfejazon] [lcikod] [eean] [edrb2] [ldrb2] [ldrb]</lua_on_change>
 </text>
+
+<label>
+  <name>cap_megys</name>
+  <top>220</top>
+  <left>10</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Csom. egység:</text>
+  <width>140</width>
+</label>
+<label>
+  <name>lmegys</name>
+  <top>220</top>
+  <left>140</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+  <text>Darab</text>
+  <width>100</width>
+</label>
 
 <custom_button>
   <style>buttondefault</style>

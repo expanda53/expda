@@ -4,6 +4,45 @@
   require_once 'converter.php';
   header('Access-Control-Allow-Origin: *');  
   date_default_timezone_set('Europe/Budapest');
+  
+  function expaMail($fejazon,$param){
+    //$param = 'KULDES';
+	//email teszteléshez: EML_ELTERES_TESZT
+	$output=array();
+	exec('expamail.bat EML_ELTERES '.$param.' ORINKMUNKA -P:"'.$fejazon.'"',$output,$return);
+	$res = json_encode($output);
+	logol('[expamail] '.$res);
+  }
+  
+  function emailteszt($r){
+      $azon=1603019;
+
+	  $sql = "SELECT BIZTIP FROM BFEJ WHERE AZON=:azon";
+	  $stmt = query_prepare($sql);
+	  $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  $q = query_exec($stmt);
+	  var_dump($q);
+	  $biztip = $q[0]['BIZTIP'];
+	  $param='KULDES';
+	  if ($biztip=='AF15') $param='DEV_KULDES';
+	  logol('[kiadellenor lezar] azon:'.$azon.' biztip:'.$biztip);
+	  
+	  
+      $sql = "SELECT FIRST 1 'OKELTERES' OKELTERES  FROM BFEJ";
+      $stmt = query_prepare($sql);
+      $q = query_exec($stmt);
+	  echo $res = response_print($q);
+	  Firebird::commit();
+	  //email
+      foreach ($q as $row) {
+		foreach ($row as $k => $v) {
+			//$line .= "[[$k=$v]]";
+			if ($v=='OKELTERES') expaMail($azon,$param);
+		}
+	  }
+
+  }
+  
   function leftcut ($arg1, $arg2) {
      $arg2 = '/'.$arg2.'/';
      $vissza = preg_split($arg2, $arg1);
@@ -201,7 +240,7 @@
       Firebird::commit();
   }
   function kiadas_kovsor($r){
-      $sql="SELECT CIKK, CIKKNEV, HKOD, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2, SULY,TERFOGAT,RESULT FROM ANDROID_KIADAS_LEPTET(:azon,:hkod,:cikk,:irany,:login)";
+      $sql="SELECT CIKK, CIKKNEV, HKOD, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2, SULY,TERFOGAT,MEGYS,RESULT FROM ANDROID_KIADAS_LEPTET(:azon,:hkod,:cikk,:irany,:login)";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);
       $hkod=trim($r['p2']);
@@ -436,7 +475,23 @@
       $stmt->bindParam(':kulso', $kulso, PDO::PARAM_STR);
 	  echo query_print($stmt);
       Firebird::commit();
+  }
+  function leltar_ean_check($r){
+      $sql="SELECT CIKK,CIKKNEV,DRB2,RESULT FROM ANDROID_LELTAR_EANKERES(:azon, :hkod, :ean, :cikk)";
+      $stmt = query_prepare($sql);
+      $ean=trim($r['p1']);
+      $cikk=trim($r['p2']);      
+      $azon=trim($r['p3']);      
+      $hkod=trim($r['p4']);      
+      if ($ean=='.') $ean='';
+      if ($cikk=='.') $cikk='';
+	  $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
+	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+	  echo query_print($stmt);
   }  
+  
 
   function leltar_ment($r){
       $sql = "SELECT RESULT,RESULTTEXT,MIBIZ,AZON FROM ANDROID_LELTAR_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login, :kulso)";
@@ -693,7 +748,7 @@
       Firebird::commit();
   }
   function ellenor_eankeres($r){
-      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, RESULT FROM ANDROID_KIADELLENOR_EANKERES(:azon,:ean,:cikod,:login,:kulso)";
+      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, MEGYS, RESULT FROM ANDROID_KIADELLENOR_EANKERES(:azon,:ean,:cikod,:login,:kulso)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
@@ -771,17 +826,38 @@
 	  echo query_print($stmt);      
       Firebird::commit();
   }
+
+  
   function ellenor_lezaras($r){
-      $sql = "SELECT RESULTTEXT FROM ANDROID_KIADELLENOR_LEZAR(:login,:azon)";
-      $stmt = query_prepare($sql);
-      
       $azon=trim($r['p1']);
       $login=trim($r['p2']);
-      
+
+	  $sql = "SELECT BIZTIP FROM BFEJ WHERE AZON=:azon";
+	  $stmt = query_prepare($sql);
+	  $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  $q = query_exec($stmt);
+	  $biztip = $q[0]['BIZTIP'];
+	  $param='KULDES';
+	  if ($biztip=='AF15') $param='DEV_KULDES';
+	  logol('[kiadellenor lezar] azon:'.$azon.' biztip:'.$biztip);
+	  
+	  
+      $sql = "SELECT RESULTTEXT FROM ANDROID_KIADELLENOR_LEZAR(:login,:azon)";
+      $stmt = query_prepare($sql);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
-	  echo query_print($stmt);      
-      Firebird::commit();
+      $q = query_exec($stmt);
+	  echo $res = response_print($q);
+	  Firebird::commit();
+	  //email
+      foreach ($q as $row) {
+		foreach ($row as $k => $v) {
+			//$line .= "[[$k=$v]]";
+			if ($v=='OKELTERES') expaMail($azon,$param);
+		}
+	  }
+	  
+      
   }
   
   /* kiadas ellenor eddig*/  

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161222</verzio>
+<verzio>20170530</verzio>
 <style>
  <name>hidden</name>
  <visible>false</visible>
@@ -89,13 +89,13 @@
     <name>labeldrb_cap</name>
     <font_size>17</font_size>
     <height>30</height>
-    <width>110</width>
+    <width>120</width>
 </style>
 <style>
     <name>labeldrb_data</name>
     <font_size>22</font_size>
     <height>40</height>
-    <width>110</width>
+    <width>120</width>
 </style>
 <style>
   <name>reviewlabel</name>

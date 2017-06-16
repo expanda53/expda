@@ -1,4 +1,4 @@
---<verzio>20170329</verzio>
+--<verzio>20170616</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -27,11 +27,16 @@ if (aktmodul == 'Beérkezés') then
     ui:executeCommand('startlua','bevet/bcode1.lua','. ' .. kod .. ' ' .. cegazon)
     ui:executeCommand('showobj','pfooter','')
 elseif (aktmodul=='Leltár') then
-  cikkUpdate(kod,nev)
-  ui:executeCommand('showobj','cap_drb;edrb;button_ujean','')
-  ui:executeCommand('valueto','edrb','') 
-  ui:executeCommand('setfocus','edrb','') 
+  --cikkUpdate(kod,nev)
+  --ui:executeCommand('showobj','cap_drb;edrb;button_ujean','')
+  --ui:executeCommand('valueto','edrb','') 
+  --ui:executeCommand('setfocus','edrb','') 
+  --ui:executeCommand('showobj','pfooter','')
+  hkod = tostring(ui:findObject('ehkod'):getText())
+  azon = tostring(ui:findObject('lfejazon'):getText())  
+  ui:executeCommand('startlua','leltar/bcode1.lua','. ' .. kod..' '..azon.. ' '..hkod)
   ui:executeCommand('showobj','pfooter','')
+  
 elseif (aktmodul=='Kiadás') then
   cikod = tostring(ui:findObject('lcikod'):getText())
   if (cikod==kod) then

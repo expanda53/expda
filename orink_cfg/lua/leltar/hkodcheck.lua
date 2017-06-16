@@ -1,4 +1,4 @@
---<verzio>20170221</verzio>
+--<verzio>20170616</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -18,6 +18,7 @@ if (result=='0') then
   ui:executeCommand('showobj','cap_ean;eean;button_ujhkod;button_cikkval','')
   ui:executeCommand('disabled','ehkod','')
   ui:executeCommand('setbgcolor','ehkod','#434343')
+  ui:executeCommand('setfocus','eean','') 
 else
  ui:executeCommand('setfocus','ehkod','') 
  if (result=='-2') then 

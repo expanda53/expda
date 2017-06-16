@@ -1,5 +1,5 @@
 <Root>
-<verzio>20161215</verzio>
+<verzio>20170616</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Leltár</text>
@@ -64,7 +64,7 @@
 </barcode>
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>leltar/bcode1.lua [eean]</lua_after_trigger>
+  <lua_after_trigger>leltar/bcode1.lua [eean] . [lfejazon] [ehkod]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
@@ -113,7 +113,7 @@
   <parent>panel1</parent>
   <left>85</left>
   <visible>false</visible>
-  <lua_on_change>leltar/bcode1.lua [eean]</lua_on_change>
+  <lua_on_change>leltar/bcode1.lua [eean] . [lfejazon] [ehkod]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -134,7 +134,7 @@
 <label>
   <name>cap_drb</name>
   <top>180</top>
-  <left>0</left>
+  <left>152</left>
   <width>100</width>
   <height>20</height>
   <visible>false</visible>
@@ -152,10 +152,36 @@
   <font_color>#000000</font_color>
   <visible>false</visible>
   <bgcolor>#497000</bgcolor>
-  <left>85</left>  
-  <lua_on_change>leltar/mentes.lua [lcikod] [eean] [edrb] [lfejazon] [ehkod]</lua_on_change>
+  <left>254</left>  
+  <lua_on_change>leltar/mentes.lua [lcikod] [eean] [edrb] [lfejazon] [ehkod] [ldrb2] null</lua_on_change>
   <font_size>15</font_size>
 </text>
+
+<label>
+  <name>cap_drb2</name>
+  <top>180</top>
+  <left>0</left>
+  <width>75</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>Leltárban:</text>
+</label>
+<label>
+  <name>ldrb2</name>
+  <top>180</top>
+  <left>80</left>
+  <width>70</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>  
+  <font_style>bold</font_style>
+  <font_size>17</font_size>
+  <text>0</text>
+</label>
 
 
 
