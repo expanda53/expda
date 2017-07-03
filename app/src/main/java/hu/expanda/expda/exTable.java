@@ -132,7 +132,36 @@ public class exTable extends ListView{
         return curr;
     }
 
-
+    public ArrayList<ObjTableCell>  findRow(String Mezo,String Ertek){
+        exTableAdapter myAd = (exTableAdapter) this.getAdapter();
+        List<Object> items = myAd.getAll();
+        ArrayList<ObjTableCell> aktRow = null;
+        int rowIndex = -1;
+        int fieldIdx = -1;
+        for (int i=0;i<items.size();i++){
+            if (rowIndex==-1) {
+                Object aktItem = items.get(i);
+                if (fieldIdx == -1) {
+                    for (int j = 0; j < ((ArrayList) aktItem).size(); j++) {
+                        ObjTableCell c = (ObjTableCell) ((ArrayList) aktItem).get(j);
+                        String fName = c.getName();
+                        if (fName.equalsIgnoreCase(Mezo)) {fieldIdx = j;break;}
+                    }
+                }
+                if (fieldIdx > -1) {
+                    ObjTableCell c = (ObjTableCell) ((ArrayList) aktItem).get(fieldIdx);
+                    String fErtek = c.getData();
+                    if (rowIndex==-1 && Ertek.equalsIgnoreCase(fErtek)) {
+                        rowIndex = i;
+                        aktRow = (ArrayList<ObjTableCell>) aktItem;
+                        break;
+                    }
+                }
+            }
+            if (rowIndex!=-1) break;
+        }
+        return aktRow;
+    }
 
     public void refresh(ArrayList res){
 //		tabla feltoltese
@@ -182,6 +211,7 @@ public class exTable extends ListView{
         else {
             this.setAdapter(new exTableAdapter(context, a,getObj(),this));
         }
+        //this.findRow("MIBIZ","AFE16D03946");
     }
 
 
