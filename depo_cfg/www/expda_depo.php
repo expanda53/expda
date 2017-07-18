@@ -63,7 +63,7 @@
   function query_prepare($sql){
      logol($sql);
      
-     $arr = Firebird::prepare($sql);
+     $arr = Firebird::prepare($sql,'depo');
      if (!$arr) {
          $errors = Firebird::errorInfo();
          logol($errors[2]);
@@ -103,7 +103,7 @@
       $kezelo=$r['p1'];
       $logtip=$r['p2'];
       $logtext=$r['p3'];
-      logol('['.$logtip.']' . 'kezelo:' .$kezelo.' log:'.$logtext);
+      logol('['.$logtip.'] kezelo:' .$kezelo.' log:'.$logtext);
       echo "ok";
   }
   
@@ -117,6 +117,18 @@
 		echo query_print($stmt);
   }
   /* login eddig */
+  /* menu_barcode */
+  function menu_barcode($r){
+      $sql="SELECT RESULT,CEGNEV FROM ANDROID_MENU_BARCODE(:login,:mibiz)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $mibiz=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':mibiz', $mibiz, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }
+
+  /* menu_barcode eddig */
   /* kiadas */
   function kiadas_mibizlist($r){
       $sql="SELECT CEGNEV||'|@@style:listtitle' CEGNEV,mibiz||'|@@style:listdetails' MIBIZ FROM ANDROID_KIADAS_MIBIZLIST(':login')";

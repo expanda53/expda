@@ -1,0 +1,87 @@
+<Root>
+<mainpanel>
+  <name>mainpanel1</name>
+  <text>Fomenü</text>
+  <bgcolor>#000000</bgcolor>
+  <params_to_labels>lkezelo</params_to_labels>
+  <lua_on_create>egyeb/menu_panelinit.lua [lkezelo]</lua_on_create>
+  <verzio>20170718</verzio>
+</mainpanel>
+<label>
+  <name>lupdate</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <visible>false</visible>
+</label>
+<label>
+  <name>lkezelo</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <visible>false</visible>
+  <Text>100</Text>
+</label>
+<custom_button>
+  <name>ButtonKiadas</name>
+  <image>cart.png</image>
+  <Text>Kiadás</Text>
+  <top>60</top>
+  <width>match</width>
+  <height>130</height>
+  <left>1</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua KIADAS [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonBevet</name>
+  <image>truck.png</image>
+  <Text>Bevét</Text>
+  <top>195</top>
+  <width>match</width>
+  <height>130</height>
+  <left>1</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua BEVET [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonLeltar</name>
+  <image>leltar.png</image>
+  <Text>Gyáriszámos leltár</Text>
+  <top>330</top>
+  <width>match</width>
+  <height>130</height>
+  <left>1</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonClose</name>
+  <left>1</left>
+  <Text>Kilépés</Text>
+  <top>465</top>
+  <width>match</width>
+  <height>130</height>
+  <style>buttondefault</style>
+  <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
+  <visible>true</visible>
+  <image>exit.png</image>
+</custom_button>
+<text>
+  <name>ebcode</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <visible>true</visible>
+  <lua_on_change>egyeb/bcodemenu.lua [ebcode]</lua_on_change>
+</text>
+<panel>
+  <file>pfooter.xml</file>
+</panel>
+</Root>

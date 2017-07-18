@@ -10,7 +10,7 @@ class Firebird {
         $password="masterkey";
         $host="192.168.1.105";
 //        $host="192.168.1.248";        
-        $dbname_depo="F:\ALFA\TIR\DAT\DEPO12\DEPO12.GDB" ;
+        $dbname_depo="F:\ALFA\TIR\DAT\DEPO12\DEPOMUNKA.GDB" ;
         $dbname_orink="F:\ALFA\TIR\DAT\ORINK\ORINKMUNKA.GDB" ;
         $dbname_kende="F:\ALFA\TIR\DAT\KENDE\KENDE.GDB" ;        
 //        $dbname_orink="/var/lib/firebird/2.5/data/ORINKMUNKA.GDB" ;

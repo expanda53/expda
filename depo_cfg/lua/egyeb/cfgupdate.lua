@@ -6,4 +6,3 @@ kezelo = ui:getKezelo()
 if (kezelo=='100') then
   ui:executeCommand('updatecfg','','')
 end
-

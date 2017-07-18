@@ -1,0 +1,43 @@
+<Root>
+<verzio>20170617</verzio>
+<panel>
+  <name>pfooter</name>
+  <width>match</width>
+  <top>330</top>
+  <left>0</left>
+  <height>match</height>
+  <visible>true</visible>
+  <bgcolor>#000000</bgcolor>
+</panel>
+<label>
+  <name>lverzio</name>
+  <Text>exPDA v5.0 2016</Text>
+  <top>1</top>
+  <width>120</width>
+  <left>0</left>
+  <parent>pfooter</parent>
+  <visible>true</visible>
+  <style>reviewlabel</style>
+  <align>center</align>
+  <lua_after_click>egyeb/cfgupdate.lua</lua_after_click>  
+</label>
+<label>
+  <name>lmodulstat</name>
+  <top>1</top>
+  <width>139</width>
+  <left>121</left>
+  <style>reviewlabel</style>
+  <parent>pfooter</parent>
+  <align>center</align>  
+</label>
+<label>
+  <name>lkezelostat</name>
+  <top>1</top>
+  <width>139</width>
+  <left>260</left>
+  <style>reviewlabel</style>
+  <parent>pfooter</parent>
+  <align>center</align>  
+</label>
+
+</Root>
