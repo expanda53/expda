@@ -1,4 +1,4 @@
---<verzio>20170105</verzio>
+--<verzio>20170831</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -30,20 +30,42 @@ if (tonumber(drb2)>0) then
         ui:executeCommand('valuetohidden','lfejazon', t[1]['AZON'])
         result = t[1]['RESULT']
         resulttext = t[1]['RESULTTEXT']
+        meret=''
+        suly=''
         if (result=='0') then
             ui:executeCommand('TOAST','Mentés rendben.')
+            --meret es minta ellenorzes (ki van-e toltve a cikktorzsben)
+            meret= tostring(ui:findObject('lmeret'):getText())
+            suly= tostring(ui:findObject('lsuly'):getText())
+            if (meret=='' or suly=='') then
+                ui:executeCommand('TOAST', 'méret:' .. meret .. ' súly:' .. suly)
+                cikknev= tostring(ui:findObject('lcikknev'):getText())
+                ui:executeCommand('showobj','meretpanel','')
+                ui:executeCommand('valueto','mpcikknev', cikknev)
+                ui:executeCommand('valueto','mpemeret', meret)
+                ui:executeCommand('valueto','mpesuly', suly)
+                if (meret~='') then
+                  ui:executeCommand('setfocus','mpesuly', '')
+                else
+                  ui:executeCommand('setfocus','mpemeret', '')
+                end
+            end
+            
         else
             --ui:executeCommand('TOAST','Hiba:' .. resulttext)
             alert(ui,resulttext)
             ui:executeCommand('uzenet',resulttext,"egyeb/setfocus.lua eean")
         end
+        
         ui:executeCommand('hideobj','cap_drb;cap_drb4;cap_drb3;cap_drb2;button_ujean;lcikknev','')
         ui:executeCommand('valueto','eean', '')
         ui:executeCommand('valuetohidden','edrb2', '')
         ui:executeCommand('valuetohidden','ldrb3', '')
         ui:executeCommand('valuetohidden','ldrb4', '')
         ui:executeCommand('valuetohidden','ldrb', '')
-        ui:executeCommand('setfocus','eean', '')
+        if ((result=='0' and meret~='' and suly~='') or result~='0') then
+          ui:executeCommand('setfocus','eean', '')
+        end
     else
         alert(ui,'Túl sok átvétel!\n'..'Várt mennyiség:'..drb..' Eddig összesen átvett:' .. drb4)
         ui:executeCommand('valueto','edrb2','')

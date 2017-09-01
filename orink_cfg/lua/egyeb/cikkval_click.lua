@@ -1,4 +1,4 @@
---<verzio>20170616</verzio>
+--<verzio>20170725</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -79,10 +79,44 @@ elseif (aktmodul=='Hkód rendezés') then
   else
     ui:executeCommand('startlua','hkod/cikkklt.lua',kod)
   end
+elseif (aktmodul=='Beérkezés elrakodás') then
+  cikkUpdate(kod,nev)
+  --ui:executeCommand('showobj','cap_drb;edrb;button_ujean;button_cikkklt','')
+  --ui:executeCommand('valueto','edrb','') 
+
+  --szorzo = "1"
+  --hkod = tostring(ui:findObject('ehkod'):getText())
+  --azon = tostring(ui:findObject('lfejazon'):getText())
+  --hkodbe="B00000"
+  --str = 'hkod_cikkhkklt '..hkodbe..' '..kod.. ' ' .. kulsoraktar
+  --t2=luafunc.query_assoc(str,false)
+  --maxkidrb=t2[1]['MAXKIDRB']
+  --ui:executeCommand('valueto','lmaxdrb',maxkidrb)
+  --ui:executeCommand('showobj','cap_maxdrb','')
+  --ui:executeCommand('valueto','edrb','') 
+
+  ui:executeCommand('aktbcodeobj','bcode1','')
+  ui:executeCommand('disabled','eean','')
+  ui:executeCommand('setbgcolor','eean','#434343')
+  ui:executeCommand('showobj','cap_hkod;ehkod;button_ujean;button_hkodlst;button_cikkklt','')
+  ui:executeCommand('setfocus','ehkod','')
+  ui:setGlobal("aktbcodeobj",'bcode1')  
+  
+  -- kiadhato keszlet mindig a B00000 hkod keszlete
+  hkodbe='B00000'
+  str = 'hkod_cikkhkklt ' .. hkodbe .. ' ' .. kod .. ' ' .. kulsoraktar
+  t2=luafunc.query_assoc(str,false)
+  maxkidrb=t2[1]['MAXKIDRB']
+
+  ui:executeCommand('valueto','lmaxdrb',maxkidrb)
+  ui:executeCommand('showobj','cap_maxdrb','')      
+  
+  ui:executeCommand('startlua','bevethkod/cikkklt.lua',kod)
+  ui:executeCommand('startlua','bevethkod/ujhkod.lua',kod)    
 elseif (aktmodul=='Spot leltár cikkre')  then
   cikkUpdate(kod,nev)
   ui:executeCommand('showobj','button_ujean;button_cikkklt','')
-  ui:executeCommand('startlua','hkod/cikkklt.lua', kod)
+  ui:executeCommand('startlua','bevethkod/cikkklt.lua', kod)
 elseif (aktmodul=='Spot leltár hkódra')  then
   cikkUpdate(kod,nev)
   ui:executeCommand('showobj','cap_drb','')

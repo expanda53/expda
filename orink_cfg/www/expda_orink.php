@@ -195,6 +195,23 @@
 	  $stmt->bindParam(':filterstr', $filterstr, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
+  function meretment($r){
+      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_MERET_MENT(:cikk,:meret,:suly,:login)";
+      $stmt = query_prepare($sql);
+      $cikk=trim($r['p1']);
+      $meret=trim($r['p2']);
+      $suly=trim($r['p3']);
+      $login=trim($r['p4']);
+      if ($cikk=='.') $cikk='';
+      if ($meret=='.') $meret='';
+      if ($suly=='.') $suly='';
+	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  $stmt->bindParam(':meret', $meret, PDO::PARAM_STR);
+	  $stmt->bindParam(':suly', $suly, PDO::PARAM_STR);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+	  echo query_print($stmt);
+      Firebird::commit();
+  }      
   /* altalanos eddig*/
   /* login */
   function login_check($r){
@@ -369,7 +386,7 @@
 	  echo query_print($stmt);      
   }  
   function beerk_eankeres($r){
-      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login,:kulso,:rentip)";
+      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, MERET,SULY, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login,:kulso,:rentip)";
       $stmt = query_prepare($sql);
       
       $ceg=trim($r['p1']);

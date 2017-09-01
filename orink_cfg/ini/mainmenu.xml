@@ -1,6 +1,6 @@
 <Root>
 <mainpanel>
-  <verzio>20170116</verzio>
+  <verzio>20170620</verzio>
   <name>mainpanel1</name>
   <text>Fomenü</text>
   <bgcolor>#000000</bgcolor>
@@ -61,7 +61,8 @@
   <left>250</left>
   <style>buttondefault</style>
   <visible>true</visible>
-  <lua_after_click>egyeb/menuinit.lua HKOD [lkezelo]</lua_after_click>
+  <lua_after_click>egyeb/menuinit.lua MENU_ATTAROLAS [lkezelo]</lua_after_click>
+  <_lua_after_click>egyeb/menuinit.lua HKOD [lkezelo]</_lua_after_click>
 </custom_button>
 
 <custom_button>
