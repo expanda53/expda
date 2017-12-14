@@ -42,6 +42,7 @@ public class LuaFunc extends TwoArgFunction {
         LuaValue library = tableOf();
         library.set("query", new query());
         library.set("query_assoc", new query_assoc());
+        library.set("query_json", new query_json());
         library.set("query_assoc_to_str", new query_assoc_to_str());
         library.set("strtotable", new strToTable());
         library.set("rowtotable", new RowToTable());
@@ -93,7 +94,7 @@ public class LuaFunc extends TwoArgFunction {
                 LuaValue rows = tableOf();
                 for(int i=0;i<list.size();i++){
                     LuaValue cols = tableOf();
-                    String[] row = list.get(i).toString().split( "]]");
+                    String[] row = list.get(i).toString().split("]]");
                     for (int j=0;j<row.length;j++){
                         String[] field = row[j].split( "=");
                         String val = "";
@@ -111,6 +112,32 @@ public class LuaFunc extends TwoArgFunction {
 
         }
     }
+
+    static class query_json extends TwoArgFunction {
+        public LuaValue call(LuaValue sql,LuaValue parsing){
+//			parsing false esetén nem dolgozza fel a kapott arraylistet, csak visszaadja. true esetén feldolgozza és nilt ad vissza
+
+            ArrayList list = pane.sendGetExecute(sql.tojstring(), parsing.toboolean());
+            if (list!=null && list.size()!=0) {
+                StringBuilder sb = new StringBuilder();
+                for(int i=0;i<list.size();i++){
+                    if (list.get(i).toString().trim()!="") {
+                        String s = list.get(i).toString().trim();
+                        sb.append(s);
+                        sb.append("\t");
+                    }
+                }
+
+                return LuaValue.valueOf(sb.toString());
+
+
+            }
+            else return CoerceJavaToLua.coerce( null);
+
+
+        }
+    }
+
 
     static class query_assoc_to_str extends TwoArgFunction {
         public LuaValue call(LuaValue sql,LuaValue parsing){

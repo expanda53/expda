@@ -1,4 +1,4 @@
---<verzio>20170718</verzio>
+--<verzio>20171012</verzio>
 local params = {...}
 ui = params[1]
 ui:executeCommand("hideobj","pfooter")
@@ -16,9 +16,9 @@ if (startbiz~="-") then
       ui:executeCommand('valueto','lmibiz', mibiz)
       ui:executeCommand('valueto','lcegnev', startceg)
       ui:executeCommand('hideobj','mibizlist_table;btn_mibizvissza','')
-      ui:executeCommand('showobj','pfooter;eean;button_review;button_kovetkezo;button_elozo','')
+      ui:executeCommand('showobj','pfooter;eean;button_review;button_kovetkezo','')
       ui:executeCommand('valueto','emibiz', "")
-      ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', mibiz..' 0 +')
+      ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', '')
 else 
     str = 'kiadas_mibizlist '..kezelo
     list=luafunc.query_assoc_to_str(str,false)

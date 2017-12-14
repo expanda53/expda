@@ -24,6 +24,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Encsi on 2015.01.27..
@@ -37,7 +38,7 @@ public class exPane {
     private String extFunctionOnCreate;
     private ArrayList<Object> objects;
     private Lua lua=null;
-    private extLibrary extLib;
+    //private extLibrary extLib;
     public static boolean dialogRes;
     private String kezelo = "";
     private String aktmodul = "";
@@ -66,66 +67,78 @@ public class exPane {
             MainActivity.a_style = stobj.getObjects();
         }
 
-        xmlParser obj = new xmlParser(this.getContext(), xml);
-        obj.fetchXML();
-        while (obj.parsingComplete) ;
-        objects = obj.getObjects();
+
+        if (MainActivity.xmlmap==null) MainActivity.xmlmap = new HashMap<String,Object>();
+        if (!MainActivity.xmlmap.containsKey(xml)) {
+            xmlParser obj;
+            obj = new xmlParser(this.getContext(), xml);
+            obj.fetchXML();
+            while (obj.parsingComplete) ;
+            objects = obj.getObjects();
+            MainActivity.xmlmap.put(xml,objects);
+            obj=null;
+        }
+        else {
+            objects = (ArrayList<Object>)MainActivity.xmlmap.get(xml);
+        }
+
         for (int i = 0; i < objects.size(); i++) {
             Object o = objects.get(i);
 
             ViewGroup parent = layout;
             if (o instanceof ObjStyle) {
-                if (MainActivity.a_style == null) MainActivity.a_style = new  ArrayList<Object>();
-                if (ObjDefault.getObjStyle( ((ObjStyle)o).getName())==null)  MainActivity.a_style.add(o);
+                if (MainActivity.a_style == null)
+                    MainActivity.a_style = new ArrayList<Object>();
+                if (ObjDefault.getObjStyle(((ObjStyle) o).getName()) == null)
+                    MainActivity.a_style.add(o);
 
             }
             if (o instanceof ObjDefault) {
                 String parentstr = ((ObjDefault) o).getParent();
                 if (parentstr.equals("")) {
                     parent = layout;
-                } else parent = (ViewGroup)this.findObject(parentstr);
+                } else parent = (ViewGroup) this.findObject(parentstr);
             }
 
             if (o instanceof ObjLabel) {
-                new exTextView(this.getContext(), o, parent,this);
+                new exTextView(this.getContext(), o, parent, this);
             }
             if (o instanceof ObjPanel) {
-                if (((ObjPanel) o).isMainPanel()){
+                if (((ObjPanel) o).isMainPanel()) {
                     setLuaOnCreate(((ObjPanel) o).getLuaOnCreate());
                     setExtFunctionOnCreate(((ObjPanel) o).getExtFunctionOnCreate());
                     if (((ObjPanel) o).getBackColor() != -1)
                         this.getLayout().setBackgroundColor(((ObjPanel) o).getBackColor());
 
 
-                }
-                else new exPanel(this.getContext(), o, parent,this);
+                } else new exPanel(this.getContext(), o, parent, this);
             }
             if (o instanceof ObjButton) {
-                if (((ObjButton) o).getFunction().equalsIgnoreCase("toggle") ) new exToggle(this.getContext(), o, parent,this);
-                else new exButton(this.getContext(), o, parent,this);
+                if (((ObjButton) o).getFunction().equalsIgnoreCase("toggle"))
+                    new exToggle(this.getContext(), o, parent, this);
+                else new exButton(this.getContext(), o, parent, this);
             }
             if (o instanceof ObjText) {
-                exText e = new exText(this.getContext(), o, parent,this);
-                ((MainActivity)getContext()).hideSoftKeyboard(e);
+                exText e = new exText(this.getContext(), o, parent, this);
+                ((MainActivity) getContext()).hideSoftKeyboard(e);
 
             }
             if (o instanceof ObjTable) {
-                if( ((ObjTable)o).getViewType().equalsIgnoreCase("list")) new exTable(this.getContext(), o, parent,this);
-                else new exGrid(this.getContext(), o, parent,this);
+                if (((ObjTable) o).getViewType().equalsIgnoreCase("list"))
+                    new exTable(this.getContext(), o, parent, this);
+                else new exGrid(this.getContext(), o, parent, this);
             }
             if (o instanceof ObjCombo) {
-                new exSpinner(this.getContext(), o, parent,this);
+                new exSpinner(this.getContext(), o, parent, this);
             }
 
         }
-
-        obj=null;
         return true;
 
     }
-    public extLibrary getExtLib(){
-        return extLib;
-    }
+    //public extLibrary getExtLib(){
+    //    return extLib;
+    //}
 
     public exPane(Context c, ViewGroup layout) {
         this.layout = layout;
@@ -136,12 +149,11 @@ public class exPane {
         createPanel(xml, Ini.getStyleFile());
 
         if (Ini.getConnectionType().equalsIgnoreCase("PHP")) try {
-            //this.phpcli = new PHPClient(Ini.getPhpUrl());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        extLibrary.Create(this);
+        //extLibrary.Create(this);
         if (MainActivity.useSymbol) MainActivity.symbol.setPane(this);
         hideProgress();
 
@@ -517,7 +529,7 @@ public class exPane {
             luaInit(p1 + ' ' +p2);
         }
         else if (command.equalsIgnoreCase("STARTEXTFUNC")) {
-            extLibrary.runMethod(p1 + ' ' + p2);
+            //extLibrary.runMethod(p1 + ' ' + p2);
         }
         else if (command.equalsIgnoreCase("TOAST")){
             /*int duration = Toast.LENGTH_SHORT;
@@ -585,7 +597,7 @@ public class exPane {
     }
 
     public void setGlobal(String option,String value){
-        exGlobals.addItem(option,value);
+        exGlobals.addItem(option, value);
     }
 
     private void showNotification(String title, String text){
@@ -869,6 +881,10 @@ public class exPane {
                         ArrayList response = null;
                         while (response == null) {
                             response = phpcli.getResult();
+                            //egyelore ha ez nincs itt, akkor nem fut le a 2. htmlconnection. a response megvan, de vegtelen ciklusba kerul.
+                            if (response!=null)  Log.d("con","response:"+response.toString());
+                            else Log.d("con","response=null");
+
                         }
                         if (parsing) {
                             parseTcpResponse(response);
@@ -882,6 +898,7 @@ public class exPane {
                     try {
                         if (getPhpcli() != null) {
                             ArrayList response = getPhpcli().sendMessage(message);
+                            Log.d("con","success");
                             if (parsing) {
                                 parseTcpResponse(response);
                                 return null;
@@ -965,35 +982,50 @@ public class exPane {
     }
     public void hideProgress(){
             //act.setProgressBarIndeterminateVisibility(false);
-                if (progressDialog!=null && progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-    }
-    public void showProgress() {
-        if (this.getContext()!=null) {
-            if (progressDialog == null) {
-                progressDialog = new ProgressDialog(this.getContext());
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.setCancelable(false);
-                progressDialog.setIndeterminate(true);
+        try {
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
             }
-            progressDialog.setMessage("Várjon...");
-            progressDialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
-    public void showProgress(String p1){
-            //act.setProgressBarIndeterminateVisibility(true);
-
-        if (this.getContext()!=null) {
+    public void showProgress() {
+        try {
+            if (this.getContext() != null) {
                 if (progressDialog == null) {
                     progressDialog = new ProgressDialog(this.getContext());
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.setCancelable(false);
                     progressDialog.setIndeterminate(true);
                 }
-            progressDialog.setMessage(p1);
-            progressDialog.show();
+                progressDialog.setMessage("Várjon...");
+                progressDialog.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+    public void showProgress(String p1){
+            //act.setProgressBarIndeterminateVisibility(true);
+        try {
+            if (this.getContext()!=null) {
+                if (progressDialog == null) {
+                    progressDialog = new ProgressDialog(this.getContext());
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.setCancelable(false);
+                    progressDialog.setIndeterminate(true);
+                }
+                progressDialog.setMessage(p1);
+                progressDialog.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

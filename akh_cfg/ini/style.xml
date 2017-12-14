@@ -1,0 +1,134 @@
+<Root>
+<verzio>20171211</verzio>
+<style>
+ <name>hidden</name>
+ <visible>false</visible>
+</style>
+<style>
+    <name>labeldefault</name>
+    <bgcolor>#000000</bgcolor>
+    <font_color>#497000</font_color>  
+    <font_size>16</font_size>
+</style>
+
+<style>
+    <name>buttondefault</name>
+    <bgcolor>#FF7F50</bgcolor>
+    <font_color>#000000</font_color>
+    <font_size>18</font_size>
+    <padding_left>5</padding_left>
+    <padding_right>5</padding_right>
+    <padding_top>5</padding_top>
+    <padding_bottom>5</padding_bottom>    
+    <border_width>2</border_width>
+    <border_color>#434343</border_color>
+</style>
+<style>
+    <name>buttondefault_yellow</name>
+    <bgcolor>#fff730</bgcolor>
+    <font_color>#000000</font_color>
+    <font_size>18</font_size>
+    <padding_left>5</padding_left>
+    <padding_right>5</padding_right>
+    <padding_top>5</padding_top>
+    <padding_bottom>5</padding_bottom>    
+    <border_width>2</border_width>
+    <border_color>#434343</border_color>
+    <font_style>bold</font_style>
+</style>
+<style>
+  <name>listhidden</name>
+  <visible>hidden</visible>
+</style>
+
+<style>
+  <name>listdetails</name>
+  <font_size>13</font_size>
+  <font_style>bold</font_style>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>5</padding_top>
+  <padding_bottom>15</padding_bottom>
+  <font_color>#FF7F50</font_color>
+  <bgcolor>#000000</bgcolor>
+</style>
+<style>
+  <name>listtitle</name>
+  <font_size>15</font_size>
+  <font_style>bold</font_style>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>5</padding_top>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#FF7F50</font_color>
+</style>
+<style>
+  <name>listtitlewait</name>
+  <bgcolor>#FF7F50</bgcolor>
+  <font_color>#000000</font_color>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>0</padding_top>
+  <padding_bottom>0</padding_bottom>    
+</style>
+<style>
+  <name>listtitledone</name>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>0</padding_top>
+  <padding_bottom>0</padding_bottom>  
+</style>
+<style>
+  <name>listtitlework</name>
+  <bgcolor>#b2ebf2</bgcolor>
+  <font_color>#000000</font_color>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>0</padding_top>
+  <padding_bottom>0</padding_bottom>    
+</style>
+<style>
+  <name>listtitlemiss</name>
+  <bgcolor>#fff176</bgcolor>
+  <font_color>#000000</font_color>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>0</padding_top>
+  <padding_bottom>0</padding_bottom>  
+</style>
+<style>
+    <name>labeldrb_cap</name>
+    <font_size>17</font_size>
+    <height>30</height>
+    <width>120</width>
+</style>
+<style>
+    <name>labeldrb_data</name>
+    <font_size>22</font_size>
+    <height>40</height>
+    <width>120</width>
+</style>
+<style>
+  <name>reviewlabel</name>
+  <bgcolor>#455A64</bgcolor>
+  <font_color>#FF9800</font_color>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>5</padding_top>
+  <padding_bottom>5</padding_bottom>    
+  <font_size>13</font_size>
+</style>
+<style>
+  <name>togglebutton</name>
+  <padding_left>5</padding_left>
+  <padding_right>5</padding_right>
+  <padding_top>5</padding_top>
+  <padding_bottom>5</padding_bottom>    
+  <font_size>17</font_size>
+  <font_color>white</font_color>
+  
+</style>
+
+</Root>

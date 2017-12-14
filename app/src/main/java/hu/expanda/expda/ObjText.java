@@ -8,6 +8,7 @@ public class ObjText extends ObjDefault {
     private String sqlOnExit;
     private String sqlOnChange;
     private String luaOnExit;
+    private String luaOnEnter;
     private String luaOnChange;
     private String extFunctionOnExit;
     private String extFunctionOnChange;
@@ -40,12 +41,21 @@ public class ObjText extends ObjDefault {
     public void setSqlOnChange(String sqlOnChange) {
         this.sqlOnChange = sqlOnChange;
     }
+
     public String getLuaOnExit() {
         return luaOnExit;
     }
     public void setLuaOnExit(String luaOnExit) {
         this.luaOnExit = luaOnExit;
     }
+
+    public String getLuaOnEnter() {
+        return luaOnEnter;
+    }
+    public void setLuaOnEnter(String luaOnEnter) {
+        this.luaOnEnter = luaOnEnter;
+    }
+
     public String getLuaOnChange() {
         return luaOnChange;
     }

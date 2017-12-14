@@ -23,6 +23,7 @@ import com.symbol.emdk.barcode.Scanner;
 import com.symbol.emdk.barcode.ScannerException;
 */
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainActivity extends Activity {
@@ -40,6 +41,8 @@ public class MainActivity extends Activity {
     public static DisplayMetrics dmetrics;
     public static Activity act;
     public static int displayWidth = 0;
+    public static HashMap<String,Object> luamap = null;
+    public static HashMap<String,Object> xmlmap = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170718</verzio>
+<verzio>20171012</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>MANTIS</text>
@@ -93,7 +93,7 @@
 <panel>
     <name>mibizlist_sor</name>
     <parent>panel1</parent>
-    <height>45</height>
+    <height>65</height>
     <width>480</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -112,7 +112,7 @@
     <parent>mibizlist_sor</parent>
     <width>480</width>
     <height>wrap</height>
-    <top>35</top>
+    <top>40</top>
     <left>0</left>
     <text>[cegnev]</text>
 </label>
@@ -138,7 +138,7 @@
 
 <barcode>
   <name>BCODE1</name>
-  <lua_after_trigger>kiadas/bcode1.lua [eean] [lean]</lua_after_trigger>
+  <lua_after_trigger>kiadas/bcode1.lua [eean]</lua_after_trigger>
   <valueto>eean</valueto>
   <parent>panel1</parent>
 </barcode>
@@ -151,7 +151,7 @@
 </barcode>
 <label>
   <name>lcikknev</name>
-  <top>30</top>
+  <top>35</top>
   <left>0</left>
   <width>match</width>
   <height>wrap</height>
@@ -163,22 +163,23 @@
 
 <label>
   <name>lean</name>
-  <top>60</top>
+  <top>65</top>
   <left>0</left>
   <width>match</width>
   <height>wrap</height>
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault</style>
+  <text>EAN kód lövés</text>
 </label>
 <text>
   <name>eean</name>
-  <top>90</top>
+  <top>95</top>
   <width>match</width>
   <parent>panel1</parent>
   <left>0</left>
   <visible>false</visible>
-  <lua_on_change>kiadas/bcode1.lua [eean] [lean]</lua_on_change>
+  <lua_on_change>kiadas/bcode1.lua [eean]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
@@ -189,7 +190,7 @@
 
 <label>
   <name>cap_drb</name>
-  <top>160</top>
+  <top>165</top>
   <left>0</left>
   <width>100</width>
   <height>20</height>
@@ -200,7 +201,7 @@
 </label>
 <label>
   <name>ldrb</name>
-  <top>190</top>
+  <top>195</top>
   <left>0</left>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -210,7 +211,7 @@
 
 <label>
   <name>cap_drb2</name>
-  <top>160</top>
+  <top>165</top>
   <left>300</left>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -219,7 +220,7 @@
 </label>
 <label>
   <name>ldrb2</name>
-  <top>190</top>
+  <top>195</top>
   <left>300</left>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -230,7 +231,7 @@
 
 <label>
   <name>cap_gyszam</name>
-  <top>235</top>
+  <top>240</top>
   <left>0</left>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -240,7 +241,7 @@
 
 <text>
   <name>egyszam</name>
-  <top>275</top>
+  <top>280</top>
   <width>match</width>
   <height>60</height>
   <parent>panel1</parent>
@@ -252,29 +253,17 @@
   <font_size>15</font_size>
 </text>
 
-<custom_button>
-  <style>buttondefault</style>
-  <name>button_elozo</name>
-  <Text>Előző</Text>
-  <top>610</top>
-  <width>153</width>
-  <height>70</height>
-  <left>0</left>
-  <lua_after_click>kiadas/kovetkezo_click.lua [lmibiz] [lsorsz] -</lua_after_click>
-  <parent>panel1</parent>
-  <visible>false</visible>
-</custom_button>
 
 
 <custom_button>
   <style>buttondefault</style>
   <name>button_kovetkezo</name>
-  <Text>Következő</Text>
+  <Text>Új EAN</Text>
   <top>610</top>
-  <width>154</width>
+  <width>230</width>
   <height>70</height>
-  <left>163</left>
-  <lua_after_click>kiadas/kovetkezo_click.lua [lmibiz] [lsorsz] +</lua_after_click>
+  <left>5</left>
+  <lua_after_click>kiadas/kovetkezo_click.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -284,9 +273,9 @@
   <name>button_review</name>
   <Text>Átnézés</Text>
   <top>610</top>
-  <width>153</width>
+  <width>230</width>
   <height>70</height>
-  <left>327</left>
+  <left>245</left>
   <lua_after_click>kiadas/zaras.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
@@ -361,7 +350,7 @@
   <left>0</left>
   <parent>gyszamlistpanel</parent>
   <visible>true</visible>
-  <lua_after_click>kiadas/kiadasfolyt.lua</lua_after_click>
+  <lua_after_click>kiadas/gyszamfolyt.lua</lua_after_click>
 </custom_button>
 
 <panel>
@@ -396,14 +385,14 @@
   <row_height>160</row_height>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>kiadas/atnezes_click.lua null</lua_after_click>
+  <lua_after_click>kiadas/atnezes_click.lua</lua_after_click>
   <itempanel>atnezo_sor</itempanel>
 </table>
 
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>105</height>
+    <height>115</height>
     <width>200</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -412,7 +401,7 @@
     <name>cikknev</name>
     <parent>atnezo_sor</parent>
     <width>480</width>
-    <height>30</height>
+    <height>35</height>
     <top>0</top>
     <left>0</left>
     <text>[cikknev]</text>
@@ -422,7 +411,7 @@
     <parent>atnezo_sor</parent>
     <width>480</width>
     <height>45</height>
-    <top>30</top>
+    <top>35</top>
     <left>0</left>
     <text>[ean]</text>    
 </label>
@@ -430,8 +419,8 @@
     <name>drb</name>
     <parent>atnezo_sor</parent>
     <width>240</width>
-    <height>30</height>
-    <top>75</top>
+    <height>35</height>
+    <top>80</top>
     <left>0</left>
     <text>[drb]</text>
     <align>center</align>
@@ -440,8 +429,8 @@
     <name>drb2</name>
     <parent>atnezo_sor</parent>
     <width>240</width>
-    <height>30</height>
-    <top>75</top>
+    <height>35</height>
+    <top>80</top>
     <left>240</left>
     <text>[drb2]</text>
     <align>center</align>
@@ -493,7 +482,7 @@
   <left>0</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
-  <lua_after_click>kiadas/kiadasfolyt.lua</lua_after_click>
+  <lua_after_click>kiadas/kovetkezo_click.lua</lua_after_click>
 </custom_button>
 
 <custom_button>
@@ -521,6 +510,5 @@
   <visible>true</visible>
   <lua_after_click>kiadas/lezaras.lua null</lua_after_click>
 </custom_button>
-
 
 </Root>

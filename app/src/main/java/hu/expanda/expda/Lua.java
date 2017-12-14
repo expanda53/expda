@@ -15,6 +15,8 @@ import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Lua {
@@ -37,7 +39,15 @@ public class Lua {
     public void load(String par){
 //        String content = StringFunc.getLua(par);
         globals.load(new StringReader("package.path = '" + Ini.getLuaDir()+ "/?.lua;'"), "initAndroidPath").call();
-        this.luaObj=this.globals.loadfile(Ini.getLuaDir()+"/"+par);
+
+        if (MainActivity.luamap==null) MainActivity.luamap = new HashMap<String,Object>();
+        if (!MainActivity.luamap.containsKey(par)){
+            this.luaObj=this.globals.loadfile(Ini.getLuaDir()+"/"+par);
+            MainActivity.luamap.put(par,luaObj);
+        }
+        else {
+            this.luaObj = (LuaValue)MainActivity.luamap.get(par);
+        }
 //        this.luaObj=this.globals.load("local params = {...};ui = params[1];ltext = params[2]; ui:executeCommand('valueto','lkezelo',ltext);ui:executeCommand('UZENET','teszt','');");
     }
 

@@ -91,6 +91,7 @@ public class exTextView extends TextView {
             public void onClick(View v) {
                 if (getPane()!=null) {
                     getPane().luaInit(getObj().getLuaAfterClick());
+                    /*
                     try {
                         getPane().getExtLib().runMethod(getObj().getExtFunctionAfterClick());
                     } catch (InvocationTargetException e) {
@@ -98,8 +99,8 @@ public class exTextView extends TextView {
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+                    */
                 }
-//                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
 
             }
         });

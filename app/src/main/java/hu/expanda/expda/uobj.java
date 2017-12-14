@@ -215,6 +215,7 @@ public class uobj {
                         if (property.equalsIgnoreCase("sql_on_exit")) ((ObjText)obj).setSqlOnExit(value);
                         if (property.equalsIgnoreCase("lua_on_change")) ((ObjText)obj).setLuaOnChange(value);
                         if (property.equalsIgnoreCase("lua_on_exit")) ((ObjText)obj).setLuaOnExit(value);
+                        if (property.equalsIgnoreCase("lua_on_enter")) ((ObjText)obj).setLuaOnEnter(value);
                         if (property.equalsIgnoreCase("extfunction_on_change")) ((ObjText)obj).setExtFunctionOnChange(value);
                         if (property.equalsIgnoreCase("extfunction_on_exit")) ((ObjText)obj).setExtFunctionOnExit(value);
                     }

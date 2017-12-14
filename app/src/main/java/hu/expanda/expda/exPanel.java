@@ -47,6 +47,7 @@ public class exPanel extends AbsoluteLayout{
 //		System.out.println(this.getData("NAME"));
 
         getPane().luaInit(getObj().getLuaOnCreate());
+        /*
         try {
             getPane().getExtLib().runMethod(getObj().getExtFunctionOnCreate());
         } catch (InvocationTargetException e) {
@@ -54,6 +55,7 @@ public class exPanel extends AbsoluteLayout{
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        */
 
     }
 

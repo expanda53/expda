@@ -114,6 +114,7 @@ public class exText extends EditText {
                 ((MainActivity)getContext()).hideSoftKeyboard(v);
                 if (!hasFocus) {
                     getPane().luaInit(getObj().getLuaOnExit());
+                    /*
                     try {
                         getPane().getExtLib().runMethod(getObj().getExtFunctionOnExit());
                     } catch (InvocationTargetException e) {
@@ -121,6 +122,10 @@ public class exText extends EditText {
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+                    */
+                }
+                else {
+                    getPane().luaInit(getObj().getLuaOnEnter());
                 }
             }
         }));
@@ -129,6 +134,7 @@ public class exText extends EditText {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
                     getPane().luaInit(getObj().getLuaOnChange());
+                    /*
                     try {
                         getPane().getExtLib().runMethod(getObj().getExtFunctionOnChange());
                     } catch (InvocationTargetException e) {
@@ -136,6 +142,7 @@ public class exText extends EditText {
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+                    */
 
                     return true;
                 } else return false;

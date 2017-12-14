@@ -75,10 +75,12 @@ class Symbol implements Scanner.DataListener, EMDKManager.EMDKListener,Scanner.S
                 if (pane.getAktBCodeObj()!=null) {
                     pane.getAktBCodeObj().setPane(pane);
                     pane.getAktBCodeObj().valueTo(result);
-                    String msg = pane.getAktBCodeObj().getSqlAfterTrigger();
-                    pane.sendGetExecute(msg, true);
+                    String msg;
+                    //msg = pane.getAktBCodeObj().getSqlAfterTrigger();
+                    //pane.sendGetExecute(msg, true);
                     msg = pane.getAktBCodeObj().getLuaAfterTrigger();
                     pane.luaInit(msg);
+                    /*
                     msg = pane.getAktBCodeObj().getExtFunctionAfterTrigger();
                     try {
                         extLibrary.runMethod(msg);
@@ -87,6 +89,7 @@ class Symbol implements Scanner.DataListener, EMDKManager.EMDKListener,Scanner.S
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+                    */
                 }
             }
         }

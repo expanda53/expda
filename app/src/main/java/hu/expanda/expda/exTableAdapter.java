@@ -64,6 +64,7 @@ public class exTableAdapter extends BaseAdapter {
                 eTable.selectedRow  = eTable.getItemAtPosition(pos);
                 if (eTable.getPane() != null) {
                     eTable.getPane().luaInit(eTable.getObj().getLuaAfterClick());
+                    /*
                     try {
                         eTable.getPane().getExtLib().runMethod(eTable.getObj().getExtFunctionAfterClick());
                     } catch (InvocationTargetException e) {
@@ -71,6 +72,7 @@ public class exTableAdapter extends BaseAdapter {
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+                    */
                 }
             }
         };

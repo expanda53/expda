@@ -28,6 +28,7 @@
        fwrite($fp, $szoveg1.$szoveg.$return);
        fwrite($fp, '*****'.$return);
        fclose($fp);
+       
   }
 	
   function parsing($array) {
@@ -86,6 +87,12 @@
 	$res = response_print($q);
 	return $res;	
   }
+  function query_tojson($stmt){ 
+	$q = query_exec($stmt);
+    $res = json_encode($q);
+	return $res;	
+  }
+  
   function response_print($array){ 
     $res="";
 	foreach ($array as $row) {
@@ -114,6 +121,7 @@
         
 		$login=trim($r['p1']);
 		$stmt->bindParam(':login', $login, PDO::PARAM_STR);
+		//echo query_tojson($stmt);
 		echo query_print($stmt);
   }
   /* login eddig */
@@ -172,6 +180,7 @@
   }
 
   function kiadas_kovsor($r){
+      /* nem hasznalt, sorban haladast kikapcsoltuk 2017.10.12*/
       $sql="SELECT CIKK, CIKKNEV, KOD2 EAN, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2, SORSZ FROM ANDROID_KIADAS_KOVSOR(:mibiz,:aktsorsz,:irany)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
@@ -182,6 +191,17 @@
       $stmt->bindParam(':mibiz', $mibiz, PDO::PARAM_STR);
       $stmt->bindParam(':aktsorsz', $aktsorsz, PDO::PARAM_STR);
       $stmt->bindParam(':irany', $irany, PDO::PARAM_STR);      
+	  echo query_print($stmt);
+  }
+  function kiadas_eankeres($r){
+      $sql="SELECT CIKK, CIKKNEV, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2, SORSZ FROM ANDROID_KIADAS_EANKERES(:mibiz,:ean,:login)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $mibiz=trim($r['p2']);
+      $ean=trim($r['p3']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':mibiz', $mibiz, PDO::PARAM_STR);
+      $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }
   

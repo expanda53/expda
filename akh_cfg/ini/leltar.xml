@@ -1,0 +1,441 @@
+<Root>
+<verzio>20171211</verzio>
+<mainpanel>
+  <name>altalanos</name>
+  <text>Leltár</text>
+  <lua_on_create>leltar/panelinit.lua</lua_on_create>
+  <params_to_labels>lkezelo</params_to_labels>
+</mainpanel>
+
+<label>
+  <name>lkezelo</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<label>
+  <name>lcikod</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<label>
+  <name>lfejazon</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<panel>
+  <name>panel1</name>
+  <width>match</width>
+  <height>match</height>
+  <top>0</top>
+  <visible>true</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+</panel>
+<panel>
+  <file>pfooter.xml</file>
+</panel>
+<panel>
+  <name>mibizlistpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>0</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+
+<table>
+  <name>mibizlist_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>550</height>
+  <top>0</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+
+  <column_title_mibiz>Helykódok</column_title_mibiz>
+  <column_title_azon>Azon</column_title_azon>
+
+  <font_size>17</font_size>
+  <row_height>20</row_height>
+  <parent>mibizlistpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>leltar/mibizlist_click.lua 0</lua_after_click>
+  <lua_on_create>leltar/mibizlist_load.lua</lua_on_create>
+  <itempanel>mibizlist_sor</itempanel>
+</table>
+
+<panel>
+    <name>mibizlist_sor</name>
+    <parent>mibizlistpanel</parent>
+    <height>20</height>
+    <width>match</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>mibiz</name>
+    <parent>mibizlist_sor</parent>
+    <width>390</width>
+    <height>60</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[mibiz]</text>
+    <align>left</align>
+</label>
+<label>
+    <name>azon</name>
+    <parent>mibizlist_sor</parent>
+    <width>0</width>
+    <height>0</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[azon]</text>
+    <style>listhidden</style>
+</label>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_mibizvissza</name>
+  <Text>Vissza</Text>
+  <top>555</top>
+  <width>match</width>
+  <height>45</height>
+  <left>0</left>
+  <parent>mibizlistpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadas/mibizvissza.lua</lua_after_click>
+</custom_button>
+
+<label>
+  <name>lmibiz</name>
+  <top>0</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>reviewlabel</style>
+  <align>center</align>
+</label>
+
+<barcode>
+  <name>BCODE0</name>
+  <lua_after_trigger>leltar/hkodcheck.lua [lfejazon] [ehkod]</lua_after_trigger>
+  <valueto>ehkod</valueto>
+  <parent>panel1</parent>
+</barcode>
+<barcode>
+  <name>BCODE1</name>
+  <lua_after_trigger>leltar/bcode1.lua [eean] [lfejazon] [ehkod]</lua_after_trigger>
+  <valueto>eean</valueto>
+  <parent>panel1</parent>
+</barcode>
+
+
+<label>
+  <name>cap_hkod</name>
+  <top>48</top>
+  <left>0</left>
+  <width>70</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Helykód</text>
+</label>
+<text>
+  <name>ehkod</name>
+  <top>35</top>
+  <width>match</width>
+  <parent>panel1</parent>
+  <left>85</left>
+  <visible>false</visible>
+  <lua_on_change>leltar/hkodcheck.lua [lfejazon] [ehkod]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
+
+<label>
+  <name>cap_ean</name>
+  <top>93</top>
+  <left>0</left>
+  <width>70</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>EAN</text>
+</label>
+<text>
+  <name>eean</name>
+  <top>85</top>
+  <width>match</width>
+  <parent>panel1</parent>
+  <left>85</left>
+  <visible>false</visible>
+  <lua_on_change>leltar/bcode1.lua [eean] [lfejazon] [ehkod]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
+<label>
+  <name>lcikknev</name>
+  <top>135</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+</label>
+
+<label>
+  <name>cap_dot</name>
+  <top>180</top>
+  <left>2</left>
+  <width>60</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>DOT</text>
+</label>
+
+<text>
+  <name>edot</name>
+  <top>205</top>
+  <width>100</width>
+  <height>45</height>
+  <parent>panel1</parent>
+  <font_color>#000000</font_color>
+  <visible>false</visible>
+  <bgcolor>#497000</bgcolor>
+  <left>2</left>  
+  <lua_on_change>leltar/drb_szamol.lua</lua_on_change>
+  <lua_on_enter>egyeb/numeric_panel.lua show edot leltar/drb_szamol.lua DOT</lua_on_enter>
+  <font_size>17</font_size>
+</text>
+
+<label>
+  <name>cap_drb</name>
+  <top>180</top>
+  <left>110</left>
+  <width>100</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>Mennyiség</text>
+</label>
+<label>
+  <name>cap_rdrb</name>
+  <top>180</top>
+  <left>202</left>
+  <width>100</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>_</text>
+</label>
+<text>
+  <name>edrb</name>
+  <top>205</top>
+  <width>80</width>
+  <height>45</height>
+  <parent>panel1</parent>
+  <font_color>#000000</font_color>
+  <visible>false</visible>
+  <bgcolor>#497000</bgcolor>
+  <left>110</left>  
+  <lua_on_change>leltar/mentes.lua [lcikod] [eean] [edrb] [lfejazon] [ehkod] [cap_rdrb] [edot] null</lua_on_change>
+  <font_size>17</font_size>
+</text>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_ujhkod</name>
+  <Text>Új helykód</Text>
+  <top>225</top>
+  <width>130</width>
+  <height>45</height>
+  <left>0</left>
+  <lua_after_click>leltar/ujhkod.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_ujean</name>
+  <Text>Új EAN</Text>
+  <top>225</top>
+  <width>130</width>
+  <height>45</height>
+  <left>135</left>
+  <lua_after_click>leltar/ujean.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_review</name>
+  <Text>Átnézés</Text>
+  <top>275</top>
+  <width>265</width>
+  <height>45</height>
+  <left>0</left>
+  <lua_after_click>leltar/showreview.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+
+
+<panel>
+  <name>reviewpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>30</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+
+<table>
+  <name>atnezo_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>250</height>
+  <top>0</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+  
+  <column_title_cikknev>Cikknev</column_title_cikknev>
+  <column_title_ean>Ean</column_title_ean>
+  <column_title_hkod>Hkod</column_title_hkod>
+  <column_title_drb>drb</column_title_drb>
+  <column_title_dot>dot</column_title_dot>
+  <row_height>65</row_height>
+  <font_size>10</font_size>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <itempanel>atnezo_sor</itempanel>
+</table>
+
+<panel>
+    <name>atnezo_sor</name>
+    <parent>panel1</parent>
+    <height>35</height>
+    <width>match</width>
+    <bgcolor>#497000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>cikknev</name>
+    <parent>atnezo_sor</parent>
+    <width>400</width>
+    <height>30</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[cikknev]</text>
+</label>
+<label>
+    <name>ean</name>
+    <parent>atnezo_sor</parent>
+    <width>200</width>
+    <height>25</height>
+    <top>30</top>
+    <left>0</left>
+    <text>[ean]</text>    
+</label>
+<label>
+    <name>dot</name>
+    <parent>atnezo_sor</parent>
+    <width>200</width>
+    <height>25</height>
+    <top>30</top>
+    <left>205</left>
+    <text>[dot]</text>
+</label>
+
+<label>
+    <name>hkod</name>
+    <parent>atnezo_sor</parent>
+    <width>200</width>
+    <height>25</height>
+    <top>65</top>
+    <left>0</left>
+    <text>[hkod]</text>    
+</label>
+<label>
+    <name>drb</name>
+    <parent>atnezo_sor</parent>
+    <width>200</width>
+    <height>20</height>
+    <top>65</top>
+    <left>200</left>
+    <text>[drb]</text>
+    <align>center</align>
+</label>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_folytat</name>
+  <Text>Folytatás</Text>
+  <top>255</top>
+  <width>130</width>
+  <height>45</height>
+  <left>2</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>leltar/folytmost.lua</lua_after_click>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_folytkesobb</name>
+  <Text>Megszakít</Text>
+  <top>255</top>
+  <width>130</width>
+  <height>45</height>
+  <left>135</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>leltar/kesobbfolyt.lua [lfejazon]</lua_after_click>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_lezar</name>
+  <Text>Lezárás</Text>
+  <top>255</top>
+  <width>127</width>
+  <height>45</height>
+  <left>270</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>leltar/lezaras.lua [lfejazon] null</lua_after_click>
+</custom_button>
+<panel>
+  <file>numeric_panel.xml</file>
+</panel>
+</Root>

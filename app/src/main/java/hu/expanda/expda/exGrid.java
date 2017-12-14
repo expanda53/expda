@@ -66,6 +66,7 @@ public class exGrid extends GridView{
                 }
                 selectedRow = a;
                 getPane().luaInit(getObj().getLuaAfterClick());
+                /*
                 try {
                     getPane().getExtLib().runMethod(getObj().getExtFunctionAfterClick());
                 } catch (InvocationTargetException e) {
@@ -73,6 +74,7 @@ public class exGrid extends GridView{
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
+                */
 
 
             }

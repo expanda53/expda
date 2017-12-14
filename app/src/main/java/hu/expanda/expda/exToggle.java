@@ -91,6 +91,7 @@ public class exToggle extends ToggleButton {
                 if (getPane() != null) {
                     if (((exToggle)v).isChecked()) {
                         getPane().luaInit(getObj().getLuaAfterClickToggleOn());
+                        /*
                         try {
                             getPane().getExtLib().runMethod(getObj().getExtFunctionAfterClickToggleOn());
                         } catch (InvocationTargetException e) {
@@ -98,9 +99,11 @@ public class exToggle extends ToggleButton {
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         }
+                        */
                     }
                     else {
                         getPane().luaInit(getObj().getLuaAfterClickToggleOff());
+                        /*
                         try {
                             getPane().getExtLib().runMethod(getObj().getExtFunctionAfterClickToggleOff());
                         } catch (InvocationTargetException e) {
@@ -108,11 +111,10 @@ public class exToggle extends ToggleButton {
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         }
+                        */
 
                     }
                 }
-//                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
-
             }
         });
         if (layout!=null) layout.addView(this, new AbsoluteLayout.LayoutParams(getObj().getWidth(), getObj().getHeight(), getObj().getLeft(), getObj().getTop()));

@@ -167,113 +167,28 @@ public class exButton extends LinearLayout {
                 } else {
 
                     getPane().luaInit(button.getLuaAfterClick());
+                    /*
+
                     try {
 
-                        getPane().getExtLib().runMethod(button.getExtFunctionAfterClick());
+                       // getPane().getExtLib().runMethod(button.getExtFunctionAfterClick());
                     } catch (InvocationTargetException e) {
                         e.printStackTrace();
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+                    */
 
-//                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
-
-                }
-                /*
-                Toast.makeText(getContext(),
-                        "Button clicked",
-                        Toast.LENGTH_LONG).show();
-                */
-
-            }
-        });
-/*
-
-        tv.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-                if (button.getFunction().equalsIgnoreCase("CLOSE")) {
-                    ((Activity) parent).finish();
-
-                } else {
-
-                    getPane().luaInit(button.getLuaAfterClick());
-                    try {
-
-                        getPane().getExtLib().runMethod(button.getExtFunctionAfterClick());
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-
-//                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
 
                 }
-
-                Toast.makeText(getContext(),
-                        "Button clicked",
-                        Toast.LENGTH_LONG).show();
 
             }
         });
 
-
-
-        if (iv != null) {
-            iv.setOnClickListener(new OnClickListener() {
-
-                public void onClick(View v) {
-                    if (button.getFunction().equalsIgnoreCase("CLOSE")) {
-                        ((Activity) parent).finish();
-
-                    } else {
-
-                        getPane().luaInit(button.getLuaAfterClick());
-                        try {
-
-                            getPane().getExtLib().runMethod(button.getExtFunctionAfterClick());
-                        } catch (InvocationTargetException e) {
-                            e.printStackTrace();
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        }
-
-//                    getPane().sendGetExecute(button.getSqlAfterClick(), true);
-
-                    }
-
-                    Toast.makeText(getContext(),
-                            "Button clicked",
-                            Toast.LENGTH_LONG).show();
-
-                }
-            });
-
-
-        }*/
 
 
     }
-/*
-    Listener infoListener = new Listener() {
-        public void handleEvent(Event arg0) {
-            if (button.getFunction().equalsIgnoreCase("CLOSE")) {
-                parent.getShell().close();
-            }
-            else {
-                Composite xparent = parent;
-                if (xparent instanceof exPanel){
-                    xparent=xparent.getParent();
-                }
-                ((exPane)xparent).luaInit(button.getLuaAfterClick());
-                ((exPane)xparent).sendGetExecute(button.getSqlAfterClick(), true);
 
-            }
-        }
-    };
-
-*/
     public void setText(String t){
         tv.setText(t);
 

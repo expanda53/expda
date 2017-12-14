@@ -1,11 +1,13 @@
 package hu.expanda.expda;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by kende on 2016. 12. 20..
  */
 public class exGlobals {
+    private HashMap<String,String> globalsMap;
     public static class Item {
         private int index=-1;
         private String value="";
@@ -23,14 +25,15 @@ public class exGlobals {
         }
     }
     private static ArrayList<String> globals = new ArrayList<>();
+
     public exGlobals(String params){
         setGlobals(params);
-
     }
 
     public static ArrayList<String> getGlobals() {
         return globals;
     }
+
 
     public static void setGlobals(String globals) {
         if (globals!=null) {
@@ -41,6 +44,9 @@ public class exGlobals {
             }
         }
     }
+
+
+
     public static void addItem(String optionWithValue ){
         exGlobals.getGlobals().add(optionWithValue);
     }

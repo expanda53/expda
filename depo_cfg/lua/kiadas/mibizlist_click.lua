@@ -1,4 +1,4 @@
---<verzio>20170617</verzio>
+--<verzio>20171012</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -14,6 +14,4 @@ mibiz= t['MIBIZ']
 ui:executeCommand('valueto','lmibiz', mibiz)
 ui:executeCommand('valueto','lcegnev', cegnev)
 ui:executeCommand('hideobj','mibizlist_table;btn_mibizvissza','')
-
-ui:executeCommand('showobj','pfooter;eean;button_review;button_kovetkezo;button_elozo','')
-ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', mibiz..' 0 +')
+ui:executeCommand('startlua','kiadas/kovetkezo_click.lua', '')

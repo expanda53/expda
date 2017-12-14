@@ -8,6 +8,7 @@ package hu.expanda.expda;
         import android.app.ProgressDialog;
         import android.content.Context;
         import android.os.AsyncTask;
+        import android.util.Log;
         import android.view.Window;
 
         import java.io.BufferedReader;
@@ -81,6 +82,8 @@ public class PHPClient extends AsyncTask<String, Void, ArrayList> {
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setRequestMethod("POST");
+            connection.setConnectTimeout(0);
+            connection.setReadTimeout(0);
             connection.setRequestProperty("Accept-Charset", this.charset);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + this.charset);
 
@@ -126,6 +129,7 @@ public class PHPClient extends AsyncTask<String, Void, ArrayList> {
             response = IStreamToString(resp);
 
 
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -133,13 +137,14 @@ public class PHPClient extends AsyncTask<String, Void, ArrayList> {
         finally {
             try {
                 resp.close();
+
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
 //        MainActivity.hideProgress();
-        return response;
+       return response;
     }
 
     public String getURL() {
@@ -161,7 +166,6 @@ public class PHPClient extends AsyncTask<String, Void, ArrayList> {
                 e.printStackTrace();
             }
             setResult(a);
-
             return a;
     }
 
