@@ -1,11 +1,14 @@
 apk/expda-debug.apk;5.041
+images/arrow-256.png;20171211_
 images/exit.png;20171211_
+images/exit-256.png;20171211_
 images/leltar.png;20171211_
+images/leltar-256.png;20171211_
 ini/appconfig.xml;20171211_
 ini/style.xml;20171211_
 ini/login.xml;20171211_
 ini/mainmenu.xml;20171211_
-ini/pfooter.xml;20161221
+ini/pfooter.xml;20171211_
 lua/egyeb/login_init.lua;20171211_
 lua/egyeb/login_btn_click.lua;20161117
 lua/egyeb/login_click.lua;20171211_
@@ -28,7 +31,11 @@ lua/leltar/drb_szamol.lua;20171211_
 lua/leltar/mentes.lua;20171211_
 lua/leltar/ujhkod.lua;20171211_
 lua/leltar/ujean.lua;20171211_
+lua/leltar/ureshkod.lua;20171211_
 lua/leltar/showreview.lua;20171211_
+lua/leltar/reviewclick.lua;20171211_
 lua/leltar/folytmost.lua;20171211_
 lua/leltar/kesobbfolyt.lua;20171211_
 lua/leltar/lezaras.lua;20171211_
+lua/leltar/hkodlist_click.lua;20171211_
+lua/leltar/hkodlist_close.lua;20171211_

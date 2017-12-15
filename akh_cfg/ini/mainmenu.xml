@@ -27,29 +27,29 @@
 
 <custom_button>
   <name>ButtonLeltar</name>
-  <image>leltar.png</image>
-  <image_align>top</image_align>
+  <image>leltar-256.png</image>
+  <image_align>left</image_align>
   <Text>Leltár</Text>
   <top>10</top>
-  <width>110</width>
-  <height>120</height>
-  <left>20</left>
+  <width>170</width>
+  <height>80</height>
+  <left>5</left>
   <style>buttondefault</style>
   <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
   <name>ButtonClose</name>
-  <left>135</left>
+  <left>180</left>
   <Text>Kilépés</Text>
   <top>10</top>
-  <width>110</width>
-  <height>120</height>
+  <width>170</width>
+  <height>80</height>
   <style>buttondefault</style>
   <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
   <visible>true</visible>
-  <image>exit.png</image>
-  <image_align>top</image_align>
+  <image>exit-256.png</image>
+  <image_align>left</image_align>
 </custom_button>
 
 <panel>

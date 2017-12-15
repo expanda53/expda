@@ -12,7 +12,7 @@ result=t[1]['RESULT']
 
 if (result=='0') then
   ui:executeCommand('aktbcodeobj','bcode1','')
-  ui:executeCommand('showobj','cap_ean;eean;button_ujhkod','')
+  ui:executeCommand('showobj','cap_ean;eean;button_emptyhkod','')
   ui:executeCommand('disabled','ehkod','')
   ui:executeCommand('setbgcolor','ehkod','#434343')
   ui:executeCommand('setfocus','eean','') 

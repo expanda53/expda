@@ -1,9 +1,9 @@
 <Root>
-<verzio>20161221</verzio>
+<verzio>20171211</verzio>
 <panel>
   <name>pfooter</name>
   <width>match</width>
-  <top>320</top>
+  <top>590</top>
   <left>0</left>
   <height>match</height>
   <visible>true</visible>
@@ -33,8 +33,8 @@
 <label>
   <name>lkezelostat</name>
   <top>1</top>
-  <width>139</width>
-  <left>260</left>
+  <width>100</width>
+  <left>261</left>
   <style>reviewlabel</style>
   <parent>pfooter</parent>
   <align>center</align>  

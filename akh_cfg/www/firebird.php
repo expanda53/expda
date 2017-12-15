@@ -44,7 +44,7 @@ class Firebird {
 		return call_user_func_array($callback, $args);
 	}
 	
-	public static function prepare($sql,$tip){
+	public static function prepare($sql,$tip='akh'){
 		return self::getLink($tip)->prepare($sql);
 	}
 

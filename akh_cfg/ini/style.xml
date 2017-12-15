@@ -25,7 +25,7 @@
 </style>
 <style>
     <name>buttondefault_yellow</name>
-    <bgcolor>#fff730</bgcolor>
+    <bgcolor>#F6D600</bgcolor>
     <font_color>#000000</font_color>
     <font_size>18</font_size>
     <padding_left>5</padding_left>
@@ -82,7 +82,7 @@
 </style>
 <style>
   <name>listtitlework</name>
-  <bgcolor>#b2ebf2</bgcolor>
+  <bgcolor>#F6D600</bgcolor>
   <font_color>#000000</font_color>
   <padding_left>5</padding_left>
   <padding_right>5</padding_right>
@@ -91,7 +91,7 @@
 </style>
 <style>
   <name>listtitlemiss</name>
-  <bgcolor>#fff176</bgcolor>
+  <bgcolor>#E94F37</bgcolor>
   <font_color>#000000</font_color>
   <padding_left>5</padding_left>
   <padding_right>5</padding_right>

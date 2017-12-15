@@ -25,9 +25,12 @@ if (func=='ok') then
     ui:executeCommand("valueto",target_field,text)
   end
   if (target_lua~='-') then
+    ui:executeCommand("hide","pnumeric",'') 
     ui:executeCommand('startlua',target_lua, '')
+  else
+    ui:executeCommand("hide","pnumeric",'') 
   end
-  func='hide'
+  --func='hide'
 end
 if (func=='hide') then
     ui:executeCommand("hide","pnumeric",'') 

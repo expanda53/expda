@@ -13,12 +13,19 @@ end
 if (dialogres=="igen") then
    str = 'leltar_lezaras '..azon..' '.. kezelo
    list=luafunc.query_assoc(str,false)
-   str = list[1]['RESULTTEXT']
-   if (str=='OK') then
+   result = list[1]['RESULT']
+   if (result=='0') then
        ui:executeCommand('TOAST','Lezárás rendben.')
        ui:executeCommand('CLOSE','','')
    else
-       alert(ui,str)
+     if (result=='-1') then str = 'Lezárás során adatbázis hiba történt, a lezárás nem sikerült.' end
+     if (result=='-2') then str = 'Van még helykód, ahol a gépi és a számolt készlet eltér. Lezárás megszakítva.' end
+     if (result=='-3') then 
+        str = 'Van még helykód, ami nem lett leltárazva. Lezárás megszakítva.' 
+        ui:executeCommand('startlua','leltar/hkodlist_click.lua', "")
+     end
+     if (result=='-4') then str = 'Lezárás során egyéb hiba történt, a lezárás nem sikerült.' end
+     alert(ui,str)
    end
 end
 
