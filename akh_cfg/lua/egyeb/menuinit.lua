@@ -1,8 +1,13 @@
---<verzio>20161117</verzio>
+--<verzio>20171211</verzio>
 require 'hu.expanda.expda/LuaFunc'
 params = {...}
 ui = params[1]
 local menuitem = params[2]:gsub(':','')
+uzmod=''
+if (#params>2) then
+  uzmod = params[3]:gsub(':','')
+end
+ui:setGlobal("uzmod",uzmod)
 kezelo = ui:getKezelo()
 if (menuitem~='EXIT') then
   ui:executeCommand('openxml',menuitem,kezelo)

@@ -4,10 +4,10 @@ local params = {...}
 ui = params[1]
 kezelo = ui:getKezelo()
 azon = params[2]
-if (azon==0) then
+if (azon=='0') then
     row = ui:findObject('mibizlist_table'):getSelectedRow()  
     t = luafunc.rowtotable(row)
-    mibiz= t['LEIR']
+    mibiz= t['MIBIZ']
     azon= t['AZON']
 else
     mibiz = params[3]

@@ -7,11 +7,12 @@ azon = params[2]:gsub("n",""):gsub(':','')
 mibiz = tostring(ui:findObject('lmibiz'):getText())
 dialogres = params[3]    
 kezelo = ui:getKezelo()
+uzmod=ui:getGlobal("uzmod")
 if (dialogres=="null") then
     ui:showDialog("Biztos zárható a leltár? ".. mibiz,"leltar/lezaras.lua "..azon.." igen ","leltar/lezaras.lua 0 nem")
 end
 if (dialogres=="igen") then
-   str = 'leltar_lezaras '..azon..' '.. kezelo
+   str = 'leltar_lezaras '..azon..' '.. kezelo .. ' ' .. uzmod
    list=luafunc.query_assoc(str,false)
    result = list[1]['RESULT']
    if (result=='0') then

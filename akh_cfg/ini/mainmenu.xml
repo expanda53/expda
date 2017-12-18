@@ -31,22 +31,35 @@
   <image_align>left</image_align>
   <Text>Leltár</Text>
   <top>10</top>
-  <width>170</width>
+  <width>match</width>
   <height>80</height>
   <left>5</left>
   <style>buttondefault</style>
   <visible>true</visible>
-  <lua_after_click>egyeb/menuinit.lua LELTAR [lkezelo]</lua_after_click>
+  <lua_after_click>egyeb/menuinit.lua LELTAR L</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonLeltEll</name>
+  <image>checklist-256.png</image>
+  <image_align>left</image_align>
+  <Text>Ellenőrzés</Text>
+  <top>95</top>
+  <width>match</width>
+  <height>80</height>
+  <left>5</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua LELTAR E</lua_after_click>
 </custom_button>
 <custom_button>
   <name>ButtonClose</name>
-  <left>180</left>
+  <left>5</left>
   <Text>Kilépés</Text>
-  <top>10</top>
-  <width>170</width>
+  <top>180</top>
+  <width>match</width>
   <height>80</height>
   <style>buttondefault</style>
-  <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
+  <lua_after_click>egyeb/menuinit.lua EXIT</lua_after_click>
   <visible>true</visible>
   <image>exit-256.png</image>
   <image_align>left</image_align>

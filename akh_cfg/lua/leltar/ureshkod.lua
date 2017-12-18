@@ -3,10 +3,11 @@ require '.egyeb.functions'
 local params = {...}
 ui=params[1]
 kezelo = ui:getKezelo()
+uzmod=ui:getGlobal("uzmod")
 azon = tostring(ui:findObject('lfejazon'):getText())
 hkod = tostring(ui:findObject('ehkod'):getText())
 --ures helykodra ZZNYITO cikk mentese 0 drb es drb2-vel
- str = 'leltar_ment ' .. azon .. ' ' .. hkod .. ' ZZNYITO ZZNYITO 0 X ' ..kezelo
+ str = 'leltar_ment ' .. azon .. ' ' .. hkod .. ' ZZNYITO ZZNYITO 0 X ' ..kezelo ..' '.. uzmod
  t=luafunc.query_assoc(str,false)
  result = t[1]['RESULT']
 

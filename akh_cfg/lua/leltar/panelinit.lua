@@ -2,14 +2,20 @@
 local params = {...}
 ui = params[1]
 kezelo = ui:getKezelo()
+uzmod=ui:getGlobal("uzmod")
 ui:executeCommand("showprogress","Megnyitás...","")
 ui:executeCommand("hideobj","pfooter")
 ui:executeCommand('valueto','lkezelostat','Kezelő: '..kezelo)
-ui:executeCommand('valueto','lmodulstat','Leltár')
+if (uzmod=='L') then 
+  msg = 'Leltár'
+else 
+  msg = 'Ellenőrzés'
+end  
+ui:executeCommand('valueto','lmodulstat',msg)
 version = ui:getGlobal("appversion")
 ui:executeCommand('valueto',"lverzio",'exPDA v' .. version)
 ui:executeCommand("showobj","mibizlistpanel")
-str = 'leltar_mibizlist '..kezelo
+str = 'leltar_mibizlist '..kezelo .. ' ' .. uzmod
 list=luafunc.query_assoc_to_str(str,false)
 luafunc.refreshtable_fromstring('mibizlist_table',list)
 

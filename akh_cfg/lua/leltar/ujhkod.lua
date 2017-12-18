@@ -3,16 +3,17 @@ require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
 kezelo = ui:getKezelo()
+uzmod=ui:getGlobal("uzmod")
 azon = tostring(ui:findObject('lfejazon'):getText())
 hkod = tostring(ui:findObject('ehkod'):getText())
 if (hkod~='') then
   --uj helykod keres eseten eloszor a regit lezarjuk (ha volt helykod, mert lehet hogy csak most inditotta a helykodot)
-  str = 'leltar_hkodlist_update ' .. azon .. ' ' .. kezelo .. ' '.. hkod .. ' Z'
+  str = 'leltar_hkodlist_update ' .. azon .. ' ' .. kezelo .. ' '.. hkod .. ' Z '..uzmod
   t=luafunc.query_assoc(str,false)
   result = t[1]['RESULT']
 end  
 --lekerdezzuk a kov. helykodot. nem szigoru, belohet mast is, ez egy ajanlas
-  str = 'leltar_hkod_next ' .. azon .. ' ' .. kezelo
+  str = 'leltar_hkod_next ' .. azon .. ' ' .. kezelo .. ' ' .. uzmod
   t=luafunc.query_assoc(str,false)
   result = t[1]['RESULT']
   hkodnext = t[1]['HKOD']

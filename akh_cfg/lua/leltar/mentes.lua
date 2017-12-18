@@ -3,21 +3,28 @@ require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
 ui=params[1]
-cikk = params[2]:gsub("n",""):gsub(':','')
-ean = params[3]:gsub("n",""):gsub(':','')
-drb = params[4]:gsub("n",""):gsub(':','')
-fejazon = params[5]:gsub("n",""):gsub(':','')
-hkod = params[6]:gsub("n",""):gsub(':','')
-drb2 = params[7]:gsub("n",""):gsub(':','')
-dot = params[8]:gsub("n",""):gsub(':','')
-dialogres = params[9]:gsub("\n",""):gsub(':','')
+    
+fejazon = tostring(ui:findObject('lfejazon'):getText()):gsub("n",""):gsub(':','')
+cikk = tostring(ui:findObject('lcikod'):getText()):gsub("n",""):gsub(':','')
+hkod = tostring(ui:findObject('ehkod'):getText()):gsub("n",""):gsub(':','')
+dot = tostring(ui:findObject('edot'):getText()):gsub("n",""):gsub(':','')
+ean = tostring(ui:findObject('eean'):getText()):gsub("n",""):gsub(':','')
+drb = tostring(ui:findObject('edrb'):getText()):gsub("n",""):gsub(':','')
+drb2 = tostring(ui:findObject('cap_rdrb'):getText()):gsub("n",""):gsub(':','')
+
+if (#params>1) then
+  dialogres = params[2]:gsub("\n",""):gsub(':','')
+else
+  dialogres="null"
+end  
+
 if (drb2=='') then
   drb2='0'
 end
 
 if (dialogres=="null") then
     if (tonumber(drb2)~=0) then
-      ui:showDialog("Van már ilyen tétel a leltárban.\n\nNem: Hozzáadja\nIgen: Felülírja","leltar/mentes.lua "..cikk.." " ..ean .. " " .. drb .. " " ..fejazon .. " " ..hkod .. " " .. drb2 .. " " .. dot .. " felulir","leltar/mentes.lua "..cikk.." " ..ean .. " " .. drb .. " " ..fejazon .. " " ..hkod .. " " .. drb2 .. " " ..dot .. " sum")
+      ui:showDialog("Van már ilyen tétel a leltárban.\n\nNem: Hozzáadja\nIgen: Felülírja","leltar/mentes.lua felulir","leltar/mentes.lua sum")
     else
       dialogres = "felulir"
     end
@@ -30,7 +37,8 @@ if (dialogres~="null") then
     end
     if (tonumber(drb)>0) then
         kezelo = ui:getKezelo()
-        str = 'leltar_ment ' .. fejazon .. ' ' .. hkod .. ' ' .. cikk .. ' ' .. ean .. ' ' .. drb .. ' ' .. dot .. ' ' ..kezelo
+        uzmod=ui:getGlobal("uzmod")
+        str = 'leltar_ment ' .. fejazon .. ' ' .. hkod .. ' ' .. cikk .. ' ' .. ean .. ' ' .. drb .. ' ' .. dot .. ' ' ..kezelo .. ' ' .. uzmod
         t=luafunc.query_assoc(str,false)
         result = t[1]['RESULT']
         resulttext = t[1]['RESULTTEXT']

@@ -14,7 +14,8 @@ if (dialogres=="null") then
 end
 if (dialogres=="igen") then
     kezelo = ui:getKezelo()
-    str = 'leltar_kesobbfolyt ' .. fejazon .. ' ' .. kezelo
+    uzmod=ui:getGlobal("uzmod")
+    str = 'leltar_kesobbfolyt ' .. fejazon .. ' ' .. kezelo .. ' ' .. uzmod
     t=luafunc.query_assoc(str,false)
     result = t[1]['RESULT']
     if (result=='0') then

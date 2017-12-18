@@ -3,10 +3,11 @@ require '.egyeb.functions'
 local params = {...}
 ui=params[1]
 kezelo = ui:getKezelo()
+uzmod=ui:getGlobal("uzmod")
 azon = params[2]:gsub("n",""):gsub(':','')
 hkod = params[3]:gsub("n",""):gsub(':','')
 --hkod ellenorzes
-str = 'leltar_hkod_check ' .. azon .. ' ' .. hkod .. ' ' .. kezelo
+str = 'leltar_hkod_check ' .. azon .. ' ' .. hkod .. ' ' .. kezelo .. ' ' .. uzmod
 t=luafunc.query_assoc(str,false)
 result=t[1]['RESULT']
 

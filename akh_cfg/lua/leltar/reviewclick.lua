@@ -3,6 +3,7 @@ require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
 kezelo = ui:getKezelo()
+uzmod=ui:getGlobal("uzmod")
 --atnezo panel click
 if (#params==1) then
   row = ui:findObject('atnezo_table'):getSelectedRow()  
@@ -19,7 +20,7 @@ if (#params==1) then
 else
     azon = tostring(ui:findObject('lfejazon'):getText())
     sorsz = params[2]
-    str = 'leltar_ellenorzes ' .. azon ..' ' .. sorsz ..' '..kezelo
+    str = 'leltar_ellenorzes ' .. azon ..' ' .. sorsz ..' '..kezelo ..' '..uzmod
     t=luafunc.query_assoc(str,false)
     result = t[1]['RESULT']
     if (result=='0') then

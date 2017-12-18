@@ -73,7 +73,6 @@
   <parent>mibizlistpanel</parent>
   <visible>true</visible>
   <lua_after_click>leltar/mibizlist_click.lua 0</lua_after_click>
-  <lua_on_create>leltar/mibizlist_load.lua</lua_on_create>
   <itempanel>mibizlist_sor</itempanel>
 </table>
 
@@ -274,7 +273,8 @@
   <visible>false</visible>
   <bgcolor>#497000</bgcolor>
   <left>110</left>  
-  <lua_on_change>leltar/mentes.lua [lcikod] [eean] [edrb] [lfejazon] [ehkod] [cap_rdrb] [edot] null</lua_on_change>
+  <lua_on_change>leltar/mentes.lua null</lua_on_change>
+  <lua_on_enter>egyeb/numeric_panel.lua show edrb leltar/mentes.lua Mennyiség</lua_on_enter>
   <font_size>17</font_size>
 </text>
 
