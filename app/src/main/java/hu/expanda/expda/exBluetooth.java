@@ -87,10 +87,12 @@ public class exBluetooth {
         return res;
     }
 
-    public boolean write(byte[] bytes){
+    public boolean write(String message){
         boolean res = false;
         try {
+            byte[] bytes = (message + "\r\n") .getBytes();
             mmOutStream.write(bytes);
+           mmOutStream.flush();
             res=true;
         } catch (IOException e) {
             e.printStackTrace();

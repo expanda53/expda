@@ -488,7 +488,7 @@ public class LuaFunc extends TwoArgFunction {
         public LuaValue call(LuaValue message) {
 
             String mess = message.tojstring();
-            LuaValue res = LuaValue.valueOf(MainActivity.btDevice.write(mess.getBytes()));
+            LuaValue res = LuaValue.valueOf(MainActivity.btDevice.write(mess));
             return res;
         }
     }
