@@ -18,6 +18,7 @@ package hu.expanda.expda;
         import org.luaj.vm2.LuaValue;
         import org.luaj.vm2.lib.OneArgFunction;
         import org.luaj.vm2.lib.TwoArgFunction;
+        import org.luaj.vm2.lib.ZeroArgFunction;
         import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 
@@ -53,6 +54,11 @@ public class LuaFunc extends TwoArgFunction {
         library.set("ini", new iniGet());
         library.set("isql_query", new isql_query());
         library.set("isql_exec", new isql_exec());
+        library.set("btdevlist", new btdevlist());
+        library.set("btdevlist_tostr", new btdevlist_tostr());
+        library.set("btconnect", new btconnect());
+        library.set("btclose", new btclose());
+        library.set("btwrite", new btwrite());
         library.set("log", new log());
 //        library.set("isql_query_asoc", new isql_query_assoc());
         env.set( "luafunc", library );
@@ -423,6 +429,66 @@ public class LuaFunc extends TwoArgFunction {
             if (iniItem.tojstring().equalsIgnoreCase("luadir")) res = LuaValue.valueOf(Ini.getLuaDir());
             if (iniItem.tojstring().equalsIgnoreCase("inidir")) res = LuaValue.valueOf(Ini.getIniDir());
             if (iniItem.tojstring().equalsIgnoreCase("imagesdir")) res = LuaValue.valueOf(Ini.getImgDir());
+            return res;
+        }
+    }
+
+    static class btdevlist extends ZeroArgFunction {
+        public LuaValue call() {
+
+            ArrayList<exBluetooth.btClass> list  = MainActivity.btDevice.getPairedDevices();
+            LuaValue rows = tableOf();
+            if (list.size()>0) {
+                for(int i=0;i<list.size();i++){
+                    LuaValue cols = tableOf();
+                    cols.set("MAC",list.get(i).MAC);
+                    cols.set("NAME",list.get(i).deviceName);
+                    cols.set("CLASS",String.valueOf(list.get(i).devClass));
+                    rows.set(i+1, cols);
+                }
+            }
+
+            return rows;
+        }
+    }
+
+    static class btdevlist_tostr extends ZeroArgFunction {
+        public LuaValue call() {
+
+            ArrayList<exBluetooth.btClass> list  = MainActivity.btDevice.getPairedDevices();
+
+            String rows = "";
+            if (list.size()>0) {
+                for(int i=0;i<list.size();i++){
+                    //LuaValue cols = tableOf();
+                    String col = "";
+                    col = "[[MAC="+list.get(i).MAC+"]][[NAME="+list.get(i).deviceName+"]][[CLASS="+String.valueOf(list.get(i).devClass)+"]]\n";
+                    rows+=col;
+                }
+            }
+
+            return LuaValue.valueOf(rows);
+        }
+    }
+
+    static class btconnect extends OneArgFunction {
+        public LuaValue call(LuaValue luaMAC) {
+            String mac = luaMAC.tojstring();
+            LuaValue res = LuaValue.valueOf(MainActivity.btDevice.connect(mac));
+            return res;
+        }
+    }
+    static class btclose extends ZeroArgFunction {
+        public LuaValue call() {
+            LuaValue res = LuaValue.valueOf(MainActivity.btDevice.close());
+            return res;
+        }
+    }
+    static class btwrite extends OneArgFunction {
+        public LuaValue call(LuaValue message) {
+
+            String mess = message.tojstring();
+            LuaValue res = LuaValue.valueOf(MainActivity.btDevice.write(mess.getBytes()));
             return res;
         }
     }

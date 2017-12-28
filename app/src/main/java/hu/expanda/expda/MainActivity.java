@@ -2,6 +2,8 @@ package hu.expanda.expda;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -24,6 +26,7 @@ import com.symbol.emdk.barcode.ScannerException;
 */
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 
 public class MainActivity extends Activity {
@@ -43,6 +46,7 @@ public class MainActivity extends Activity {
     public static int displayWidth = 0;
     public static HashMap<String,Object> luamap = null;
     public static HashMap<String,Object> xmlmap = null;
+    public static exBluetooth btDevice = null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -56,9 +60,8 @@ public class MainActivity extends Activity {
                 if (symbol.getScanner()==null) symbol.initScanner();
 
         }
-
+        btDevice = new exBluetooth();
         Ini.Create();
-
         String startXml = Ini.getStartXML();
         String xml = startXml;
         Intent intent =this.getIntent();
