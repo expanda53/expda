@@ -28,16 +28,14 @@ if (ujhkod>0) then
     str = 'leltar_ujhkod_check ' .. azon .. ' ' .. hkod .. ' ' .. kezelo .. ' ' .. uzmod
     t=luafunc.query_assoc(str,false)
     result_hkod=t[1]['RESULT']
-
-    hkod=''
-    str = 'leltar_hkodlist_check ' .. azon .. ' ' .. kezelo .. ' ' .. uzmod
-    t=luafunc.query_assoc(str,false)
-    result_osszes=t[1]['RESULT']
-
 else
-  result_hkod=1;
-  result_osszes=1;
+    result_hkod=1
 end
+--ki lehet-e rakni a lezaras gombot
+str = 'leltar_hkodlist_check ' .. azon .. ' ' .. kezelo .. ' ' .. uzmod
+t=luafunc.query_assoc(str,false)
+result_osszes=t[1]['RESULT']
+
 
 if (tonumber(result_hkod)>0) then
     --van meg elteres, ami nincs megerositve, nem zarhato, nem mehet uj helykodra

@@ -1,0 +1,170 @@
+<Root>
+<verzio>20171211</verzio>
+<mainpanel>
+  <name>altalanos</name>
+  <text>nyomtatás</text>
+  <lua_on_create>print/panelinit.lua</lua_on_create>
+  <params_to_labels>lkezelo</params_to_labels>
+</mainpanel>
+
+<label>
+  <name>lkezelo</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<panel>
+  <name>panel1</name>
+  <width>match</width>
+  <height>match</height>
+  <top>0</top>
+  <visible>true</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+</panel>
+
+<barcode>
+  <name>BCODE0</name>
+  <lua_after_trigger>print/hkodcheck.lua [ehkod]</lua_after_trigger>
+  <valueto>ehkod</valueto>
+  <parent>panel1</parent>
+</barcode>
+
+
+<label>
+  <name>cap_hkod</name>
+  <top>42</top>
+  <left>0</left>
+  <width>100</width>
+  <height>wrap</height>
+  <visible>true</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Helykód</text>
+</label>
+<text>
+  <name>ehkod</name>
+  <top>35</top>
+  <width>match</width>
+  <parent>panel1</parent>
+  <left>115</left>
+  <visible>true</visible>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>65</height>
+</text>
+
+<label>
+  <name>cap_cikknev</name>
+  <top>122</top>
+  <left>0</left>
+  <width>100</width>
+  <height>wrap</height>
+  <visible>true</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Cikknév</text>
+</label>
+<text>
+  <name>ecikknev</name>
+  <top>115</top>
+  <width>match</width>
+  <parent>panel1</parent>
+  <left>115</left>
+  <visible>true</visible>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>65</height>
+  <lua_on_enter>print/cikk_enter.lua</lua_on_enter>
+</text>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_keres</name>
+  <Text>Keresés</Text>
+  <top>185</top>
+  <width>match</width>
+  <height>65</height>
+  <left>0</left>
+  <parent>panel1</parent>
+  <visible>true</visible>
+  <lua_after_click>print/cikk_keres.lua [ehkod] [ecikknev]</lua_after_click>
+</custom_button>
+
+<table>
+  <name>atnezo_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>405</height>
+  <top>255</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+  
+  <column_title_kod>kod</column_title_kod>
+  <column_title_nev>nev</column_title_nev>
+  <column_title_ean>EAN</column_title_ean>
+  <row_height>80</row_height>
+  <font_size>10</font_size>
+  <parent>panel1</parent>
+  <visible>true</visible>
+  <itempanel>atnezo_sor</itempanel>
+  <lua_after_click>print/reviewclick.lua</lua_after_click>
+</table>
+
+<panel>
+    <name>atnezo_sor</name>
+    <parent>panel1</parent>
+    <height>40</height>
+    <width>match</width>
+    <bgcolor>#497000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>nev</name>
+    <parent>atnezo_sor</parent>
+    <width>600</width>
+    <height>40</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[nev]</text>
+</label>
+<label>
+    <name>kod</name>
+    <parent>atnezo_sor</parent>
+    <width>600</width>
+    <height>45</height>
+    <top>40</top>
+    <left>0</left>
+    <text>[kod]</text>    
+</label>
+<label>
+    <name>ean</name>
+    <parent>atnezo_sor</parent>
+    <width>0</width>
+    <height>0</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[ean]</text>
+    <style>listhidden</style>    
+</label>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_folytkesobb</name>
+  <Text>Kilépés</Text>
+  <top>670</top>
+  <width>match</width>
+  <height>65</height>
+  <left>0</left>
+  <parent>panel1</parent>
+  <visible>true</visible>
+  <lua_after_click>print/kesobbfolyt.lua</lua_after_click>
+</custom_button>
+<panel>
+  <file>numeric_panel@300.xml</file>
+</panel>
+</Root>

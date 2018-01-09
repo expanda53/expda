@@ -35,7 +35,7 @@ if (dialogres~="null") then
         --hozzaadas
         drb = tonumber(drb2) + tonumber(drb)
     end
-    if (tonumber(drb)>0) then
+    --if (tonumber(drb)>0) then
         kezelo = ui:getKezelo()
         uzmod=ui:getGlobal("uzmod")
         str = 'leltar_ment ' .. fejazon .. ' ' .. hkod .. ' ' .. cikk .. ' ' .. ean .. ' ' .. drb .. ' ' .. dot .. ' ' ..kezelo .. ' ' .. uzmod
@@ -49,14 +49,13 @@ if (dialogres~="null") then
             alert(ui,"")
             ui:executeCommand('uzenet',resulttext,"egyeb/setfocus.lua eean")
         end
-        ui:executeCommand('hideobj','cap_drb;edrb;button_ujean;lcikknev;cap_rdrb;cap_dot;edot','')
+        ui:executeCommand('hideobj','cap_drb;edrb;button_ujean;lcikknev;cap_rdrb;cap_elldrb;cap_dot;edot','')
         ui:executeCommand('setfocus','eean', '')
         ui:executeCommand('valueto','eean', '')
-    else
-        alert(ui,'Mennyiség nem lehet nulla!')
-        ui:executeCommand('valueto','edrb','')
-        ui:executeCommand('setfocus','edrb', '')
-
-    end
+    --else
+    --    alert(ui,'Mennyiség nem lehet nulla!')
+    --    ui:executeCommand('valueto','edrb','')
+    --    ui:executeCommand('setfocus','edrb', '')
+    --end
 end    
 

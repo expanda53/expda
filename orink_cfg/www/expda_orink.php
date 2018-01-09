@@ -629,7 +629,7 @@
 	  echo query_print($stmt);      
   }
   function hkod_ment($r){
-      $sql = "SELECT RESULT,'' RESULTTEXT,MIBIZ,AZON FROM ANDROID_HKODRA_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login,:kulso)";
+      $sql = "SELECT RESULT,RESULTTEXT,MIBIZ,AZON FROM ANDROID_HKODRA_MENTES(:azon, :hkod, :cikk, :ean, :drb, :login,:kulso)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);

@@ -8,6 +8,3 @@ ui:executeCommand('hideprogress','','')
 ui:executeCommand('setfocus','elogin','')
 version = ui:getAppVersion()
 ui:setGlobal("appversion",version)
-
-
-

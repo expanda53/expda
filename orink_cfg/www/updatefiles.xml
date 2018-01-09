@@ -1,4 +1,4 @@
-apk/expda-debug.apk;5.039
+apk/expda-debug.apk;5.044
 images/box.png;20170118
 images/check.png;20170118
 images/question.png;20170213
@@ -32,13 +32,14 @@ lua/egyeb/setfocus.lua;20161102
 lua/egyeb/cikkval_refresh.lua;20170404
 lua/egyeb/cikkval_click.lua;20170725
 lua/egyeb/cikkval_open.lua;20170404
-ini/leltar.xml;20170616
+ini/leltar.xml;20180103
 lua/leltar/panelinit.lua;20161222
 lua/leltar/hkodcheck.lua;20170616
-lua/leltar/bcode1.lua;20170616
-lua/leltar/mentes.lua;20170616
-lua/leltar/ujhkod.lua;20170616
-lua/leltar/ujean.lua;20170616
+lua/leltar/bcode1.lua;20180103
+lua/leltar/leltaradd.lua;20180103
+lua/leltar/mentes.lua;20180104
+lua/leltar/ujhkod.lua;20180103
+lua/leltar/ujean.lua;20180103
 lua/leltar/showreview.lua;20161117
 lua/leltar/kesobbfolyt.lua;20170220
 lua/leltar/lezaras.lua;20161223

@@ -7,9 +7,9 @@ uzmod=''
 if (#params>2) then
   uzmod = params[3]:gsub(':','')
 end
-ui:setGlobal("uzmod",uzmod)
-kezelo = ui:getKezelo()
 if (menuitem~='EXIT') then
+  ui:setGlobal("uzmod",uzmod)
+  kezelo = ui:getKezelo()
   ui:executeCommand('openxml',menuitem,kezelo)
 else
   ui:executeCommand('close','','')

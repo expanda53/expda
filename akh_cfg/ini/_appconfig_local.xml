@@ -6,7 +6,7 @@
 <update_url_local>http://192.168.1.105/updatefiles.xml</update_url_local>
 <update_url_eles>http://b2b.akh.hu/updatefiles.xml</update_url_eles>
 <php_url>http://redmine.akh.hu/orzott_api/expda_akh.php</php_url>
-<update_url>http://b2b.akh.hu/updatefiles.xml</update_url>
+<update_url>http://192.168.1.105/updatefiles.xml</update_url>
 <images_folder>\storage\emulated\0\expda\images</images_folder>
 <lua_folder>\storage\emulated\0\expda\lua</lua_folder>
 <export_folder>\storage\emulated\0\expda\export</export_folder>

@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
                 if (symbol.getScanner()==null) symbol.initScanner();
 
         }
-        btDevice = new exBluetooth();
+        if (btDevice == null) btDevice = new exBluetooth();
         Ini.Create();
         String startXml = Ini.getStartXML();
         String xml = startXml;

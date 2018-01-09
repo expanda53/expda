@@ -1,0 +1,84 @@
+<Root>
+<mainpanel>
+  <verzio>20171211</verzio>
+  <name>mainpanel1</name>
+  <text>Fomenü</text>
+  <bgcolor>#000000</bgcolor>
+  <params_to_labels>lkezelo</params_to_labels>
+  <lua_on_create>egyeb/menu_panelinit.lua [lkezelo]</lua_on_create>
+</mainpanel>
+<label>
+  <name>lupdate</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <visible>false</visible>
+</label>
+<label>
+  <name>lkezelo</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <visible>false</visible>
+  <Text>100</Text>
+</label>
+
+<custom_button>
+  <name>ButtonLeltar</name>
+  <image>leltar-64.png</image>
+  <image_align>left</image_align>
+  <Text>Leltár</Text>
+  <top>10</top>
+  <width>match</width>
+  <height>100</height>
+  <left>5</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua LELTAR L</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonLeltEll</name>
+  <image>checklist-64.png</image>
+  <image_align>left</image_align>
+  <Text>Ellenőrzés</Text>
+  <top>115</top>
+  <width>match</width>
+  <height>100</height>
+  <left>5</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua LELTAR E</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonPrint</name>
+  <left>5</left>
+  <Text>Nyomtatás</Text>
+  <top>220</top>
+  <width>match</width>
+  <height>100</height>
+  <style>buttondefault</style>
+  <lua_after_click>egyeb/menuinit.lua PRINT</lua_after_click>
+  <visible>true</visible>
+  <image>print-64.png</image>
+  <image_align>left</image_align>
+</custom_button>
+<custom_button>
+  <name>ButtonClose</name>
+  <left>5</left>
+  <Text>Kilépés</Text>
+  <top>325</top>
+  <width>match</width>
+  <height>100</height>
+  <style>buttondefault</style>
+  <lua_after_click>egyeb/menuinit.lua EXIT</lua_after_click>
+  <visible>true</visible>
+  <image>exit-64.png</image>
+  <image_align>left</image_align>
+</custom_button>
+
+<panel>
+  <file>pfooter@300.xml</file>
+</panel>
+</Root>

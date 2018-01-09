@@ -143,69 +143,80 @@
   /* login eddig */
   /* leltar innen */
   function leltar_mibizlist($r){
-      $sql="SELECT FEJAZON AS AZON,LEIR||'|@@style:listtitle;listtitledone' AS MIBIZ,LEIR, RESULT FROM ANDROID_LELTAR_MIBIZLIST(:login)";
-      $stmt = query_prepare($sql);
+      $sql="SELECT FEJAZON AS AZON,COALESCE(STAT6,'') STAT6, LEIR||'|@@style:listtitle;listtitledone' AS MIBIZ,LEIR, RESULT FROM ANDROID_LELTAR_MIBIZLIST(:login,:uzmod)";
       $login=trim($r['p1']);
+      $uzmod=trim($r['p2']);
+      $stmt = query_prepare($sql);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+	  $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }  
 
   function leltar_init($r){
-      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_LELTAR_INIT(:azon,:login)";
+      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_LELTAR_INIT(:azon,:login,:uzmod)";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);
       $login=trim($r['p2']);
+      $uzmod=trim($r['p3']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }
   function leltar_hkod_next($r){
-      $sql="SELECT RESULT,HKOD FROM ANDROID_LELTAR_HKODNEXT(:azon,:login)";
+      $sql="SELECT RESULT,HKOD FROM ANDROID_LELTAR_HKODNEXT(:azon,:login,:uzmod)";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);      
       $login=trim($r['p2']);
+      $uzmod=trim($r['p3']);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
       $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);
    }  
   
   function leltar_hkod_check($r){
-      $sql="SELECT RESULT FROM ANDROID_LELTAR_HKOD_CHECK(:azon, :hkod, :login)";
+      $sql="SELECT RESULT FROM ANDROID_LELTAR_HKOD_CHECK(:azon, :hkod, :login, :uzmod)";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);      
       $hkod=trim($r['p2']); 
       $login=trim($r['p3']);
+      $uzmod=trim($r['p4']);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
       $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);
    }  
   
   
   function leltar_ean_check($r){
-      $sql="SELECT CIKK,CIKKNEV,RESULT FROM ANDROID_LELTAR_EAN_CHECK(:azon, :hkod, :ean, :login)";
+      $sql="SELECT CIKK,CIKKNEV,RESULT FROM ANDROID_LELTAR_EAN_CHECK(:azon, :hkod, :ean, :login, :uzmod)";
       $stmt = query_prepare($sql);
       $ean=trim($r['p1']);
       $azon=trim($r['p2']);      
       $hkod=trim($r['p3']);      
       $login=trim($r['p4']);
+      $uzmod=trim($r['p5']);
       if ($ean=='.') $ean='';
 	  $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
 	  $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
       $stmt->bindParam(':login', $login, PDO::PARAM_STR);      
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);      
 	  echo query_print($stmt);
   }
   
 
   function leltar_drb_check($r){
-      $sql="SELECT DRB,RESULT FROM ANDROID_LELTAR_DRB_CHECK(:azon, :hkod, :cikk, :dot,:login)";
+      $sql="SELECT DRB,BIZ1_DRB, BIZ1_DRB2, BIZ2_DRB, BIZ2_DRB2, RESULT FROM ANDROID_LELTAR_DRB_CHECK(:azon, :hkod, :cikk, :dot,:login,:uzmod)";
       $stmt = query_prepare($sql);
       $cikk=trim($r['p1']);
       $azon=trim($r['p2']);      
       $hkod=trim($r['p3']);      
       $dot=trim($r['p4']);
       $login=trim($r['p5']);
+      $uzmod=trim($r['p6']);
       if ($cikk=='.') $cikk='';
       if ($dot=='.') $dot='';
 	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
@@ -213,12 +224,13 @@
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
 	  $stmt->bindParam(':dot', $dot, PDO::PARAM_STR);
       $stmt->bindParam(':login', $login, PDO::PARAM_STR);      
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);      
 	  echo query_print($stmt);
   }  
   
 
   function leltar_ment($r){
-      $sql = "SELECT RESULT,RESULTTEXT FROM ANDROID_LELTAR_MENTES(:azon, :hkod, :cikk, :ean, :drb, :dot, :login)";
+      $sql = "SELECT RESULT,RESULTTEXT FROM ANDROID_LELTAR_MENTES(:azon, :hkod, :cikk, :ean, :drb, :dot, :login, :uzmod)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
@@ -228,6 +240,7 @@
       $drb=trim($r['p5']);
       $dot=trim($r['p6']);
       $login=trim($r['p7']);
+      $uzmod=trim($r['p8']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
       $stmt->bindParam(':drb', $drb, PDO::PARAM_STR);
@@ -235,112 +248,141 @@
       $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
       $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
       $stmt->bindParam(':dot', $dot, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 
 	  echo query_print($stmt);      
   }
   
   function leltar_review($r){
-      $sql="SELECT CIKKNEV||'|@@style:listtitle;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N','listtitlemiss','listtitlework')) CIKKNEV, ";
-      $sql.= " 'Hkód: '||HKOD||'|@@style:listdetails;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N','listtitlemiss','listtitlework')) HKOD, ";      
-      $sql.= " 'EAN: '||EAN||'|@@style:listdetails;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N','listtitlemiss','listtitlework')) EAN, ";
-      $sql.= " 'DOT: '||DOT||'|@@style:listdetails;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N','listtitlemiss','listtitlework')) DOT, ";      
-      $sql.= " 'Számolt: '||cast(DRB as integer)||'|@@style:listdetails;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N','listtitlemiss','listtitlework')) DRB, ";
-      $sql.= " COALESCE(DRB,0) DRB1, COALESCE(DRB2,0) DRB2, CIKK, HKOD AS HKOD1, SORSZ, STAT5 ";
-      $sql.= " FROM ANDROID_LELTAR_REVIEW(:azon,:hkod,:login)";
+      $sql="SELECT CIKKNEV||'|@@style:listtitle;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N' OR STAT5='','listtitlemiss','listtitlework')) CIKKNEV, ";
+      $sql.= " 'Hkód: '||HKOD||'|@@style:listdetails;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N' OR STAT5='','listtitlemiss','listtitlework')) HKOD, ";      
+      $sql.= " 'EAN: '||EAN||'|@@style:listdetails;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N' OR STAT5='','listtitlemiss','listtitlework')) EAN, ";
+      $sql.= " 'DOT: '||DOT||'|@@style:listdetails;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N' OR STAT5='','listtitlemiss','listtitlework')) DOT, ";      
+      $sql.= " 'Számolt: '||cast(COALESCE(DRB,0) as integer)||'|@@style:listdetails;'||IIF(COALESCE(DRB,0)=COALESCE(DRB2,0),'listtitledone',IIF(coalesce(stat5,'N')='N' OR STAT5='','listtitlemiss','listtitlework')) DRB, ";
+      $sql.= " COALESCE(DRB,0) DRB1, COALESCE(DRB2,0) DRB2, CIKK, HKOD AS HKOD1, SORSZ, COALESCE(STAT5,'N') STAT5 ";
+      $sql.= " FROM ANDROID_LELTAR_REVIEW(:azon,:hkod,:login, :uzmod)";
       $stmt = query_prepare($sql);
       $hkod=trim($r['p1']);
       $login=trim($r['p2']);
       $azon=trim($r['p3']);
+      $uzmod=trim($r['p4']);
 	  $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }    
   
   function leltar_ujhkod_check($r){
       $azon=trim($r['p1']);      
       $hkod=trim($r['p2']); 
+      $login=trim($r['p3']); 
+      $uzmod=trim($r['p3']); 
 
       $sql="SELECT COUNT(1) RESULT FROM BSOR WHERE BFEJ=:azon and '$hkod' in (HKOD,'') and DRB<>COALESCE(DRB2,0) AND COALESCE(STAT5,'')<>'I'";
       $stmt = query_prepare($sql);
-      //$login=trim($r['p3']);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
 	  //$stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
-  
       //$stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      //$stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);
    }  
     
   
   function leltar_ellenorzes($r){
-      $sql = "SELECT RESULT FROM ANDROID_LELTAR_ELLENOR(:azon, :sorsz, :login)";
+      $sql = "SELECT RESULT FROM ANDROID_LELTAR_ELLENOR(:azon, :sorsz, :login, :uzmod)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
       $sorsz=trim($r['p2']);
       $login=trim($r['p3']);
+      $uzmod=trim($r['p4']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
       $stmt->bindParam(':sorsz', $sorsz, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);    
   }
   
   function leltar_kesobbfolyt($r){
-      $sql = "SELECT RESULT FROM ANDROID_LELTAR_KESOBBFOLYT(:login, :azon)";
+      $sql = "SELECT RESULT FROM ANDROID_LELTAR_KESOBBFOLYT(:login, :azon, :uzmod)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
       $login=trim($r['p2']);
+      $uzmod=trim($r['p3']);
       
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
   
   function leltar_lezaras($r){
-      $sql = "SELECT RESULT FROM ANDROID_LELTAR_LEZAR(:login, :azon)";
+      $sql = "SELECT RESULT FROM ANDROID_LELTAR_LEZAR(:login, :azon,:uzmod)";
       $stmt = query_prepare($sql);
       
       $azon=trim($r['p1']);
       $login=trim($r['p2']);
+      $uzmod=trim($r['p3']);
       
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
 
   function leltar_hkodlist($r){
-      $sql = "SELECT RESULT,HKOD||'|@@style:listtitle;'||CASE WHEN HKODSTAT='H' THEN 'listtitlemiss' WHEN HKODSTAT='Z' THEN 'listtitledone' WHEN HKODSTAT='W' THEN 'listtitlework' END HKOD2 FROM ANDROID_LELTAR_HKODLIST(:login,:azon)";
+      $sql = "SELECT RESULT,HKOD||'|@@style:listtitle;'||CASE WHEN HKODSTAT='H' THEN 'listtitlemiss' WHEN HKODSTAT='Z' THEN 'listtitledone' WHEN HKODSTAT='W' THEN 'listtitlework' END HKOD2 FROM ANDROID_LELTAR_HKODLIST(:login,:azon,:uzmod)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
       $azon=trim($r['p2']);
+      $uzmod=trim($r['p3']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
   function leltar_hkodlist_check($r){
-      $sql = "SELECT COUNT(1) RESULT FROM ANDROID_LELTAR_HKODLIST(:login,:azon) WHERE HKODSTAT IN ('W','H')";
+      $sql = "SELECT COUNT(1) RESULT FROM ANDROID_LELTAR_HKODLIST(:login,:azon, :uzmod) WHERE HKODSTAT IN ('W','H')";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);
       $login=trim($r['p2']);
+      $uzmod=trim($r['p3']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }  
   function leltar_hkodlist_update($r){
-      $sql = "SELECT RESULT FROM ANDROID_LELTAR_HKODLIST_UPDATE(:login,:azon,:hkod,:ujhkodstat)";
+      $sql = "SELECT RESULT FROM ANDROID_LELTAR_HKODLIST_UPDATE(:login,:azon,:hkod,:ujhkodstat,:uzmod)";
       $stmt = query_prepare($sql);
       $azon=trim($r['p1']);
       $login=trim($r['p2']);
       $hkod=trim($r['p3']);
       $ujhkodstat=trim($r['p4']);
+      $uzmod=trim($r['p5']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
       $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
       $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
       $stmt->bindParam(':ujhkodstat', $ujhkodstat, PDO::PARAM_STR);
+      $stmt->bindParam(':uzmod', $uzmod, PDO::PARAM_STR);
 	  echo query_print($stmt);      
   }
   
 /* leltar eddig */      
-  
+
+  function print_cikklist($r){
+      $sql = "SELECT KOD||'|@@style:listtitle;listtitledone' KOD, NEV||'|@@style:listtitle;listtitledone' NEV, EAN FROM ANDROID_CIKKLIST(:hkod, :cikk, :login)";
+      $stmt = query_prepare($sql);
+      $hkod=trim($r['p1']);
+      $cikk=trim($r['p2']);
+      $login=trim($r['p3']);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+  }
+
 ?>

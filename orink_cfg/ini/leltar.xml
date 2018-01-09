@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170616</verzio>
+<verzio>20180103</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Leltár</text>
@@ -133,7 +133,7 @@
 
 <label>
   <name>cap_drb</name>
-  <top>180</top>
+  <top>175</top>
   <left>152</left>
   <width>100</width>
   <height>20</height>
@@ -141,6 +141,18 @@
   <parent>panel1</parent>
   <style>labeldefault;labeldrb_cap</style>
   <text>Mennyiség</text>
+</label>
+<label>
+  <name>lfelirmod</name>
+  <top>195</top>
+  <left>152</left>
+  <width>80</width>
+  <height>20</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+  <text>felülír</text>
+  <align>center</align>
 </label>
 
 <text>

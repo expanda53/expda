@@ -1,3 +1,4 @@
+--<verzio>20171211</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -12,6 +13,7 @@ hkod = tostring(ui:findObject('ehkod'):getText())
  result = t[1]['RESULT']
 
 if (result=='0') then
+    ui:executeCommand('toast','Üres helykód mentés rendben.', "")
     ui:executeCommand('startlua','leltar/showreview.lua', "")
 else
  ui:executeCommand('setfocus','ehkod','') 

@@ -5,14 +5,14 @@
   <width>match</width>
   <top>0</top>
   <left>0</left>
-  <height>270</height>
+  <height>match</height>
   <visible>false</visible>
   <bgcolor>#434343</bgcolor>
-  <parent>panel1</parent>
+  
 </panel>
 <text>
   <name>etext</name>
-  <top>25</top>
+  <top>40</top>
   <width>match</width>
   <parent>pnumeric</parent>
   <left>0</left>
@@ -20,7 +20,7 @@
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>17</font_size>
-  <height>45</height>
+  <height>55</height>
 </text>
 
 <label>
@@ -40,9 +40,9 @@
   <style>buttondefault</style>
   <name>button_1</name>
   <Text>1</Text>
-  <top>75</top>
-  <width>65</width>
-  <height>55</height>
+  <top>105</top>
+  <width>90</width>
+  <height>75</height>
   <left>5</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 1</lua_after_click>
   <parent>pnumeric</parent>
@@ -53,10 +53,10 @@
   <style>buttondefault</style>
   <name>button_2</name>
   <Text>2</Text>
-  <top>75</top>
-  <width>65</width>
-  <height>55</height>
-  <left>75</left>
+  <top>105</top>
+  <width>90</width>
+  <height>75</height>
+  <left>100</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 2</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
@@ -66,10 +66,10 @@
   <style>buttondefault</style>
   <name>button_3</name>
   <Text>3</Text>
-  <top>75</top>
-  <width>65</width>
-  <height>55</height>
-  <left>145</left>
+  <top>105</top>
+  <width>90</width>
+  <height>75</height>
+  <left>195</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 3</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
@@ -79,10 +79,10 @@
   <style>buttondefault</style>
   <name>button_4</name>
   <Text>4</Text>
-  <top>75</top>
-  <width>65</width>
-  <height>55</height>
-  <left>215</left>
+  <top>105</top>
+  <width>90</width>
+  <height>75</height>
+  <left>290</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 4</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
@@ -92,10 +92,10 @@
   <style>buttondefault</style>
   <name>button_5</name>
   <Text>5</Text>
-  <top>75</top>
-  <width>65</width>
-  <height>55</height>
-  <left>285</left>
+  <top>105</top>
+  <width>90</width>
+  <height>75</height>
+  <left>385</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 5</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
@@ -105,9 +105,9 @@
   <style>buttondefault</style>
   <name>button_6</name>
   <Text>6</Text>
-  <top>140</top>
-  <width>65</width>
-  <height>55</height>
+  <top>190</top>
+  <width>90</width>
+  <height>75</height>
   <left>5</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 6</lua_after_click>
   <parent>pnumeric</parent>
@@ -118,10 +118,10 @@
   <style>buttondefault</style>
   <name>button_7</name>
   <Text>7</Text>
-  <top>140</top>
-  <width>65</width>
-  <height>55</height>
-  <left>75</left>
+  <top>190</top>
+  <width>90</width>
+  <height>75</height>
+  <left>100</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 7</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
@@ -131,10 +131,10 @@
   <style>buttondefault</style>
   <name>button_8</name>
   <Text>8</Text>
-  <top>140</top>
-  <width>65</width>
-  <height>55</height>
-  <left>145</left>
+  <top>190</top>
+  <width>90</width>
+  <height>75</height>
+  <left>195</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 8</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
@@ -144,11 +144,11 @@
   <style>buttondefault</style>
   <name>button_9</name>
   <Text>9</Text>
-  <top>140</top>
-  <width>65</width>
-  <height>55</height>
-  <left>215</left>
-  <lua_after_click>egyeb/numeric_panel.lua keyp 1</lua_after_click>
+  <top>190</top>
+  <width>90</width>
+  <height>75</height>
+  <left>290</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 9</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
 </custom_button>
@@ -157,10 +157,10 @@
   <style>buttondefault</style>
   <name>button_0</name>
   <Text>0</Text>
-  <top>140</top>
-  <width>65</width>
-  <height>55</height>
-  <left>285</left>
+  <top>190</top>
+  <width>90</width>
+  <height>75</height>
+  <left>385</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp 0</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
@@ -170,9 +170,9 @@
   <style>buttondefault</style>
   <name>button_del</name>
   <Text>Törlés</Text>
-  <top>205</top>
-  <width>65</width>
-  <height>55</height>
+  <top>275</top>
+  <width>150</width>
+  <height>75</height>
   <left>5</left>
   <lua_after_click>egyeb/numeric_panel.lua keyp del</lua_after_click>
   <parent>pnumeric</parent>
@@ -183,10 +183,10 @@
   <style>buttondefault_yellow</style>
   <name>button_ok</name>
   <Text>OK</Text>
-  <top>205</top>
-  <width>135</width>
-  <height>55</height>
-  <left>75</left>
+  <top>275</top>
+  <width>160</width>
+  <height>75</height>
+  <left>160</left>
   <lua_after_click>egyeb/numeric_panel.lua ok</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>
@@ -196,10 +196,10 @@
   <style>buttondefault</style>
   <name>button_vissza</name>
   <Text>Mégsem</Text>
-  <top>205</top>
-  <width>135</width>
-  <height>55</height>
-  <left>215</left>
+  <top>275</top>
+  <width>150</width>
+  <height>75</height>
+  <left>325</left>
   <lua_after_click>egyeb/numeric_panel.lua hide</lua_after_click>
   <parent>pnumeric</parent>
   <visible>true</visible>

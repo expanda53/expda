@@ -41,7 +41,7 @@
   <left>0</left>
 </panel>
 <panel>
-  <file>pfooter.xml</file>
+  <file>pfooter@500.xml</file>
 </panel>
 <panel>
   <name>mibizlistpanel</name>
@@ -237,7 +237,7 @@
   <bgcolor>#497000</bgcolor>
   <left>2</left>  
   <lua_on_change>leltar/drb_szamol.lua</lua_on_change>
-  <lua_on_enter>egyeb/numeric_panel.lua show edot leltar/drb_szamol.lua DOT</lua_on_enter>
+  <lua_on_enter>leltar/dot_enter.lua</lua_on_enter>
   <font_size>17</font_size>
 </text>
 
@@ -274,32 +274,30 @@
   <bgcolor>#497000</bgcolor>
   <left>110</left>  
   <lua_on_change>leltar/mentes.lua null</lua_on_change>
-  <lua_on_enter>egyeb/numeric_panel.lua show edrb leltar/mentes.lua Mennyiség</lua_on_enter>
+  <lua_on_enter>leltar/drb_enter.lua</lua_on_enter>
   <font_size>17</font_size>
 </text>
-
-
-<custom_button>
-  <style>buttondefault</style>
-  <name>button_review</name>
-  <Text>Átnézés</Text>
-  <top>500</top>
-  <width>200</width>
-  <height>45</height>
-  <left>0</left>
-  <lua_after_click>leltar/showreview.lua</lua_after_click>
-  <parent>panel1</parent>
+<label>
+  <name>cap_elldrb</name>
+  <top>265</top>
+  <left>2</left>
+  <width>match</width>
+  <height>20</height>
   <visible>false</visible>
-</custom_button>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>_</text>
+</label>
+
 <custom_button>
   <style>buttondefault</style>
   <name>button_ujean</name>
-  <Text>Új EAN</Text>
-  <top>500</top>
+  <Text>Új EAN</Text>  
+  <top>495</top>
   <width>200</width>
   <height>45</height>
-  <left>205</left>
-  <lua_after_click>leltar/ujean.lua</lua_after_click>
+  <left>0</left>
+  <lua_after_click>leltar/ujean.lua</lua_after_click>  
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -308,11 +306,25 @@
   <style>buttondefault</style>
   <name>button_emptyhkod</name>
   <Text>Üres helykód</Text>
-  <top>550</top>
+  <top>495</top>
+  <width>180</width>
+  <height>45</height>
+  <left>205</left>
+  <lua_after_click>leltar/ureshkod.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_review</name>
+  <Text>Átnézés</Text>
+  <top>545</top>
   <width>match</width>
   <height>45</height>
   <left>0</left>
-  <lua_after_click>leltar/ureshkod.lua</lua_after_click>
+  <lua_after_click>leltar/showreview.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -458,7 +470,7 @@
   <name>btn_folytat</name>
   <Text>Folytatás</Text>
   <top>455</top>
-  <width>125</width>
+  <width>120</width>
   <height>45</height>
   <left>2</left>
   <parent>reviewpanel</parent>
@@ -471,9 +483,9 @@
   <name>btn_folytkesobb</name>
   <Text>Megszakít</Text>
   <top>455</top>
-  <width>125</width>
+  <width>120</width>
   <height>45</height>
-  <left>130</left>
+  <left>125</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>leltar/kesobbfolyt.lua [lfejazon]</lua_after_click>
@@ -484,9 +496,9 @@
   <name>btn_lezar</name>
   <Text>Lezárás</Text>
   <top>455</top>
-  <width>125</width>
+  <width>120</width>
   <height>45</height>
-  <left>257</left>
+  <left>247</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>leltar/lezaras.lua [lfejazon] null</lua_after_click>
@@ -575,6 +587,6 @@
 </custom_button>
 
 <panel>
-  <file>numeric_panel.xml</file>
+  <file>numeric_panel@500.xml</file>
 </panel>
 </Root>

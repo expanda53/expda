@@ -10,12 +10,13 @@ if (func=='show') then
     ui:setGlobal("targetfield",target_field)
     ui:setGlobal("targetlua",target_lua)
     if (#params>4) then 
-      caption = params[5]
+      caption = params[5]:gsub('_',' ')
       ui:executeCommand("valueto","lcap",caption)
     else 
       ui:executeCommand("hideobj","lcap",'')
     end
     ui:executeCommand("showobj","pnumeric",'')
+    ui:executeCommand("hideobj","panel1",'')
     
 end
 if (func=='ok') then 
@@ -28,15 +29,18 @@ if (func=='ok') then
   end
   if (target_lua~='-') then
     ui:setGlobal("targetlua",'-')
+    ui:executeCommand("show","panel1",'')
     ui:executeCommand("hide","pnumeric",'') 
     ui:executeCommand('startlua',target_lua, '')
     
   else
+    ui:executeCommand("show","panel1",'')
     ui:executeCommand("hide","pnumeric",'') 
   end
   --func='hide'
 end
 if (func=='hide') then
+    ui:executeCommand("show","panel1",'')
     ui:executeCommand("hide","pnumeric",'') 
     ui:setGlobal("targetfield",'-')
     ui:setGlobal("targetlua",'-')

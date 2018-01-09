@@ -53,7 +53,7 @@
   <lua_after_click>egyeb/login_click.lua [elogin]</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
-  <image>arrow-256.png</image>
+  <image>arrow-64.png</image>
 </custom_button>
 <custom_button>
   <style>buttondefault</style>
@@ -66,9 +66,9 @@
   <lua_after_click>egyeb/login_exit.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
-  <image>exit-256.png</image>
+  <image>exit-64.png</image>
 </custom_button>
 <panel>
-  <file>numeric_panel.xml</file>
+  <file>numeric_panel@300.xml</file>
 </panel>
 </Root>

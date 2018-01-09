@@ -1,4 +1,4 @@
---<verzio>20170616</verzio>
+--<verzio>20180103</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -18,10 +18,19 @@ cikkval=0;
 if (result=='0') then
     ui:executeCommand('valueto','lcikknev',cikknev)
     ui:executeCommand('valuetohidden','lcikod',kod)
-    ui:executeCommand('showobj','cap_drb;cap_drb2;button_ujean','')
+    ui:executeCommand('showobj','cap_drb;cap_drb2;button_ujean;lfelirmod','')
     ui:executeCommand('valueto','edrb','')
     ui:executeCommand('valueto','ldrb2',drb2)
     ui:executeCommand('setfocus','edrb','') 
+    if (drb2=='') then
+      drb2='0'
+    end
+    if (tonumber(drb2)~=0) then
+      ui:showDialog("Van már ilyen tétel a leltárban.\n\nNem: Hozzáadja\nIgen: Felülírja","leltar/leltaradd.lua felülír","leltar/leltaradd.lua hozzáad")
+    else
+      ui:executeCommand("startlua","leltar/leltaradd.lua","felülír")
+    end
+    
 elseif (result=='-1') then
  --ui:executeCommand('setfocus','eean','') 
  alert(ui,'Nem található termék ilyen ean kóddal:\n'..ean)

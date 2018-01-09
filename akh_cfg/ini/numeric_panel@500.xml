@@ -1,0 +1,208 @@
+<Root>
+<verzio>20171211</verzio>
+<panel>
+  <name>pnumeric</name>
+  <width>match</width>
+  <top>0</top>
+  <left>0</left>
+  <height>match</height>
+  <visible>false</visible>
+  <bgcolor>#434343</bgcolor>
+  
+</panel>
+<text>
+  <name>etext</name>
+  <top>25</top>
+  <width>match</width>
+  <parent>pnumeric</parent>
+  <left>0</left>
+  <visible>true</visible>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
+
+<label>
+  <name>lcap</name>
+  <Text>_</Text>
+  <top>0</top>
+  <width>match</width>
+  <left>0</left>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+  <style>reviewlabel</style>
+  <align>center</align>
+  <lua_after_click>egyeb/numeric_panel.lua show</lua_after_click>  
+</label>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_1</name>
+  <Text>1</Text>
+  <top>75</top>
+  <width>65</width>
+  <height>55</height>
+  <left>5</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 1</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_2</name>
+  <Text>2</Text>
+  <top>75</top>
+  <width>65</width>
+  <height>55</height>
+  <left>75</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 2</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_3</name>
+  <Text>3</Text>
+  <top>75</top>
+  <width>65</width>
+  <height>55</height>
+  <left>145</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 3</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_4</name>
+  <Text>4</Text>
+  <top>75</top>
+  <width>65</width>
+  <height>55</height>
+  <left>215</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 4</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_5</name>
+  <Text>5</Text>
+  <top>75</top>
+  <width>65</width>
+  <height>55</height>
+  <left>285</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 5</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_6</name>
+  <Text>6</Text>
+  <top>140</top>
+  <width>65</width>
+  <height>55</height>
+  <left>5</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 6</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_7</name>
+  <Text>7</Text>
+  <top>140</top>
+  <width>65</width>
+  <height>55</height>
+  <left>75</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 7</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_8</name>
+  <Text>8</Text>
+  <top>140</top>
+  <width>65</width>
+  <height>55</height>
+  <left>145</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 8</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_9</name>
+  <Text>9</Text>
+  <top>140</top>
+  <width>65</width>
+  <height>55</height>
+  <left>215</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 9</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_0</name>
+  <Text>0</Text>
+  <top>140</top>
+  <width>65</width>
+  <height>55</height>
+  <left>285</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp 0</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_del</name>
+  <Text>Törlés</Text>
+  <top>205</top>
+  <width>65</width>
+  <height>55</height>
+  <left>5</left>
+  <lua_after_click>egyeb/numeric_panel.lua keyp del</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault_yellow</style>
+  <name>button_ok</name>
+  <Text>OK</Text>
+  <top>205</top>
+  <width>135</width>
+  <height>55</height>
+  <left>75</left>
+  <lua_after_click>egyeb/numeric_panel.lua ok</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_vissza</name>
+  <Text>Mégsem</Text>
+  <top>205</top>
+  <width>135</width>
+  <height>55</height>
+  <left>215</left>
+  <lua_after_click>egyeb/numeric_panel.lua hide</lua_after_click>
+  <parent>pnumeric</parent>
+  <visible>true</visible>
+</custom_button>
+
+</Root>

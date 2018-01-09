@@ -52,10 +52,23 @@
   <lua_after_click>egyeb/menuinit.lua LELTAR E</lua_after_click>
 </custom_button>
 <custom_button>
+  <name>ButtonPrint</name>
+  <left>5</left>
+  <Text>Nyomtatás</Text>
+  <top>180</top>
+  <width>match</width>
+  <height>80</height>
+  <style>buttondefault</style>
+  <lua_after_click>egyeb/menuinit.lua PRINT</lua_after_click>
+  <visible>true</visible>
+  <image>print.png</image>
+  <image_align>left</image_align>
+</custom_button>
+<custom_button>
   <name>ButtonClose</name>
   <left>5</left>
   <Text>Kilépés</Text>
-  <top>180</top>
+  <top>265</top>
   <width>match</width>
   <height>80</height>
   <style>buttondefault</style>
@@ -66,6 +79,6 @@
 </custom_button>
 
 <panel>
-  <file>pfooter.xml</file>
+  <file>pfooter@500.xml</file>
 </panel>
 </Root>

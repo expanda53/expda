@@ -24,12 +24,13 @@ count = #tlist
 if (count==1) then
   azon=tlist[1]['AZON']
   leir=tlist[1]['LEIR']
+  stat6=tlist[1]['STAT6']
   result=tlist[1]['RESULT']
   if (result=='0') then
     ui:executeCommand('toast',leir,'')
     ui:executeCommand("close","","")
   else
-    ui:executeCommand('startlua','leltar/mibizlist_click.lua', azon .. ' ' .. leir)
+    ui:executeCommand('startlua','leltar/mibizlist_click.lua', azon .. ' ' .. leir .. ' ' .. stat6)
   end
 else   
   ui:executeCommand("showobj","mibizlist_table")
