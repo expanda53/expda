@@ -1,6 +1,6 @@
 <Root>
 <mainpanel>
-  <verzio>20170620</verzio>
+  <verzio>20180212</verzio>
   <name>mainpanel1</name>
   <text>Attarolas</text>
   <bgcolor>#000000</bgcolor>
@@ -41,6 +41,19 @@
   <style>buttondefault</style>
   <visible>true</visible>
   <lua_after_click>egyeb/menuinit.lua BEVETHKOD [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonHkodKolt</name>
+  <image>boxclosed-24.png</image>
+  <image_align>top</image_align>
+  <Text>Költözés</Text>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>250</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua BEVETKOLT [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
   <name>ButtonClose</name>
