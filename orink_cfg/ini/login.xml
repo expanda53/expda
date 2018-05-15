@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170404</verzio>
+<verzio>20180322</verzio>
 <mainpanel>
   <name>loginpanel</name>
   <text>Bejelentkezés</text>
@@ -33,37 +33,46 @@
   <parent>panel1</parent>
   <left>0</left>
   <visible>true</visible>
-  <lua_on_change>egyeb/login_click.lua [elogin]</lua_on_change>
+  <lua_on_change>egyeb/login_click.lua [elogin] [combo_raktar]</lua_on_change>
   <bgcolor>#497000</bgcolor>
   <font_color>#000000</font_color>
   <font_size>19</font_size>
   <height>40</height>
 </text>
+<label>
+  <name>llogin</name>
+  <top>80</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>true</visible>
+  <parent>panel1</parent>
+  <style>reviewlabel</style>
+  <text>Raktár</text>
+</label>
 
 <combo>
   <name>combo_raktar</name>
-  <Items>Belső raktár;Külső raktár</Items>
-  <top>80</top>
+  <Items>-;Főraktár;Késmárk</Items>
+  <top>110</top>
   <width>match</width>
   <height>60</height>
   <left>0</left>
   <parent>panel1</parent>
-  <visible>false</visible>
+  <visible>true</visible>
   <bgcolor>#fafafa</bgcolor>
   <font_color>#000000</font_color>
-  <lua_after_click>egyeb/login_kulso.lua [combo_raktar]</lua_after_click>
-
 </combo>
 
 <custom_button>
   <style>buttondefault</style>
   <name>button_login</name>
   <Text>Bejelentkezés</Text>
-  <top>80</top>
+  <top>185</top>
   <width>match</width>
   <height>70</height>
   <left>0</left>
-  <lua_after_click>egyeb/login_click.lua [elogin]</lua_after_click>
+  <lua_after_click>egyeb/login_click.lua [elogin] [combo_raktar]</lua_after_click>
   <parent>panel1</parent>
   <visible>true</visible>
   <image>arrow-right.png</image>
@@ -72,7 +81,7 @@
   <style>buttondefault</style>
   <name>button_exit</name>
   <Text>Kilépés</Text>
-  <top>155</top>
+  <top>255</top>
   <width>match</width>
   <height>70</height>
   <left>0</left>

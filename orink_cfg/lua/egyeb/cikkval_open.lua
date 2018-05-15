@@ -1,4 +1,4 @@
---<verzio>20170404</verzio>
+--<verzio>20180514</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -7,8 +7,11 @@ aktmodul = tostring(ui:findObject('lmodulstat'):getText())
 if (aktmodul=='Kiadás ellenőrzés')  then
   azon = tostring(ui:findObject('lfejazon'):getText())
   str = 'cikkval_open '..ean..' BFEJ.AZON='..azon
+elseif (aktmodul=='Hkód rendezés') then
+    hkod = tostring(ui:findObject('ehkod'):getText())
+    str = 'cikkval_open '..ean..' HKOD=' .. hkod
 else
-  str = 'cikkval_open '..ean..' .'
+    str = 'cikkval_open '..ean..' .'
 end
 list=luafunc.query_assoc_to_str(str,false)
 luafunc.refreshtable_fromstring('cikkval_table',list)

@@ -215,12 +215,16 @@
   /* altalanos eddig*/
   /* login */
   function login_check($r){
-        $sql="SELECT RESULTTEXT FROM ANDROID_LOGIN_CHECK(:login)";
+        $sql="SELECT RESULTTEXT FROM ANDROID_LOGIN_CHECK(:login,:raktar)";
         $stmt = query_prepare($sql);
         
 		$login=trim($r['p1']);
+		$raktar=trim($r['p2']);
+        $raktar=utf8_decode($raktar);
 		$stmt->bindParam(':login', $login, PDO::PARAM_STR);
+		$stmt->bindParam(':raktar', $raktar, PDO::PARAM_STR);
 		echo query_print($stmt);
+        Firebird::commit();
   }
   /* login eddig */
   /* kiadas */

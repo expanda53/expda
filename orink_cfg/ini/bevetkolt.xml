@@ -1,5 +1,5 @@
 <Root>
-<verzio>20180213</verzio>
+<verzio>20180219</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Költözés</text>
@@ -47,7 +47,7 @@
 <barcode>
   <name>BCODE_HKREGI</name>
   <lua_after_trigger>bevetkolt/hkodcheck_hkregi.lua [ehkregi]</lua_after_trigger>
-  <valueto>ehkod</valueto>
+  <valueto>ehkregi</valueto>
   <parent>panel1</parent>
 </barcode>
 

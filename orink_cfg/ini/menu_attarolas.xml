@@ -44,7 +44,7 @@
 </custom_button>
 <custom_button>
   <name>ButtonHkodKolt</name>
-  <image>boxclosed-24.png</image>
+  <image>boxclosed.png</image>
   <image_align>top</image_align>
   <Text>Költözés</Text>
   <top>10</top>
