@@ -1,4 +1,4 @@
---<verzio>20180213</verzio>
+--<verzio>20180518</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -6,7 +6,7 @@ ui=params[1]
     
 function cikkUpdate(kod,nev)    
   ui:executeCommand('toast','Választott cikk:\n[' .. kod  .. '] ' .. nev,2)
-  ui:executeCommand('valueto','lcikknev',nev)
+  ui:executeCommand('valueto','lcikknev','[' .. kod  .. '] ' .. nev)
   ui:executeCommand('valuetohidden','lcikod',kod)
 end
 

@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170831</verzio>
+<verzio>20180530</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -210,7 +210,7 @@
 <text>
   <name>eean</name>
   <top>32</top>
-  <width>match</width>
+  <width>190</width>
   <parent>panel1</parent>
   <left>60</left>
   <visible>false</visible>
@@ -231,6 +231,26 @@
   <style>labeldefault;listtitlework</style>
 </label>
 
+<label>
+  <name>cap_megys</name>
+  <top>40</top>
+  <left>252</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Cs. egység</text>
+  <width>90</width>
+</label>
+<label>
+  <name>lmegys</name>
+  <top>40</top>
+  <left>340</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+  <text>Darab</text>
+  <width>90</width>
+</label>
 
 <label>
   <name>cap_drb</name>

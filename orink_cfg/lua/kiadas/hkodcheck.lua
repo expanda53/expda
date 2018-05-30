@@ -1,4 +1,4 @@
---<verzio>20170530</verzio>
+--<verzio>20180529</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -10,7 +10,7 @@ if (lotthkod==varthkod) then
   ui:executeCommand('aktbcodeobj','bcode2','')
   ui:executeCommand('disabled','ehkod','')
   ui:executeCommand('setbgcolor','ehkod','#434343')
-  ui:executeCommand('showobj','cap_ean;eean;lcikknev;button_nincsmeg;button_kovetkezo;cap_megys;lmegys;','')
+  ui:executeCommand('showobj','cap_ean;eean;lcikknev;button_nincsmeg;button_kovetkezo;cap_megys;lmegys;button_cikkval','')
   ui:executeCommand('valueto','eean','')
   ui:executeCommand('setfocus','eean','')
 else

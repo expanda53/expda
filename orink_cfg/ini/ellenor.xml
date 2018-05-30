@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170529</verzio>
+<verzio>20180518</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiszedés ellenőrzés</text>
@@ -376,7 +376,7 @@
 <label>
     <name>drb</name>
     <parent>atnezo_sor</parent>
-    <width>210</width>
+    <width>200</width>
     <height>20</height>
     <top>30</top>
     <left>0</left>
@@ -386,10 +386,10 @@
 <label>
     <name>drb2</name>
     <parent>atnezo_sor</parent>
-    <width>210</width>
+    <width>200</width>
     <height>20</height>
     <top>30</top>
-    <left>150</left>
+    <left>200</left>
     <text>[drb2]</text>
     <align>left</align>
 </label>
@@ -423,9 +423,9 @@
 <custom_button>
   <style>buttondefault</style>
   <name>btn_folytmost</name>
-  <Text>Folyt. most</Text>
+  <Text>Folytatás</Text>
   <top>255</top>
-  <width>130</width>
+  <width>100</width>
   <height>45</height>
   <left>0</left>
   <parent>reviewpanel</parent>
@@ -436,11 +436,11 @@
 <custom_button>
   <style>buttondefault</style>
   <name>btn_folytkesobb</name>
-  <Text>Folyt. később</Text>
+  <Text>Megszakít</Text>
   <top>255</top>
-  <width>130</width>
+  <width>120</width>
   <height>45</height>
-  <left>135</left>
+  <left>105</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>ellenor/kesobbfolyt.lua</lua_after_click>
@@ -451,13 +451,27 @@
   <name>btn_lezar</name>
   <Text>Lezárás</Text>
   <top>255</top>
-  <width>130</width>
+  <width>90</width>
   <height>45</height>
-  <left>270</left>
+  <left>230</left>
   <parent>reviewpanel</parent>
   <visible>true</visible>
   <lua_after_click>ellenor/lezaras.lua null</lua_after_click>
 </custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_ujra</name>
+  <Text>Újra</Text>
+  <top>255</top>
+  <width>75</width>
+  <height>45</height>
+  <left>325</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>ellenor/ujra.lua null</lua_after_click>
+</custom_button>
+
 <panel>
   <file>pcikkval.xml</file>
 </panel>

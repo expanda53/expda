@@ -1,5 +1,5 @@
 <Root>
-<verzio>20180118</verzio>
+<verzio>20180529</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Kiadás</text>
@@ -332,6 +332,7 @@
   <visible>false</visible>
   <parent>panel1</parent>
   <style>labeldefault;listtitlework</style>
+    <lua_after_click>kiadas/showreview.lua</lua_after_click>
 </label>
 
 
@@ -402,7 +403,7 @@
   <name>button_nincsmeg</name>
   <Text>Nincs meg</Text>
   <top>240</top>
-  <width>120</width>
+  <width>105</width>
   <height>60</height>
   <left>0</left>
   <lua_after_click>kiadas/nincsmeg.lua</lua_after_click>
@@ -416,10 +417,23 @@
   <name>button_kovetkezo</name>
   <Text>Következő</Text>
   <top>240</top>
-  <width>120</width>
+  <width>100</width>
   <height>60</height>
-  <left>122</left>
+  <left>107</left>
   <lua_after_click>kiadas/kovetkezo_click.lua [lfejazon] [ehkod] [lcikod] 1</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_cikkval</name>
+  <Text>Cikk.vál</Text>
+  <top>240</top>
+  <width>85</width>
+  <height>60</height>
+  <left>209</left>
+  <lua_after_click>egyeb/cikkval_open.lua .</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
 </custom_button>
@@ -429,9 +443,9 @@
   <name>button_review</name>
   <Text>Átnézés</Text>
   <top>240</top>
-  <width>120</width>
+  <width>85</width>
   <height>60</height>
-  <left>244</left>
+  <left>296</left>
   <lua_after_click>kiadas/showreview.lua</lua_after_click>
   <parent>panel1</parent>
   <visible>false</visible>
@@ -476,7 +490,7 @@
 <panel>
     <name>atnezo_sor</name>
     <parent>panel1</parent>
-    <height>80</height>
+    <height>90</height>
     <width>match</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -494,8 +508,8 @@
 <label>
     <name>cikknev</name>
     <parent>atnezo_sor</parent>
-    <width>400</width>
-    <height>30</height>
+    <width>395</width>
+    <height>50</height>
     <top>0</top>
     <left>0</left>
     <text>[cikknev]</text>
@@ -505,7 +519,7 @@
     <parent>atnezo_sor</parent>
     <width>130</width>
     <height>40</height>
-    <top>30</top>
+    <top>50</top>
     <left>0</left>
     <text>[hkod]</text>
     <align>left</align>
@@ -515,7 +529,7 @@
     <parent>atnezo_sor</parent>
     <width>130</width>
     <height>40</height>
-    <top>30</top>
+    <top>50</top>
     <left>130</left>
     <text>[drb]</text>
     <align>left</align>
@@ -525,7 +539,7 @@
     <parent>atnezo_sor</parent>
     <width>136</width>
     <height>40</height>
-    <top>30</top>
+    <top>50</top>
     <left>259</left>
     <text>[drb2]</text>
     <align>left</align>

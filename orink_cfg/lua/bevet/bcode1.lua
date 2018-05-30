@@ -1,4 +1,4 @@
---<verzio>20170831</verzio>
+--<verzio>20180530</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -31,6 +31,7 @@ drb2=t[1]['DRB2']
 drb=t[1]['DRB']
 meret=t[1]['MERET']
 suly=t[1]['SULY']
+megys=t[1]['MEGYS']
 if (result=='0') then
   ui:executeCommand('valueto','ldrb',t[1]['DRB'])
   
@@ -40,9 +41,10 @@ if (result=='0') then
   ui:executeCommand('valueto','ldrb4',drb2)
   ui:executeCommand('valueto','lmeret',meret)
   ui:executeCommand('valueto','lsuly',suly)
+  ui:executeCommand('valueto','lmegys',megys)
   ui:executeCommand('valuetohidden','lcikod',cikk)
-  ui:executeCommand('valueto','lcikknev',cikknev)
-  ui:executeCommand('showobj','cap_drb;cap_drb2;cap_drb3;cap_drb4;button_ujean','')
+  ui:executeCommand('valueto','lcikknev','[' .. cikk .. '] ' ..cikknev)
+  ui:executeCommand('showobj','cap_drb;cap_drb2;cap_drb3;cap_drb4;button_ujean;cap_megys','')
   ui:executeCommand('setfocus','edrb2','') 
   bevmod = tostring(ui:findObject('lbevmod'):getText())
   if (bevmod=='auto') then
@@ -66,7 +68,6 @@ elseif (result=='2') then
 elseif (result=='-1') then
   cikkval=1
   alert(ui,'Nem található termék ilyen ean kóddal:\n'..ean)
-  ui:executeCommand('valueto','eean','') 
 elseif (result=='-2') then
   cikkval=2
   alert(ui,'Több termék is található termék ilyen ean kóddal:\n'..ean)
@@ -76,10 +77,10 @@ end
 
 --ui:executeCommand('scanneron','','')
 
-if (cikkval>0) then
-    if (cikkval==1) then
-      ean='.'
-    end
+if (cikkval==1) then
+    ui:executeCommand("startlua","bevet/cikkval_init.lua",'null')
+end
+if (cikkval==2) then
     ui:executeCommand("startlua","egyeb/cikkval_open.lua",ean)
 end
 

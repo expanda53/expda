@@ -183,7 +183,7 @@
 	  echo query_print($stmt);
   }    
   function cikkval_open($r){
-      $sql="SELECT KOD,NEV||'|@@style:listtitle' NEV FROM ANDROID_CIKK_KERES(:betuz,30,:filterstr)";
+      $sql="SELECT KOD||'|@@style:listtitle' KOD,NEV||'|@@style:listtitle' NEV FROM ANDROID_CIKK_KERES(:betuz,30,:filterstr)";
       $stmt = query_prepare($sql);
       $betuz=trim($r['p1']);
       $betuz=str_replace('%20',' ',$betuz);
@@ -326,7 +326,7 @@
 
 
   function kiadas_cikklist($r){
-      $sql="SELECT CIKK, CIKKNEV||case ";
+      $sql="SELECT CIKK, '['||CIKK||'] '||CIKKNEV||case ";
       $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')<>'H') then '|@@style:listtitle;listtitledone' ";
       $sql.="  when (abs(drb) = drb2 and coalesce(stat3,'')='H') then '|@@style:listtitle;listtitlemiss' ";
       $sql.= " when (drb2=0) then '|@@style:listtitle;listtitlewait' ";
@@ -407,7 +407,7 @@
 	  echo query_print($stmt);      
   }  
   function beerk_eankeres($r){
-      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, MERET,SULY, RESULT FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login,:kulso,:rentip)";
+      $sql = "SELECT CIKK,CIKKNEV, DRB, DRB2, DRB3, MERET,SULY, RESULT,MEGYS FROM ANDROID_BEERK_EANKERES(:ceg,:ean,:cikod,:login,:kulso,:rentip)";
       $stmt = query_prepare($sql);
       
       $ceg=trim($r['p1']);
@@ -452,7 +452,7 @@
   }
   
   function beerk_cikklist($r){
-      $sql="SELECT CIKK, CIKKNEV||'|@@style:listtitle;listtitledone' AS CIKKNEV,";
+      $sql="SELECT CIKK, '['||CIKK||'] '||CIKKNEV||'|@@style:listtitle;listtitledone' AS CIKKNEV,";
       $sql.= " EAN||'|@@style:listdetails;listtitledone' AS EAN,";
       $sql.= " 'Érkezett: '||cast(DRB as integer)||'|@@style:listdetails;listtitledone' AS DRB";
       $sql.= "  FROM ANDROID_BEERK_REVIEW(:login,:azon)";
@@ -897,6 +897,21 @@
 	  
       
   }
+  
+  function ellenor_ujra($r){
+      $azon=trim($r['p1']);
+      $login=trim($r['p2']);
+	  
+      $sql = "SELECT RESULTTEXT FROM ANDROID_KIADELLENOR_UJRA(:login,:azon)";
+      $stmt = query_prepare($sql);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $q = query_exec($stmt);
+	  echo $res = response_print($q);
+	  Firebird::commit();
+
+  }
+  
   
   /* kiadas ellenor eddig*/  
   /* koltozes innen */

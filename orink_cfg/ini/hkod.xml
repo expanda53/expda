@@ -1,5 +1,5 @@
 <Root>
-<verzio>20170223</verzio>
+<verzio>20180518</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Hkód rendezés</text>
@@ -190,7 +190,7 @@
 
 <label>
   <name>cap_maxdrb</name>
-  <top>170</top>
+  <top>180</top>
   <left>0</left>
   <visible>false</visible>
   <parent>panel1</parent>
@@ -201,7 +201,7 @@
 </label>
 <label>
   <name>lmaxdrb</name>
-  <top>170</top>
+  <top>180</top>
   <left>61</left>
   <width>100</width>
   <visible>false</visible>
@@ -214,7 +214,7 @@
 
 <label>
   <name>cap_drb</name>
-  <top>170</top>
+  <top>180</top>
   <left>195</left>
   <height>30</height>
   <visible>false</visible>
@@ -228,7 +228,7 @@
 
 <text>
   <name>edrb</name>
-  <top>170</top>
+  <top>180</top>
   <width>95</width>
   <height>40</height>
   <parent>panel1</parent>

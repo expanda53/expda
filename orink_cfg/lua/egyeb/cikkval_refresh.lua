@@ -1,4 +1,4 @@
---<verzio>20180514</verzio>
+--<verzio>20180517</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui=params[1]
@@ -8,7 +8,12 @@ if (aktmodul=='Kiadás ellenőrzés')  then
   azon = tostring(ui:findObject('lfejazon'):getText())
   str = 'cikkval_open '..betuz..' BFEJ.AZON='..azon
 elseif (aktmodul=='Hkód rendezés') then
-    hkod = tostring(ui:findObject('ehkod'):getText())
+    szorzo = tostring(ui:findObject('lszorzo'):getText())
+    if (szorzo=='1') then
+      hkod='0KOCSIN'
+    else
+      hkod = tostring(ui:findObject('ehkod'):getText())
+    end
     str = 'cikkval_open '..betuz..' HKOD=' .. hkod
 else
   str = 'cikkval_open '..betuz..' .'

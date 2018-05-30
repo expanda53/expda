@@ -1,5 +1,5 @@
 <root>
-<verzio>20170529</verzio>
+<verzio>20180530</verzio>
 <panel>
   <name>cikkvalpanel</name>
   <width>match</width>
@@ -48,7 +48,7 @@
 <panel>
     <name>cikkval_sor</name>
     <parent>cikkvalpanel</parent>
-    <height>65</height>
+    <height>90</height>
     <width>match</width>
     <bgcolor>#000000</bgcolor>
     <visible>false</visible>
@@ -57,7 +57,7 @@
     <name>nev</name>
     <parent>cikkval_sor</parent>
     <width>400</width>
-    <height>65</height>
+    <height>50</height>
     <top>0</top>
     <left>0</left>
     <text>[nev]</text>
@@ -65,11 +65,11 @@
 <label>
     <name>kod</name>
     <parent>cikkval_sor</parent>
-    <width>0</width>
-    <height>0</height>
-    <top>0</top>
+    <width>400</width>
+    <height>30</height>
+    <top>55</top>
     <left>0</left>
     <text>[kod]</text>
-    <style>listhidden</style>
+    
 </label>
 </root>

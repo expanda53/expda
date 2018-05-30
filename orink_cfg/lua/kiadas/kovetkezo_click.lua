@@ -1,4 +1,4 @@
---<verzio>20180118</verzio>
+--<verzio>20180529</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
@@ -29,16 +29,16 @@ if (result=='0') then
        ui:executeCommand('valuetohidden','lhkod', '')
        ui:executeCommand('aktbcodeobj','bcode1','')          
        ui:executeCommand('valuetohidden','lmegys', t[1]['MEGYS'])
-       ui:executeCommand('valuetohidden','lcikknev', t[1]['CIKKNEV'])
+       ui:executeCommand('valuetohidden','lcikknev', '['.. t[1]['CIKK'] .. '] ' .. t[1]['CIKKNEV'])
        ui:executeCommand('valuetohidden','lcikod', t[1]['CIKK'])
-       ui:executeCommand('hideobj','cap_hkod;cap_drb;cap_drb2;cap_edrb2;cap_ean;eean;button_nincsmeg;button_kovetkezo;ldrb;ldrb2;edrb2','')      
+       ui:executeCommand('hideobj','cap_hkod;cap_drb;cap_drb2;cap_edrb2;cap_ean;eean;button_nincsmeg;button_kovetkezo;ldrb;ldrb2;edrb2;button_cikkval','')      
        luafunc.refreshtable_fromstring('cikkklt_table',list)
        ui:executeCommand('show','cikkklt_table','')
     else
        ui:executeCommand('hide','cikkklt_table','')
     end
 
-    cikknev = t[1]['CIKKNEV']
+    cikknev = '['.. t[1]['CIKK'] .. '] ' .. t[1]['CIKKNEV']
     ui:executeCommand("valueto","lcikknevp",cikknev)
     ui:executeCommand("showobj","cikkkltpanel")
 
@@ -53,19 +53,20 @@ if (result=='0') then
           ui:executeCommand('valueto','ehkod', '')
           ui:executeCommand('valueto','lhkod', t[1]['HKOD'])
           ui:executeCommand('valuetohidden','lmegys', t[1]['MEGYS'])
-          ui:executeCommand('valuetohidden','lcikknev', t[1]['CIKKNEV'])
+          ui:executeCommand('valuetohidden','lcikknev', '['.. t[1]['CIKK'] .. '] ' .. t[1]['CIKKNEV'])
           ui:executeCommand('valuetohidden','lcikod', t[1]['CIKK'])
           ui:executeCommand('valuetohidden','eean', '')
           ui:executeCommand('aktbcodeobj','bcode1','')
-          ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_ean;eean;button_nincsmeg;button_kovetkezo','')      
+          ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_ean;eean;button_nincsmeg;button_kovetkezo;button_cikkval','')      
           ui:executeCommand('setfocus','ehkod','')      
         else
           ui:executeCommand('valueto','lmegys', t[1]['MEGYS'])
-          ui:executeCommand('valueto','lcikknev', t[1]['CIKKNEV'])
+          ui:executeCommand('valueto','lcikknev', '['.. t[1]['CIKK'] .. '] ' .. t[1]['CIKKNEV'])
           ui:executeCommand('valueto','lcikod', t[1]['CIKK'])
           ui:executeCommand('valueto','eean', '')
           ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2','')      
           ui:executeCommand('setfocus','eean','')      
+          ui:executeCommand("showobj","button_cikkval")
         end
 
         ui:executeCommand('valuetohidden','ldrb', t[1]['DRB'])
@@ -85,7 +86,7 @@ else
             ui:executeCommand('valueto','lcikknev', 'Nincs több szedhető tétel!')
             ui:executeCommand('valuetohidden','lcikod', '')
             ui:executeCommand('valuetohidden','eean', '')
-            ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_hkod;lhkod;cap_ean;cap_megys;lmegys','')      
+            ui:executeCommand('hideobj','cap_drb;cap_drb2;cap_edrb2;cap_hkod;lhkod;cap_ean;cap_megys;lmegys;button_cikkval','')      
             ui:executeCommand('toast','Nincs több kiszedendő tétel!','')
             ui:executeCommand('startlua','kiadas/showreview.lua','')
         else
