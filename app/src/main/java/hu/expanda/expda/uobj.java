@@ -19,6 +19,10 @@ public class uobj {
             this.name=name;
         }
         public static int dpToPx(int dp) {
+            //default dpi:160
+            //1.5 = 160*1.5 = 240
+            //.75 = 160*.75 = 120 (mc vkod)
+            //3 = 160*3 = 480 huawei p9
             if (MainActivity.dmetrics.density!=1.5)  return  (int)(MainActivity.dmetrics.density * dp); //mc vkod
             else return dp; //cat mobil
 

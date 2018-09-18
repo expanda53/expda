@@ -1,0 +1,98 @@
+<Root>
+<mainpanel>
+  <verzio>20180911</verzio>
+  <name>mainpanel1</name>
+  <text>Fomenü</text>
+  <bgcolor>#000000</bgcolor>
+  <params_to_labels>lkezelo</params_to_labels>
+  <lua_on_create>egyeb/menu_panelinit.lua [lkezelo]</lua_on_create>
+</mainpanel>
+<label>
+  <name>lupdate</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <visible>false</visible>
+</label>
+<label>
+  <name>lkezelo</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <visible>false</visible>
+  <Text>100</Text>
+</label>
+<custom_button>
+  <name>ButtonKiadas</name>
+  <image>cart.png</image>
+  <image_align>top</image_align>
+  <Text>Kiadás</Text>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>20</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua MENU_KIADAS [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonBevet</name>
+  <image>truck.png</image>
+  <image_align>top</image_align>
+  <Text>Bevét</Text>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>135</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua MENU_BEVET [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonHkod</name>
+  <image>Trolley.png</image>
+  <image_align>top</image_align>
+  <Text>Helykód rendezés</Text>
+  <top>10</top>
+  <width>110</width>
+  <height>120</height>
+  <left>250</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua MENU_ATTAROLAS [lkezelo]</lua_after_click>
+  <_lua_after_click>egyeb/menuinit.lua HKOD [lkezelo]</_lua_after_click>
+</custom_button>
+
+<custom_button>
+  <name>ButtonLeltar</name>
+  <image>leltar.png</image>
+  <image_align>top</image_align>
+  <Text>Leltár</Text>
+  <top>140</top>
+  <width>110</width>
+  <height>120</height>
+  <left>20</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua MENU_LELTAR [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonClose</name>
+  <left>135</left>
+  <Text>Kilépés</Text>
+  <top>140</top>
+  <width>110</width>
+  <height>120</height>
+  <style>buttondefault</style>
+  <lua_after_click>egyeb/menuinit.lua EXIT [lkezelo]</lua_after_click>
+  <visible>true</visible>
+  <image>exit.png</image>
+  <image_align>top</image_align>
+</custom_button>
+
+<panel>
+  <file>pfooter.xml</file>
+</panel>
+</Root>
