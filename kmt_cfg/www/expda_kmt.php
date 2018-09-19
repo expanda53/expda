@@ -267,20 +267,93 @@
 
   /* keszrejel innen */
   function keszrejel_mibizlist($r){
-      $sql="SELECT AZON,MIBIZ FROM ANDROID_KESZREJEL_MIBIZLIST(:login)";
+      $sql="SELECT AZON||'|@@style:listhidden' AZON,MIBIZ||'|@@style:listtitle;listtitledone' AS MIBIZ FROM ANDROID_KESZREJEL_MIBIZLIST(:login)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }  
   function keszrejel_cikkcheck($r){
-      $sql="SELECT RESULT,CIKKNEV FROM ANDROID_KESZREJEL_CIKKCHECK(:cikk)";
+      $sql="SELECT RESULT,CIKKNEV,DRB FROM ANDROID_KESZREJEL_CIKKCHECK(:azon,:cikk)";
       $stmt = query_prepare($sql);
       $cikk=trim($r['p1']);
+      $azon=trim($r['p2']);
 	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }    
+  function keszrejel_ment($r){
+      $sql = "SELECT RESULT,RESULTTEXT,MIBIZ,AZON FROM ANDROID_KESZREJEL_MENTES(:azon, :cikk, :drb, :login)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $cikk=trim($r['p2']);
+      $drb=trim($r['p3']);
+      $login=trim($r['p4']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':drb', $drb, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }
+  function keszrejel_cikklist($r){
+      $sql="SELECT CIKKNEV||'|@@style:listtitle;listtitledone' CIKKNEV, ";
+      $sql.= " 'Összesen: '||cast(DRB as integer)||'|@@style:listdetails;listtitledone' DRB ";
+      $sql.= " FROM ANDROID_KESZREJEL_REVIEW(:login,:azon)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $azon=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }    
+  
   /* keszrejel eddig */
+      
+  /* készáru bevét innen */      
+    function bevetkesz_mibizlist($r){
+      $sql="SELECT AZON||'|@@style:listhidden' AZON,MIBIZ||'|@@style:listtitle;listtitledone' AS MIBIZ,NEV||'|@@style:listtitle;listtitledone' AS NEV FROM ANDROID_BEVETKESZ_MIBIZLIST(:login)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }  
+    
+  function bevetkesz_ment($r){
+      $sql = "SELECT RESULT,RESULTTEXT FROM ANDROID_BEVETKESZ_MENTES(:azon, :cikk, :drb, :hkod,:login)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $cikk=trim($r['p2']);
+      $drb=trim($r['p3']);
+      $hkod=trim($r['p4']);
+      $hkod=str_replace('%20',' ',$hkod);
+      $login=trim($r['p5']);
+      
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':drb', $drb, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }
+  function bevetkesz_cikklist($r){
+      $sql="SELECT CIKK, CIKKNEV, DRB,DRB2 FROM ANDROID_BEVETKESZ_REVIEW(:login,:mibiz)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $mibiz=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':mibiz', $mibiz, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }  
+      
+
+  /* készáru bevét eddig */      
+      
+  /* innen nem kell */    
   /* leltar innen */
   function leltar_mibizlist($r){
       $sql="SELECT AZON,MIBIZ FROM ANDROID_LELTAR_MIBIZLIST(:login,:kulso)";

@@ -1,11 +1,11 @@
---<verzio>20161117</verzio>
+--<verzio>20180911</verzio>
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
 ui = params[1]
 kezelo = ui:getKezelo()
 --atnezo panel
 azon = tostring(ui:findObject('lfejazon'):getText())
-str = 'leltar_cikklist '..kezelo..' '..azon
+str = 'keszrejel_cikklist '..kezelo..' '..azon
 list=luafunc.query_assoc_to_str(str,false)
 if (list~=nil) then
    luafunc.refreshtable_fromstring('atnezo_table',list)

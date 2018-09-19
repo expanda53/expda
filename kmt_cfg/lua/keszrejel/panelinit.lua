@@ -6,12 +6,15 @@ ui:executeCommand('valueto','lkezelostat','Kezelő: '..kezelo)
 ui:executeCommand('valueto','lmodulstat','Készre jelentés')
 version = ui:getGlobal("appversion")
 ui:executeCommand('valueto',"lverzio",'exPDA v' .. version)
+ui:executeCommand("hideobj","pfooter")
 str = 'keszrejel_mibizlist '..kezelo
-t=luafunc.query_assoc(str,false)
-if (t[1]['MIBIZ']~='HIBA') then
-    mibiz= t[1]['MIBIZ']
-    azon= t[1]['AZON']
-    ui:executeCommand('valueto','lmibiz', mibiz)
-    ui:executeCommand('valuetohidden','lfejazon', azon)
-    ui:executeCommand('aktbcodeobj','bcode0','')
-end
+list=luafunc.query_assoc_to_str(str,false)
+luafunc.refreshtable_fromstring('bizlist_table',list)
+ui:executeCommand('show','bizlist_table','')
+ui:executeCommand("showobj","bizlistpanel","")
+
+--ui:executeCommand('valuetohidden','lfejazon', 0)
+--ui:executeCommand('valueto','lmibiz', 'Új bizonylat')
+--ui:executeCommand('showobj','cap_cikod;ecikod;button_review','')
+--ui:executeCommand('aktbcodeobj','bcode0','')
+

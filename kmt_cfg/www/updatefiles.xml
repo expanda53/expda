@@ -34,7 +34,20 @@ lua/bevetszall/kesobbfolyt.lua;20180911_
 lua/bevetszall/ujlot.lua;20180911_
 ini/keszrejel.xml;20180911_
 lua/keszrejel/panelinit.lua;20180911_
+lua/keszrejel/bizlist_click.lua;20180911_
 lua/keszrejel/cikkcheck.lua;20180911_
+lua/keszrejel/mentes.lua;20180911_
+lua/keszrejel/ujcikk.lua;20180911_
+lua/keszrejel/showreview.lua;20180911_
+ini/bevetkesz.xml;20180911_
+lua/bevetkesz/panelinit.lua;20180911_
+lua/bevetkesz/ceglist_click.lua;20180911_
+lua/bevetkesz/hkodcheck.lua;20180911_
+lua/bevetkesz/ujhkod.lua;20180911_
+lua/bevetkesz/cikkcheck.lua;20180911_
+lua/bevetkesz/mentes.lua;20180911_
+lua/bevetkesz/zaras.lua;20180911_
+lua/bevetkesz/ujcikk.lua;20180911_
 ini/leltar.xml;20180103
 lua/leltar/panelinit.lua;20161222
 lua/leltar/hkodcheck.lua;20170616
@@ -146,6 +159,7 @@ lua/bevetkolt/eancheck.lua;20180213
 lua/bevetkolt/mentes.lua;20180213
 lua/bevetkolt/kesobbfolyt.lua;20180213
 lua/bevetkolt/lezaras.lua;20180213
+images/list1.png;20180919_
 images/box.png;20170118
 images/check.png;20170118
 images/question.png;20170213
@@ -157,3 +171,4 @@ images/truck.png;20170627
 images/fbox.png;20170627
 images/boxclosed.png;20181202
 images/leltar.png;20170627
+

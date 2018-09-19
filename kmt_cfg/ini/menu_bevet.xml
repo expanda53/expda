@@ -43,8 +43,21 @@
   <lua_after_click>egyeb/menuinit.lua KESZREJEL [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
-  <name>ButtonClose</name>
+  <name>ButtonKeszBe</name>
+  <image>list1.png</image>
+  <image_align>top</image_align>
+  <Text>Készáru bevét</Text>
+  <top>140</top>
+  <width>110</width>
+  <height>120</height>
   <left>135</left>
+  <style>buttondefault</style>
+  <visible>true</visible>
+  <lua_after_click>egyeb/menuinit.lua BEVETKESZ [lkezelo]</lua_after_click>
+</custom_button>
+<custom_button>
+  <name>ButtonClose</name>
+  <left>250</left>
   <Text>Vissza</Text>
   <top>140</top>
   <width>110</width>

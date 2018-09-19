@@ -1,16 +1,13 @@
---<verzio>20180104</verzio>
+--<verzio>20180911</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
 ui=params[1]
 cikk = params[2]:gsub("n",""):gsub(':','')
-ean = params[3]:gsub("n",""):gsub(':','')
-drb = params[4]:gsub("n",""):gsub(':','')
-fejazon = params[5]:gsub("n",""):gsub(':','')
-hkod = params[6]:gsub("n",""):gsub(':','')
-drb2 = params[7]:gsub("n",""):gsub(':','')
---dialogres = params[8]:gsub("\n",""):gsub(':','')
-dialogres = tostring(ui:findObject('lfelirmod'):getText())
+drb = params[3]:gsub("n",""):gsub(':','')
+fejazon = params[4]:gsub("n",""):gsub(':','')
+drb2 = params[5]:gsub("n",""):gsub(':','')
+dialogres = params[6]:gsub("\n",""):gsub(':','')
 if (dialogres=='') then
   dialogres='null'
 end  
@@ -24,24 +21,25 @@ end
 --ez mar nem kell, mert a cikk loves utan mondja meg hogy mi legyen (bcode1.lua, leltaradd.lua)
 if (dialogres=="null") then
     if (tonumber(drb2)~=0) then
-      ui:showDialog("Van már ilyen tétel a leltárban.\n\nNem: Hozzáadja\nIgen: Felülírja","leltar/mentes.lua "..cikk.." " ..ean .. " " .. drb .. " " ..fejazon .. " " ..hkod .. " " .. drb2 .. " felulir","leltar/mentes.lua "..cikk.." " ..ean .. " " .. drb .. " " ..fejazon .. " " ..hkod .. " " .. drb2 .. " sum")
+      ui:showDialog("Van már ilyen tétel a jelentésben.\n\nNem: Hozzáadja\nIgen: Felülírja","keszrejel/mentes.lua "..cikk.." " .. drb .. " " ..fejazon .. " " .. drb2 .. " felulir","keszrejel/mentes.lua "..cikk.." " .. drb .. " " ..fejazon .. " " .. drb2 .. " hozzaad")
     else
       dialogres = "felulir"
     end
 end
 
 if (dialogres~="null") then
-    if (dialogres=="hozzáad") then
+    if (dialogres=="hozzaad") then
         --hozzaadas
         drb = tonumber(drb2) + tonumber(drb)
     end
     if (tonumber(drb)>0) then
         kezelo = ui:getKezelo()
-        kulsoraktar = ui:getGlobal("kulsoraktar")
-        str = 'leltar_ment ' .. fejazon .. ' ' .. hkod .. ' ' .. cikk .. ' ' .. ean .. ' ' .. drb .. ' ' .. kezelo .. ' ' .. kulsoraktar
+        str = 'keszrejel_ment ' .. fejazon .. ' ' .. cikk .. ' ' .. drb .. ' ' .. kezelo 
         t=luafunc.query_assoc(str,false)
-        ui:executeCommand('valueto','lmibiz', t[1]['MIBIZ'])
-        ui:executeCommand('valuetohidden','lfejazon', t[1]['AZON'])
+        if (fejazon=='0') then
+          ui:executeCommand('valueto','lmibiz', t[1]['MIBIZ'])
+          ui:executeCommand('valuetohidden','lfejazon', t[1]['AZON'])
+        end
         result = t[1]['RESULT']
         resulttext = t[1]['RESULTTEXT']
         if (result=='0') then
@@ -49,11 +47,11 @@ if (dialogres~="null") then
         else
             --ui:executeCommand('TOAST','Hiba:' .. resulttext)
             alert(ui,"")
-            ui:executeCommand('uzenet',resulttext,"egyeb/setfocus.lua eean")
+            ui:executeCommand('uzenet',resulttext,"egyeb/setfocus.lua ecikod")
         end
-        ui:executeCommand('hideobj','cap_drb;edrb;button_ujean;lcikknev;cap_drb2;ldrb2;lfelirmod','')
-        ui:executeCommand('setfocus','eean', '')
-        ui:executeCommand('valueto','eean', '')
+        ui:executeCommand('hideobj','cap_drb;edrb;button_ujcikk;lcikknev;cap_drb2;ldrb2','')
+        ui:executeCommand('setfocus','ecikod', '')
+        ui:executeCommand('valueto','ecikod', '')
     else
         alert(ui,'Mennyiség nem lehet nulla!')
         ui:executeCommand('valueto','edrb','')
