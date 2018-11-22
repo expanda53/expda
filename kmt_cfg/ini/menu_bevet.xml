@@ -31,7 +31,7 @@
 </custom_button>
 <custom_button>
   <name>ButtonKeszre</name>
-  <image>check.png</image>
+  <image>dbaccept.png</image>
   <image_align>top</image_align>
   <Text>Készre jelentés</Text>
   <top>140</top>
@@ -44,7 +44,7 @@
 </custom_button>
 <custom_button>
   <name>ButtonKeszBe</name>
-  <image>list1.png</image>
+  <image>dbadd.png</image>
   <image_align>top</image_align>
   <Text>Készáru bevét</Text>
   <top>140</top>
