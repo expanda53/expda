@@ -6,7 +6,7 @@ ui=params[1]
     
 function cikkUpdate(kod,nev)    
   ui:executeCommand('toast','Választott cikk:\n[' .. kod  .. '] ' .. nev,2)
-  ui:executeCommand('valueto','lcikknev','[' .. kod  .. '] ' .. nev)
+  ui:executeCommand('valueto','lcikknev',kod  .. ' ' .. nev)
   ui:executeCommand('valuetohidden','lcikod',kod)
 end
 

@@ -1,0 +1,368 @@
+<Root>
+<verzio>20190301</verzio>
+<mainpanel>
+  <name>altalanos</name>
+  <text>Éjszakai kiadás</text>
+  <lua_on_create>kiadej/panelinit.lua</lua_on_create>
+  <params_to_labels>lkezelo</params_to_labels>
+</mainpanel>
+<label>
+  <name>lfejazon</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<label>
+  <name>lkezelo</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<label>
+  <name>lcikod</name>
+  <top>0</top>
+  <left>0</left>
+  <width>0</width>
+  <height>0</height>
+  <style>hidden</style>
+</label>
+<panel>
+  <name>panel1</name>
+  <width>match</width>
+  <height>match</height>
+  <top>0</top>
+  <visible>true</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+</panel>
+<panel>
+  <file>pfooter.xml</file>
+</panel>
+
+<label>
+  <name>lmibiz</name>
+  <top>0</top>
+  <left>0</left>
+  <width>150</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>reviewlabel</style>
+  <align>center</align>
+</label>
+<panel>
+  <name>mibizlistpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>0</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+<table>
+  <name>mibizlist_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>300</height>
+  <top>0</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+
+  <column_title_mibiz>Mibiz</column_title_mibiz>
+  <column_title_azon>Azon</column_title_azon>
+
+  <font_size>10</font_size>
+  <row_height>160</row_height>
+  <parent>mibizlistpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadej/mibizlist_click.lua null</lua_after_click>
+  <itempanel>mibizlist_sor</itempanel>
+</table>
+
+<panel>
+    <name>mibizlist_sor</name>
+    <parent>mibizlistpanel</parent>
+    <height>80</height>
+    <width>match</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>mibiz</name>
+    <parent>mibizlist_sor</parent>
+    <width>400</width>
+    <height>80</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[mibiz]</text>
+    <align>left</align>
+</label>
+<label>
+    <name>azon</name>
+    <parent>mibizlist_sor</parent>
+    <width>0</width>
+    <height>0</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[azon]</text>
+    <style>listhidden</style>
+</label>
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_mibizvissza</name>
+  <Text>Vissza</Text>
+  <top>305</top>
+  <width>match</width>
+  <height>45</height>
+  <left>0</left>
+  <parent>mibizlistpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>egyeb/mibizvissza.lua</lua_after_click>
+</custom_button>
+
+
+<barcode>
+  <name>BCODE1</name>
+  <lua_after_trigger>kiadej/hkodcheck.lua [ehkod]</lua_after_trigger>
+  <valueto>ehkod</valueto>
+  <parent>panel1</parent>
+</barcode>
+
+<barcode>
+  <name>BCODE2</name>
+  <lua_after_trigger>kiadej/eancheck.lua [eean]</lua_after_trigger>
+  <valueto>eean</valueto>
+  <parent>panel1</parent>
+</barcode>
+
+<label>
+  <name>cap_hkod</name>
+  <top>38</top>
+  <left>0</left>
+  <width>60</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Helykód</text>
+</label>
+<text>
+  <name>ehkod</name>
+  <top>70</top>
+  <width>150</width>
+  <parent>panel1</parent>
+  <left>0</left>
+  <visible>false</visible>
+  <lua_on_change>kiadej/hkodcheck.lua [ehkod]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
+
+
+
+<label>
+  <name>cap_ean</name>
+  <top>38</top>
+  <left>155</left>
+  <width>70</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault</style>
+  <text>Cikk</text>
+</label>
+<text>
+  <name>eean</name>
+  <top>70</top>
+  <width>240</width>
+  <parent>panel1</parent>
+  <left>155</left>
+  <visible>false</visible>
+  <lua_on_change>kiadej/eancheck.lua [eean]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
+
+
+<label>
+  <name>lcikknev</name>
+  <top>120</top>
+  <left>0</left>
+  <width>match</width>
+  <height>wrap</height>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;listtitlework</style>
+    <lua_after_click>kiadej/showreview.lua</lua_after_click>
+</label>
+
+<label>
+  <name>cap_edrb2</name>
+  <top>165</top>
+  <left>220</left>
+  <visible>false</visible>
+  <parent>panel1</parent>
+  <style>labeldefault;labeldrb_cap</style>
+  <text>Kiszedés</text>
+</label>
+<text>
+  <name>edrb2</name>
+  <top>190</top>
+  <width>100</width>
+  <parent>panel1</parent>
+  <left>220</left>
+  <visible>false</visible>
+  <lua_on_change>kiadej/mentes.lua [lfejazon] [eean] [ehkod] [edrb2]</lua_on_change>
+  <bgcolor>#497000</bgcolor>
+  <font_color>#000000</font_color>
+  <font_size>17</font_size>
+  <height>45</height>
+</text>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_ujcikk</name>
+  <Text>Új Cikk</Text>
+  <top>270</top>
+  <width>190</width>
+  <height>45</height>
+  <left>0</left>
+  <lua_after_click>kiadej/ujcikk.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>button_review</name>
+  <Text>Átnézés</Text>
+  <top>270</top>
+  <width>190</width>
+  <height>45</height>
+  <left>195</left>
+  <lua_after_click>kiadej/showreview.lua</lua_after_click>
+  <parent>panel1</parent>
+  <visible>false</visible>
+</custom_button>
+
+<panel>
+  <name>reviewpanel</name>
+  <width>match</width>
+  <height>match</height>
+  <top>30</top>
+  <visible>false</visible>
+  <bgcolor>#000000</bgcolor>
+  <left>0</left>
+  <parent>panel1</parent>
+</panel>
+
+<table>
+  <name>atnezo_table</name>
+  <bgcolor>#000000</bgcolor>
+  <font_color>#497000</font_color>
+  <width>match</width>
+  <height>240</height>
+  <top>0</top>
+  <left>0</left>
+  <divider_color>#434343</divider_color>
+  <divider_height>2</divider_height>
+  
+  <column_title_cikk>Kod</column_title_cikk>
+  <column_title_cikknev>Cikk</column_title_cikknev>
+  <column_title_drb>drb</column_title_drb>
+  <column_title_hkod>hkod</column_title_hkod>
+  
+  <font_size>10</font_size>
+  <row_height>65</row_height>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <itempanel>atnezo_sor</itempanel>
+</table>
+
+<panel>
+    <name>atnezo_sor</name>
+    <parent>panel1</parent>
+    <height>75</height>
+    <width>match</width>
+    <bgcolor>#000000</bgcolor>
+    <visible>false</visible>
+</panel>
+<label>
+    <name>cikk</name>
+    <parent>atnezo_sor</parent>
+    <width>395</width>
+    <height>20</height>
+    <top>0</top>
+    <left>0</left>
+    <text>[cikk]</text>
+    <visible>true</visible>
+</label>
+<label>
+    <name>cikknev</name>
+    <parent>atnezo_sor</parent>
+    <width>395</width>
+    <height>50</height>
+    <top>20</top>
+    <left>0</left>
+    <text>[cikknev]</text>
+</label>
+<label>
+    <name>hkod</name>
+    <parent>atnezo_sor</parent>
+    <width>130</width>
+    <height>25</height>
+    <top>50</top>
+    <left>0</left>
+    <text>[hkod]</text>
+    <align>left</align>
+</label>
+<label>
+    <name>drb</name>
+    <parent>atnezo_sor</parent>
+    <width>266</width>
+    <height>25</height>
+    <top>50</top>
+    <left>130</left>
+    <text>[drb]</text>
+    <align>left</align>
+</label>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_folytmost</name>
+  <Text>Folyt. most</Text>
+  <top>245</top>
+  <width>190</width>
+  <height>45</height>
+  <left>0</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadej/kiadasfolyt.lua</lua_after_click>
+</custom_button>
+
+<custom_button>
+  <style>buttondefault</style>
+  <name>btn_folytkesobb</name>
+  <Text>Kilépés</Text>
+  <top>245</top>
+  <width>190</width>
+  <height>45</height>
+  <left>195</left>
+  <parent>reviewpanel</parent>
+  <visible>true</visible>
+  <lua_after_click>kiadej/kiadaskesobb.lua</lua_after_click>
+</custom_button>
+
+</Root>

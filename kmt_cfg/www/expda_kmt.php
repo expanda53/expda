@@ -267,7 +267,7 @@
 
   /* keszrejel innen */
   function keszrejel_mibizlist($r){
-      $sql="SELECT AZON||'|@@style:listhidden' AZON,MIBIZ||'|@@style:listtitle;listtitledone' AS MIBIZ FROM ANDROID_KESZREJEL_MIBIZLIST(:login)";
+      $sql="SELECT AZON||'|@@style:listhidden' AZON,MIBIZ||'|@@style:listtitle'||CASE WHEN AZON=0 THEN ';listtitledone' ELSE '' END AS MIBIZ FROM ANDROID_KESZREJEL_MIBIZLIST(:login)";
       $stmt = query_prepare($sql);
       $login=trim($r['p1']);
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
@@ -319,7 +319,16 @@
 	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
 	  echo query_print($stmt);
   }  
-    
+  function bevetkesz_cikkcheck($r){
+	  /* JO A KESZREJELENTOS CIKKCHECK IS, CSAK A DARABOT FORDITOTT ELOJELLEL (+) KELL MEGJELENITENI */
+      $sql="SELECT RESULT,CIKKNEV,-DRB AS DRB FROM ANDROID_KESZREJEL_CIKKCHECK(:azon,:cikk)";
+      $stmt = query_prepare($sql);
+      $cikk=trim($r['p1']);
+      $azon=trim($r['p2']);
+	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }        
   function bevetkesz_ment($r){
       $sql = "SELECT RESULT,RESULTTEXT FROM ANDROID_BEVETKESZ_MENTES(:azon, :cikk, :drb, :hkod,:login)";
       $stmt = query_prepare($sql);
@@ -352,6 +361,123 @@
       
 
   /* készáru bevét eddig */      
+  
+  /* készáru eladás innen */
+  function kiadkesz_mibizlist($r){
+      $sql="SELECT NEV||'|@@style:listtitle' NEV,MIBIZ||'|@@style:listtitle' MIBIZ,AZON||'|@@style:listhidden' AZON FROM ANDROID_KIADKESZ_MIBIZLIST(:login)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }    
+  function kiadkesz_init($r){
+      $sql="SELECT RESULT,RESULTTEXT FROM ANDROID_KIADKESZ_INIT(:azon,:login)";
+      $stmt = query_prepare($sql);
+      $azon=trim($r['p1']);
+      $login=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);
+      Firebird::commit();
+  }
+  
+  function kiadkesz_kovsor($r){
+      $sql="SELECT CIKK, CIKKNEV, HKOD, cast(DRB as integer) DRB, cast(DRB2 as integer) DRB2,RESULT FROM ANDROID_KIADKESZ_LEPTET(:azon,:hkod,:cikk,:irany,:login)";
+      $stmt = query_prepare($sql);
+      $azon=trim($r['p1']);
+      $hkod=trim($r['p2']);
+      $cikk=trim($r['p3']);
+      $irany=trim($r['p4']);
+      $login=trim($r['p5']);
+      
+      if ($cikk=='.') $cikk='';
+      if ($hkod=='.') $hkod='';
+      $hkod=str_replace('%20',' ',$hkod);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':irany', $irany, PDO::PARAM_STR);      
+	  echo query_print($stmt);
+  }
+  function kiadkesz_mentes($r){
+      $sql = "SELECT RESULTTEXT,RESULT FROM ANDROID_KIADKESZ_MENTES(:azon, :cikk, :ean, :hkod,:drb2, :login)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $cikk=trim($r['p2']);
+      $ean=trim($r['p3']);
+      $hkod=trim($r['p4']);
+      $drb2=trim($r['p5']);
+      $login=trim($r['p6']);
+
+      $hkod=str_replace('%20',' ',$hkod);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':drb2', $drb2, PDO::PARAM_STR);
+      $stmt->bindParam(':ean', $ean, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }
+  function kiadkesz_cikklist($r){
+      $sql="SELECT CIKK, CIKKNEV, DRB,DRB2,HKOD FROM ANDROID_KIADKESZ_REVIEW(:login,:mibiz)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $mibiz=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':mibiz', $mibiz, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }      
+  /* készáru eladás eddig */
+  /* éjszakai kiadás innen */
+  function kiadej_mibizlist($r){
+      $sql="SELECT MIBIZ||'|@@style:listtitle'||CASE WHEN AZON=0 THEN ';listtitledone' ELSE '' END AS MIBIZ,AZON||'|@@style:listhidden' AZON FROM ANDROID_kiadej_MIBIZLIST(:login)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }    
+  function kiadej_cikkcheck($r){
+      $sql="SELECT RESULT,CIKKNEV FROM ANDROID_KIADEJ_CIKKCHECK(:cikk)";
+      $stmt = query_prepare($sql);
+      $cikk=trim($r['p1']);
+	  $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }      
+  function kiadej_mentes($r){
+      $sql = "SELECT RESULTTEXT,RESULT,PAZON,MIBIZ FROM ANDROID_kiadej_MENTES(:azon, :cikk, :hkod,:drb2, :login)";
+      $stmt = query_prepare($sql);
+      
+      $azon=trim($r['p1']);
+      $cikk=trim($r['p2']);
+      $hkod=trim($r['p3']);
+      $drb2=trim($r['p4']);
+      $login=trim($r['p5']);
+
+      $hkod=str_replace('%20',' ',$hkod);
+      
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+      $stmt->bindParam(':cikk', $cikk, PDO::PARAM_STR);
+      $stmt->bindParam(':hkod', $hkod, PDO::PARAM_STR);
+      $stmt->bindParam(':drb2', $drb2, PDO::PARAM_STR);
+	  echo query_print($stmt);      
+      Firebird::commit();
+  }
+  function kiadej_cikklist($r){
+      $sql="SELECT CIKK||'|@@style:listtitle;listtitledone' AS CIKK, CIKKNEV||'|@@style:listtitle;listtitledone' CIKKNEV, cast(DRB as integer)||'|@@style:listtitle;listtitledone' DRB,HKOD||'|@@style:listtitle;listtitledone' HKOD FROM ANDROID_KIADEJ_REVIEW(:login,:azon)";
+      $stmt = query_prepare($sql);
+      $login=trim($r['p1']);
+      $azon=trim($r['p2']);
+	  $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+      $stmt->bindParam(':azon', $azon, PDO::PARAM_STR);
+	  echo query_print($stmt);
+  }      
+  
+  /* éjszakai kiadás eddig */
       
   /* innen nem kell */    
   /* leltar innen */

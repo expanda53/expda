@@ -1,4 +1,4 @@
---<verzio>20180911</verzio>
+--<verzio>20190201</verzio>
 require '.egyeb.functions'
 require 'hu.expanda.expda/LuaFunc'
 local params = {...}
@@ -6,6 +6,7 @@ ui=params[1]
 hkod = params[2]:gsub("n",""):gsub(':',''):gsub("%%20"," ")
 if (hkod:len()<=10) then
     --hkod ellenorzes
+	thkod=hkod
     hkod = hkod:gsub(" ","%%20")
     str = 'hkod_check '..hkod
     t=luafunc.query_assoc(str,false)
@@ -27,7 +28,7 @@ else
  else
     msg = 'Nem található a rendszerben ilyen helykód:\n'
  end
- alert(ui,msg..hkod)
+ alert(ui,msg..thkod)
 
  ui:executeCommand('valueto','ehkod','')
  ui:executeCommand('setfocus','ehkod','')   

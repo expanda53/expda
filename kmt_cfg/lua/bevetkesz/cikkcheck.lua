@@ -1,4 +1,4 @@
---<verzio>20180911</verzio>
+--<verzio>20190301</verzio>
 require 'hu.expanda.expda/LuaFunc'
 require '.egyeb.functions'
 local params = {...}
@@ -7,7 +7,7 @@ fejazon = params[2]:gsub("\n",""):gsub(':','')
 cikk = params[3]:gsub("\n",""):gsub(':','')
 kezelo = ui:getKezelo()
 
-str = 'keszrejel_cikkcheck ' ..  cikk .. ' ' .. fejazon 
+str = 'bevetkesz_cikkcheck ' ..  cikk .. ' ' .. fejazon 
 
 t=luafunc.query_assoc(str,false)
 cikkval=0
@@ -23,7 +23,7 @@ if (result=='0') then
   ui:executeCommand('setfocus','edrb','') 
 
 elseif (result=='-1') then
-  alert(ui,'Nem található ilyen termék a bevét bizonylaton:\n' .. '[' .. cikk .. '] ' .. cikknev)
+  alert(ui,'Nem található ilyen termék a bevét bizonylaton:\n' .. cikk .. ' ' .. cikknev)
   ui:executeCommand('valueto','ecikod','') 
 else  
   alert(ui,'Egyéb hiba történt:\n'..cikk)

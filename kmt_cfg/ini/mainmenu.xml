@@ -60,7 +60,7 @@
   <height>120</height>
   <left>250</left>
   <style>buttondefault</style>
-  <visible>true</visible>
+  <visible>false</visible>
   <lua_after_click>egyeb/menuinit.lua MENU_ATTAROLAS [lkezelo]</lua_after_click>
   <_lua_after_click>egyeb/menuinit.lua HKOD [lkezelo]</_lua_after_click>
 </custom_button>
@@ -75,7 +75,7 @@
   <height>120</height>
   <left>20</left>
   <style>buttondefault</style>
-  <visible>true</visible>
+  <visible>false</visible>
   <lua_after_click>egyeb/menuinit.lua MENU_LELTAR [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>

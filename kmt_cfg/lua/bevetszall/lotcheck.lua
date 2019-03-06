@@ -19,7 +19,7 @@ if (result=='0') then
   ui:executeCommand('valueto','edrb',drb)
   ui:executeCommand('valueto','lmaxdrb',drb)
   ui:executeCommand('valuetohidden','lcikod',cikk)
-  ui:executeCommand('valueto','lcikknev','[' .. cikk .. '] ' ..cikknev)
+  ui:executeCommand('valueto','lcikknev',cikk .. ' ' ..cikknev)
   ui:executeCommand('showobj','cap_drb;cap_maxdrb;button_ujlot','')
   ui:executeCommand('setfocus','edrb','') 
 

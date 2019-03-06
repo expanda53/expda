@@ -1,5 +1,5 @@
 <Root>
-<verzio>20180911</verzio>
+<verzio>20190301</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Bevét</text>
@@ -143,7 +143,7 @@
   <left>0</left>
   <parent>ceglistpanel</parent>
   <visible>true</visible>
-  <lua_after_click>kiadas/mibizvissza.lua</lua_after_click>
+  <lua_after_click>egyeb/mibizvissza.lua</lua_after_click>
 </custom_button>
 
 
@@ -155,7 +155,7 @@
 </barcode>
 <barcode>
   <name>BCODE_HKOD</name>
-  <lua_after_trigger>bevetszall/hkodcheck.lua [lfejazon] [ehkod]</lua_after_trigger>
+  <lua_after_trigger>bevetszall/hkodcheck.lua [ehkod]</lua_after_trigger>
   <valueto>ehkod</valueto>
   <parent>panel1</parent>
 </barcode>

@@ -1,6 +1,6 @@
 <Root>
 <mainpanel>
-  <verzio>20170329</verzio>
+  <verzio>20180911</verzio>
   <name>mainpanel1</name>
   <text>Fomenü</text>
   <bgcolor>#000000</bgcolor>
@@ -18,29 +18,29 @@
 </label>
 <custom_button>
   <name>ButtonKiadas</name>
-  <image>cart.png</image>
+  <image>dbminus.png</image>
   <image_align>top</image_align>
-  <Text>Kiadás</Text>
+  <Text>Készáru eladás</Text>
   <top>10</top>
   <width>110</width>
   <height>120</height>
   <left>20</left>
   <style>buttondefault</style>
   <visible>true</visible>
-  <lua_after_click>egyeb/menuinit.lua KIADAS [lkezelo]</lua_after_click>
+  <lua_after_click>egyeb/menuinit.lua KIADKESZ [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
-  <name>ButtonEllenor</name>
-  <image>check.png</image>
+  <name>ButtonEjszaka</name>
+  <image>moon.png</image>
   <image_align>top</image_align>
-  <Text>Ellenőrzés</Text>
-  <top>10</top>
+  <Text>Éjszakai kiadás</Text>
+  <top>140</top>
   <width>110</width>
   <height>120</height>
-  <left>135</left>
+  <left>20</left>
   <style>buttondefault</style>
   <visible>true</visible>
-  <lua_after_click>egyeb/menuinit.lua ELLENOR [lkezelo]</lua_after_click>
+  <lua_after_click>egyeb/menuinit.lua KIADEJ [lkezelo]</lua_after_click>
 </custom_button>
 <custom_button>
   <name>ButtonClose</name>

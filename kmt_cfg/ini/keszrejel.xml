@@ -1,5 +1,5 @@
 <Root>
-<verzio>20180911</verzio>
+<verzio>20190301</verzio>
 <mainpanel>
   <name>altalanos</name>
   <text>Készre jelentés</text>
@@ -114,14 +114,14 @@
   <left>0</left>
   <parent>bizlistpanel</parent>
   <visible>true</visible>
-  <lua_after_click>kiadas/mibizvissza.lua</lua_after_click>
+  <lua_after_click>egyeb/mibizvissza.lua</lua_after_click>
 </custom_button>
 
 
 
 <barcode>
   <name>BCODE0</name>
-  <lua_after_trigger>keszrejel/cikkcheck.lua [ecikod]</lua_after_trigger>
+  <lua_after_trigger>keszrejel/cikkcheck.lua [ecikod] [lfejazon]</lua_after_trigger>
   <valueto>ecikod</valueto>
   <parent>panel1</parent>
 </barcode>
